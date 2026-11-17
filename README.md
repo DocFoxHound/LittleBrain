@@ -2,7 +2,6 @@
 
 A small brain built from simulated human neuron types, heading toward a tool for watching game characters learn. (Formerly "Memory Philosophy": working notes toward a decision-making "brain", a system of specialized parts that
 learn together, with a language model as only one of those parts.)
-learn together, with a language model as only one of those parts.
 
 *Started 2026-10-27. This is a living document; the aim is still being found.*
 
