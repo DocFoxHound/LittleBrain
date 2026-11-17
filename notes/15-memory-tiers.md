@@ -72,4 +72,4 @@ On this machine that suggests:
 ## Process notes
 - One agent briefly overwrote other agents' temp files in a shared scratch folder before moving to its own. No result appears affected (all reran their final suites).
 - The SSD experiment wrote about 134 GB total (harmless for the drive); all large data files were deleted.
-- Tools live in `~/Documents/MemoryPhilosophy/.venv` (5.8 GB). Triton needed `python3-devel`, which the user installed.
+- Tools live in `~/Documents/LittleBrain/.venv` (5.8 GB). Triton needed `python3-devel`, which the user installed.

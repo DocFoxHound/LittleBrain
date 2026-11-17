@@ -13,7 +13,7 @@ be slow and wants to know how slow, and whether clever use (batched, sequential,
 sweeps) makes it practical.
 
 ## The project (read these first)
-- `~/Documents/MemoryPhilosophy/README.md`: the overall goal (a brain-like, emotional, continually learning system).
+- `~/Documents/LittleBrain/README.md`: the overall goal (a brain-like, emotional, continually learning system).
 - `notes/13-our-neuron.md`: the workhorse neuron design (branches, cascade synapses, three-factor learning, sleep).
 - `notes/14-neuron-memory.md`: the packed version: **32 bits per synapse, about 1,041 bytes per neuron**, and its measurements.
 - `prototype/neuron.py`: the readable float reference implementation.
@@ -47,7 +47,7 @@ and treat "this needs locality" as a design finding in its own right.
 - CPU: Intel i9-13900H, 6 performance + 8 efficiency cores, 20 threads, AVX2 + FMA (no AVX-512). L3 cache 24 MB.
 - RAM: 62 GB (about 56 GB free). NVMe SSD with 2.4 TB free.
 - GPU: RTX 4070 Laptop, **8 GB VRAM**, CUDA 13, driver 580. PCIe link to RAM.
-- **Python environment: `~/Documents/MemoryPhilosophy/.venv/bin/python`** (Python 3.14) with numpy, torch 2.14 (CUDA works, pinned memory works), **triton 3.8** (works; `@triton.jit` kernels must live in a real .py file), **cupy-cuda13x** (`cp.RawKernel` compiles CUDA C at runtime), numba 0.68 (CPU `@njit(parallel=True)` works), zstandard, lz4. torch and cupy share GPU memory without copying via DLPack.
+- **Python environment: `~/Documents/LittleBrain/.venv/bin/python`** (Python 3.14) with numpy, torch 2.14 (CUDA works, pinned memory works), **triton 3.8** (works; `@triton.jit` kernels must live in a real .py file), **cupy-cuda13x** (`cp.RawKernel` compiles CUDA C at runtime), numba 0.68 (CPU `@njit(parallel=True)` works), zstandard, lz4. torch and cupy share GPU memory without copying via DLPack.
 - gcc, clang, rustc and cargo are available. C via `ctypes` works (no Python headers needed).
 
 ## Rules (several agents share this machine at the same time)

@@ -1,6 +1,6 @@
 # Research brief: neuron types by brain region, with percentages
 
-Project: a brain-inspired AI in `~/Documents/MemoryPhilosophy` (read `README.md` and `notes/18-neuron-types.md`
+Project: a brain-inspired AI in `~/Documents/LittleBrain` (read `README.md` and `notes/18-neuron-types.md`
 for context). We're about to organize our model into brain regions. The user wants to be
 **exceptionally specific about which neuron types each region contains, and in what proportions.**
 

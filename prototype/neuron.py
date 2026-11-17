@@ -1,5 +1,5 @@
 """
-A single human-style neuron for the MemoryPhilosophy project.
+A single human-style neuron for the LittleBrain project.
 
 Template: the cortical/hippocampal pyramidal neuron ("workhorse"), using lessons
 from the fly mushroom body's Kenyon cell. Design notes: notes/13-our-neuron.md
