@@ -5,13 +5,20 @@
 ![viewer](../docs/screenshots/viewer.png)
 
 ## What it shows
-- **A side view of a human brain** (facing left). Cortical areas are layered ribbons at the surface
-  (L2/3 outermost → L6 innermost): area A at the visual pole, area B in parietal cortex, the motor strip on top.
-  Thalamus (with the reticular nucleus as a shell), striatum and pallidum are deep nuclei; the eye is in front.
-- **Every dot is real map position**: a small run of neighbouring neurons of one type, placed where they sit on the
-  brain's 8×8 map, glowing with their current firing (warm = excitatory, cool = inhibitory, grey = inputs).
-  Each group is coloured against its own usual range, so sparse cells (striatum) stay visible.
-- **Brain size without clutter (level of detail):** a group gets at most ~7·√n dots (capped at 56–72). Small brains
+- **A side view of a human brain** (facing left). Each simulated region's neurons **fill its real territory**:
+  cortex is a sheet covering the surface, so area A fills the occipital lobe (V1), area B the parietal lobe and the
+  action copy the precentral (motor) strip, seen face-on. Deep structures are drawn darker, seen through the surface:
+  thalamus (an egg, with the reticular nucleus as a front shell), striatum (caudate head and body + putamen),
+  globus pallidus behind/below the putamen, hippocampal loop in the temporal lobe (when wired). The retina is the cup
+  at the back of the eye.
+- **Placement keeps the brain's own map:** each territory is filled evenly and the square 8×8 map is stretched over
+  it in order (front/back, up/down), so neighbours on the map stay neighbours in the picture; the action channels
+  stay in order across the striatum.
+- **Regions designed but not wired yet** (amygdala, hypothalamus, claustrum, cerebellum, frontal lobe, brainstem
+  nuclei) are faint outlines with a "not built yet" label.
+- Dots glow with their neurons' current firing (warm = excitatory, cool = inhibitory, grey = inputs), each group
+  against its own usual range.
+- **Brain size without clutter (level of detail):** a group gets at most ~9·√n dots (capped at 200). Small brains
   show one dot per neuron; bigger brains show more and larger dots, each standing for more neurons. The legend
   says how many neurons a dot stands for. Grow/shrink live with `[` `]` (0.25× – 4×; 1,728 – 22,528 neurons);
   a new size is grown once (calibration + development) and cached in `prototype/viz/.cache/`.
