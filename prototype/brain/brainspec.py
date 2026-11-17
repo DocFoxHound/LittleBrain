@@ -26,6 +26,13 @@ SPREAD = {"A": 0.12, "B": 0.25}
 # Strength of the L4 -> L2/3 feedforward synapses (notes/28). 1 = as before; 3 lets the sensory signal outweigh
 # L2/3's own recurrent chatter (L4 fires sparsely here, so L2/3 heard it at ~1/5 the volume of its neighbours).
 L4_L23_GAIN = float(os.environ.get("L4_L23_GAIN", "1"))
+# Learning-rate factor for cortical excitatory cells (notes/28: one day of learning was ~25x a synapse's base
+# strength; 0.05 keeps L2/3 active after sleep). 1 = as before.
+CORTEX_LRF = float(os.environ.get("CORTEX_LRF", "1"))
+
+
+def _cortex(ct):
+    return replace(ct, rules=replace(ct.rules, lr=ct.rules.lr * CORTEX_LRF)) if CORTEX_LRF != 1 else ct
 
 
 def _with_local(dst_area, group, comp, long_paths):
@@ -58,7 +65,7 @@ def stage1():
     groups = [Group("retina", None, 4, "retina"),
               Group("TH.TC", C.TC_RELAY, 4, "TH"), Group("TH.TRN", C.TRN, 1, "TH")]
     for area in ("A", "B"):
-        groups += [Group(f"{area}.{g}", ct, k, area) for g, (ct, k) in AREA_CELLS.items()]
+        groups += [Group(f"{area}.{g}", _cortex(ct) if g in EXC else ct, k, area) for g, (ct, k) in AREA_CELLS.items()]
     syn = [Synaptic("CT-2 retina->relay (driver)", "retina", "TH.TC", "basal", 0.3, 3.0, 0.05),
            Synaptic("CT-3 L6 CT->relay (modulator)", "A.L6", "TH.TC", "basal", 0.7, 0.15, 0.08)]
     long_ = {
@@ -162,4 +169,45 @@ def sized(spec, n_neurons):
     f = n_neurons / now
     for g in spec.groups:
         g.per_tile = max(1, int(round(g.per_tile * f)))
+    return spec
+
+
+N_ACTIONS = 4
+
+
+def action_channel(tiles, n_actions=N_ACTIONS):
+    """Action channel of each map tile: vertical stripes of the 8x8 map (striatum and pallidum keep parallel
+    channels; Alexander et al. 1986)."""
+    return (tiles % GRID) * n_actions // GRID
+
+
+def stage_bg(n_actions=N_ACTIONS):
+    """Stage 1 + basal ganglia action loop (notes/29): cortex/thalamus -> striatum (D1 go, D2 no-go, FSI)
+    -> GPe / GPi, in parallel action channels (map stripes). MOT is the efference copy of the chosen action
+    (motor thalamus/cortex back to striatum), set from outside by the agent."""
+    spec = stage1()
+    # Corticostriatal plasticity lasts (hours, not seconds) and must show up after a few rewarded tries:
+    # slower fast-weight decay and a larger step than cortex (env MSN_LR, MSN_DECAY for sweeps)
+    lr, decay = float(os.environ.get("MSN_LR", "0.6")), float(os.environ.get("MSN_DECAY", "0.99995"))
+    msn = lambda ct: replace(ct, long_range_max=1.0,   # all MSN excitatory input comes from other structures
+                             rules=replace(ct.rules, lr=lr, fast_decay=decay))
+    d1, d2 = msn(C.D1_MSN), msn(C.D2_MSN)
+    spec.groups += [Group("MOT", None, 1, "MOT"),
+                    Group("STR.D1", d1, 4, "STR"), Group("STR.D2", d2, 4, "STR"),
+                    Group("STR.FSI", C.STR_FSI, 1, "STR"),
+                    Group("GPe", C.GPE_PROTO, 1, "GPe"), Group("GPi", C.GPI, 1, "GPi")]
+    ctx = ["A.L5IT", "A.L5PT", "A.L23"]
+    for msn in ("STR.D1", "STR.D2"):
+        # Corticostriatal input converges broadly (spread 0.5): any cortical cell can reach any channel
+        spec.synaptic += [Synaptic("BG-1 cortex->striatum", ctx, msn, "basal", 0.8, 1.0, 0.5),
+                          Synaptic("BG-2 thalamus->striatum", "TH.TC", msn, "basal", 0.2, 1.0, 0.5)]
+    spec.pooled += [
+        Pooled("FSI<-cortex", ["A.L5IT", "A.L5PT"], "STR.FSI", 4.0, sigma=None),
+        Pooled("MSN<-FSI", "STR.FSI", ["STR.D1", "STR.D2"], 1.0, channel="pv", sigma=None),
+        Pooled("efference", "MOT", ["STR.D1", "STR.D2"], 3.0, channel="exc", sigma=0),
+        Pooled("D1->GPi (direct)", "STR.D1", "GPi", -6.0, sigma=0),
+        Pooled("D2->GPe (indirect)", "STR.D2", "GPe", -6.0, sigma=0),
+        Pooled("GPe->GPi", "GPe", "GPi", -0.25, sigma=0),   # GPi keeps a tonic brake on every action
+    ]
+    spec.inputs = ["retina", "MOT"]
     return spec

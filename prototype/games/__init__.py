@@ -1,0 +1,3 @@
+"""Small games for LittleBrain characters (notes/29). See core.Game for the interface."""
+from .core import Game, Observation  # noqa: F401
+from .signal_game import SignalGame  # noqa: F401
