@@ -1,0 +1,21 @@
+AUC good vs bad (0.5 chance, 1 perfect), mean over 8 neurons x 2 worlds; after practice / 6 days later
+Storage after practice: synapses changed, long-term bytes per neuron (all ideas)
+
+== 256 synapses (8 branches x 32) ==
+                                      P=8          P=32         P=128         P=512   storage at P=128
+   16 lv                        0.95/0.85     0.87/0.79     0.63/0.59     0.54/0.53    19.3%     109 B
+   32 lv                        1.00/0.96     0.95/0.90     0.74/0.72     0.57/0.56    45.7%     267 B
+   16 lv linear dendrites       0.95/0.85     0.87/0.80     0.63/0.59     0.54/0.53    19.2%     109 B
+   16 lv branch learning        0.66/0.59     0.59/0.57     0.52/0.51     0.51/0.51     7.3%      51 B
+== 4096 synapses (32 branches x 128) ==
+                                      P=8          P=32         P=128         P=512   storage at P=128
+   16 lv                        1.00/1.00     1.00/1.00     0.93/0.89     0.67/0.65    18.6%    1574 B
+   32 lv                        1.00/1.00     1.00/1.00     0.98/0.98     0.75/0.74    43.7%    3981 B
+   16 lv linear dendrites       1.00/1.00     1.00/1.00     0.93/0.89     0.67/0.65    18.6%    1574 B
+   16 lv branch learning        0.95/0.88     0.90/0.84     0.67/0.64     0.55/0.54     6.5%     627 B
+== 8192 synapses (64 branches x 128) ==
+                                      P=8          P=32         P=128         P=512   storage at P=128
+   16 lv                        1.00/1.00     1.00/1.00     0.97/0.96     0.71/0.69    18.6%    3127 B
+   32 lv                        1.00/1.00     1.00/1.00     1.00/0.99     0.78/0.78    43.7%    7946 B
+   16 lv linear dendrites       1.00/1.00     1.00/1.00     0.97/0.96     0.71/0.69    18.6%    3127 B
+   16 lv branch learning        0.99/0.97     0.97/0.92     0.72/0.69     0.56/0.56     6.5%    1247 B

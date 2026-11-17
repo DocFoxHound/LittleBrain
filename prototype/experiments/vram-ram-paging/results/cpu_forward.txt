@@ -1,0 +1,5 @@
+== CPU (numba) forward: correctness ==
+  CPU vs GPU forward on 13,312 active neurons: max |rate diff| 1.19e-07
+== CPU (numba) forward vs GPU, same host RAM ==
+  8,388,608 neurons, 1% active (83,968): CPU numba (3 threads) 63.3 ms = 1.33 M active neuron-steps/s | GPU zero-copy 8.5 ms | GPU paged, warm cache 1.4 ms
+  8,388,608 neurons, 5% active (419,840): CPU numba (3 threads) 310.6 ms = 1.35 M active neuron-steps/s | GPU zero-copy 39.7 ms | GPU paged, warm cache 3.9 ms

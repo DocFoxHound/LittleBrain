@@ -1,0 +1,16 @@
+1. Clocks: slow hormone group, every step vs every 10 steps (seed 0)
+   every  1: memory score 0.323   hormone level mean 0.0558
+   every 10: memory score 0.323   hormone level mean 0.0546
+   course of the hormone level: correlation 0.987, mean difference 2.3% of its level
+
+2a. Dormant regions FREEZE at their last activity
+2. Level of detail, stage 2, 6 presentations (3 seeds)
+   dormant below 0% of usual input: score 0.764 ± 0.117   updates skipped  0.0%   task time   3.2 s
+   dormant below 50% of usual input: score 0.359 ± 0.036   updates skipped 10.9%   task time   2.7 s
+   dormant below 80% of usual input: score 0.639 ± 0.214   updates skipped 19.1%   task time   2.4 s
+
+2b. Dormant regions FALL SILENT (current code; off by default)
+2. Level of detail, stage 2, 6 presentations (3 seeds)
+   dormant below 0% of usual input: score 0.764 ± 0.117   updates skipped  0.0%   task time   3.1 s
+   dormant below 50% of usual input: score 0.218 ± 0.121   updates skipped  1.8%   task time   3.1 s
+   dormant below 80% of usual input: score 0.000 ± 0.000   updates skipped 48.2%   task time   1.8 s

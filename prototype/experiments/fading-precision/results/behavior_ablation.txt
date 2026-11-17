@@ -1,0 +1,34 @@
+  444/eager/block/stochastic         day3 0.07  day6 0.16 [0.07-0.47]  ctrl6 0.87  relearn med 2 mean 1.8 max 3  >5: 0.00  bits 16.5  rewired 0.0  deepC +0.043->-0.097  surfC6 -0.133
+  444/eager/block/nearest            day3 0.28  day6 0.76 [0.14-0.99]  ctrl6 0.97  relearn med 0 mean 0.3 max 2  >5: 0.00  bits 16.5  rewired 0.0  deepC +0.043->-0.065  surfC6 -0.103
+  444/eager/global/stochastic        day3 0.08  day6 0.18 [0.05-0.44]  ctrl6 0.88  relearn med 2 mean 1.9 max 4  >5: 0.00  bits 16.0  rewired 0.0  deepC +0.043->-0.097  surfC6 -0.136
+  444/eager/global/nearest           day3 0.11  day6 0.14 [0.06-0.43]  ctrl6 0.97  relearn med 2 mean 1.8 max 4  >5: 0.00  bits 16.0  rewired 0.0  deepC +0.043->+0.039  surfC6 -0.201
+  444/lazy/block/stochastic          day3 0.07  day6 0.14 [0.06-0.30]  ctrl6 0.87  relearn med 2 mean 1.8 max 3  >5: 0.00  bits 16.5  rewired 0.0  deepC +0.043->-0.099  surfC6 -0.133
+  444/lazy/block/nearest             day3 0.08  day6 0.20 [0.07-0.55]  ctrl6 0.89  relearn med 2 mean 1.6 max 3  >5: 0.00  bits 16.5  rewired 0.0  deepC +0.043->-0.098  surfC6 -0.132
+  444/lazy/global/stochastic         day3 0.07  day6 0.16 [0.05-0.42]  ctrl6 0.87  relearn med 2 mean 1.8 max 4  >5: 0.00  bits 16.0  rewired 0.0  deepC +0.043->-0.103  surfC6 -0.135
+  444/lazy/global/nearest            day3 0.09  day6 0.19 [0.06-0.48]  ctrl6 0.88  relearn med 2 mean 1.6 max 3  >5: 0.00  bits 16.0  rewired 0.0  deepC +0.043->-0.096  surfC6 -0.130
+  333/eager/block/stochastic         day3 0.07  day6 0.17 [0.06-0.41]  ctrl6 0.85  relearn med 2 mean 1.8 max 4  >5: 0.00  bits 13.5  rewired 0.0  deepC +0.043->-0.097  surfC6 -0.134
+  333/eager/block/nearest            day3 0.10  day6 0.24 [0.08-0.66]  ctrl6 0.96  relearn med 2 mean 1.6 max 3  >5: 0.00  bits 13.5  rewired 0.0  deepC +0.043->+0.013  surfC6 -0.173
+  333/eager/global/stochastic        day3 0.10  day6 0.25 [0.05-0.75]  ctrl6 0.87  relearn med 2 mean 1.7 max 4  >5: 0.00  bits 13.0  rewired 0.0  deepC +0.043->-0.095  surfC6 -0.133
+  333/eager/global/nearest           day3 0.03  day6 0.03 [0.03-0.04]  ctrl6 0.98  relearn med 3 mean 3.3 max 4  >5: 0.00  bits 13.0  rewired 0.0  deepC +0.043->+0.040  surfC6 -0.311
+  333/lazy/block/stochastic          day3 0.06  day6 0.16 [0.06-0.44]  ctrl6 0.88  relearn med 2 mean 1.8 max 4  >5: 0.00  bits 13.5  rewired 0.0  deepC +0.043->-0.098  surfC6 -0.134
+  333/lazy/block/nearest             day3 0.07  day6 0.20 [0.07-0.58]  ctrl6 0.89  relearn med 2 mean 1.6 max 3  >5: 0.00  bits 13.5  rewired 0.0  deepC +0.043->-0.098  surfC6 -0.135
+  333/lazy/global/stochastic         day3 0.06  day6 0.14 [0.04-0.42]  ctrl6 0.89  relearn med 2 mean 1.9 max 4  >5: 0.00  bits 13.0  rewired 0.0  deepC +0.043->-0.108  surfC6 -0.151
+  333/lazy/global/nearest            day3 0.05  day6 0.16 [0.07-0.40]  ctrl6 0.96  relearn med 2 mean 1.6 max 3  >5: 0.00  bits 13.0  rewired 0.0  deepC +0.043->-0.126  surfC6 -0.186
+  224/eager/block/stochastic         day3 0.11  day6 0.25 [0.04-0.67]  ctrl6 0.84  relearn med 2 mean 1.8 max 3  >5: 0.00  bits 12.5  rewired 0.0  deepC +0.043->-0.099  surfC6 -0.136
+  224/eager/block/nearest            day3 0.03  day6 0.03 [0.03-0.03]  ctrl6 0.99  relearn med 3 mean 3.3 max 4  >5: 0.00  bits 12.5  rewired 0.0  deepC +0.043->-0.162  surfC6 -0.362
+  224/eager/global/stochastic        day3 0.27  day6 0.43 [0.03-0.88]  ctrl6 0.82  relearn med 1 mean 1.5 max 4  >5: 0.00  bits 12.0  rewired 0.0  deepC +0.043->-0.094  surfC6 -0.136
+  224/eager/global/nearest           day3 0.03  day6 0.03 [0.03-0.03]  ctrl6 0.03  relearn med 3 mean 3.4 max 5  >5: 0.00  bits 12.0  rewired 0.0  deepC +0.043->+0.039  surfC6 -0.000
+  224/lazy/block/stochastic          day3 0.07  day6 0.16 [0.06-0.52]  ctrl6 0.87  relearn med 2 mean 1.8 max 4  >5: 0.00  bits 12.5  rewired 0.0  deepC +0.043->-0.101  surfC6 -0.138
+  224/lazy/block/nearest             day3 0.05  day6 0.11 [0.05-0.29]  ctrl6 0.93  relearn med 2 mean 2.0 max 4  >5: 0.00  bits 12.5  rewired 0.0  deepC +0.043->-0.137  surfC6 -0.182
+  224/lazy/global/stochastic         day3 0.10  day6 0.18 [0.04-0.44]  ctrl6 0.86  relearn med 2 mean 1.7 max 4  >5: 0.00  bits 12.0  rewired 0.0  deepC +0.043->-0.093  surfC6 -0.133
+  224/lazy/global/nearest            day3 0.10  day6 0.21 [0.07-0.69]  ctrl6 0.12  relearn med 1 mean 1.5 max 3  >5: 0.00  bits 12.0  rewired 0.0  deepC +0.043->+0.023  surfC6 +0.015
+  222/eager/block/stochastic         day3 0.11  day6 0.28 [0.07-0.74]  ctrl6 0.85  relearn med 2 mean 1.7 max 4  >5: 0.00  bits 10.5  rewired 0.0  deepC +0.043->-0.103  surfC6 -0.138
+  222/eager/block/nearest            day3 0.03  day6 0.03 [0.03-0.03]  ctrl6 0.99  relearn med 3 mean 3.3 max 4  >5: 0.00  bits 10.5  rewired 0.0  deepC +0.043->+0.055  surfC6 -0.359
+  222/eager/global/stochastic        day3 0.35  day6 0.48 [0.08-0.95]  ctrl6 0.87  relearn med 2 mean 1.4 max 3  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->-0.090  surfC6 -0.123
+  222/eager/global/nearest           day3 0.03  day6 0.03 [0.03-0.03]  ctrl6 0.03  relearn med 3 mean 3.4 max 5  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->+0.000  surfC6 -0.000
+  222/lazy/block/stochastic          day3 0.07  day6 0.16 [0.05-0.39]  ctrl6 0.86  relearn med 2 mean 1.9 max 4  >5: 0.00  bits 10.5  rewired 0.0  deepC +0.043->-0.102  surfC6 -0.138
+  222/lazy/block/nearest             day3 0.07  day6 0.23 [0.07-0.50]  ctrl6 0.96  relearn med 1 mean 1.5 max 3  >5: 0.00  bits 10.5  rewired 0.0  deepC +0.043->-0.126  surfC6 -0.174
+  222/lazy/global/stochastic         day3 0.12  day6 0.31 [0.07-0.75]  ctrl6 0.88  relearn med 2 mean 1.7 max 4  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->-0.100  surfC6 -0.133
+  222/lazy/global/nearest            day3 0.03  day6 0.03 [0.03-0.03]  ctrl6 0.03  relearn med 3 mean 3.5 max 5  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->-0.000  surfC6 -0.000
+(23s)
+bits/synapse reference: {(6, 6, 6): 22, (4, 4, 6): 18.3125, (2, 2, 4): 12.46875, (2, 2, 2): 10.46875}

@@ -1,0 +1,10 @@
+
+== Regenerating the genome on the fly: CPU (numba, 3 threads), 65,536 neurons x 256 synapses
+   stored target+weight (3 B/syn)             3.0 ms   0.18 ns/synapse   5.56 G syn/s  reads    48 MiB  (1.00x stored)
+   packed word + wiring hash (4 B/syn)        6.9 ms   0.41 ns/synapse   2.42 G syn/s  reads    64 MiB  (2.30x stored)
+   procedural: hash only (0 B/syn)            9.3 ms   0.55 ns/synapse   1.80 G syn/s  reads     0 MiB  (3.08x stored)
+
+== Same on the GPU (RTX 4070 Laptop, CUDA via cupy), 262,144 neurons x 256 synapses (VRAM used 456 MiB; GPU result == CPU result: True)
+   stored target+weight (3 B/syn)            1.00 ms    14.9 ps/synapse    66.9 G syn/s  (1.00x stored)
+   packed word + wiring hash (4 B/syn)       1.29 ms    19.2 ps/synapse    52.1 G syn/s  (1.28x stored)
+   procedural: hash only (0 B/syn)           0.88 ms    13.1 ps/synapse    76.2 G syn/s  (0.88x stored)

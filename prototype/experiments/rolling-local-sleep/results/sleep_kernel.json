@@ -1,0 +1,281 @@
+{
+ "correctness": {
+  "state_before": {
+   "gen": 0.0,
+   "fast": 46.8955693359375,
+   "c0": 33.5495046875,
+   "c1": 32.0,
+   "c2": 32.0,
+   "tag": 6.880598828125,
+   "used": 1.0,
+   "frac_tagged": 1.0
+  },
+  "bit_identical_pending0": {
+   "c==numba": true,
+   "c==gpu": true,
+   "pruned_c_numba_gpu": [
+    0,
+    0,
+    0
+   ]
+  },
+  "bit_identical_pending37": {
+   "c==numba": true,
+   "c==gpu": true,
+   "pruned_c_numba_gpu": [
+    0,
+    0,
+    0
+   ]
+  },
+  "vs_numpy_same_state": {
+   "pruned_numpy": 0,
+   "pruned_c": 0,
+   "prune_mask_mismatches": 0,
+   "c0": {
+    "max_abs_step_diff_c_vs_numpy": 1,
+    "bias_c_steps": 0.00011975805623078485,
+    "bias_numpy_steps": 0.00017581274373078485
+   },
+   "c1": {
+    "max_abs_step_diff_c_vs_numpy": 1,
+    "bias_c_steps": -2.4868582932685968e-05,
+    "bias_numpy_steps": -0.00021373577043268596
+   },
+   "c2": {
+    "max_abs_step_diff_c_vs_numpy": 1,
+    "bias_c_steps": 6.768684228532038e-05,
+    "bias_numpy_steps": 0.00012159309228532038
+   },
+   "tag": {
+    "max_abs_step_diff_c_vs_numpy": 1
+   },
+   "fast": {
+    "max_abs_step_diff_c_vs_numpy": 0
+   },
+   "used": {
+    "max_abs_step_diff_c_vs_numpy": 0
+   }
+  },
+  "distribution_pending37": {
+   "numpy": [
+    0.0,
+    0.325279,
+    0.087627,
+    0.00326,
+    0.160757,
+    0.044648,
+    0.009731
+   ],
+   "c": [
+    0.0,
+    0.325282,
+    0.08762,
+    0.003256,
+    0.160754,
+    0.044647,
+    0.009726
+   ],
+   "columns": [
+    "pruned",
+    "mean c0",
+    "mean c1",
+    "mean c2",
+    "std c0",
+    "std c1",
+    "std c2"
+   ]
+  }
+ },
+ "speed": {
+  "100000": {
+   "numpy": {
+    "s": 2.47206800999993,
+    "runs": [
+     3.0585,
+     2.4721,
+     2.3174
+    ],
+    "peak_temp_MiB": 1293.9469757080078
+   },
+   "c_1t": {
+    "s": 0.08224318199791014,
+    "runs": [
+     0.0817,
+     0.0821,
+     0.0824,
+     0.0822,
+     0.0826
+    ],
+    "peak_temp_MiB": 0.4453287124633789,
+    "rss_growth_MiB": 0.0
+   },
+   "c_2t": {
+    "s": 0.04223508799623232,
+    "runs": [
+     0.0422,
+     0.0418,
+     0.0421,
+     0.0426,
+     0.0425
+    ],
+    "peak_temp_MiB": 0.4455118179321289,
+    "rss_growth_MiB": 0.0
+   },
+   "c_3t": {
+    "s": 0.02843866599869216,
+    "runs": [
+     0.0293,
+     0.0282,
+     0.0283,
+     0.0284,
+     0.0285
+    ],
+    "peak_temp_MiB": 0.4453287124633789,
+    "rss_growth_MiB": 0.0
+   },
+   "numba_3t": {
+    "s": 0.2103127320006024,
+    "runs": [
+     0.2102,
+     0.2139,
+     0.2085,
+     0.2103,
+     0.2148
+    ],
+    "peak_temp_MiB": 0.4451456069946289,
+    "rss_growth_MiB": 0.0
+   },
+   "gpu": {
+    "s": 0.000950530004047323,
+    "runs": [
+     0.0012,
+     0.0011,
+     0.001,
+     0.0009,
+     0.0009
+    ],
+    "peak_temp_MiB": 0.0
+   },
+   "pcie": {
+    "d2h_s": 0.007809486000041943,
+    "h2d_s": 0.008349490999535192,
+    "MiB": 97.65625,
+    "d2h_GBps": 13.112258604401113,
+    "h2d_GBps": 12.264220657965918
+   },
+   "bytes_per_neuron_stored": 1041.0
+  },
+  "1000000": {
+   "c_1t": {
+    "s": 0.8034355509953457,
+    "runs": [
+     0.8045,
+     0.8034,
+     0.8013
+    ],
+    "peak_temp_MiB": 3.87844181060791,
+    "rss_growth_MiB": 0.0
+   },
+   "c_2t": {
+    "s": 0.4256559399946127,
+    "runs": [
+     0.4195,
+     0.4515,
+     0.4257
+    ],
+    "peak_temp_MiB": 3.8784875869750977,
+    "rss_growth_MiB": 0.0
+   },
+   "c_3t": {
+    "s": 0.3587232400022913,
+    "runs": [
+     0.3587,
+     0.2859,
+     0.3944
+    ],
+    "peak_temp_MiB": 3.8784313201904297,
+    "rss_growth_MiB": 0.0
+   },
+   "numba_3t": {
+    "s": 2.169505184996524,
+    "runs": [
+     2.317,
+     2.1695,
+     2.1454
+    ],
+    "peak_temp_MiB": 3.8788843154907227,
+    "rss_growth_MiB": 0.00390625
+   },
+   "gpu": {
+    "s": 0.008917646999179851,
+    "runs": [
+     0.0088,
+     0.0087,
+     0.0089,
+     0.0091,
+     0.0092
+    ],
+    "peak_temp_MiB": 0.0
+   },
+   "pcie": {
+    "d2h_s": 0.07774692100065295,
+    "h2d_s": 0.08252920600352809,
+    "MiB": 976.5625,
+    "d2h_GBps": 13.170939592468235,
+    "h2d_GBps": 12.407728725225157
+   },
+   "bytes_per_neuron_stored": 1041.0
+  }
+ },
+ "gpu_awake": {
+  "100000": {
+   "forward": {
+    "s": 0.001101955223083496,
+    "neuron_steps_per_s": 90747788.93481675,
+    "synapse_updates_per_s": 23231433967.313087,
+    "vram_temp_MiB": 0.0,
+    "effective_GBps_words": 92.92573586925235
+   },
+   "modulate": {
+    "s": 0.0008833184242248535,
+    "neuron_steps_per_s": 113209457.94576165,
+    "synapse_updates_per_s": 28981621234.114983,
+    "vram_temp_MiB": 0.0,
+    "effective_GBps_words": 115.92648493645993
+   },
+   "sleep (GPU)": {
+    "s": 0.0008630271911621094,
+    "neuron_steps_per_s": 115871204.31900296,
+    "synapse_updates_per_s": 29663028305.664757,
+    "vram_temp_MiB": 0.0,
+    "effective_GBps_words": 118.65211322265903
+   },
+   "vram_bytes_per_neuron": 1045.0
+  },
+  "1000000": {
+   "forward": {
+    "s": 0.01153607711791992,
+    "neuron_steps_per_s": 86684580.0160801,
+    "synapse_updates_per_s": 22191252484.116505,
+    "vram_temp_MiB": 0.0,
+    "effective_GBps_words": 88.76500993646602
+   },
+   "modulate": {
+    "s": 0.00890508804321289,
+    "neuron_steps_per_s": 112295352.40386094,
+    "synapse_updates_per_s": 28747610215.3884,
+    "vram_temp_MiB": 0.0,
+    "effective_GBps_words": 114.99044086155361
+   },
+   "sleep (GPU)": {
+    "s": 0.008543846130371093,
+    "neuron_steps_per_s": 117043306.34481663,
+    "synapse_updates_per_s": 29963086424.273056,
+    "vram_temp_MiB": 0.0,
+    "effective_GBps_words": 119.85234569709222
+   },
+   "vram_bytes_per_neuron": 1045.0
+  }
+ }
+}

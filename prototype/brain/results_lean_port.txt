@@ -1,0 +1,9 @@
+Memory completion (fill-in of the unseen half, ± s.e., 4 seeds) and cost per brain
+
+   brain            stage1 x6       stage2 x1       stage2 x6   synapses  float MB  packed MB  lean MB  min/run
+   float          0.70 ± 0.06     0.01 ± 0.02     0.73 ± 0.09      0.67M        25        2.7     0.00      1.6
+   lean           0.44 ± 0.15     0.07 ± 0.04     0.54 ± 0.07      0.67M        25        2.7     0.63      2.0
+   low            0.47 ± 0.06     0.08 ± 0.02     0.41 ± 0.13      0.90M        33        3.6     0.96      2.1
+   standard       0.64 ± 0.13     0.10 ± 0.09     0.66 ± 0.06     14.43M       534       57.7    11.43     33.6
+
+(storage columns: stage 2 after 6 presentations and a night's sleep)

@@ -1,0 +1,15 @@
+1. Idea 6, 16 levels, chem (32 seeds, paired)
+   no reset         childhood 1.00   hard 0.03   day 6 0.18   relearn mean 3.2
+   reset <= 1 step  childhood 1.00   hard 0.03   day 6 0.12   relearn mean 4.3
+   surface-only reset childhood 1.00   hard 0.03   day 6 0.20   relearn mean 3.0
+   reset <= 1 step: difference in time passes: day 6   -0.066 ± 0.017   p = 0.000
+   reset <= 1 step: difference in relearn              +1.188 ± 0.203   p = 0.000
+   surface-only reset: difference in time passes: day 6   +0.019 ± 0.006   p = 0.000
+   surface-only reset: difference in relearn              -0.125 ± 0.074   p = 0.223
+
+2. Storage after fixes (128 neurons x 256 synapses, 12 days)
+   16 lv            changed  27.1%  rewired 21.4%   packed  1033 B -> lean   99 B per neuron   day buffer  127 B
+   16 lv chem       changed  32.3%  rewired 21.2%   packed  1033 B -> lean  124 B per neuron   day buffer  108 B
+   16 lv chem +6    changed  23.4%  rewired 22.6%   packed  1033 B -> lean   77 B per neuron   day buffer  114 B
+   16 lv chem +6 surface changed  27.6%  rewired 21.8%   packed  1033 B -> lean   99 B per neuron   day buffer  108 B
+   32 lv chem       changed  39.0%  rewired 21.4%   packed  1033 B -> lean  174 B per neuron   day buffer  111 B

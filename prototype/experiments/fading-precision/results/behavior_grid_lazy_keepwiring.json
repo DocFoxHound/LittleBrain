@@ -1,0 +1,9492 @@
+{
+ "666": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.042,
+   "max": 0.099
+  },
+  "time passes: day 6": {
+   "mean": 0.153,
+   "min": 0.063,
+   "max": 0.404
+  },
+  "ctrl_day6": {
+   "mean": 0.858,
+   "min": 0.429,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 22.0,
+   "min": 22.0,
+   "max": 22.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.112,
+   "max": -0.08
+  },
+  "surface_contrast_day6": {
+   "mean": -0.132,
+   "min": -0.145,
+   "max": -0.115
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.75,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "664": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.042,
+   "max": 0.103
+  },
+  "time passes: day 6": {
+   "mean": 0.151,
+   "min": 0.063,
+   "max": 0.404
+  },
+  "ctrl_day6": {
+   "mean": 0.858,
+   "min": 0.425,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 20.156,
+   "min": 20.156,
+   "max": 20.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.117,
+   "max": -0.08
+  },
+  "surface_contrast_day6": {
+   "mean": -0.132,
+   "min": -0.148,
+   "max": -0.116
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.72,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      6,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "663": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.041,
+   "max": 0.1
+  },
+  "time passes: day 6": {
+   "mean": 0.158,
+   "min": 0.06,
+   "max": 0.374
+  },
+  "ctrl_day6": {
+   "mean": 0.86,
+   "min": 0.417,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 19.156,
+   "min": 19.156,
+   "max": 19.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.115,
+   "max": -0.075
+  },
+  "surface_contrast_day6": {
+   "mean": -0.132,
+   "min": -0.148,
+   "max": -0.111
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      6,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "662": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.069,
+   "min": 0.045,
+   "max": 0.119
+  },
+  "time passes: day 6": {
+   "mean": 0.19,
+   "min": 0.068,
+   "max": 0.681
+  },
+  "ctrl_day6": {
+   "mean": 0.863,
+   "min": 0.392,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 18.156,
+   "min": 18.156,
+   "max": 18.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.096,
+   "min": -0.133,
+   "max": -0.07
+  },
+  "surface_contrast_day6": {
+   "mean": -0.13,
+   "min": -0.162,
+   "max": -0.107
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      6,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "660": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.29,
+   "min": 0.118,
+   "max": 0.491
+  },
+  "bits_day6": {
+   "mean": 16.0,
+   "min": 16.0,
+   "max": 16.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.115,
+   "min": -0.121,
+   "max": -0.106
+  },
+  "surface_contrast_day6": {
+   "mean": -0.147,
+   "min": -0.158,
+   "max": -0.14
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.62,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      6,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "646": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.043,
+   "max": 0.103
+  },
+  "time passes: day 6": {
+   "mean": 0.154,
+   "min": 0.064,
+   "max": 0.392
+  },
+  "ctrl_day6": {
+   "mean": 0.859,
+   "min": 0.463,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 20.156,
+   "min": 20.156,
+   "max": 20.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.113,
+   "max": -0.078
+  },
+  "surface_contrast_day6": {
+   "mean": -0.132,
+   "min": -0.147,
+   "max": -0.115
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      4,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "644": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.044,
+   "max": 0.095
+  },
+  "time passes: day 6": {
+   "mean": 0.149,
+   "min": 0.063,
+   "max": 0.301
+  },
+  "ctrl_day6": {
+   "mean": 0.866,
+   "min": 0.405,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 18.312,
+   "min": 18.312,
+   "max": 18.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.114,
+   "max": -0.077
+  },
+  "surface_contrast_day6": {
+   "mean": -0.132,
+   "min": -0.146,
+   "max": -0.112
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      4,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "643": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.041,
+   "max": 0.091
+  },
+  "time passes: day 6": {
+   "mean": 0.155,
+   "min": 0.061,
+   "max": 0.362
+  },
+  "ctrl_day6": {
+   "mean": 0.873,
+   "min": 0.517,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 17.312,
+   "min": 17.312,
+   "max": 17.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.118,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.152,
+   "max": -0.109
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.75,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      4,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "642": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.038,
+   "max": 0.103
+  },
+  "time passes: day 6": {
+   "mean": 0.176,
+   "min": 0.052,
+   "max": 0.618
+  },
+  "ctrl_day6": {
+   "mean": 0.874,
+   "min": 0.485,
+   "max": 0.997
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.146,
+   "max": -0.068
+  },
+  "surface_contrast_day6": {
+   "mean": -0.135,
+   "min": -0.168,
+   "max": -0.108
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.91,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      4,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "640": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "ctrl_day6": {
+   "mean": 0.281,
+   "min": 0.125,
+   "max": 0.556
+  },
+  "bits_day6": {
+   "mean": 14.156,
+   "min": 14.156,
+   "max": 14.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.11,
+   "min": -0.118,
+   "max": -0.101
+  },
+  "surface_contrast_day6": {
+   "mean": -0.147,
+   "min": -0.157,
+   "max": -0.14
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.66,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      4,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "636": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.066,
+   "min": 0.039,
+   "max": 0.098
+  },
+  "time passes: day 6": {
+   "mean": 0.151,
+   "min": 0.06,
+   "max": 0.366
+  },
+  "ctrl_day6": {
+   "mean": 0.865,
+   "min": 0.548,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 19.156,
+   "min": 19.156,
+   "max": 19.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.115,
+   "max": -0.074
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.148,
+   "max": -0.107
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      3,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "634": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.066,
+   "min": 0.039,
+   "max": 0.096
+  },
+  "time passes: day 6": {
+   "mean": 0.148,
+   "min": 0.061,
+   "max": 0.366
+  },
+  "ctrl_day6": {
+   "mean": 0.868,
+   "min": 0.549,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 17.312,
+   "min": 17.312,
+   "max": 17.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.113,
+   "max": -0.07
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.148,
+   "max": -0.107
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      3,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "633": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.036,
+   "max": 0.1
+  },
+  "time passes: day 6": {
+   "mean": 0.153,
+   "min": 0.057,
+   "max": 0.484
+  },
+  "ctrl_day6": {
+   "mean": 0.874,
+   "min": 0.525,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.121,
+   "max": -0.066
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.153,
+   "max": -0.102
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      3,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "632": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.035,
+   "max": 0.109
+  },
+  "time passes: day 6": {
+   "mean": 0.175,
+   "min": 0.049,
+   "max": 0.479
+  },
+  "ctrl_day6": {
+   "mean": 0.873,
+   "min": 0.501,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 15.312,
+   "min": 15.312,
+   "max": 15.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.102,
+   "min": -0.154,
+   "max": -0.065
+  },
+  "surface_contrast_day6": {
+   "mean": -0.136,
+   "min": -0.179,
+   "max": -0.108
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      3,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "630": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "ctrl_day6": {
+   "mean": 0.282,
+   "min": 0.118,
+   "max": 0.556
+  },
+  "bits_day6": {
+   "mean": 13.156,
+   "min": 13.156,
+   "max": 13.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.12,
+   "min": -0.127,
+   "max": -0.108
+  },
+  "surface_contrast_day6": {
+   "mean": -0.146,
+   "min": -0.153,
+   "max": -0.133
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.62,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      3,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "626": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.035,
+   "max": 0.111
+  },
+  "time passes: day 6": {
+   "mean": 0.149,
+   "min": 0.055,
+   "max": 0.42
+  },
+  "ctrl_day6": {
+   "mean": 0.865,
+   "min": 0.555,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 18.156,
+   "min": 18.156,
+   "max": 18.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.124,
+   "max": -0.079
+  },
+  "surface_contrast_day6": {
+   "mean": -0.136,
+   "min": -0.158,
+   "max": -0.113
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.91,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      2,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "624": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 3": {
+   "mean": 0.064,
+   "min": 0.035,
+   "max": 0.111
+  },
+  "time passes: day 6": {
+   "mean": 0.157,
+   "min": 0.056,
+   "max": 0.362
+  },
+  "ctrl_day6": {
+   "mean": 0.864,
+   "min": 0.563,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.121,
+   "max": -0.074
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.156,
+   "max": -0.11
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      2,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "623": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.033,
+   "max": 0.113
+  },
+  "time passes: day 6": {
+   "mean": 0.148,
+   "min": 0.054,
+   "max": 0.416
+  },
+  "ctrl_day6": {
+   "mean": 0.855,
+   "min": 0.489,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 15.312,
+   "min": 15.312,
+   "max": 15.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.101,
+   "min": -0.123,
+   "max": -0.07
+  },
+  "surface_contrast_day6": {
+   "mean": -0.137,
+   "min": -0.16,
+   "max": -0.108
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      2,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "622": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.037
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.032,
+   "max": 0.102
+  },
+  "time passes: day 6": {
+   "mean": 0.174,
+   "min": 0.046,
+   "max": 0.579
+  },
+  "ctrl_day6": {
+   "mean": 0.859,
+   "min": 0.448,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 14.312,
+   "min": 14.312,
+   "max": 14.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.103,
+   "min": -0.156,
+   "max": -0.068
+  },
+  "surface_contrast_day6": {
+   "mean": -0.137,
+   "min": -0.18,
+   "max": -0.105
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      2,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "620": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 3": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.039
+  },
+  "time passes: day 6": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.039
+  },
+  "ctrl_day6": {
+   "mean": 0.305,
+   "min": 0.108,
+   "max": 0.649
+  },
+  "bits_day6": {
+   "mean": 12.156,
+   "min": 12.156,
+   "max": 12.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.121,
+   "min": -0.132,
+   "max": -0.108
+  },
+  "surface_contrast_day6": {
+   "mean": -0.145,
+   "min": -0.162,
+   "max": -0.131
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.66,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      2,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "606": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.046,
+   "min": 0.035,
+   "max": 0.057
+  },
+  "time passes: day 6": {
+   "mean": 0.098,
+   "min": 0.055,
+   "max": 0.182
+  },
+  "ctrl_day6": {
+   "mean": 0.36,
+   "min": 0.134,
+   "max": 0.734
+  },
+  "bits_day6": {
+   "mean": 16.0,
+   "min": 16.0,
+   "max": 16.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.04,
+   "min": -0.052,
+   "max": -0.024
+  },
+  "surface_contrast_day6": {
+   "mean": -0.062,
+   "min": -0.07,
+   "max": -0.049
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.19,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      0,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "604": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.046,
+   "min": 0.035,
+   "max": 0.057
+  },
+  "time passes: day 6": {
+   "mean": 0.104,
+   "min": 0.056,
+   "max": 0.221
+  },
+  "ctrl_day6": {
+   "mean": 0.356,
+   "min": 0.136,
+   "max": 0.822
+  },
+  "bits_day6": {
+   "mean": 14.156,
+   "min": 14.156,
+   "max": 14.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.036,
+   "min": -0.053,
+   "max": -0.021
+  },
+  "surface_contrast_day6": {
+   "mean": -0.059,
+   "min": -0.071,
+   "max": -0.046
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.03,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      0,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "603": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.047,
+   "min": 0.033,
+   "max": 0.056
+  },
+  "time passes: day 6": {
+   "mean": 0.095,
+   "min": 0.054,
+   "max": 0.182
+  },
+  "ctrl_day6": {
+   "mean": 0.348,
+   "min": 0.128,
+   "max": 0.838
+  },
+  "bits_day6": {
+   "mean": 13.156,
+   "min": 13.156,
+   "max": 13.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.039,
+   "min": -0.054,
+   "max": -0.014
+  },
+  "surface_contrast_day6": {
+   "mean": -0.064,
+   "min": -0.073,
+   "max": -0.046
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.16,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      0,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "602": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.05,
+   "min": 0.037,
+   "max": 0.067
+  },
+  "time passes: day 6": {
+   "mean": 0.122,
+   "min": 0.059,
+   "max": 0.233
+  },
+  "ctrl_day6": {
+   "mean": 0.361,
+   "min": 0.106,
+   "max": 0.827
+  },
+  "bits_day6": {
+   "mean": 12.156,
+   "min": 12.156,
+   "max": 12.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.036,
+   "min": -0.076,
+   "max": -0.007
+  },
+  "surface_contrast_day6": {
+   "mean": -0.058,
+   "min": -0.088,
+   "max": -0.034
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      0,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "600": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.052,
+   "min": 0.043,
+   "max": 0.062
+  },
+  "bits_day6": {
+   "mean": 10.0,
+   "min": 10.0,
+   "max": 10.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.06,
+   "min": -0.062,
+   "max": -0.057
+  },
+  "surface_contrast_day6": {
+   "mean": -0.069,
+   "min": -0.072,
+   "max": -0.064
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.97,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      0,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "466": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.041,
+   "max": 0.102
+  },
+  "time passes: day 6": {
+   "mean": 0.154,
+   "min": 0.062,
+   "max": 0.396
+  },
+  "ctrl_day6": {
+   "mean": 0.861,
+   "min": 0.459,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 20.156,
+   "min": 20.156,
+   "max": 20.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.117,
+   "max": -0.078
+  },
+  "surface_contrast_day6": {
+   "mean": -0.132,
+   "min": -0.147,
+   "max": -0.112
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "464": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.066,
+   "min": 0.041,
+   "max": 0.099
+  },
+  "time passes: day 6": {
+   "mean": 0.146,
+   "min": 0.06,
+   "max": 0.301
+  },
+  "ctrl_day6": {
+   "mean": 0.874,
+   "min": 0.587,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 18.312,
+   "min": 18.312,
+   "max": 18.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.113,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.147,
+   "max": -0.112
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      6,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "463": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.039,
+   "max": 0.095
+  },
+  "time passes: day 6": {
+   "mean": 0.152,
+   "min": 0.057,
+   "max": 0.359
+  },
+  "ctrl_day6": {
+   "mean": 0.878,
+   "min": 0.598,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 17.312,
+   "min": 17.312,
+   "max": 17.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.116,
+   "max": -0.077
+  },
+  "surface_contrast_day6": {
+   "mean": -0.132,
+   "min": -0.153,
+   "max": -0.11
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.75,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      6,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "462": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.036,
+   "max": 0.111
+  },
+  "time passes: day 6": {
+   "mean": 0.174,
+   "min": 0.05,
+   "max": 0.633
+  },
+  "ctrl_day6": {
+   "mean": 0.875,
+   "min": 0.481,
+   "max": 0.997
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.102,
+   "min": -0.143,
+   "max": -0.068
+  },
+  "surface_contrast_day6": {
+   "mean": -0.136,
+   "min": -0.171,
+   "max": -0.107
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      6,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "460": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.292,
+   "min": 0.116,
+   "max": 0.496
+  },
+  "bits_day6": {
+   "mean": 14.156,
+   "min": 14.156,
+   "max": 14.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.114,
+   "min": -0.12,
+   "max": -0.105
+  },
+  "surface_contrast_day6": {
+   "mean": -0.148,
+   "min": -0.154,
+   "max": -0.139
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.59,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      6,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "446": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.043,
+   "max": 0.098
+  },
+  "time passes: day 6": {
+   "mean": 0.152,
+   "min": 0.062,
+   "max": 0.4
+  },
+  "ctrl_day6": {
+   "mean": 0.872,
+   "min": 0.591,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 18.312,
+   "min": 18.312,
+   "max": 18.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.113,
+   "max": -0.08
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.146,
+   "max": -0.115
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      4,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "444": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.043,
+   "max": 0.093
+  },
+  "time passes: day 6": {
+   "mean": 0.143,
+   "min": 0.059,
+   "max": 0.305
+  },
+  "ctrl_day6": {
+   "mean": 0.866,
+   "min": 0.548,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 16.469,
+   "min": 16.469,
+   "max": 16.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.11,
+   "max": -0.077
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.149,
+   "max": -0.112
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.75,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      4,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "443": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.041,
+   "max": 0.096
+  },
+  "time passes: day 6": {
+   "mean": 0.152,
+   "min": 0.059,
+   "max": 0.408
+  },
+  "ctrl_day6": {
+   "mean": 0.875,
+   "min": 0.579,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 15.469,
+   "min": 15.469,
+   "max": 15.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.119,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.151,
+   "max": -0.114
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      4,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "442": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.066,
+   "min": 0.04,
+   "max": 0.106
+  },
+  "time passes: day 6": {
+   "mean": 0.168,
+   "min": 0.054,
+   "max": 0.5
+  },
+  "ctrl_day6": {
+   "mean": 0.878,
+   "min": 0.575,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 14.469,
+   "min": 14.469,
+   "max": 14.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.15,
+   "max": -0.067
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.177,
+   "max": -0.104
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      4,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "440": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "ctrl_day6": {
+   "mean": 0.286,
+   "min": 0.116,
+   "max": 0.492
+  },
+  "bits_day6": {
+   "mean": 12.312,
+   "min": 12.312,
+   "max": 12.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.11,
+   "min": -0.116,
+   "max": -0.101
+  },
+  "surface_contrast_day6": {
+   "mean": -0.147,
+   "min": -0.154,
+   "max": -0.139
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.62,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      4,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "436": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.038,
+   "max": 0.106
+  },
+  "time passes: day 6": {
+   "mean": 0.157,
+   "min": 0.058,
+   "max": 0.427
+  },
+  "ctrl_day6": {
+   "mean": 0.87,
+   "min": 0.545,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 17.312,
+   "min": 17.312,
+   "max": 17.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.116,
+   "max": -0.078
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.153,
+   "max": -0.117
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      3,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "434": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.038,
+   "max": 0.105
+  },
+  "time passes: day 6": {
+   "mean": 0.16,
+   "min": 0.056,
+   "max": 0.435
+  },
+  "ctrl_day6": {
+   "mean": 0.877,
+   "min": 0.553,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 15.469,
+   "min": 15.469,
+   "max": 15.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.097,
+   "min": -0.117,
+   "max": -0.075
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.157,
+   "max": -0.116
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.75,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      3,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "433": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.037,
+   "max": 0.1
+  },
+  "time passes: day 6": {
+   "mean": 0.156,
+   "min": 0.055,
+   "max": 0.427
+  },
+  "ctrl_day6": {
+   "mean": 0.879,
+   "min": 0.553,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 14.469,
+   "min": 14.469,
+   "max": 14.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.122,
+   "max": -0.07
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.159,
+   "max": -0.111
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      3,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "432": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.036,
+   "max": 0.103
+  },
+  "time passes: day 6": {
+   "mean": 0.164,
+   "min": 0.053,
+   "max": 0.48
+  },
+  "ctrl_day6": {
+   "mean": 0.878,
+   "min": 0.602,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 13.469,
+   "min": 13.469,
+   "max": 13.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.101,
+   "min": -0.156,
+   "max": -0.062
+  },
+  "surface_contrast_day6": {
+   "mean": -0.135,
+   "min": -0.182,
+   "max": -0.103
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      3,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "430": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "ctrl_day6": {
+   "mean": 0.292,
+   "min": 0.118,
+   "max": 0.556
+  },
+  "bits_day6": {
+   "mean": 11.312,
+   "min": 11.312,
+   "max": 11.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.12,
+   "min": -0.128,
+   "max": -0.11
+  },
+  "surface_contrast_day6": {
+   "mean": -0.146,
+   "min": -0.154,
+   "max": -0.135
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.72,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      3,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "426": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 3": {
+   "mean": 0.064,
+   "min": 0.038,
+   "max": 0.092
+  },
+  "time passes: day 6": {
+   "mean": 0.146,
+   "min": 0.057,
+   "max": 0.269
+  },
+  "ctrl_day6": {
+   "mean": 0.879,
+   "min": 0.537,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.101,
+   "min": -0.118,
+   "max": -0.071
+  },
+  "surface_contrast_day6": {
+   "mean": -0.137,
+   "min": -0.149,
+   "max": -0.107
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.91,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      2,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "424": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 3": {
+   "mean": 0.063,
+   "min": 0.038,
+   "max": 0.089
+  },
+  "time passes: day 6": {
+   "mean": 0.153,
+   "min": 0.055,
+   "max": 0.389
+  },
+  "ctrl_day6": {
+   "mean": 0.88,
+   "min": 0.537,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 14.469,
+   "min": 14.469,
+   "max": 14.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.114,
+   "max": -0.066
+  },
+  "surface_contrast_day6": {
+   "mean": -0.136,
+   "min": -0.151,
+   "max": -0.105
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      2,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "423": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.035,
+   "max": 0.151
+  },
+  "time passes: day 6": {
+   "mean": 0.142,
+   "min": 0.054,
+   "max": 0.288
+  },
+  "ctrl_day6": {
+   "mean": 0.874,
+   "min": 0.537,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 13.469,
+   "min": 13.469,
+   "max": 13.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.117,
+   "max": -0.061
+  },
+  "surface_contrast_day6": {
+   "mean": -0.138,
+   "min": -0.155,
+   "max": -0.104
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      2,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "422": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 3": {
+   "mean": 0.066,
+   "min": 0.034,
+   "max": 0.149
+  },
+  "time passes: day 6": {
+   "mean": 0.162,
+   "min": 0.051,
+   "max": 0.468
+  },
+  "ctrl_day6": {
+   "mean": 0.882,
+   "min": 0.572,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 12.469,
+   "min": 12.469,
+   "max": 12.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.102,
+   "min": -0.152,
+   "max": -0.055
+  },
+  "surface_contrast_day6": {
+   "mean": -0.137,
+   "min": -0.179,
+   "max": -0.099
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      2,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "420": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 3": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 6": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "ctrl_day6": {
+   "mean": 0.309,
+   "min": 0.114,
+   "max": 0.568
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.121,
+   "min": -0.133,
+   "max": -0.107
+  },
+  "surface_contrast_day6": {
+   "mean": -0.147,
+   "min": -0.16,
+   "max": -0.127
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.66,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      2,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "406": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.047,
+   "min": 0.035,
+   "max": 0.058
+  },
+  "time passes: day 6": {
+   "mean": 0.098,
+   "min": 0.054,
+   "max": 0.175
+  },
+  "ctrl_day6": {
+   "mean": 0.352,
+   "min": 0.132,
+   "max": 0.74
+  },
+  "bits_day6": {
+   "mean": 14.156,
+   "min": 14.156,
+   "max": 14.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.039,
+   "min": -0.051,
+   "max": -0.022
+  },
+  "surface_contrast_day6": {
+   "mean": -0.062,
+   "min": -0.071,
+   "max": -0.047
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      0,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "404": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.046,
+   "min": 0.035,
+   "max": 0.056
+  },
+  "time passes: day 6": {
+   "mean": 0.102,
+   "min": 0.053,
+   "max": 0.226
+  },
+  "ctrl_day6": {
+   "mean": 0.332,
+   "min": 0.132,
+   "max": 0.734
+  },
+  "bits_day6": {
+   "mean": 12.312,
+   "min": 12.312,
+   "max": 12.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.037,
+   "min": -0.05,
+   "max": -0.018
+  },
+  "surface_contrast_day6": {
+   "mean": -0.06,
+   "min": -0.073,
+   "max": -0.044
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      0,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "403": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.046,
+   "min": 0.033,
+   "max": 0.056
+  },
+  "time passes: day 6": {
+   "mean": 0.098,
+   "min": 0.05,
+   "max": 0.192
+  },
+  "ctrl_day6": {
+   "mean": 0.348,
+   "min": 0.119,
+   "max": 0.752
+  },
+  "bits_day6": {
+   "mean": 11.312,
+   "min": 11.312,
+   "max": 11.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.039,
+   "min": -0.056,
+   "max": -0.015
+  },
+  "surface_contrast_day6": {
+   "mean": -0.063,
+   "min": -0.081,
+   "max": -0.045
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      0,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "402": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.048,
+   "min": 0.032,
+   "max": 0.068
+  },
+  "time passes: day 6": {
+   "mean": 0.114,
+   "min": 0.046,
+   "max": 0.281
+  },
+  "ctrl_day6": {
+   "mean": 0.385,
+   "min": 0.11,
+   "max": 0.916
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.043,
+   "min": -0.088,
+   "max": -0.005
+  },
+  "surface_contrast_day6": {
+   "mean": -0.063,
+   "min": -0.098,
+   "max": -0.038
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.12,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      0,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "400": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.052,
+   "min": 0.042,
+   "max": 0.062
+  },
+  "bits_day6": {
+   "mean": 8.156,
+   "min": 8.156,
+   "max": 8.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.059,
+   "min": -0.061,
+   "max": -0.054
+  },
+  "surface_contrast_day6": {
+   "mean": -0.068,
+   "min": -0.072,
+   "max": -0.063
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.94,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      0,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "366": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.041,
+   "max": 0.105
+  },
+  "time passes: day 6": {
+   "mean": 0.145,
+   "min": 0.062,
+   "max": 0.381
+  },
+  "ctrl_day6": {
+   "mean": 0.864,
+   "min": 0.417,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 19.156,
+   "min": 19.156,
+   "max": 19.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.112,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.148,
+   "max": -0.11
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.69,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "364": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.042,
+   "max": 0.099
+  },
+  "time passes: day 6": {
+   "mean": 0.143,
+   "min": 0.062,
+   "max": 0.288
+  },
+  "ctrl_day6": {
+   "mean": 0.858,
+   "min": 0.409,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 17.312,
+   "min": 17.312,
+   "max": 17.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.112,
+   "max": -0.075
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.146,
+   "max": -0.107
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      6,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "363": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.041,
+   "max": 0.099
+  },
+  "time passes: day 6": {
+   "mean": 0.15,
+   "min": 0.061,
+   "max": 0.355
+  },
+  "ctrl_day6": {
+   "mean": 0.866,
+   "min": 0.401,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.117,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.152,
+   "max": -0.109
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      6,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "362": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.038,
+   "max": 0.108
+  },
+  "time passes: day 6": {
+   "mean": 0.168,
+   "min": 0.049,
+   "max": 0.618
+  },
+  "ctrl_day6": {
+   "mean": 0.878,
+   "min": 0.481,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 15.312,
+   "min": 15.312,
+   "max": 15.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.102,
+   "min": -0.146,
+   "max": -0.069
+  },
+  "surface_contrast_day6": {
+   "mean": -0.137,
+   "min": -0.178,
+   "max": -0.106
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      6,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "360": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.297,
+   "min": 0.12,
+   "max": 0.508
+  },
+  "bits_day6": {
+   "mean": 13.156,
+   "min": 13.156,
+   "max": 13.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.116,
+   "min": -0.122,
+   "max": -0.104
+  },
+  "surface_contrast_day6": {
+   "mean": -0.147,
+   "min": -0.157,
+   "max": -0.138
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.66,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      6,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "346": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.042,
+   "max": 0.093
+  },
+  "time passes: day 6": {
+   "mean": 0.141,
+   "min": 0.063,
+   "max": 0.275
+  },
+  "ctrl_day6": {
+   "mean": 0.87,
+   "min": 0.54,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 17.312,
+   "min": 17.312,
+   "max": 17.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.097,
+   "min": -0.109,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.147,
+   "max": -0.111
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      4,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "344": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.042,
+   "max": 0.097
+  },
+  "time passes: day 6": {
+   "mean": 0.147,
+   "min": 0.062,
+   "max": 0.412
+  },
+  "ctrl_day6": {
+   "mean": 0.865,
+   "min": 0.54,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 15.469,
+   "min": 15.469,
+   "max": 15.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.097,
+   "min": -0.11,
+   "max": -0.075
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.146,
+   "max": -0.109
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      4,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "343": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.039,
+   "max": 0.103
+  },
+  "time passes: day 6": {
+   "mean": 0.151,
+   "min": 0.06,
+   "max": 0.4
+  },
+  "ctrl_day6": {
+   "mean": 0.872,
+   "min": 0.565,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 14.469,
+   "min": 14.469,
+   "max": 14.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.097,
+   "min": -0.116,
+   "max": -0.073
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.15,
+   "max": -0.109
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      4,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "342": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.039,
+   "max": 0.1
+  },
+  "time passes: day 6": {
+   "mean": 0.164,
+   "min": 0.054,
+   "max": 0.496
+  },
+  "ctrl_day6": {
+   "mean": 0.874,
+   "min": 0.499,
+   "max": 0.992
+  },
+  "bits_day6": {
+   "mean": 13.469,
+   "min": 13.469,
+   "max": 13.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.149,
+   "max": -0.066
+  },
+  "surface_contrast_day6": {
+   "mean": -0.136,
+   "min": -0.178,
+   "max": -0.102
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      4,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "340": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "ctrl_day6": {
+   "mean": 0.292,
+   "min": 0.12,
+   "max": 0.524
+  },
+  "bits_day6": {
+   "mean": 11.312,
+   "min": 11.312,
+   "max": 11.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.113,
+   "min": -0.121,
+   "max": -0.101
+  },
+  "surface_contrast_day6": {
+   "mean": -0.148,
+   "min": -0.156,
+   "max": -0.14
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.62,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      4,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "336": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.038,
+   "max": 0.095
+  },
+  "time passes: day 6": {
+   "mean": 0.155,
+   "min": 0.059,
+   "max": 0.298
+  },
+  "ctrl_day6": {
+   "mean": 0.872,
+   "min": 0.524,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.097,
+   "min": -0.114,
+   "max": -0.081
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.152,
+   "max": -0.116
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      3,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "334": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.037,
+   "max": 0.103
+  },
+  "time passes: day 6": {
+   "mean": 0.162,
+   "min": 0.058,
+   "max": 0.427
+  },
+  "ctrl_day6": {
+   "mean": 0.868,
+   "min": 0.417,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 14.469,
+   "min": 14.469,
+   "max": 14.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.097,
+   "min": -0.116,
+   "max": -0.079
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.154,
+   "max": -0.114
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      3,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "333": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.031
+  },
+  "time passes: day 3": {
+   "mean": 0.064,
+   "min": 0.036,
+   "max": 0.1
+  },
+  "time passes: day 6": {
+   "mean": 0.163,
+   "min": 0.057,
+   "max": 0.436
+  },
+  "ctrl_day6": {
+   "mean": 0.875,
+   "min": 0.417,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 13.469,
+   "min": 13.469,
+   "max": 13.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.122,
+   "max": -0.075
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.157,
+   "max": -0.11
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      3,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "332": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 3": {
+   "mean": 0.07,
+   "min": 0.038,
+   "max": 0.166
+  },
+  "time passes: day 6": {
+   "mean": 0.164,
+   "min": 0.052,
+   "max": 0.46
+  },
+  "ctrl_day6": {
+   "mean": 0.874,
+   "min": 0.495,
+   "max": 0.993
+  },
+  "bits_day6": {
+   "mean": 12.469,
+   "min": 12.469,
+   "max": 12.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.155,
+   "max": -0.067
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.179,
+   "max": -0.103
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.91,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      3,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "330": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 6": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "ctrl_day6": {
+   "mean": 0.285,
+   "min": 0.106,
+   "max": 0.54
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.112,
+   "min": -0.125,
+   "max": -0.099
+  },
+  "surface_contrast_day6": {
+   "mean": -0.141,
+   "min": -0.15,
+   "max": -0.129
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.72,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      3,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "326": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 3": {
+   "mean": 0.063,
+   "min": 0.037,
+   "max": 0.093
+  },
+  "time passes: day 6": {
+   "mean": 0.156,
+   "min": 0.059,
+   "max": 0.408
+  },
+  "ctrl_day6": {
+   "mean": 0.88,
+   "min": 0.525,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 15.312,
+   "min": 15.312,
+   "max": 15.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.113,
+   "max": -0.075
+  },
+  "surface_contrast_day6": {
+   "mean": -0.135,
+   "min": -0.151,
+   "max": -0.104
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      2,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "324": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 3": {
+   "mean": 0.064,
+   "min": 0.036,
+   "max": 0.097
+  },
+  "time passes: day 6": {
+   "mean": 0.156,
+   "min": 0.058,
+   "max": 0.401
+  },
+  "ctrl_day6": {
+   "mean": 0.877,
+   "min": 0.533,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 13.469,
+   "min": 13.469,
+   "max": 13.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.112,
+   "max": -0.072
+  },
+  "surface_contrast_day6": {
+   "mean": -0.135,
+   "min": -0.151,
+   "max": -0.103
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      2,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "323": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 3": {
+   "mean": 0.06,
+   "min": 0.035,
+   "max": 0.091
+  },
+  "time passes: day 6": {
+   "mean": 0.168,
+   "min": 0.057,
+   "max": 0.56
+  },
+  "ctrl_day6": {
+   "mean": 0.876,
+   "min": 0.529,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 12.469,
+   "min": 12.469,
+   "max": 12.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.118,
+   "max": -0.069
+  },
+  "surface_contrast_day6": {
+   "mean": -0.134,
+   "min": -0.148,
+   "max": -0.099
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      2,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "322": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 3": {
+   "mean": 0.066,
+   "min": 0.035,
+   "max": 0.164
+  },
+  "time passes: day 6": {
+   "mean": 0.171,
+   "min": 0.05,
+   "max": 0.464
+  },
+  "ctrl_day6": {
+   "mean": 0.887,
+   "min": 0.576,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 11.469,
+   "min": 11.469,
+   "max": 11.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.151,
+   "max": -0.06
+  },
+  "surface_contrast_day6": {
+   "mean": -0.135,
+   "min": -0.176,
+   "max": -0.092
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      2,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "320": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.032
+  },
+  "time passes: day 3": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.036
+  },
+  "time passes: day 6": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.036
+  },
+  "ctrl_day6": {
+   "mean": 0.316,
+   "min": 0.114,
+   "max": 0.552
+  },
+  "bits_day6": {
+   "mean": 9.312,
+   "min": 9.312,
+   "max": 9.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.113,
+   "min": -0.124,
+   "max": -0.098
+  },
+  "surface_contrast_day6": {
+   "mean": -0.148,
+   "min": -0.159,
+   "max": -0.126
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.72,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      2,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "306": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.046,
+   "min": 0.034,
+   "max": 0.061
+  },
+  "time passes: day 6": {
+   "mean": 0.101,
+   "min": 0.055,
+   "max": 0.19
+  },
+  "ctrl_day6": {
+   "mean": 0.353,
+   "min": 0.126,
+   "max": 0.752
+  },
+  "bits_day6": {
+   "mean": 13.156,
+   "min": 13.156,
+   "max": 13.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.036,
+   "min": -0.047,
+   "max": -0.023
+  },
+  "surface_contrast_day6": {
+   "mean": -0.06,
+   "min": -0.071,
+   "max": -0.047
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      0,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "304": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.046,
+   "min": 0.034,
+   "max": 0.063
+  },
+  "time passes: day 6": {
+   "mean": 0.1,
+   "min": 0.055,
+   "max": 0.182
+  },
+  "ctrl_day6": {
+   "mean": 0.351,
+   "min": 0.126,
+   "max": 0.737
+  },
+  "bits_day6": {
+   "mean": 11.312,
+   "min": 11.312,
+   "max": 11.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.037,
+   "min": -0.048,
+   "max": -0.022
+  },
+  "surface_contrast_day6": {
+   "mean": -0.061,
+   "min": -0.073,
+   "max": -0.045
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      0,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "303": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.043,
+   "min": 0.033,
+   "max": 0.057
+  },
+  "time passes: day 6": {
+   "mean": 0.107,
+   "min": 0.054,
+   "max": 0.213
+  },
+  "ctrl_day6": {
+   "mean": 0.359,
+   "min": 0.113,
+   "max": 0.84
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.037,
+   "min": -0.056,
+   "max": -0.016
+  },
+  "surface_contrast_day6": {
+   "mean": -0.059,
+   "min": -0.073,
+   "max": -0.044
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.12,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      0,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "302": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.048,
+   "min": 0.032,
+   "max": 0.074
+  },
+  "time passes: day 6": {
+   "mean": 0.117,
+   "min": 0.045,
+   "max": 0.404
+  },
+  "ctrl_day6": {
+   "mean": 0.383,
+   "min": 0.113,
+   "max": 0.916
+  },
+  "bits_day6": {
+   "mean": 9.312,
+   "min": 9.312,
+   "max": 9.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.04,
+   "min": -0.086,
+   "max": -0.001
+  },
+  "surface_contrast_day6": {
+   "mean": -0.062,
+   "min": -0.099,
+   "max": -0.032
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.16,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      0,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "300": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.053,
+   "min": 0.044,
+   "max": 0.063
+  },
+  "bits_day6": {
+   "mean": 7.156,
+   "min": 7.156,
+   "max": 7.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.048,
+   "min": -0.06,
+   "max": -0.039
+  },
+  "surface_contrast_day6": {
+   "mean": -0.069,
+   "min": -0.075,
+   "max": -0.065
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.97,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      0,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "266": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 3": {
+   "mean": 0.069,
+   "min": 0.042,
+   "max": 0.119
+  },
+  "time passes: day 6": {
+   "mean": 0.156,
+   "min": 0.062,
+   "max": 0.389
+  },
+  "ctrl_day6": {
+   "mean": 0.854,
+   "min": 0.455,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 18.156,
+   "min": 18.156,
+   "max": 18.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.114,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.15,
+   "max": -0.116
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "264": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.042,
+   "max": 0.113
+  },
+  "time passes: day 6": {
+   "mean": 0.158,
+   "min": 0.062,
+   "max": 0.381
+  },
+  "ctrl_day6": {
+   "mean": 0.858,
+   "min": 0.509,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.116,
+   "max": -0.078
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.155,
+   "max": -0.113
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      6,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "263": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.037
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.04,
+   "max": 0.109
+  },
+  "time passes: day 6": {
+   "mean": 0.16,
+   "min": 0.06,
+   "max": 0.377
+  },
+  "ctrl_day6": {
+   "mean": 0.86,
+   "min": 0.505,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 15.312,
+   "min": 15.312,
+   "max": 15.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.124,
+   "max": -0.073
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.154,
+   "max": -0.111
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      6,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "262": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.038
+  },
+  "time passes: day 3": {
+   "mean": 0.07,
+   "min": 0.037,
+   "max": 0.121
+  },
+  "time passes: day 6": {
+   "mean": 0.178,
+   "min": 0.052,
+   "max": 0.496
+  },
+  "ctrl_day6": {
+   "mean": 0.869,
+   "min": 0.477,
+   "max": 0.997
+  },
+  "bits_day6": {
+   "mean": 14.312,
+   "min": 14.312,
+   "max": 14.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.101,
+   "min": -0.142,
+   "max": -0.065
+  },
+  "surface_contrast_day6": {
+   "mean": -0.137,
+   "min": -0.171,
+   "max": -0.107
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      6,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "260": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.033
+  },
+  "time passes: day 3": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 6": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "ctrl_day6": {
+   "mean": 0.297,
+   "min": 0.116,
+   "max": 0.6
+  },
+  "bits_day6": {
+   "mean": 12.156,
+   "min": 12.156,
+   "max": 12.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.113,
+   "min": -0.124,
+   "max": -0.102
+  },
+  "surface_contrast_day6": {
+   "mean": -0.145,
+   "min": -0.158,
+   "max": -0.133
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.59,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      6,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "246": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 3": {
+   "mean": 0.069,
+   "min": 0.044,
+   "max": 0.114
+  },
+  "time passes: day 6": {
+   "mean": 0.163,
+   "min": 0.065,
+   "max": 0.512
+  },
+  "ctrl_day6": {
+   "mean": 0.852,
+   "min": 0.455,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 16.312,
+   "min": 16.312,
+   "max": 16.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.098,
+   "min": -0.115,
+   "max": -0.079
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.151,
+   "max": -0.116
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.78,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      4,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "244": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 3": {
+   "mean": 0.069,
+   "min": 0.043,
+   "max": 0.119
+  },
+  "time passes: day 6": {
+   "mean": 0.171,
+   "min": 0.064,
+   "max": 0.524
+  },
+  "ctrl_day6": {
+   "mean": 0.855,
+   "min": 0.525,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 14.469,
+   "min": 14.469,
+   "max": 14.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.118,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.131,
+   "min": -0.151,
+   "max": -0.111
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      4,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "243": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.037
+  },
+  "time passes: day 3": {
+   "mean": 0.067,
+   "min": 0.041,
+   "max": 0.114
+  },
+  "time passes: day 6": {
+   "mean": 0.164,
+   "min": 0.062,
+   "max": 0.524
+  },
+  "ctrl_day6": {
+   "mean": 0.863,
+   "min": 0.529,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 13.469,
+   "min": 13.469,
+   "max": 13.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.097,
+   "min": -0.121,
+   "max": -0.07
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.158,
+   "max": -0.111
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      4,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "242": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.039
+  },
+  "time passes: day 3": {
+   "mean": 0.071,
+   "min": 0.039,
+   "max": 0.132
+  },
+  "time passes: day 6": {
+   "mean": 0.19,
+   "min": 0.054,
+   "max": 0.553
+  },
+  "ctrl_day6": {
+   "mean": 0.868,
+   "min": 0.507,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 12.469,
+   "min": 12.469,
+   "max": 12.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.099,
+   "min": -0.155,
+   "max": -0.061
+  },
+  "surface_contrast_day6": {
+   "mean": -0.133,
+   "min": -0.182,
+   "max": -0.104
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      4,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "240": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 3": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 6": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "ctrl_day6": {
+   "mean": 0.303,
+   "min": 0.116,
+   "max": 0.604
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.111,
+   "min": -0.123,
+   "max": -0.1
+  },
+  "surface_contrast_day6": {
+   "mean": -0.142,
+   "min": -0.154,
+   "max": -0.13
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.62,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      4,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "236": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.037
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.04,
+   "max": 0.111
+  },
+  "time passes: day 6": {
+   "mean": 0.156,
+   "min": 0.059,
+   "max": 0.496
+  },
+  "ctrl_day6": {
+   "mean": 0.86,
+   "min": 0.517,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 15.312,
+   "min": 15.312,
+   "max": 15.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.12,
+   "max": -0.081
+  },
+  "surface_contrast_day6": {
+   "mean": -0.136,
+   "min": -0.155,
+   "max": -0.114
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      3,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "234": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.037
+  },
+  "time passes: day 3": {
+   "mean": 0.069,
+   "min": 0.039,
+   "max": 0.114
+  },
+  "time passes: day 6": {
+   "mean": 0.156,
+   "min": 0.058,
+   "max": 0.508
+  },
+  "ctrl_day6": {
+   "mean": 0.861,
+   "min": 0.521,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 13.469,
+   "min": 13.469,
+   "max": 13.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.119,
+   "max": -0.08
+  },
+  "surface_contrast_day6": {
+   "mean": -0.135,
+   "min": -0.154,
+   "max": -0.114
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      3,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "233": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.037
+  },
+  "time passes: day 3": {
+   "mean": 0.068,
+   "min": 0.038,
+   "max": 0.13
+  },
+  "time passes: day 6": {
+   "mean": 0.168,
+   "min": 0.056,
+   "max": 0.432
+  },
+  "ctrl_day6": {
+   "mean": 0.859,
+   "min": 0.517,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 12.469,
+   "min": 12.469,
+   "max": 12.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.125,
+   "max": -0.076
+  },
+  "surface_contrast_day6": {
+   "mean": -0.135,
+   "min": -0.157,
+   "max": -0.107
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      3,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "232": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.033,
+   "min": 0.03,
+   "max": 0.039
+  },
+  "time passes: day 3": {
+   "mean": 0.073,
+   "min": 0.038,
+   "max": 0.175
+  },
+  "time passes: day 6": {
+   "mean": 0.168,
+   "min": 0.05,
+   "max": 0.492
+  },
+  "ctrl_day6": {
+   "mean": 0.862,
+   "min": 0.491,
+   "max": 0.994
+  },
+  "bits_day6": {
+   "mean": 11.469,
+   "min": 11.469,
+   "max": 11.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.1,
+   "min": -0.158,
+   "max": -0.068
+  },
+  "surface_contrast_day6": {
+   "mean": -0.137,
+   "min": -0.193,
+   "max": -0.103
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.91,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      3,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "230": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.035
+  },
+  "time passes: day 3": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.037
+  },
+  "time passes: day 6": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "ctrl_day6": {
+   "mean": 0.294,
+   "min": 0.113,
+   "max": 0.619
+  },
+  "bits_day6": {
+   "mean": 9.312,
+   "min": 9.312,
+   "max": 9.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.114,
+   "min": -0.129,
+   "max": -0.101
+  },
+  "surface_contrast_day6": {
+   "mean": -0.15,
+   "min": -0.167,
+   "max": -0.128
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.62,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      3,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "226": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.033,
+   "min": 0.03,
+   "max": 0.038
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.039,
+   "max": 0.102
+  },
+  "time passes: day 6": {
+   "mean": 0.15,
+   "min": 0.056,
+   "max": 0.389
+  },
+  "ctrl_day6": {
+   "mean": 0.87,
+   "min": 0.497,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 14.312,
+   "min": 14.312,
+   "max": 14.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.101,
+   "min": -0.12,
+   "max": -0.073
+  },
+  "surface_contrast_day6": {
+   "mean": -0.139,
+   "min": -0.156,
+   "max": -0.11
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.88,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      2,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "224": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.033,
+   "min": 0.03,
+   "max": 0.039
+  },
+  "time passes: day 3": {
+   "mean": 0.065,
+   "min": 0.038,
+   "max": 0.105
+  },
+  "time passes: day 6": {
+   "mean": 0.162,
+   "min": 0.055,
+   "max": 0.524
+  },
+  "ctrl_day6": {
+   "mean": 0.869,
+   "min": 0.501,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 12.469,
+   "min": 12.469,
+   "max": 12.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.101,
+   "min": -0.118,
+   "max": -0.071
+  },
+  "surface_contrast_day6": {
+   "mean": -0.138,
+   "min": -0.153,
+   "max": -0.109
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.81,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      2,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "223": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.033,
+   "min": 0.03,
+   "max": 0.039
+  },
+  "time passes: day 3": {
+   "mean": 0.064,
+   "min": 0.037,
+   "max": 0.1
+  },
+  "time passes: day 6": {
+   "mean": 0.153,
+   "min": 0.053,
+   "max": 0.54
+  },
+  "ctrl_day6": {
+   "mean": 0.87,
+   "min": 0.501,
+   "max": 0.996
+  },
+  "bits_day6": {
+   "mean": 11.469,
+   "min": 11.469,
+   "max": 11.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.101,
+   "min": -0.12,
+   "max": -0.07
+  },
+  "surface_contrast_day6": {
+   "mean": -0.14,
+   "min": -0.162,
+   "max": -0.111
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.84,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      2,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "222": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.034,
+   "min": 0.03,
+   "max": 0.04
+  },
+  "time passes: day 3": {
+   "mean": 0.069,
+   "min": 0.036,
+   "max": 0.171
+  },
+  "time passes: day 6": {
+   "mean": 0.163,
+   "min": 0.05,
+   "max": 0.389
+  },
+  "ctrl_day6": {
+   "mean": 0.861,
+   "min": 0.572,
+   "max": 0.995
+  },
+  "bits_day6": {
+   "mean": 10.469,
+   "min": 10.469,
+   "max": 10.469
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.102,
+   "min": -0.155,
+   "max": -0.059
+  },
+  "surface_contrast_day6": {
+   "mean": -0.138,
+   "min": -0.186,
+   "max": -0.101
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.94,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      2,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "220": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.036
+  },
+  "time passes: day 3": {
+   "mean": 0.033,
+   "min": 0.03,
+   "max": 0.039
+  },
+  "time passes: day 6": {
+   "mean": 0.032,
+   "min": 0.03,
+   "max": 0.036
+  },
+  "ctrl_day6": {
+   "mean": 0.308,
+   "min": 0.096,
+   "max": 0.591
+  },
+  "bits_day6": {
+   "mean": 8.312,
+   "min": 8.312,
+   "max": 8.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.116,
+   "min": -0.131,
+   "max": -0.094
+  },
+  "surface_contrast_day6": {
+   "mean": -0.149,
+   "min": -0.172,
+   "max": -0.133
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 3.66,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      2,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "206": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.033
+  },
+  "time passes: day 3": {
+   "mean": 0.048,
+   "min": 0.036,
+   "max": 0.07
+  },
+  "time passes: day 6": {
+   "mean": 0.099,
+   "min": 0.053,
+   "max": 0.182
+  },
+  "ctrl_day6": {
+   "mean": 0.337,
+   "min": 0.111,
+   "max": 0.81
+  },
+  "bits_day6": {
+   "mean": 12.156,
+   "min": 12.156,
+   "max": 12.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.039,
+   "min": -0.051,
+   "max": -0.023
+  },
+  "surface_contrast_day6": {
+   "mean": -0.062,
+   "min": -0.077,
+   "max": -0.044
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      0,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "204": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 3": {
+   "mean": 0.048,
+   "min": 0.035,
+   "max": 0.07
+  },
+  "time passes: day 6": {
+   "mean": 0.1,
+   "min": 0.053,
+   "max": 0.187
+  },
+  "ctrl_day6": {
+   "mean": 0.334,
+   "min": 0.111,
+   "max": 0.721
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.039,
+   "min": -0.054,
+   "max": -0.023
+  },
+  "surface_contrast_day6": {
+   "mean": -0.062,
+   "min": -0.08,
+   "max": -0.045
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.12,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      0,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "203": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.033
+  },
+  "time passes: day 3": {
+   "mean": 0.047,
+   "min": 0.034,
+   "max": 0.065
+  },
+  "time passes: day 6": {
+   "mean": 0.095,
+   "min": 0.05,
+   "max": 0.178
+  },
+  "ctrl_day6": {
+   "mean": 0.329,
+   "min": 0.101,
+   "max": 0.81
+  },
+  "bits_day6": {
+   "mean": 9.312,
+   "min": 9.312,
+   "max": 9.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.04,
+   "min": -0.06,
+   "max": -0.022
+  },
+  "surface_contrast_day6": {
+   "mean": -0.063,
+   "min": -0.086,
+   "max": -0.041
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      0,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "202": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.031,
+   "min": 0.03,
+   "max": 0.034
+  },
+  "time passes: day 3": {
+   "mean": 0.049,
+   "min": 0.034,
+   "max": 0.079
+  },
+  "time passes: day 6": {
+   "mean": 0.112,
+   "min": 0.045,
+   "max": 0.266
+  },
+  "ctrl_day6": {
+   "mean": 0.365,
+   "min": 0.096,
+   "max": 0.853
+  },
+  "bits_day6": {
+   "mean": 8.312,
+   "min": 8.312,
+   "max": 8.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.042,
+   "min": -0.084,
+   "max": -0.006
+  },
+  "surface_contrast_day6": {
+   "mean": -0.064,
+   "min": -0.098,
+   "max": -0.037
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 2.09,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      0,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "200": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.053,
+   "min": 0.039,
+   "max": 0.067
+  },
+  "bits_day6": {
+   "mean": 6.156,
+   "min": 6.156,
+   "max": 6.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.053,
+   "min": -0.068,
+   "max": -0.034
+  },
+  "surface_contrast_day6": {
+   "mean": -0.072,
+   "min": -0.083,
+   "max": -0.058
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 4.0,
+   "mean": 4.0,
+   "max": 6,
+   "frac_over_5": 0.031
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      0,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "066": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.055,
+   "min": 0.04,
+   "max": 0.076
+  },
+  "time passes: day 3": {
+   "mean": 0.177,
+   "min": 0.066,
+   "max": 0.54
+  },
+  "time passes: day 6": {
+   "mean": 0.344,
+   "min": 0.087,
+   "max": 0.915
+  },
+  "ctrl_day6": {
+   "mean": 0.732,
+   "min": 0.33,
+   "max": 0.985
+  },
+  "bits_day6": {
+   "mean": 16.0,
+   "min": 16.0,
+   "max": 16.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.044,
+   "min": -0.06,
+   "max": -0.027
+  },
+  "surface_contrast_day6": {
+   "mean": -0.058,
+   "min": -0.069,
+   "max": -0.043
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.25,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "064": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.056,
+   "min": 0.04,
+   "max": 0.076
+  },
+  "time passes: day 3": {
+   "mean": 0.166,
+   "min": 0.067,
+   "max": 0.308
+  },
+  "time passes: day 6": {
+   "mean": 0.357,
+   "min": 0.087,
+   "max": 0.915
+  },
+  "ctrl_day6": {
+   "mean": 0.728,
+   "min": 0.323,
+   "max": 0.985
+  },
+  "bits_day6": {
+   "mean": 14.156,
+   "min": 14.156,
+   "max": 14.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.042,
+   "min": -0.061,
+   "max": -0.026
+  },
+  "surface_contrast_day6": {
+   "mean": -0.057,
+   "min": -0.074,
+   "max": -0.04
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.22,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      6,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "063": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.057,
+   "min": 0.04,
+   "max": 0.084
+  },
+  "time passes: day 3": {
+   "mean": 0.174,
+   "min": 0.066,
+   "max": 0.389
+  },
+  "time passes: day 6": {
+   "mean": 0.335,
+   "min": 0.082,
+   "max": 0.913
+  },
+  "ctrl_day6": {
+   "mean": 0.723,
+   "min": 0.323,
+   "max": 0.987
+  },
+  "bits_day6": {
+   "mean": 13.156,
+   "min": 13.156,
+   "max": 13.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.043,
+   "min": -0.057,
+   "max": -0.022
+  },
+  "surface_contrast_day6": {
+   "mean": -0.06,
+   "min": -0.076,
+   "max": -0.038
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.25,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      6,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "062": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.06,
+   "min": 0.041,
+   "max": 0.092
+  },
+  "time passes: day 3": {
+   "mean": 0.193,
+   "min": 0.07,
+   "max": 0.677
+  },
+  "time passes: day 6": {
+   "mean": 0.388,
+   "min": 0.095,
+   "max": 0.892
+  },
+  "ctrl_day6": {
+   "mean": 0.693,
+   "min": 0.284,
+   "max": 0.988
+  },
+  "bits_day6": {
+   "mean": 12.156,
+   "min": 12.156,
+   "max": 12.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.038,
+   "min": -0.077,
+   "max": -0.012
+  },
+  "surface_contrast_day6": {
+   "mean": -0.057,
+   "min": -0.088,
+   "max": -0.035
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.09,
+   "max": 2,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      6,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "060": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.041,
+   "min": 0.035,
+   "max": 0.05
+  },
+  "time passes: day 3": {
+   "mean": 0.041,
+   "min": 0.035,
+   "max": 0.05
+  },
+  "time passes: day 6": {
+   "mean": 0.041,
+   "min": 0.035,
+   "max": 0.048
+  },
+  "ctrl_day6": {
+   "mean": 0.122,
+   "min": 0.082,
+   "max": 0.236
+  },
+  "bits_day6": {
+   "mean": 10.0,
+   "min": 10.0,
+   "max": 10.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.057,
+   "min": -0.063,
+   "max": -0.049
+  },
+  "surface_contrast_day6": {
+   "mean": -0.072,
+   "min": -0.079,
+   "max": -0.064
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 3.0,
+   "mean": 3.22,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      6,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "046": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.051,
+   "min": 0.038,
+   "max": 0.068
+  },
+  "time passes: day 3": {
+   "mean": 0.191,
+   "min": 0.072,
+   "max": 0.544
+  },
+  "time passes: day 6": {
+   "mean": 0.35,
+   "min": 0.092,
+   "max": 0.919
+  },
+  "ctrl_day6": {
+   "mean": 0.737,
+   "min": 0.32,
+   "max": 0.985
+  },
+  "bits_day6": {
+   "mean": 14.156,
+   "min": 14.156,
+   "max": 14.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.043,
+   "min": -0.058,
+   "max": -0.025
+  },
+  "surface_contrast_day6": {
+   "mean": -0.057,
+   "min": -0.072,
+   "max": -0.042
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.31,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      4,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "044": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.052,
+   "min": 0.039,
+   "max": 0.07
+  },
+  "time passes: day 3": {
+   "mean": 0.192,
+   "min": 0.072,
+   "max": 0.674
+  },
+  "time passes: day 6": {
+   "mean": 0.367,
+   "min": 0.092,
+   "max": 0.923
+  },
+  "ctrl_day6": {
+   "mean": 0.736,
+   "min": 0.309,
+   "max": 0.985
+  },
+  "bits_day6": {
+   "mean": 12.312,
+   "min": 12.312,
+   "max": 12.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.043,
+   "min": -0.057,
+   "max": -0.023
+  },
+  "surface_contrast_day6": {
+   "mean": -0.055,
+   "min": -0.074,
+   "max": -0.037
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.25,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      4,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "043": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.053,
+   "min": 0.039,
+   "max": 0.078
+  },
+  "time passes: day 3": {
+   "mean": 0.17,
+   "min": 0.069,
+   "max": 0.532
+  },
+  "time passes: day 6": {
+   "mean": 0.336,
+   "min": 0.085,
+   "max": 0.916
+  },
+  "ctrl_day6": {
+   "mean": 0.739,
+   "min": 0.302,
+   "max": 0.985
+  },
+  "bits_day6": {
+   "mean": 11.312,
+   "min": 11.312,
+   "max": 11.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.042,
+   "min": -0.062,
+   "max": -0.02
+  },
+  "surface_contrast_day6": {
+   "mean": -0.06,
+   "min": -0.082,
+   "max": -0.041
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.31,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      4,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "042": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.066,
+   "min": 0.044,
+   "max": 0.1
+  },
+  "time passes: day 3": {
+   "mean": 0.205,
+   "min": 0.062,
+   "max": 0.652
+  },
+  "time passes: day 6": {
+   "mean": 0.404,
+   "min": 0.073,
+   "max": 0.908
+  },
+  "ctrl_day6": {
+   "mean": 0.736,
+   "min": 0.393,
+   "max": 0.989
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.043,
+   "min": -0.087,
+   "max": -0.012
+  },
+  "surface_contrast_day6": {
+   "mean": -0.059,
+   "min": -0.095,
+   "max": -0.031
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.16,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      4,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "040": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.046,
+   "min": 0.037,
+   "max": 0.06
+  },
+  "time passes: day 3": {
+   "mean": 0.046,
+   "min": 0.037,
+   "max": 0.06
+  },
+  "time passes: day 6": {
+   "mean": 0.044,
+   "min": 0.037,
+   "max": 0.054
+  },
+  "ctrl_day6": {
+   "mean": 0.117,
+   "min": 0.079,
+   "max": 0.23
+  },
+  "bits_day6": {
+   "mean": 8.156,
+   "min": 8.156,
+   "max": 8.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.051,
+   "min": -0.06,
+   "max": -0.044
+  },
+  "surface_contrast_day6": {
+   "mean": -0.066,
+   "min": -0.075,
+   "max": -0.059
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 3.0,
+   "mean": 3.16,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      4,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "036": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.053,
+   "min": 0.036,
+   "max": 0.073
+  },
+  "time passes: day 3": {
+   "mean": 0.165,
+   "min": 0.063,
+   "max": 0.516
+  },
+  "time passes: day 6": {
+   "mean": 0.317,
+   "min": 0.081,
+   "max": 0.905
+  },
+  "ctrl_day6": {
+   "mean": 0.741,
+   "min": 0.334,
+   "max": 0.985
+  },
+  "bits_day6": {
+   "mean": 13.156,
+   "min": 13.156,
+   "max": 13.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.044,
+   "min": -0.058,
+   "max": -0.022
+  },
+  "surface_contrast_day6": {
+   "mean": -0.062,
+   "min": -0.08,
+   "max": -0.039
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.28,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      3,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "034": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.053,
+   "min": 0.036,
+   "max": 0.075
+  },
+  "time passes: day 3": {
+   "mean": 0.167,
+   "min": 0.063,
+   "max": 0.528
+  },
+  "time passes: day 6": {
+   "mean": 0.328,
+   "min": 0.081,
+   "max": 0.904
+  },
+  "ctrl_day6": {
+   "mean": 0.737,
+   "min": 0.334,
+   "max": 0.985
+  },
+  "bits_day6": {
+   "mean": 11.312,
+   "min": 11.312,
+   "max": 11.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.044,
+   "min": -0.061,
+   "max": -0.017
+  },
+  "surface_contrast_day6": {
+   "mean": -0.062,
+   "min": -0.079,
+   "max": -0.038
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.34,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      3,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "033": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.052,
+   "min": 0.035,
+   "max": 0.076
+  },
+  "time passes: day 3": {
+   "mean": 0.163,
+   "min": 0.061,
+   "max": 0.516
+  },
+  "time passes: day 6": {
+   "mean": 0.314,
+   "min": 0.074,
+   "max": 0.905
+  },
+  "ctrl_day6": {
+   "mean": 0.737,
+   "min": 0.306,
+   "max": 0.984
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.049,
+   "min": -0.07,
+   "max": -0.024
+  },
+  "surface_contrast_day6": {
+   "mean": -0.063,
+   "min": -0.087,
+   "max": -0.034
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.34,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      3,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "032": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.062,
+   "min": 0.039,
+   "max": 0.087
+  },
+  "time passes: day 3": {
+   "mean": 0.181,
+   "min": 0.054,
+   "max": 0.516
+  },
+  "time passes: day 6": {
+   "mean": 0.366,
+   "min": 0.062,
+   "max": 0.898
+  },
+  "ctrl_day6": {
+   "mean": 0.736,
+   "min": 0.355,
+   "max": 0.989
+  },
+  "bits_day6": {
+   "mean": 9.312,
+   "min": 9.312,
+   "max": 9.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.047,
+   "min": -0.093,
+   "max": -0.012
+  },
+  "surface_contrast_day6": {
+   "mean": -0.065,
+   "min": -0.112,
+   "max": -0.04
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.22,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      3,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "030": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.046,
+   "min": 0.034,
+   "max": 0.062
+  },
+  "time passes: day 3": {
+   "mean": 0.046,
+   "min": 0.034,
+   "max": 0.062
+  },
+  "time passes: day 6": {
+   "mean": 0.039,
+   "min": 0.032,
+   "max": 0.048
+  },
+  "ctrl_day6": {
+   "mean": 0.124,
+   "min": 0.076,
+   "max": 0.244
+  },
+  "bits_day6": {
+   "mean": 7.156,
+   "min": 7.156,
+   "max": 7.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.056,
+   "min": -0.061,
+   "max": -0.049
+  },
+  "surface_contrast_day6": {
+   "mean": -0.077,
+   "min": -0.086,
+   "max": -0.063
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 3.0,
+   "mean": 3.12,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      3,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "026": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.054,
+   "min": 0.032,
+   "max": 0.089
+  },
+  "time passes: day 3": {
+   "mean": 0.176,
+   "min": 0.056,
+   "max": 0.576
+  },
+  "time passes: day 6": {
+   "mean": 0.316,
+   "min": 0.074,
+   "max": 0.901
+  },
+  "ctrl_day6": {
+   "mean": 0.718,
+   "min": 0.315,
+   "max": 0.978
+  },
+  "bits_day6": {
+   "mean": 12.156,
+   "min": 12.156,
+   "max": 12.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.044,
+   "min": -0.068,
+   "max": -0.022
+  },
+  "surface_contrast_day6": {
+   "mean": -0.066,
+   "min": -0.09,
+   "max": -0.043
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.34,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      2,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "024": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.054,
+   "min": 0.032,
+   "max": 0.086
+  },
+  "time passes: day 3": {
+   "mean": 0.169,
+   "min": 0.056,
+   "max": 0.444
+  },
+  "time passes: day 6": {
+   "mean": 0.325,
+   "min": 0.074,
+   "max": 0.902
+  },
+  "ctrl_day6": {
+   "mean": 0.716,
+   "min": 0.312,
+   "max": 0.978
+  },
+  "bits_day6": {
+   "mean": 10.312,
+   "min": 10.312,
+   "max": 10.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.044,
+   "min": -0.063,
+   "max": -0.024
+  },
+  "surface_contrast_day6": {
+   "mean": -0.064,
+   "min": -0.084,
+   "max": -0.044
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.34,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      2,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "023": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.051,
+   "min": 0.032,
+   "max": 0.083
+  },
+  "time passes: day 3": {
+   "mean": 0.155,
+   "min": 0.054,
+   "max": 0.436
+  },
+  "time passes: day 6": {
+   "mean": 0.306,
+   "min": 0.068,
+   "max": 0.834
+  },
+  "ctrl_day6": {
+   "mean": 0.722,
+   "min": 0.336,
+   "max": 0.979
+  },
+  "bits_day6": {
+   "mean": 9.312,
+   "min": 9.312,
+   "max": 9.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.048,
+   "min": -0.073,
+   "max": -0.021
+  },
+  "surface_contrast_day6": {
+   "mean": -0.068,
+   "min": -0.093,
+   "max": -0.04
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.34,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      2,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "022": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.063,
+   "min": 0.035,
+   "max": 0.098
+  },
+  "time passes: day 3": {
+   "mean": 0.177,
+   "min": 0.049,
+   "max": 0.463
+  },
+  "time passes: day 6": {
+   "mean": 0.356,
+   "min": 0.059,
+   "max": 0.822
+  },
+  "ctrl_day6": {
+   "mean": 0.699,
+   "min": 0.242,
+   "max": 0.981
+  },
+  "bits_day6": {
+   "mean": 8.312,
+   "min": 8.312,
+   "max": 8.312
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.049,
+   "min": -0.098,
+   "max": -0.016
+  },
+  "surface_contrast_day6": {
+   "mean": -0.065,
+   "min": -0.109,
+   "max": -0.038
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.0,
+   "mean": 1.28,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      2,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "020": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.043,
+   "min": 0.03,
+   "max": 0.068
+  },
+  "time passes: day 3": {
+   "mean": 0.042,
+   "min": 0.03,
+   "max": 0.065
+  },
+  "time passes: day 6": {
+   "mean": 0.039,
+   "min": 0.03,
+   "max": 0.055
+  },
+  "ctrl_day6": {
+   "mean": 0.119,
+   "min": 0.071,
+   "max": 0.254
+  },
+  "bits_day6": {
+   "mean": 6.156,
+   "min": 6.156,
+   "max": 6.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -0.06,
+   "min": -0.072,
+   "max": -0.05
+  },
+  "surface_contrast_day6": {
+   "mean": -0.073,
+   "min": -0.085,
+   "max": -0.063
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 3.0,
+   "mean": 3.16,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      2,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "006": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.037,
+   "min": 0.032,
+   "max": 0.047
+  },
+  "time passes: day 3": {
+   "mean": 0.099,
+   "min": 0.056,
+   "max": 0.187
+  },
+  "time passes: day 6": {
+   "mean": 0.202,
+   "min": 0.074,
+   "max": 0.688
+  },
+  "ctrl_day6": {
+   "mean": 0.127,
+   "min": 0.084,
+   "max": 0.233
+  },
+  "bits_day6": {
+   "mean": 10.0,
+   "min": 10.0,
+   "max": 10.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": 0.017,
+   "min": 0.006,
+   "max": 0.028
+  },
+  "surface_contrast_day6": {
+   "mean": 0.014,
+   "min": 0.003,
+   "max": 0.024
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 1.5,
+   "mean": 1.53,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      0,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "004": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.038,
+   "min": 0.031,
+   "max": 0.05
+  },
+  "time passes: day 3": {
+   "mean": 0.104,
+   "min": 0.056,
+   "max": 0.218
+  },
+  "time passes: day 6": {
+   "mean": 0.216,
+   "min": 0.074,
+   "max": 0.705
+  },
+  "ctrl_day6": {
+   "mean": 0.129,
+   "min": 0.087,
+   "max": 0.239
+  },
+  "bits_day6": {
+   "mean": 8.156,
+   "min": 8.156,
+   "max": 8.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": 0.017,
+   "min": 0.002,
+   "max": 0.032
+  },
+  "surface_contrast_day6": {
+   "mean": 0.014,
+   "min": 0.002,
+   "max": 0.026
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.53,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      0,
+      4
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "003": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.035,
+   "min": 0.032,
+   "max": 0.043
+  },
+  "time passes: day 3": {
+   "mean": 0.092,
+   "min": 0.054,
+   "max": 0.178
+  },
+  "time passes: day 6": {
+   "mean": 0.196,
+   "min": 0.068,
+   "max": 0.688
+  },
+  "ctrl_day6": {
+   "mean": 0.117,
+   "min": 0.078,
+   "max": 0.218
+  },
+  "bits_day6": {
+   "mean": 7.156,
+   "min": 7.156,
+   "max": 7.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": 0.014,
+   "min": -0.0,
+   "max": 0.03
+  },
+  "surface_contrast_day6": {
+   "mean": 0.013,
+   "min": -0.001,
+   "max": 0.027
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.56,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      0,
+      3
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "002": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.044,
+   "min": 0.038,
+   "max": 0.06
+  },
+  "time passes: day 3": {
+   "mean": 0.102,
+   "min": 0.06,
+   "max": 0.208
+  },
+  "time passes: day 6": {
+   "mean": 0.252,
+   "min": 0.077,
+   "max": 0.725
+  },
+  "ctrl_day6": {
+   "mean": 0.156,
+   "min": 0.063,
+   "max": 0.363
+  },
+  "bits_day6": {
+   "mean": 6.156,
+   "min": 6.156,
+   "max": 6.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": 0.019,
+   "min": -0.016,
+   "max": 0.044
+  },
+  "surface_contrast_day6": {
+   "mean": 0.015,
+   "min": -0.013,
+   "max": 0.036
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 2.0,
+   "mean": 1.53,
+   "max": 3,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      0,
+      2
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "000": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "bits_day6": {
+   "mean": 4.0,
+   "min": 4.0,
+   "max": 4.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "surface_contrast_day6": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_hard": {
+   "mean": 0.043,
+   "min": 0.024,
+   "max": 0.065
+  },
+  "relearn": {
+   "median": 3.0,
+   "mean": 3.47,
+   "max": 5,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      0,
+      0
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "plain/6": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.665,
+   "min": 0.182,
+   "max": 0.999
+  },
+  "bits_day6": {
+   "mean": 22.0,
+   "min": 22.0,
+   "max": 22.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -1.05,
+   "min": -1.077,
+   "max": -1.029
+  },
+  "surface_contrast_day6": {
+   "mean": -1.05,
+   "min": -1.077,
+   "max": -1.029
+  },
+  "deep_contrast_hard": {
+   "mean": -1.197,
+   "min": -1.222,
+   "max": -1.168
+  },
+  "relearn": {
+   "median": 400.0,
+   "mean": 328.22,
+   "max": 400,
+   "frac_over_5": 1.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      6,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "plain/4": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.665,
+   "min": 0.124,
+   "max": 0.999
+  },
+  "bits_day6": {
+   "mean": 20.156,
+   "min": 20.156,
+   "max": 20.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -1.056,
+   "min": -1.081,
+   "max": -1.033
+  },
+  "surface_contrast_day6": {
+   "mean": -1.056,
+   "min": -1.081,
+   "max": -1.033
+  },
+  "deep_contrast_hard": {
+   "mean": -1.197,
+   "min": -1.222,
+   "max": -1.168
+  },
+  "relearn": {
+   "median": 400.0,
+   "mean": 340.19,
+   "max": 400,
+   "frac_over_5": 1.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      4,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "plain/3": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.653,
+   "min": 0.079,
+   "max": 1.0
+  },
+  "bits_day6": {
+   "mean": 19.156,
+   "min": 19.156,
+   "max": 19.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -1.056,
+   "min": -1.085,
+   "max": -1.015
+  },
+  "surface_contrast_day6": {
+   "mean": -1.056,
+   "min": -1.085,
+   "max": -1.015
+  },
+  "deep_contrast_hard": {
+   "mean": -1.197,
+   "min": -1.222,
+   "max": -1.168
+  },
+  "relearn": {
+   "median": 400.0,
+   "mean": 346.09,
+   "max": 400,
+   "frac_over_5": 1.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      3,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "plain/2": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.759,
+   "min": 0.166,
+   "max": 1.0
+  },
+  "bits_day6": {
+   "mean": 18.156,
+   "min": 18.156,
+   "max": 18.156
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": -1.059,
+   "min": -1.109,
+   "max": -1.001
+  },
+  "surface_contrast_day6": {
+   "mean": -1.059,
+   "min": -1.109,
+   "max": -1.001
+  },
+  "deep_contrast_hard": {
+   "mean": -1.197,
+   "min": -1.222,
+   "max": -1.168
+  },
+  "relearn": {
+   "median": 400.0,
+   "mean": 322.06,
+   "max": 400,
+   "frac_over_5": 1.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      2,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ },
+ "plain/0": {
+  "after hard times (A bad)": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 1": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 3": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "time passes: day 6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "ctrl_day6": {
+   "mean": 0.03,
+   "min": 0.03,
+   "max": 0.03
+  },
+  "bits_day6": {
+   "mean": 16.0,
+   "min": 16.0,
+   "max": 16.0
+  },
+  "prunes_unused": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_day6": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "surface_contrast_day6": {
+   "mean": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "deep_contrast_hard": {
+   "mean": -1.197,
+   "min": -1.222,
+   "max": -1.168
+  },
+  "relearn": {
+   "median": 3.0,
+   "mean": 3.38,
+   "max": 4,
+   "frac_over_5": 0.0
+  },
+  "policy": {
+   "tiers": [
+    [
+     1,
+     [
+      0,
+      6,
+      6
+     ]
+    ]
+   ],
+   "scale": "block",
+   "rounding": "stochastic",
+   "timing": "lazy"
+  }
+ }
+}

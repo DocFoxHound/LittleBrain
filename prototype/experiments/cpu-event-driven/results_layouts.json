@@ -1,0 +1,915 @@
+{
+ "N": 100000,
+ "n_inputs": 4096,
+ "synapses": 25600000,
+ "speed": [
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.01,
+   "elig_union": 0.0419921875,
+   "forward_s": 0.03672454100160394,
+   "modulate_s": 0.10289734000252793
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.01,
+   "elig_union": 0.0419921875,
+   "forward_s": 0.0029507740036933683,
+   "modulate_s": 0.006465524005761836
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.01,
+   "elig_union": 0.0419921875,
+   "forward_s": 0.009552864998113364,
+   "modulate_s": 0.057645973000035156
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.02,
+   "elig_union": 0.0712890625,
+   "forward_s": 0.0373848259987426,
+   "modulate_s": 0.10194549800507957
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.02,
+   "elig_union": 0.0712890625,
+   "forward_s": 0.0029320989997358993,
+   "modulate_s": 0.009853710005700123
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.02,
+   "elig_union": 0.0712890625,
+   "forward_s": 0.012270156999875326,
+   "modulate_s": 0.05740423700626707
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.05,
+   "elig_union": 0.195068359375,
+   "forward_s": 0.037682957998185884,
+   "modulate_s": 0.10186046199669363
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.05,
+   "elig_union": 0.195068359375,
+   "forward_s": 0.004399162004119717,
+   "modulate_s": 0.022933505999390036
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.05,
+   "elig_union": 0.195068359375,
+   "forward_s": 0.013767657001153566,
+   "modulate_s": 0.05592898600298213
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.1,
+   "elig_union": 0.34765625,
+   "forward_s": 0.03670673099986743,
+   "modulate_s": 0.10297743399860337
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.1,
+   "elig_union": 0.34765625,
+   "forward_s": 0.007013654998445418,
+   "modulate_s": 0.03882332100329222
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.1,
+   "elig_union": 0.34765625,
+   "forward_s": 0.014264985999034252,
+   "modulate_s": 0.05705335999664385
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.2,
+   "elig_union": 0.58935546875,
+   "forward_s": 0.03874074999475852,
+   "modulate_s": 0.09982919599860907
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.2,
+   "elig_union": 0.58935546875,
+   "forward_s": 0.012415843993949238,
+   "modulate_s": 0.06159487100376282
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.2,
+   "elig_union": 0.58935546875,
+   "forward_s": 0.014213198999641463,
+   "modulate_s": 0.05595075699966401
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.5,
+   "elig_union": 0.939208984375,
+   "forward_s": 0.036702771998534445,
+   "modulate_s": 0.09877158099698136
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.5,
+   "elig_union": 0.939208984375,
+   "forward_s": 0.024218181999458466,
+   "modulate_s": 0.09566467999684392
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.5,
+   "elig_union": 0.939208984375,
+   "forward_s": 0.013648847001604736,
+   "modulate_s": 0.0547900999954436
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.03428718400391517,
+   "modulate_s": 0.0942577820023871
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.038374433999706525,
+   "modulate_s": 0.09532529800344491
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.012570471997605637,
+   "modulate_s": 0.052598109003156424
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.01,
+   "elig_union": 0.041748046875,
+   "forward_s": 0.01257606600120198,
+   "modulate_s": 0.033225833998585586
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.01,
+   "elig_union": 0.041748046875,
+   "forward_s": 0.0009102119947783649,
+   "modulate_s": 0.0030056010000407696
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.01,
+   "elig_union": 0.041748046875,
+   "forward_s": 0.004159150004852563,
+   "modulate_s": 0.01909959999466082
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.02,
+   "elig_union": 0.077880859375,
+   "forward_s": 0.01251522300299257,
+   "modulate_s": 0.0331159170018509
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.02,
+   "elig_union": 0.077880859375,
+   "forward_s": 0.001027828999212943,
+   "modulate_s": 0.004378906000056304
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.02,
+   "elig_union": 0.077880859375,
+   "forward_s": 0.005169607997231651,
+   "modulate_s": 0.019236357999034226
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.05,
+   "elig_union": 0.187255859375,
+   "forward_s": 0.012442819999705534,
+   "modulate_s": 0.03338822999648983
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.05,
+   "elig_union": 0.187255859375,
+   "forward_s": 0.0017342830033157952,
+   "modulate_s": 0.008330746000865474
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.05,
+   "elig_union": 0.187255859375,
+   "forward_s": 0.0048313449951820076,
+   "modulate_s": 0.01931592499749968
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.1,
+   "elig_union": 0.3466796875,
+   "forward_s": 0.012406104004185181,
+   "modulate_s": 0.032989482999255415
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.1,
+   "elig_union": 0.3466796875,
+   "forward_s": 0.0026317680021747947,
+   "modulate_s": 0.013651829998707399
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.1,
+   "elig_union": 0.3466796875,
+   "forward_s": 0.005623882003419567,
+   "modulate_s": 0.01944718899903819
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.2,
+   "elig_union": 0.57470703125,
+   "forward_s": 0.012513989997387398,
+   "modulate_s": 0.03368109499569982
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.2,
+   "elig_union": 0.57470703125,
+   "forward_s": 0.004745133999676909,
+   "modulate_s": 0.021097144002851564
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.2,
+   "elig_union": 0.57470703125,
+   "forward_s": 0.00550426200061338,
+   "modulate_s": 0.019299667001178022
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.5,
+   "elig_union": 0.943359375,
+   "forward_s": 0.012723429994366597,
+   "modulate_s": 0.032951913999568205
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.5,
+   "elig_union": 0.943359375,
+   "forward_s": 0.0092000829972676,
+   "modulate_s": 0.03324071799579542
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.5,
+   "elig_union": 0.943359375,
+   "forward_s": 0.004892378994554747,
+   "modulate_s": 0.019448184997600038
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.012353709003946278,
+   "modulate_s": 0.033171034992847126
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.01375582099717576,
+   "modulate_s": 0.035411551005381625
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.005592205001448747,
+   "modulate_s": 0.019477397996524815
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.01,
+   "elig_union": 0.0400390625,
+   "forward_s": 0.034526012001151685,
+   "modulate_s": 0.09424080800090451
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.01,
+   "elig_union": 0.0400390625,
+   "forward_s": 0.002122271995176561,
+   "modulate_s": 0.00585825400048634
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.01,
+   "elig_union": 0.0400390625,
+   "forward_s": 0.008629570998891722,
+   "modulate_s": 0.05303617000026861
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.02,
+   "elig_union": 0.07568359375,
+   "forward_s": 0.034571062999020796,
+   "modulate_s": 0.0939498529987759
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.02,
+   "elig_union": 0.07568359375,
+   "forward_s": 0.0023899530060589314,
+   "modulate_s": 0.009481043998675887
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.02,
+   "elig_union": 0.07568359375,
+   "forward_s": 0.01126669900259003,
+   "modulate_s": 0.052554499998223037
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.05,
+   "elig_union": 0.180419921875,
+   "forward_s": 0.03411293899989687,
+   "modulate_s": 0.09299735599779524
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.05,
+   "elig_union": 0.180419921875,
+   "forward_s": 0.004695766998338513,
+   "modulate_s": 0.019806252006674185
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.05,
+   "elig_union": 0.180419921875,
+   "forward_s": 0.012604380004631821,
+   "modulate_s": 0.05177389999880688
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.1,
+   "elig_union": 0.3466796875,
+   "forward_s": 0.034174342996266205,
+   "modulate_s": 0.09324530699814204
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.1,
+   "elig_union": 0.3466796875,
+   "forward_s": 0.006392140996467788,
+   "modulate_s": 0.03558954999607522
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.1,
+   "elig_union": 0.3466796875,
+   "forward_s": 0.012589227000717074,
+   "modulate_s": 0.052022768002643716
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.2,
+   "elig_union": 0.581787109375,
+   "forward_s": 0.03433009600121295,
+   "modulate_s": 0.09230993799428688
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.2,
+   "elig_union": 0.581787109375,
+   "forward_s": 0.010799588002555538,
+   "modulate_s": 0.056487287998606917
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.2,
+   "elig_union": 0.581787109375,
+   "forward_s": 0.01271045400062576,
+   "modulate_s": 0.05156199499469949
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 0.5,
+   "elig_union": 0.94384765625,
+   "forward_s": 0.0333467130039935,
+   "modulate_s": 0.09078637899801834
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 0.5,
+   "elig_union": 0.94384765625,
+   "forward_s": 0.021696648000215646,
+   "modulate_s": 0.0874258909971104
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 0.5,
+   "elig_union": 0.94384765625,
+   "forward_s": 0.012630037999770138,
+   "modulate_s": 0.05084319500019774
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 1,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.032715125002141576,
+   "modulate_s": 0.08999937900080113
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.03679566099890508,
+   "modulate_s": 0.09197078400029568
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 1,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.012268074999155942,
+   "modulate_s": 0.05072067699802574
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.01,
+   "elig_union": 0.03955078125,
+   "forward_s": 0.012723077998089138,
+   "modulate_s": 0.03498298000340583
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.01,
+   "elig_union": 0.03955078125,
+   "forward_s": 0.0009631930006435141,
+   "modulate_s": 0.003128853000816889
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.01,
+   "elig_union": 0.03955078125,
+   "forward_s": 0.003565823004464619,
+   "modulate_s": 0.019761880997975823
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.02,
+   "elig_union": 0.085693359375,
+   "forward_s": 0.012994147997233085,
+   "modulate_s": 0.034161495001171716
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.02,
+   "elig_union": 0.085693359375,
+   "forward_s": 0.0011938470051973127,
+   "modulate_s": 0.004813776999071706
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.02,
+   "elig_union": 0.085693359375,
+   "forward_s": 0.005083608004497364,
+   "modulate_s": 0.019940803002100438
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.05,
+   "elig_union": 0.1923828125,
+   "forward_s": 0.012641893998079468,
+   "modulate_s": 0.032698509996407665
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.05,
+   "elig_union": 0.1923828125,
+   "forward_s": 0.0018496889970265329,
+   "modulate_s": 0.008387102003325708
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.05,
+   "elig_union": 0.1923828125,
+   "forward_s": 0.0048649769960320555,
+   "modulate_s": 0.018993131998286117
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.1,
+   "elig_union": 0.344482421875,
+   "forward_s": 0.012331078993156552,
+   "modulate_s": 0.03298395199817605
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.1,
+   "elig_union": 0.344482421875,
+   "forward_s": 0.0026508049995754845,
+   "modulate_s": 0.013440752001770306
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.1,
+   "elig_union": 0.344482421875,
+   "forward_s": 0.005475971003761515,
+   "modulate_s": 0.019065933003730606
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.2,
+   "elig_union": 0.5771484375,
+   "forward_s": 0.012444238003809005,
+   "modulate_s": 0.03281108800001675
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.2,
+   "elig_union": 0.5771484375,
+   "forward_s": 0.004388368004583754,
+   "modulate_s": 0.020993956000893377
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.2,
+   "elig_union": 0.5771484375,
+   "forward_s": 0.005620347998046782,
+   "modulate_s": 0.019027549999009352
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 0.5,
+   "elig_union": 0.9365234375,
+   "forward_s": 0.012491257999499794,
+   "modulate_s": 0.032395137001003604
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 0.5,
+   "elig_union": 0.9365234375,
+   "forward_s": 0.008592652004153933,
+   "modulate_s": 0.0322813969978597
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 0.5,
+   "elig_union": 0.9365234375,
+   "forward_s": 0.005577253999945242,
+   "modulate_s": 0.019026137997570913
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 3,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.012390696996590123,
+   "modulate_s": 0.03207993400428677
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.014113315002759919,
+   "modulate_s": 0.03387075199862011
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 3,
+   "activity": 1.0,
+   "elig_union": 1.0,
+   "forward_s": 0.004651490999094676,
+   "modulate_s": 0.019438643001194578
+  }
+ ],
+ "fixed": [
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 1,
+   "catch_up_s": 0.058892961002129596,
+   "sleep_s": 0.13260264600103255
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "catch_up_s": 0.05880883599456865,
+   "sleep_s": 0.16783801600104198
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 1,
+   "catch_up_s": 0.07105781800055411,
+   "sleep_s": 0.10960853400320048
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 1,
+   "soma_floor_s": 0.0012698840000666678
+  },
+  {
+   "rep": 0,
+   "layout": "dendrite",
+   "threads": 3,
+   "catch_up_s": 0.020547619998978917,
+   "sleep_s": 0.04763642299803905
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "catch_up_s": 0.020661616006691474,
+   "sleep_s": 0.061640583000553306
+  },
+  {
+   "rep": 0,
+   "layout": "bitslice",
+   "threads": 3,
+   "catch_up_s": 0.025725624000187963,
+   "sleep_s": 0.040063134001684375
+  },
+  {
+   "rep": 0,
+   "layout": "axon",
+   "threads": 3,
+   "soma_floor_s": 0.0004925470057060011
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 1,
+   "catch_up_s": 0.0568409330007853,
+   "sleep_s": 0.13243883700488368
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "catch_up_s": 0.0566449800026021,
+   "sleep_s": 0.16310685600183206
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 1,
+   "catch_up_s": 0.06946706499729771,
+   "sleep_s": 0.10978767200140283
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 1,
+   "soma_floor_s": 0.0012272329986444674
+  },
+  {
+   "rep": 1,
+   "layout": "dendrite",
+   "threads": 3,
+   "catch_up_s": 0.020999561995267868,
+   "sleep_s": 0.04653132900421042
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "catch_up_s": 0.02064680199691793,
+   "sleep_s": 0.05984093599545304
+  },
+  {
+   "rep": 1,
+   "layout": "bitslice",
+   "threads": 3,
+   "catch_up_s": 0.02573883799777832,
+   "sleep_s": 0.039540887002658565
+  },
+  {
+   "rep": 1,
+   "layout": "axon",
+   "threads": 3,
+   "soma_floor_s": 0.0004901389984297566
+  }
+ ],
+ "memory": {
+  "dendrite": {
+   "bytes_per_neuron": 1041.0
+  },
+  "axon": {
+   "bytes_per_neuron": 1565.29,
+   "words_post_bytes_per_synapse": 6.0,
+   "bucket_index_bytes_per_neuron": 12.29
+  },
+  "bitslice": {
+   "bytes_per_neuron": 1041.0
+  }
+ },
+ "peak_temp_MiB": {
+  "dendrite": {
+   "rss_forward": 0.0,
+   "rss_modulate": 0.0,
+   "rss_catch_up": 0.0,
+   "rss_sleep": 0.0,
+   "py_forward": 0.5727615356445312,
+   "py_modulate": 2.1610565185546875,
+   "py_sleep": 0.3819255828857422
+  },
+  "axon": {
+   "rss_forward": 0.0,
+   "rss_modulate": 0.0,
+   "rss_catch_up": 0.0,
+   "rss_sleep": 0.0078125,
+   "py_forward": 0.4721183776855469,
+   "py_modulate": 2.755542755126953,
+   "py_sleep": 12.095325469970703
+  },
+  "bitslice": {
+   "rss_forward": 0.0,
+   "rss_modulate": 0.0,
+   "rss_catch_up": 0.0,
+   "rss_sleep": 0.0,
+   "py_forward": 0.3848304748535156,
+   "py_modulate": 0.5723876953125,
+   "py_sleep": 0.3827495574951172
+  }
+ }
+}

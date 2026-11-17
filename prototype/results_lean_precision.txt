@@ -1,0 +1,16 @@
+1. Story (16 seeds): response to A after hard times, 6 days later; trials to relearn
+   64 levels (6 bits)     hard 0.03   day 6 0.14 [0.09-0.23]   relearn median 3 [2-5]
+   32 levels (5 bits)     hard 0.03   day 6 0.13 [0.08-0.21]   relearn median 3 [1-6]
+   16 levels (4 bits)     hard 0.03   day 6 0.16 [0.08-0.30]   relearn median 3 [1-5]
+   8 levels (3 bits)      hard 0.03   day 6 0.24 [0.06-0.77]   relearn median 3 [0-6]
+   5 levels (3 bits)      hard 0.03   day 6 0.32 [0.07-0.72]   relearn median 2 [0-7]
+   3 levels (2 bits)      hard 0.08   day 6 0.53 [0.20-0.99]   relearn median 2 [0-4]
+
+2. Dose: response to A after childhood + one hard day of N trials + a night (lower = learned more)
+                              N=2     N=5    N=20    N=80
+   64 levels (6 bits)        1.00    0.94    0.05    0.03
+   32 levels (5 bits)        1.00    0.95    0.05    0.03
+   16 levels (4 bits)        1.00    0.92    0.05    0.03
+   8 levels (3 bits)         1.00    0.90    0.08    0.03
+   5 levels (3 bits)         1.00    0.91    0.14    0.03
+   3 levels (2 bits)         1.00    0.85    0.34    0.08

@@ -1,0 +1,99 @@
+  type                           bio  standard  low  precision
+  L2/3 IT                       32768   4096    256   32 lv
+  L4 stellate                    8192   1024     64   16 lv
+  L5 IT                         16384   2048    128   16 lv
+  L5 PT                         32768   4096    256   16 lv
+  L6 CT                          8192   1024     64   16 lv
+  PV basket                     16384   2048    128   fixed
+  SST Martinotti                 4096   1024     64   fixed
+  VIP                            4096    512     32   fixed
+  TC relay                       8192   1024     64   16 lv
+  TRN                            8192   1024     64   fixed
+  DG granule                    16384   2048    128   16 lv
+  DG granule (young)             8192   1024     64   32 lv
+  L6 IT                          8192   1024     64   16 lv
+  L6b                            8192   1024     64   16 lv
+  L5/6 NP                        8192   1024     64   16 lv
+  von Economo                   16384   2048    128   16 lv
+  PV chandelier                  8192   1024     64   fixed
+  SST non-Martinotti             4096   1024     64   fixed
+  LAMP5 neurogliaform            4096    512     32   fixed
+  CCK basket                     8192   1024     64   fixed
+  rosehip                        4096    512     32   fixed
+  TC core                        8192   1024     64   16 lv
+  TC matrix                      8192   1024     64   16 lv
+  thalamic interneuron           4096   1024     64   fixed
+  EC L2 stellate                16384   2048    128   16 lv
+  EC L2 island                  16384   2048    128   16 lv
+  EC L3 pyramidal               16384   2048    128   16 lv
+  EC L5/6 pyramidal             16384   2048    128   16 lv
+  DG mossy cell                 16384   4096    256   16 lv
+  HIPP                           8192   1024     64   fixed
+  CA3 pyramidal                 16384   4096    256   32 lv
+  CA2 pyramidal                 16384   4096    256   16 lv
+  CA1 pyramidal                 32768   8192    512   32 lv
+  subiculum bursting            16384   4096    256   16 lv
+  subiculum regular             16384   4096    256   16 lv
+  CA PV basket                  16384   4096    256   fixed
+  CA axo-axonic                  8192   2048    128   fixed
+  bistratified                  16384   4096    256   fixed
+  O-LM                           8192   1024     64   fixed
+  ivy                            4096   1024     64   fixed
+  hippocampal neurogliaform      4096    512     32   fixed
+  interneuron-specific           4096    512     32   fixed
+  BLA principal (+)             16384   2048    128   32 lv
+  BLA principal (-)             16384   2048    128   32 lv
+  intercalated                   4096    512     32   16 lv
+  CeL PKCδ (off)                 8192   1024     64   fixed
+  CeL SST (on)                   8192   1024     64   16 lv
+  CeA CRF                        8192   1024     64   fixed
+  CeM output                     8192   1024     64   fixed
+  D1 MSN                        16384   2048    128   32 lv
+  D2 MSN                         8192   2048    128   32 lv
+  striosome MSN                 16384   2048    128   32 lv
+  cholinergic TAN                8192   1024     64   fixed
+  striatal PV FSI                8192   1024     64   fixed
+  striatal SST/NPY/NOS           4096    512     32   fixed
+  striatal calretinin            4096    512     32   fixed
+  striatal TH                    4096    512     32   fixed
+  GPe prototypic                16384   2048    128   fixed
+  GPe arkypallidal               8192   1024     64   fixed
+  GPi                           16384   2048    128   fixed
+  SNr                           16384   2048    128   fixed
+  STN                            8192   1024     64   fixed
+  cerebellar granule               32      4      4   fixed
+  Purkinje                     524288  32768   2048   32 lv
+  Golgi                          2048    256     16   fixed
+  cerebellar basket              4096    512     32   fixed
+  cerebellar stellate            2048    256     16   fixed
+  Lugaro                         2048    256     16   fixed
+  unipolar brush                    8      4      4   fixed
+  DCN projection                32768   4096    256   16 lv
+  nucleo-olivary                 8192   1024     64   fixed
+  inferior olive                 4096    512     32   fixed
+  dopamine                       8192   2048    128   fixed
+  VTA GABA                       8192   1024     64   fixed
+  VTA glutamate                  8192   1024     64   fixed
+  LC noradrenaline               8192   1024     64   fixed
+  raphe serotonin                8192   1024     64   fixed
+  basal forebrain ACh            8192   1024     64   fixed
+  septal PV pacemaker            8192   1024     64   fixed
+  PPN/LDT ACh                    8192   1024     64   fixed
+  AgRP/NPY                       2048    128      8   fixed
+  POMC                           2048    128      8   fixed
+  orexin                         4096    512     32   fixed
+  MCH                            4096    512     32   fixed
+  PVN CRH                        2048    256     16   fixed
+  PVN oxytocin                   4096    512     32   fixed
+  PVN/SON vasopressin            4096    512     32   fixed
+  SCN clock                      1024    128      8   fixed
+  claustrum projection          16384   2048    128   16 lv
+  pontine relay                  8192   1024     64   fixed
+  lateral habenula               4096    512     32   16 lv
+  RMTg GABA                      4096    512     32   fixed
+  PAG freezing                   4096    512     32   fixed
+  PVN MC4R                       2048    256     16   fixed
+  VA/VL motor thalamus           8192   2048    128   16 lv
+  MD thalamus                    8192   2048    128   16 lv
+  EC L5a pyramidal              16384   2048    128   16 lv
+  EC L5b pyramidal              16384   2048    128   16 lv

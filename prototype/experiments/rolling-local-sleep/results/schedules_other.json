@@ -1,0 +1,66 @@
+{
+ "n": 1008000,
+ "D": 84,
+ "reps": 1,
+ "repeats": 3,
+ "summary": {
+  "micro-gpu": {
+   "schedule": "micro-gpu",
+   "neurons": 1008000,
+   "days": 2,
+   "wall_per_day_s": 1.417448974609375,
+   "awake_neuron_steps_per_s": 59735483.61649785,
+   "awake_synapse_updates_per_s": 15292283805.82345,
+   "gpu_awake_busy_frac": 0.9934971859312908,
+   "gpu_sleep_busy_frac": 0.006357309347336712,
+   "gpu_idle_frac": 0.00014280179573167295,
+   "process_cpu_util_of_3_threads": 0.3320288755331427,
+   "host_wait_for_cpu_sleep_s_per_day": 0.0,
+   "blocks": 28,
+   "vram_bytes_per_neuron": 1041.0,
+   "pinned_ram_bytes_per_neuron": 0,
+   "frac_asleep_at_a_time": 0.0,
+   "nights_per_block_per_day": 1.0,
+   "awake_run_steps": 84,
+   "wall_per_day_runs": [
+    1.9066,
+    1.4174,
+    1.3594
+   ]
+  },
+  "rolling M=2 S=1 +spare": {
+   "schedule": "rolling M=2 S=1 spare=1",
+   "neurons": 1008000,
+   "days": 2,
+   "wall_per_day_s": 1.5299921875,
+   "awake_neuron_steps_per_s": 55341459.05565286,
+   "awake_synapse_updates_per_s": 14167413518.247131,
+   "gpu_awake_busy_frac": 0.9855069685749518,
+   "gpu_sleep_busy_frac": 0.0,
+   "gpu_idle_frac": 0.014493031425048208,
+   "process_cpu_util_of_3_threads": 0.40155683834411965,
+   "host_wait_for_cpu_sleep_s_per_day": 1.518422561501211,
+   "cpu_sleep_worker_busy_frac": 0.7121942692933705,
+   "cpu_night_s_median": 0.5862960459999158,
+   "cpu_nights_in_window": 4,
+   "blocks": 2,
+   "asleep_blocks": 1,
+   "frac_asleep_at_a_time": 0.5,
+   "spare_slot": 1,
+   "vram_bytes_per_neuron": 1041.0,
+   "pinned_ram_bytes_per_neuron": 1041.0,
+   "nights_per_block_per_day": 1.0,
+   "awake_run_steps": [
+    84
+   ],
+   "night_latency_s_median": 0.8594362510011706,
+   "night_latency_s_max": 0.9677215820047422,
+   "omp_threads_for_sleep": 2,
+   "wall_per_day_runs": [
+    1.3678,
+    1.53,
+    2.0191
+   ]
+  }
+ }
+}

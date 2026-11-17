@@ -1,0 +1,14 @@
+139,712 neurons, seed 0, 1 presentation(s), shown 12 steps, recall 16 steps
+   station         rate  overlap  complete    naive: rate  overlap  complete
+   B.L23          0.011     0.35      0.52          0.005     0.55      0.08
+   EC.stellate    0.259     0.01      0.83          0.160    -0.00      1.05
+   EC.L3          0.067     0.01      0.88          0.061     0.19     -0.22
+   DG.gc          0.051     0.62      0.12          0.035     0.79      0.35
+   DG.mossy       0.066     0.02      0.02          0.057     0.02      0.09
+   CA3.pyr        0.078     0.25      0.48          0.063     0.48      0.74
+   CA1.pyr        0.097     0.31      0.19          0.091     0.13     -0.03
+   SUB.pyr        0.090     0.07      0.06          0.087     0.00     -0.02
+   EC.L5          0.112     0.31      0.17          0.144     0.25      0.13
+   A.L23          0.088     0.31      0.47          0.023     0.36      0.17
+   memory score (A, unseen half): intact 0.56; silenced at recall: entorhinal + hippocampus 0.46, hippocampus only (DG, CA3, CA1, subiculum) 0.63
+   7.4 min

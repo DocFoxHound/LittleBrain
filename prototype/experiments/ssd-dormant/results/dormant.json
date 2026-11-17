@@ -1,0 +1,131 @@
+{
+  "skipped_nights": 30,
+  "live_s": 16.29025133899995,
+  "compression": {
+    "newborn neurons, column frames, zstd-3": {
+      "ratio": 7.346942028569808,
+      "bytes_per_neuron": 139.37771606445312,
+      "compress_MBps": 230.13339890743626,
+      "decompress_MBps": 427.56805970562317
+    },
+    "aged 10 days, column frames, zstd-1": {
+      "ratio": 3.1975228236524638,
+      "bytes_per_neuron": 320.24790954589844,
+      "compress_MBps": 180.3648879213079,
+      "decompress_MBps": 768.4402180329913
+    },
+    "aged 10 days, column frames, zstd-3": {
+      "ratio": 3.3680173559968787,
+      "bytes_per_neuron": 304.03643798828125,
+      "compress_MBps": 178.36773831309358,
+      "decompress_MBps": 877.1866643305437
+    },
+    "aged 10 days, column frames, zstd-9": {
+      "ratio": 3.448768780009897,
+      "bytes_per_neuron": 296.9175567626953,
+      "compress_MBps": 35.330810085793146,
+      "decompress_MBps": 1274.4264504162436
+    },
+    "aged 10 days, column frames, zstd-19": {
+      "ratio": 4.032602196738795,
+      "bytes_per_neuron": 253.93032836914062,
+      "compress_MBps": 1.7703229362765915,
+      "decompress_MBps": 904.8048919462559
+    },
+    "aged, column frames, byte-shuffled + zstd-3": {
+      "ratio": 3.5126635207617842,
+      "bytes_per_neuron": 291.5166778564453,
+      "compress_MBps": 132.8821102436902,
+      "decompress_MBps": 608.2662342330601
+    },
+    "aged, column frames, lz4": {
+      "ratio": 1.8823972402259757,
+      "bytes_per_neuron": 543.9871978759766,
+      "compress_MBps": 258.8306352311209,
+      "decompress_MBps": 1177.1642133514633
+    },
+    "aged, one frame per neuron, zstd-3 (no dict)": {
+      "ratio": 2.3522684509859015,
+      "bytes_per_neuron": 435.324462890625,
+      "compress_MBps": 61.37304434607032,
+      "decompress_MBps": 144.6966501537062
+    },
+    "aged, one frame per neuron, zstd-3 + 16 KiB dict": {
+      "ratio": 3.0954341596328256,
+      "bytes_per_neuron": 330.809814453125,
+      "compress_MBps": 103.28080930097715,
+      "decompress_MBps": 335.69957439973905
+    }
+  },
+  "compose_us": 643.2739974115975,
+  "latency": {
+    "awake neuron in RAM: fire only": {
+      "p50_us": 10.233499779133126,
+      "p99_us": 19.10713326651601,
+      "read_p50_us": 0.0,
+      "decompress_p50_us": 0.0,
+      "catchup_fire_p50_us": 10.233499779133126
+    },
+    "neuron in RAM: catch up 30 nights + fire": {
+      "p50_us": 34.83500040601939,
+      "p99_us": 45.33375140454153,
+      "read_p50_us": 0.0,
+      "decompress_p50_us": 0.0,
+      "catchup_fire_p50_us": 34.83500040601939
+    },
+    "1 dormant neuron, raw, anywhere in the 24 GiB brain": {
+      "p50_us": 227.8085012221709,
+      "p99_us": 1537.0167180662968,
+      "read_p50_us": 155.383997480385,
+      "decompress_p50_us": 0.0,
+      "catchup_fire_p50_us": 68.33249790361151
+    },
+    "1 dormant neuron, raw, within a 0.35 GB span": {
+      "p50_us": 144.51149763772264,
+      "p99_us": 270.94298726296967,
+      "read_p50_us": 74.42550122505054,
+      "decompress_p50_us": 0.0,
+      "catchup_fire_p50_us": 68.67800038889982
+    },
+    "1 dormant neuron, own zstd+dict frame (0.35 GB archive)": {
+      "p50_us": 172.29249715455808,
+      "p99_us": 1234.4332791690206,
+      "read_p50_us": 91.14600106840953,
+      "decompress_p50_us": 8.199000149033964,
+      "catchup_fire_p50_us": 68.5064987919759
+    },
+    "1 dormant neuron, via its column's zstd frame": {
+      "p50_us": 2441.1395024799276,
+      "p99_us": 4245.763927101507,
+      "read_p50_us": 339.54050377360545,
+      "decompress_p50_us": 1998.5959988844115,
+      "catchup_fire_p50_us": 108.74249710468575
+    },
+    "1 dormant column (1,024 neurons), raw (1 MiB read)": {
+      "p50_us": 4326.226502598729,
+      "p99_us": 5795.379780611253,
+      "read_p50_us": 603.4455000190064,
+      "decompress_p50_us": 0.0,
+      "catchup_fire_p50_us": 3706.010502355639
+    },
+    "1 dormant column, zstd frame (~0.3 MiB read)": {
+      "p50_us": 6176.198006869527,
+      "p99_us": 8684.520891256396,
+      "read_p50_us": 399.25999953993596,
+      "decompress_p50_us": 1613.6525009642355,
+      "catchup_fire_p50_us": 3779.313999984879
+    }
+  },
+  "batch_256_columns": {
+    "raw_read_s": 0.07798182999977143,
+    "raw_total_s": 0.7854561839994858,
+    "zstd_read_s": 0.04081160899659153,
+    "zstd_decompress_s": 0.35514513900125166,
+    "zstd_total_s": 1.1307877709987224,
+    "catchup_fire_s": 0.7348310230008792,
+    "raw_GBps_recalled": 0.34175739076003725,
+    "zstd_GBps_recalled": 0.2373880076213729
+  },
+  "archive_bytes_per_neuron_columns": 304.03643798828125,
+  "archive_bytes_per_neuron_neurons": 330.8080596923828
+}

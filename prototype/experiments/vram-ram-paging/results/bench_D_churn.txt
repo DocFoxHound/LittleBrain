@@ -1,0 +1,12 @@
+[N=8,388,608 modes=['paged', 'zerocopy']] init 2.9 s, VRAM pool 1938 MB, host words 8.59 GB, {'VmHWM_MB': 8660.3671875, 'VmRSS_MB': 8596.98828125}
+         paged K= 1536 frac=0.050 churn=0.00: fwd     4.04 ms ['4.6', '3.4'] mod     4.43 ms |   2074.9 M n-steps/s,  103.8 M active/s | PCIe/step fwd in    0.0 out    0.0 MB, mod in    0.0 out    0.0 MB | x1.00 vs paged
+      zerocopy K= 1536 frac=0.050 churn=0.00: fwd    35.09 ms ['35.2', '35.0'] mod    41.51 ms |    239.1 M n-steps/s,   12.0 M active/s | PCIe/step fwd in  429.9 out   12.3 MB, mod in  429.9 out  429.9 MB | x8.92 vs paged
+         paged K= 1536 frac=0.050 churn=0.01: fwd     2.78 ms ['2.8', '2.8'] mod     3.89 ms |   3020.6 M n-steps/s,  151.2 M active/s | PCIe/step fwd in    2.8 out    0.0 MB, mod in    0.0 out    0.0 MB | x1.00 vs paged
+      zerocopy K= 1536 frac=0.050 churn=0.01: fwd    34.97 ms ['35.0', '35.0'] mod    42.25 ms |    239.9 M n-steps/s,   12.0 M active/s | PCIe/step fwd in  429.9 out    8.3 MB, mod in  438.3 out  437.8 MB | x12.57 vs paged
+         paged K= 1536 frac=0.050 churn=0.05: fwd     4.36 ms ['4.1', '4.6'] mod     4.46 ms |   1922.5 M n-steps/s,   96.2 M active/s | PCIe/step fwd in   22.0 out    0.0 MB, mod in    0.0 out    0.0 MB | x1.00 vs paged
+      zerocopy K= 1536 frac=0.050 churn=0.05: fwd    35.70 ms ['35.7', '35.8'] mod    47.57 ms |    235.0 M n-steps/s,   11.8 M active/s | PCIe/step fwd in  429.9 out   65.4 MB, mod in  498.9 out  495.6 MB | x8.31 vs paged
+         paged K= 1536 frac=0.050 churn=0.20: fwd     8.93 ms ['9.1', '8.8'] mod     6.05 ms |    939.6 M n-steps/s,   47.0 M active/s | PCIe/step fwd in   74.5 out   43.8 MB, mod in    0.0 out    0.0 MB | x1.00 vs paged
+      zerocopy K= 1536 frac=0.050 churn=0.20: fwd    36.88 ms ['37.0', '36.9'] mod    65.35 ms |    227.5 M n-steps/s,   11.4 M active/s | PCIe/step fwd in  429.9 out  175.8 MB, mod in  685.1 out  668.6 MB | x4.11 vs paged
+         paged K= 1536 frac=0.050 churn=0.50: fwd    18.63 ms ['18.5', '18.9'] mod     9.09 ms |    450.2 M n-steps/s,   22.5 M active/s | PCIe/step fwd in  184.2 out  184.2 MB, mod in    0.0 out    0.0 MB | x1.00 vs paged
+      zerocopy K= 1536 frac=0.050 churn=0.50: fwd    37.80 ms ['38.3', '37.7'] mod    99.11 ms |    221.9 M n-steps/s,   11.1 M active/s | PCIe/step fwd in  429.9 out  238.8 MB, mod in 1054.7 out 1004.4 MB | x2.03 vs paged
+  peak {'VmHWM_MB': 8660.3671875, 'VmRSS_MB': 8599.390625}, VRAM this process 1980 MB

@@ -1,0 +1,26 @@
+
+== A. Dense activity: 65,536 neurons x 256 synapses, 64 inputs, every neuron active every step
+   implementation                         forward    modulate       sleep   peak temporaries (fwd/mod/sleep)
+   prototype NumPy PackedPopulation         853ms      1763ms      1738ms   449 / 770 / 784 MiB
+   numba BASE (same rules)                   46ms       123ms       163ms   1.0 / 0.0 / 0.5 MiB   (diff after 4 dense learning steps: 98%)
+   numba ANCHORED (genome+diff)              27ms        70ms       181ms   1.0 / 0.0 / 1.0 MiB   (diff after 4 dense learning steps: 89%)
+     ANCHORED sleep, brain never used                               0.3ms   (nothing to do)
+   speed-up vs NumPy, numba BASE (same rules): forward 18.4x, modulate 14.3x, sleep 10.7x
+   speed-up vs NumPy, numba ANCHORED (genome+diff): forward 31.6x, modulate 25.2x, sleep 9.6x
+   numpy                              synapse-updates/s: forward     20M  modulate     10M  sleep     10M
+   numba BASE (same rules)            synapse-updates/s: forward    363M  modulate    136M  sleep    103M
+   numba ANCHORED (genome+diff)       synapse-updates/s: forward    622M  modulate    240M  sleep     93M
+
+== B. Sparse activity: 65,536 neurons in 64 columns, 4,096 inputs, 7 things x 12 inputs active (2%)
+   forward, all 65,536 neurons: 37.5 ms | event-driven, 15,360 neurons (23%) that can see input: 10.6 ms (3.5x faster, exact)
+   modulate (event-driven, last 4 steps' active cells): 68.3 ms
+   ANCHORED sleep cost vs how much of the brain differs from the genome (BASE always pays the full sweep):
+     dirty neurons  synapses differing     sleep   vs BASE
+                0%                0.0%     0.4ms    285.2x
+                1%                0.2%     1.1ms    108.3x
+               10%                2.5%     6.0ms     19.2x
+               50%               12.5%    18.3ms      6.3x
+              100%               25.0%    35.3ms      3.3x
+        BASE (any)         (all swept)   115.2ms
+   forward of all 65,536 neurons (read-only), 30% of neurons with 64 diff entries:
+     from dense words 37.8 ms (64 MiB) | straight from CSR diff 38.1 ms (6.2 MiB) -> 1.01x the time, 9.8% of the memory

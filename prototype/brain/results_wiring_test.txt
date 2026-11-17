@@ -1,0 +1,22 @@
+seed 0 done
+seed 1 done
+seed 2 done
+seed 3 done
+seed 4 done
+seed 5 done
+
+Pattern completion (6 seeds; cue = left half of each learned pattern)
+condition                   fill-in (right half)  identify (A)  identify (B)  cells updated
+untrained                          0.081 ± 0.110          0.42          0.28           1.00
+no waves                           0.417 ± 0.185          0.39          0.33           1.00
+forward wave                       0.280 ± 0.224          0.39          0.39           1.00
+wave as mode                       0.389 ± 0.135          0.39          0.36           1.00
+scheduled (mode)                  -0.140 ± 0.083          0.08          0.06           0.64
+long-range x0.0 (mode)             0.117 ± 0.260          0.31          0.22           1.00
+long-range x0.5 (mode)             0.274 ± 0.171          0.53          0.31           1.00
+mode, no feedback                  0.449 ± 0.215          0.56          0.31           1.00
+
+Paging (cortex tiles as memory blocks, cache = 25% of blocks)
+  event-driven, LRU            stalls/step  16.45   loads/step  16.45
+  wave-scheduled, LRU          stalls/step  50.75   loads/step  50.75
+  wave-scheduled + prefetch    stalls/step  47.67   loads/step  95.37

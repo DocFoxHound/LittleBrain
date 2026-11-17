@@ -1,0 +1,114 @@
+{
+ "fused DM forward (n_inputs=64)": {
+  "ok": true,
+  "detail": "max |rate diff| 2.5e-07, used-flag mismatches 0"
+ },
+ "fused DM modulate bit-exact (n_inputs=64)": {
+  "ok": true,
+  "detail": "differing words per call [0, 0, 0]"
+ },
+ "fused DM production RNG unbiased (n_inputs=64)": {
+  "ok": true,
+  "detail": "fast diff max 1 step, mean -0.0008; tag diff mean -0.0001"
+ },
+ "axon-major build (n_inputs=64)": {
+  "ok": true,
+  "detail": "same words and same inputs as the hash wiring"
+ },
+ "axon-major forward (n_inputs=64)": {
+  "ok": true,
+  "detail": "max |rate diff| 1.6e-07, used-flag mismatches 0, post_hist identical"
+ },
+ "axon-major modulate bit-exact, fresh clock (n_inputs=64)": {
+  "ok": true,
+  "detail": "differing words per call [0, 0, 0]; only 34% of synapses were visited"
+ },
+ "axon-major production kernel unbiased (n_inputs=64)": {
+  "ok": true,
+  "detail": "fast diff max 1 step, mean -0.0002; tag diff mean +0.0007"
+ },
+ "axon-major lazy fast decay (n_inputs=64)": {
+  "ok": true,
+  "detail": "mean real fast 0.2456 vs 0.2455 steps; mean |diff| 0.115 step (baseline re-rounds every synapse each modulate, axon-major only touched ones)"
+ },
+ "axon-major sleep + bucket rebuild (n_inputs=64)": {
+  "ok": true,
+  "detail": "pruned 93853 vs 93818; mean c0 0.9703 vs 0.9711; buckets consistent; rate after sleep 0.0609 vs 0.0609"
+ },
+ "bit-sliced layout (n_inputs=64)": {
+  "ok": true,
+  "detail": "1041 bytes/neuron; 32 distinct inputs per branch inside a 128-input window"
+ },
+ "bit-sliced forward (n_inputs=64)": {
+  "ok": true,
+  "detail": "max |rate diff| 3.7e-08, used-flag mismatches 0"
+ },
+ "bit-sliced modulate bit-exact (n_inputs=64)": {
+  "ok": true,
+  "detail": "differing words per call [0, 0, 0]"
+ },
+ "bit-sliced production RNG unbiased (n_inputs=64)": {
+  "ok": true,
+  "detail": "fast diff max 1 step, mean -0.0002"
+ },
+ "bit-sliced sleep + local rewiring (n_inputs=64)": {
+  "ok": true,
+  "detail": "pruned 71886 vs 71712; mean c0 1.1442 vs 1.1437; 99% of branches rewired, new inputs stay in the window: True"
+ },
+ "fused DM forward (n_inputs=4096)": {
+  "ok": true,
+  "detail": "max |rate diff| 2.2e-07, used-flag mismatches 0"
+ },
+ "fused DM modulate bit-exact (n_inputs=4096)": {
+  "ok": true,
+  "detail": "differing words per call [0, 0, 0]"
+ },
+ "fused DM production RNG unbiased (n_inputs=4096)": {
+  "ok": true,
+  "detail": "fast diff max 1 step, mean -0.0007; tag diff mean -0.0008"
+ },
+ "axon-major build (n_inputs=4096)": {
+  "ok": true,
+  "detail": "same words and same inputs as the hash wiring"
+ },
+ "axon-major forward (n_inputs=4096)": {
+  "ok": true,
+  "detail": "max |rate diff| 8.9e-08, used-flag mismatches 0, post_hist identical"
+ },
+ "axon-major modulate bit-exact, fresh clock (n_inputs=4096)": {
+  "ok": true,
+  "detail": "differing words per call [0, 0, 0]; only 34% of synapses were visited"
+ },
+ "axon-major production kernel unbiased (n_inputs=4096)": {
+  "ok": true,
+  "detail": "fast diff max 1 step, mean -0.0011; tag diff mean -0.0003"
+ },
+ "axon-major lazy fast decay (n_inputs=4096)": {
+  "ok": true,
+  "detail": "mean real fast 0.3917 vs 0.3916 steps; mean |diff| 0.118 step (baseline re-rounds every synapse each modulate, axon-major only touched ones)"
+ },
+ "axon-major sleep + bucket rebuild (n_inputs=4096)": {
+  "ok": true,
+  "detail": "pruned 80891 vs 80826; mean c0 0.9794 vs 0.9774; buckets consistent; rate after sleep 0.0934 vs 0.0930"
+ },
+ "bit-sliced layout (n_inputs=4096)": {
+  "ok": true,
+  "detail": "1041 bytes/neuron; 32 distinct inputs per branch inside a 128-input window"
+ },
+ "bit-sliced forward (n_inputs=4096)": {
+  "ok": true,
+  "detail": "max |rate diff| 3.0e-08, used-flag mismatches 0"
+ },
+ "bit-sliced modulate bit-exact (n_inputs=4096)": {
+  "ok": true,
+  "detail": "differing words per call [0, 0, 0]"
+ },
+ "bit-sliced production RNG unbiased (n_inputs=4096)": {
+  "ok": true,
+  "detail": "fast diff max 1 step, mean -0.0004"
+ },
+ "bit-sliced sleep + local rewiring (n_inputs=4096)": {
+  "ok": true,
+  "detail": "pruned 77865 vs 77935; mean c0 1.0679 vs 1.0693; 99% of branches rewired, new inputs stay in the window: True"
+ }
+}

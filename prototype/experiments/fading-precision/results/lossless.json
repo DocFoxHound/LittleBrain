@@ -1,0 +1,903 @@
+{
+ "entropy": {
+  "A": {
+   "gen": 0.026636112221569898,
+   "fast": -0.0,
+   "c0": 3.1301064022688645,
+   "c1": 3.1372004120778936,
+   "c2": 3.0922299432017066,
+   "tag": 0.10467364235255722,
+   "used": -0.0,
+   "triple(c0,c1,c2)": 4.976166348690331,
+   "sum_of_fields": 9.490846512122593,
+   "joint_bound": 5.107476103264458
+  },
+  "B": {
+   "gen": 1.2213287268677886,
+   "fast": -0.0,
+   "c0": 3.4374369064112584,
+   "c1": 3.4452049317289197,
+   "c2": 3.4590498822382534,
+   "tag": 0.10386521979865555,
+   "used": -0.0,
+   "triple(c0,c1,c2)": 5.156778310136899,
+   "sum_of_fields": 11.666885667044875,
+   "joint_bound": 6.481972256803344
+  },
+  "E": {
+   "gen": 2.9981846143682356,
+   "fast": -0.0,
+   "c0": 0.8474915320179148,
+   "c1": 0.7718763922170266,
+   "c2": 0.9344557406277275,
+   "tag": -0.0,
+   "used": -0.0,
+   "triple(c0,c1,c2)": 2.0313614401148214,
+   "sum_of_fields": 5.552008279230905,
+   "joint_bound": 5.029546054483057
+  },
+  "cold": {
+   "gen": 1.3056313324078814,
+   "fast": -0.0,
+   "c0": 3.836296930446946,
+   "c1": 3.874482188742845,
+   "c2": 3.8987866465469283,
+   "tag": 0.08997791244157202,
+   "used": -0.0,
+   "triple(c0,c1,c2)": 5.6046417387343785,
+   "sum_of_fields": 13.005175010586173,
+   "joint_bound": 7.0002509835838325
+  },
+  "hot": {
+   "gen": 2.596662571734625,
+   "fast": -0.0,
+   "c0": 4.782706353588164,
+   "c1": 4.40798525528111,
+   "c2": 3.253158389119249,
+   "tag": 1.062491538280415,
+   "used": -0.0,
+   "triple(c0,c1,c2)": 8.414525422899736,
+   "sum_of_fields": 16.103004108003564,
+   "joint_bound": 12.073679532914776
+  }
+ },
+ "layout_codec": {
+  "raw/zstd-5": {
+   "bytes_per_neuron": 424.6904296875,
+   "ratio": 2.451197218562234,
+   "comp_GBps": 0.4801250685017433,
+   "decomp_GBps": 1.572024046106101
+  },
+  "raw/zstd1": {
+   "bytes_per_neuron": 329.628173828125,
+   "ratio": 3.158103835331743,
+   "comp_GBps": 0.46572490689981333,
+   "decomp_GBps": 1.5654273206429579
+  },
+  "raw/zstd3": {
+   "bytes_per_neuron": 316.034912109375,
+   "ratio": 3.293939878514831,
+   "comp_GBps": 0.4211932944264774,
+   "decomp_GBps": 1.6887303254101818
+  },
+  "raw/zstd9": {
+   "bytes_per_neuron": 303.6641438802083,
+   "ratio": 3.4281294679646517,
+   "comp_GBps": 0.048335813979466014,
+   "decomp_GBps": 1.857456378785298
+  },
+  "raw/zstd19": {
+   "bytes_per_neuron": 260.4358723958333,
+   "ratio": 3.997145210540723,
+   "comp_GBps": 0.0040629524908721674,
+   "decomp_GBps": 1.7327776205758498
+  },
+  "raw/lz4": {
+   "bytes_per_neuron": 510.6836751302083,
+   "ratio": 2.0384438561396694,
+   "comp_GBps": 0.6887331641639856,
+   "decomp_GBps": 3.5507766921202677
+  },
+  "raw/lz4hc": {
+   "bytes_per_neuron": 363.4039713541667,
+   "ratio": 2.8645806927229778,
+   "comp_GBps": 0.01112675874174374,
+   "decomp_GBps": 3.929004128358287
+  },
+  "byteshuffle/zstd-5": {
+   "bytes_per_neuron": 615.0332845052084,
+   "ratio": 1.692591321846069,
+   "comp_GBps": 0.9748412228933006,
+   "decomp_GBps": 0.9678265466841032
+  },
+  "byteshuffle/zstd1": {
+   "bytes_per_neuron": 405.1156412760417,
+   "ratio": 2.5696366517003306,
+   "comp_GBps": 0.7468893438035366,
+   "decomp_GBps": 0.8066595055665171
+  },
+  "byteshuffle/zstd3": {
+   "bytes_per_neuron": 393.9053548177083,
+   "ratio": 2.6427668150938297,
+   "comp_GBps": 0.4347426586928002,
+   "decomp_GBps": 0.8090395209511367
+  },
+  "byteshuffle/zstd9": {
+   "bytes_per_neuron": 386.2377115885417,
+   "ratio": 2.6952313789311577,
+   "comp_GBps": 0.07318701842347641,
+   "decomp_GBps": 0.7643780153648755
+  },
+  "byteshuffle/zstd19": {
+   "bytes_per_neuron": 364.271240234375,
+   "ratio": 2.8577606053396156,
+   "comp_GBps": 0.006979770102844697,
+   "decomp_GBps": 0.6692518420369302
+  },
+  "byteshuffle/lz4": {
+   "bytes_per_neuron": 644.620361328125,
+   "ratio": 1.6149040000151493,
+   "comp_GBps": 1.000745877556943,
+   "decomp_GBps": 1.139789346977942
+  },
+  "byteshuffle/lz4hc": {
+   "bytes_per_neuron": 522.049560546875,
+   "ratio": 1.994063550038231,
+   "comp_GBps": 0.023106163532817157,
+   "decomp_GBps": 1.0834690242234257
+  },
+  "bitshuffle/zstd-5": {
+   "bytes_per_neuron": 430.9462076822917,
+   "ratio": 2.4156147134898585,
+   "comp_GBps": 0.12652214594279637,
+   "decomp_GBps": 0.26751177557452477
+  },
+  "bitshuffle/zstd1": {
+   "bytes_per_neuron": 382.399658203125,
+   "ratio": 2.722282767959579,
+   "comp_GBps": 0.12217694388864099,
+   "decomp_GBps": 0.2714299862559576
+  },
+  "bitshuffle/zstd3": {
+   "bytes_per_neuron": 378.311767578125,
+   "ratio": 2.7516987025390995,
+   "comp_GBps": 0.11990218265384107,
+   "decomp_GBps": 0.27208305541541966
+  },
+  "bitshuffle/zstd9": {
+   "bytes_per_neuron": 368.1045735677083,
+   "ratio": 2.8280007224863257,
+   "comp_GBps": 0.0928268175611712,
+   "decomp_GBps": 0.27181934416652453
+  },
+  "bitshuffle/zstd19": {
+   "bytes_per_neuron": 346.9075520833333,
+   "ratio": 3.000799474523787,
+   "comp_GBps": 0.016921831127086007,
+   "decomp_GBps": 0.2659738932720176
+  },
+  "bitshuffle/lz4": {
+   "bytes_per_neuron": 440.3898111979167,
+   "ratio": 2.36381490563632,
+   "comp_GBps": 0.12953375714024773,
+   "decomp_GBps": 0.27729486739605796
+  },
+  "bitshuffle/lz4hc": {
+   "bytes_per_neuron": 396.78564453125,
+   "ratio": 2.6235828194586133,
+   "comp_GBps": 0.07474729810151808,
+   "decomp_GBps": 0.2780709462465464
+  },
+  "fields/zstd-5": {
+   "bytes_per_neuron": 692.4453938802084,
+   "ratio": 1.5033676434276215,
+   "comp_GBps": 0.6413451843320884,
+   "decomp_GBps": 0.9996370886298952
+  },
+  "fields/zstd1": {
+   "bytes_per_neuron": 312.962890625,
+   "ratio": 3.3262729581806947,
+   "comp_GBps": 0.49217983316193903,
+   "decomp_GBps": 0.8745132568317429
+  },
+  "fields/zstd3": {
+   "bytes_per_neuron": 338.06494140625,
+   "ratio": 3.079290019455281,
+   "comp_GBps": 0.3104562116957224,
+   "decomp_GBps": 0.8029085908596064
+  },
+  "fields/zstd9": {
+   "bytes_per_neuron": 337.7069498697917,
+   "ratio": 3.082554269023407,
+   "comp_GBps": 0.06673961595229731,
+   "decomp_GBps": 0.7506778910948244
+  },
+  "fields/zstd19": {
+   "bytes_per_neuron": 269.0284016927083,
+   "ratio": 3.869479926469098,
+   "comp_GBps": 0.004707171714447473,
+   "decomp_GBps": 0.9185138479641531
+  },
+  "fields/lz4": {
+   "bytes_per_neuron": 692.1144205729166,
+   "ratio": 1.5040865629389484,
+   "comp_GBps": 0.5436983722636582,
+   "decomp_GBps": 1.2596583596999367
+  },
+  "fields/lz4hc": {
+   "bytes_per_neuron": 485.5730794270833,
+   "ratio": 2.1438585541608943,
+   "comp_GBps": 0.040433346530614325,
+   "decomp_GBps": 1.2583156569595018
+  },
+  "dfields/zstd-5": {
+   "bytes_per_neuron": 485.0352376302083,
+   "ratio": 2.1462358180121752,
+   "comp_GBps": 0.41278099101006727,
+   "decomp_GBps": 0.5221924085489269
+  },
+  "dfields/zstd1": {
+   "bytes_per_neuron": 281.1526692708333,
+   "ratio": 3.7026146779962046,
+   "comp_GBps": 0.37374758924730916,
+   "decomp_GBps": 0.5699857867937124
+  },
+  "dfields/zstd3": {
+   "bytes_per_neuron": 286.7291666666667,
+   "ratio": 3.6306037927777375,
+   "comp_GBps": 0.31699496161973073,
+   "decomp_GBps": 0.5857412185060439
+  },
+  "dfields/zstd9": {
+   "bytes_per_neuron": 275.28857421875,
+   "ratio": 3.7814864018758723,
+   "comp_GBps": 0.05114519578765868,
+   "decomp_GBps": 0.6124803061767502
+  },
+  "dfields/zstd19": {
+   "bytes_per_neuron": 237.42220052083334,
+   "ratio": 4.384594185869549,
+   "comp_GBps": 0.003223864016582965,
+   "decomp_GBps": 0.5562555815420867
+  },
+  "dfields/lz4": {
+   "bytes_per_neuron": 535.0374348958334,
+   "ratio": 1.9456582513757616,
+   "comp_GBps": 0.42214730474382434,
+   "decomp_GBps": 0.7269064773604472
+  },
+  "dfields/lz4hc": {
+   "bytes_per_neuron": 371.926025390625,
+   "ratio": 2.798943684854166,
+   "comp_GBps": 0.009126108527982811,
+   "decomp_GBps": 0.7929313490605857
+  },
+  "dbitshuffle/zstd-5": {
+   "bytes_per_neuron": 333.5684407552083,
+   "ratio": 3.1207988310978902,
+   "comp_GBps": 0.12043068283553005,
+   "decomp_GBps": 0.2396476990619514
+  },
+  "dbitshuffle/zstd1": {
+   "bytes_per_neuron": 274.5236002604167,
+   "ratio": 3.79202370583984,
+   "comp_GBps": 0.11665808315706894,
+   "decomp_GBps": 0.23256048352088973
+  },
+  "dbitshuffle/zstd3": {
+   "bytes_per_neuron": 273.33349609375,
+   "ratio": 3.8085343175171986,
+   "comp_GBps": 0.11472591667144492,
+   "decomp_GBps": 0.22939892491278083
+  },
+  "dbitshuffle/zstd9": {
+   "bytes_per_neuron": 273.0506184895833,
+   "ratio": 3.812479919505157,
+   "comp_GBps": 0.09290607461481101,
+   "decomp_GBps": 0.23203752797338534
+  },
+  "dbitshuffle/zstd19": {
+   "bytes_per_neuron": 267.6038411458333,
+   "ratio": 3.8900786907341023,
+   "comp_GBps": 0.016026234226907094,
+   "decomp_GBps": 0.2303003303351938
+  },
+  "dbitshuffle/lz4": {
+   "bytes_per_neuron": 329.8048502604167,
+   "ratio": 3.156412039356055,
+   "comp_GBps": 0.12115174763412256,
+   "decomp_GBps": 0.24274995644777045
+  },
+  "dbitshuffle/lz4hc": {
+   "bytes_per_neuron": 308.9022623697917,
+   "ratio": 3.3699979793408015,
+   "comp_GBps": 0.07128887438746186,
+   "decomp_GBps": 0.24267996475332504
+  },
+  "symbols/zstd-5": {
+   "bytes_per_neuron": 347.3946126302083,
+   "ratio": 2.996592238775202,
+   "comp_GBps": 0.20596354567729003,
+   "decomp_GBps": 1.068914429538988
+  },
+  "symbols/zstd1": {
+   "bytes_per_neuron": 220.68831380208334,
+   "ratio": 4.717059920687893,
+   "comp_GBps": 0.19852796576136128,
+   "decomp_GBps": 0.936267424813895
+  },
+  "symbols/zstd3": {
+   "bytes_per_neuron": 219.125244140625,
+   "ratio": 4.750707770264624,
+   "comp_GBps": 0.19452463338708317,
+   "decomp_GBps": 0.9553638509139778
+  },
+  "symbols/zstd9": {
+   "bytes_per_neuron": 223.55615234375,
+   "ratio": 4.656548205389184,
+   "comp_GBps": 0.11134901673880858,
+   "decomp_GBps": 0.9212019201167736
+  },
+  "symbols/zstd19": {
+   "bytes_per_neuron": 210.24593098958334,
+   "ratio": 4.951344338034188,
+   "comp_GBps": 0.008305467105645148,
+   "decomp_GBps": 0.8595248421035447
+  },
+  "symbols/lz4": {
+   "bytes_per_neuron": 350.120361328125,
+   "ratio": 2.9732632402501094,
+   "comp_GBps": 0.21115365600114752,
+   "decomp_GBps": 1.1601195830802056
+  },
+  "symbols/lz4hc": {
+   "bytes_per_neuron": 307.8036295572917,
+   "ratio": 3.382026396170998,
+   "comp_GBps": 0.046325047486672516,
+   "decomp_GBps": 1.144574489549402
+  },
+  "sortrows/zstd-5": {
+   "bytes_per_neuron": 486.6875,
+   "ratio": 2.1389495312700655,
+   "comp_GBps": 0.39044136822127323,
+   "decomp_GBps": 0.5564173074275643
+  },
+  "sortrows/zstd1": {
+   "bytes_per_neuron": 283.522705078125,
+   "ratio": 3.6716636140768735,
+   "comp_GBps": 0.35549946902862595,
+   "decomp_GBps": 0.533853639778861
+  },
+  "sortrows/zstd3": {
+   "bytes_per_neuron": 288.8898111979167,
+   "ratio": 3.6034500340575084,
+   "comp_GBps": 0.2989647698522593,
+   "decomp_GBps": 0.5535579227916376
+  },
+  "sortrows/zstd9": {
+   "bytes_per_neuron": 277.125732421875,
+   "ratio": 3.7564176769238493,
+   "comp_GBps": 0.050354154203424976,
+   "decomp_GBps": 0.5864504798531986
+  },
+  "sortrows/zstd19": {
+   "bytes_per_neuron": 239.37272135416666,
+   "ratio": 4.348866462773661,
+   "comp_GBps": 0.003226000223470327,
+   "decomp_GBps": 0.5474001186327114
+  },
+  "sortrows/lz4": {
+   "bytes_per_neuron": 537.544921875,
+   "ratio": 1.9365823350519398,
+   "comp_GBps": 0.39750048265720384,
+   "decomp_GBps": 0.6746292249810025
+  },
+  "sortrows/lz4hc": {
+   "bytes_per_neuron": 374.1834309895833,
+   "ratio": 2.782057979550088,
+   "comp_GBps": 0.009108112543322841,
+   "decomp_GBps": 0.7501665218007464
+  }
+ },
+ "block_size": {
+  "raw/1/zstd3": {
+   "bytes_per_neuron": 482.4357096354167,
+   "ratio": 2.157800467935299,
+   "comp_GBps": 0.14461962163620326,
+   "decomp_GBps": 0.30206318497892237
+  },
+  "raw/1/zstd3+dict": {
+   "bytes_per_neuron": 392.756103515625,
+   "ratio": 2.650499866664926,
+   "comp_GBps": 0.24035954332712903,
+   "decomp_GBps": 0.5836521292054513
+  },
+  "raw/1/lz4": {
+   "bytes_per_neuron": 695.5498860677084,
+   "ratio": 1.4966575666991968,
+   "comp_GBps": 0.42838301124054434,
+   "decomp_GBps": 1.1848466299170328
+  },
+  "raw/4/zstd3": {
+   "bytes_per_neuron": 378.177734375,
+   "ratio": 2.7526739555950357,
+   "comp_GBps": 0.24833877262546558,
+   "decomp_GBps": 0.7107408172611845
+  },
+  "raw/4/zstd3+dict": {
+   "bytes_per_neuron": 349.6809895833333,
+   "ratio": 2.976999124946473,
+   "comp_GBps": 0.3266735067924783,
+   "decomp_GBps": 0.8321063604281604
+  },
+  "raw/4/lz4": {
+   "bytes_per_neuron": 596.485595703125,
+   "ratio": 1.7452223616110805,
+   "comp_GBps": 0.5081427996106855,
+   "decomp_GBps": 2.4638369908126507
+  },
+  "raw/16/zstd3": {
+   "bytes_per_neuron": 332.561767578125,
+   "ratio": 3.1302455708636128,
+   "comp_GBps": 0.3438472831209412,
+   "decomp_GBps": 1.1062676329697854
+  },
+  "raw/16/zstd3+dict": {
+   "bytes_per_neuron": 326.81494140625,
+   "ratio": 3.1852888840414932,
+   "comp_GBps": 0.3639517144212708,
+   "decomp_GBps": 0.9255100790559752
+  },
+  "raw/16/lz4": {
+   "bytes_per_neuron": 540.037109375,
+   "ratio": 1.927645307939631,
+   "comp_GBps": 0.598842183864721,
+   "decomp_GBps": 3.389714980442872
+  },
+  "raw/64/zstd3": {
+   "bytes_per_neuron": 316.034912109375,
+   "ratio": 3.293939878514831,
+   "comp_GBps": 0.4220921432606734,
+   "decomp_GBps": 1.680806036020613
+  },
+  "raw/64/lz4": {
+   "bytes_per_neuron": 510.6836751302083,
+   "ratio": 2.0384438561396694,
+   "comp_GBps": 0.6976143337239297,
+   "decomp_GBps": 3.684229760038436
+  },
+  "raw/1024/zstd3": {
+   "bytes_per_neuron": 293.8802897135417,
+   "ratio": 3.5422586557768456,
+   "comp_GBps": 0.5047571468478733,
+   "decomp_GBps": 1.8746036558281278
+  },
+  "raw/1024/lz4": {
+   "bytes_per_neuron": 497.3933919270833,
+   "ratio": 2.0929107963553486,
+   "comp_GBps": 0.748120896650814,
+   "decomp_GBps": 3.75322687807901
+  },
+  "dfields/1/zstd3": {
+   "bytes_per_neuron": 388.222412109375,
+   "ratio": 2.6814526094560356,
+   "comp_GBps": 0.03873498646492514,
+   "decomp_GBps": 0.0576851770783071
+  },
+  "dfields/1/zstd3+dict": {
+   "bytes_per_neuron": 377.237548828125,
+   "ratio": 2.7595344186543183,
+   "comp_GBps": 0.04128643170735963,
+   "decomp_GBps": 0.05641792356995735
+  },
+  "dfields/1/lz4": {
+   "bytes_per_neuron": 643.2286783854166,
+   "ratio": 1.6183979896745873,
+   "comp_GBps": 0.04743979051410055,
+   "decomp_GBps": 0.0670902436309532
+  },
+  "dfields/4/zstd3": {
+   "bytes_per_neuron": 318.988037109375,
+   "ratio": 3.2634452672062455,
+   "comp_GBps": 0.1133583072872477,
+   "decomp_GBps": 0.17225476964842606
+  },
+  "dfields/4/zstd3+dict": {
+   "bytes_per_neuron": 326.717041015625,
+   "ratio": 3.186243352241351,
+   "comp_GBps": 0.11826335316232599,
+   "decomp_GBps": 0.1754176597900469
+  },
+  "dfields/4/lz4": {
+   "bytes_per_neuron": 588.1346842447916,
+   "ratio": 1.7700027355753059,
+   "comp_GBps": 0.1421308588778259,
+   "decomp_GBps": 0.205090357560798
+  },
+  "dfields/16/zstd3": {
+   "bytes_per_neuron": 289.92626953125,
+   "ratio": 3.590568049190847,
+   "comp_GBps": 0.23857331900658,
+   "decomp_GBps": 0.4039782980346421
+  },
+  "dfields/16/zstd3+dict": {
+   "bytes_per_neuron": 290.92578125,
+   "ratio": 3.57823220591592,
+   "comp_GBps": 0.19712769917874656,
+   "decomp_GBps": 0.39735342340842306
+  },
+  "dfields/16/lz4": {
+   "bytes_per_neuron": 558.084228515625,
+   "ratio": 1.8653098346262522,
+   "comp_GBps": 0.33150587674824367,
+   "decomp_GBps": 0.4840317088141889
+  },
+  "dfields/64/zstd3": {
+   "bytes_per_neuron": 286.7291666666667,
+   "ratio": 3.6306037927777375,
+   "comp_GBps": 0.3197372957303875,
+   "decomp_GBps": 0.5547983487159561
+  },
+  "dfields/64/lz4": {
+   "bytes_per_neuron": 535.0374348958334,
+   "ratio": 1.9456582513757616,
+   "comp_GBps": 0.43783978330786055,
+   "decomp_GBps": 0.7132379202008714
+  },
+  "dfields/1024/zstd3": {
+   "bytes_per_neuron": 265.3986002604167,
+   "ratio": 3.9224019982718112,
+   "comp_GBps": 0.3015684904433362,
+   "decomp_GBps": 0.4845524983125446
+  },
+  "dfields/1024/lz4": {
+   "bytes_per_neuron": 521.9055989583334,
+   "ratio": 1.994613589273084,
+   "comp_GBps": 0.4449938076314129,
+   "decomp_GBps": 0.5178520756452577
+  },
+  "symbols/1/zstd3": {
+   "bytes_per_neuron": 468.473876953125,
+   "ratio": 2.2221089610598743,
+   "comp_GBps": 0.04517428615570596,
+   "decomp_GBps": 0.09548536446121236
+  },
+  "symbols/1/zstd3+dict": {
+   "bytes_per_neuron": 351.2255045572917,
+   "ratio": 2.963907764363942,
+   "comp_GBps": 0.048876860735388016,
+   "decomp_GBps": 0.09929775126465858
+  },
+  "symbols/1/lz4": {
+   "bytes_per_neuron": 606.8829752604166,
+   "ratio": 1.7153224632035549,
+   "comp_GBps": 0.05561717072808321,
+   "decomp_GBps": 0.11374036206097951
+  },
+  "symbols/4/zstd3": {
+   "bytes_per_neuron": 310.1625162760417,
+   "ratio": 3.3563049864914043,
+   "comp_GBps": 0.10208263185910267,
+   "decomp_GBps": 0.2880105304817151
+  },
+  "symbols/4/zstd3+dict": {
+   "bytes_per_neuron": 254.342529296875,
+   "ratio": 4.092905747528046,
+   "comp_GBps": 0.10246422465632382,
+   "decomp_GBps": 0.29262419523456096
+  },
+  "symbols/4/lz4": {
+   "bytes_per_neuron": 447.8411458333333,
+   "ratio": 2.3244849422286316,
+   "comp_GBps": 0.12277452004653316,
+   "decomp_GBps": 0.3498726690112339
+  },
+  "symbols/16/zstd3": {
+   "bytes_per_neuron": 245.294677734375,
+   "ratio": 4.243875201920521,
+   "comp_GBps": 0.16569813677802483,
+   "decomp_GBps": 0.6231295604714412
+  },
+  "symbols/16/zstd3+dict": {
+   "bytes_per_neuron": 222.76432291666666,
+   "ratio": 4.673100191135297,
+   "comp_GBps": 0.14808134540935436,
+   "decomp_GBps": 0.6502241651784817
+  },
+  "symbols/16/lz4": {
+   "bytes_per_neuron": 378.800537109375,
+   "ratio": 2.7481481624705864,
+   "comp_GBps": 0.18714527876544865,
+   "decomp_GBps": 0.7854137780821961
+  },
+  "symbols/64/zstd3": {
+   "bytes_per_neuron": 219.125244140625,
+   "ratio": 4.750707770264624,
+   "comp_GBps": 0.19301181715563281,
+   "decomp_GBps": 0.9272102888682177
+  },
+  "symbols/64/lz4": {
+   "bytes_per_neuron": 350.120361328125,
+   "ratio": 2.9732632402501094,
+   "comp_GBps": 0.21381481020433407,
+   "decomp_GBps": 1.1903147560689968
+  },
+  "symbols/1024/zstd3": {
+   "bytes_per_neuron": 222.98404947916666,
+   "ratio": 4.668495358441593,
+   "comp_GBps": 0.175709553384267,
+   "decomp_GBps": 0.7128487222432084
+  },
+  "symbols/1024/lz4": {
+   "bytes_per_neuron": 369.1258951822917,
+   "ratio": 2.8201760255424655,
+   "comp_GBps": 0.18996242043609723,
+   "decomp_GBps": 1.117333281447288
+  }
+ },
+ "per_group": {
+  "A/raw/zstd3": {
+   "bytes_per_neuron": 300.9583333333333,
+   "ratio": 3.4589505745535094,
+   "comp_GBps": 0.42318400285069574,
+   "decomp_GBps": 1.5869658479116149
+  },
+  "A/raw/lz4": {
+   "bytes_per_neuron": 496.84375,
+   "ratio": 2.0952261148499907,
+   "comp_GBps": 0.6876938980509415,
+   "decomp_GBps": 3.4857836035885748
+  },
+  "A/dfields/zstd3": {
+   "bytes_per_neuron": 253.2255859375,
+   "ratio": 4.110958993918312,
+   "comp_GBps": 0.312082700737025,
+   "decomp_GBps": 0.5733353129299356
+  },
+  "A/symbols/zstd3": {
+   "bytes_per_neuron": 189.80436197916666,
+   "ratio": 5.484594711865802,
+   "comp_GBps": 0.195357782168734,
+   "decomp_GBps": 0.8865373177760175
+  },
+  "A/symbols/zstd19": {
+   "bytes_per_neuron": 187.2939453125,
+   "ratio": 5.558108129246203,
+   "comp_GBps": 0.00758792668726999,
+   "decomp_GBps": 0.7685032937961237
+  },
+  "A/bitshuffle/zstd3": {
+   "bytes_per_neuron": 366.5403645833333,
+   "ratio": 2.840069199973002,
+   "comp_GBps": 0.12023854958163627,
+   "decomp_GBps": 0.2682208611505437
+  },
+  "B/raw/zstd3": {
+   "bytes_per_neuron": 361.542724609375,
+   "ratio": 2.8793277506129806,
+   "comp_GBps": 0.3399866686720795,
+   "decomp_GBps": 1.4945803140150307
+  },
+  "B/raw/lz4": {
+   "bytes_per_neuron": 552.927001953125,
+   "ratio": 1.8827078372422332,
+   "comp_GBps": 0.5644774195582201,
+   "decomp_GBps": 3.6796387909896158
+  },
+  "B/dfields/zstd3": {
+   "bytes_per_neuron": 340.557861328125,
+   "ratio": 3.0567492875961073,
+   "comp_GBps": 0.26754101504854094,
+   "decomp_GBps": 0.5500126912129847
+  },
+  "B/symbols/zstd3": {
+   "bytes_per_neuron": 269.85009765625,
+   "ratio": 3.857697325446528,
+   "comp_GBps": 0.16890832711277703,
+   "decomp_GBps": 0.793503595410247
+  },
+  "B/symbols/zstd19": {
+   "bytes_per_neuron": 249.651123046875,
+   "ratio": 4.169819015012161,
+   "comp_GBps": 0.006025599130397253,
+   "decomp_GBps": 0.6990347811006729
+  },
+  "B/bitshuffle/zstd3": {
+   "bytes_per_neuron": 476.900634765625,
+   "ratio": 2.182844651719963,
+   "comp_GBps": 0.11492334364767055,
+   "decomp_GBps": 0.24538028988773508
+  },
+  "E/raw/zstd3": {
+   "bytes_per_neuron": 270.2490234375,
+   "ratio": 3.852002818580953,
+   "comp_GBps": 0.4824825866080522,
+   "decomp_GBps": 1.576120676775882
+  },
+  "E/raw/lz4": {
+   "bytes_per_neuron": 467.716796875,
+   "ratio": 2.2257058265927814,
+   "comp_GBps": 0.866186060114899,
+   "decomp_GBps": 3.2037892503711376
+  },
+  "E/dfields/zstd3": {
+   "bytes_per_neuron": 279.58251953125,
+   "ratio": 3.723408751539073,
+   "comp_GBps": 0.3010202362663101,
+   "decomp_GBps": 0.5047863084099092
+  },
+  "E/symbols/zstd3": {
+   "bytes_per_neuron": 205.63818359375,
+   "ratio": 5.062289414385001,
+   "comp_GBps": 0.15545944278005183,
+   "decomp_GBps": 0.8234868768597784
+  },
+  "E/symbols/zstd19": {
+   "bytes_per_neuron": 200.29150390625,
+   "ratio": 5.197424652057426,
+   "comp_GBps": 0.010903219150417419,
+   "decomp_GBps": 0.6815527874243648
+  },
+  "E/bitshuffle/zstd3": {
+   "bytes_per_neuron": 216.4482421875,
+   "ratio": 4.809463867570823,
+   "comp_GBps": 0.12318752153530904,
+   "decomp_GBps": 0.25915844700616836
+  },
+  "C/raw/zstd3": {
+   "bytes_per_neuron": 581.783984375,
+   "ratio": 1.7893239208334817,
+   "comp_GBps": 0.26248606599974367,
+   "decomp_GBps": 1.2887261389358637
+  },
+  "C/raw/lz4": {
+   "bytes_per_neuron": 867.7724609375,
+   "ratio": 1.199623227124946,
+   "comp_GBps": 0.6694369784839288,
+   "decomp_GBps": 3.936876081788344
+  },
+  "C/dfields/zstd3": {
+   "bytes_per_neuron": 579.4509765625,
+   "ratio": 1.796528165636316,
+   "comp_GBps": 0.19723872746228516,
+   "decomp_GBps": 0.506695275252748
+  },
+  "C/symbols/zstd3": {
+   "bytes_per_neuron": 507.1228515625,
+   "ratio": 2.052757032724057,
+   "comp_GBps": 0.13954145933881562,
+   "decomp_GBps": 0.6533846563237737
+  },
+  "C/symbols/zstd19": {
+   "bytes_per_neuron": 453.0869140625,
+   "ratio": 2.2975724252685032,
+   "comp_GBps": 0.005273689627135248,
+   "decomp_GBps": 0.4550262164606221
+  },
+  "C/bitshuffle/zstd3": {
+   "bytes_per_neuron": 709.34375,
+   "ratio": 1.4675536367240847,
+   "comp_GBps": 0.11970733472402971,
+   "decomp_GBps": 0.2526152352613562
+  },
+  "D/raw/zstd3": {
+   "bytes_per_neuron": 632.2506510416666,
+   "ratio": 1.6464988976838488,
+   "comp_GBps": 0.2903023931623922,
+   "decomp_GBps": 1.325329837100643
+  },
+  "D/raw/lz4": {
+   "bytes_per_neuron": 966.3717447916666,
+   "ratio": 1.077225204079639,
+   "comp_GBps": 0.8806219010905206,
+   "decomp_GBps": 3.9262907496776847
+  },
+  "D/dfields/zstd3": {
+   "bytes_per_neuron": 546.2805989583334,
+   "ratio": 1.9056140781587607,
+   "comp_GBps": 0.19035228030149565,
+   "decomp_GBps": 0.5020201196789057
+  },
+  "D/symbols/zstd3": {
+   "bytes_per_neuron": 564.5120442708334,
+   "ratio": 1.8440704862987196,
+   "comp_GBps": 0.15589039837210789,
+   "decomp_GBps": 0.6494405952876905
+  },
+  "D/symbols/zstd19": {
+   "bytes_per_neuron": 502.1455078125,
+   "ratio": 2.0731042771544756,
+   "comp_GBps": 0.005843496235835549,
+   "decomp_GBps": 0.4430332184512404
+  },
+  "D/bitshuffle/zstd3": {
+   "bytes_per_neuron": 583.3912760416666,
+   "ratio": 1.7843941840598423,
+   "comp_GBps": 0.12010551415435451,
+   "decomp_GBps": 0.26565553223460064
+  },
+  "hot/raw/zstd3": {
+   "bytes_per_neuron": 600.708984375,
+   "ratio": 1.7329522731928093,
+   "comp_GBps": 0.2615364833740393,
+   "decomp_GBps": 1.3046597600750929
+  },
+  "hot/raw/lz4": {
+   "bytes_per_neuron": 904.7471923828125,
+   "ratio": 1.1505976572951186,
+   "comp_GBps": 0.6814952716485604,
+   "decomp_GBps": 3.9420152698326305
+  },
+  "hot/dfields/zstd3": {
+   "bytes_per_neuron": 567.0120849609375,
+   "ratio": 1.835939705009491,
+   "comp_GBps": 0.19537851411205798,
+   "decomp_GBps": 0.5084380047393864
+  },
+  "hot/symbols/zstd3": {
+   "bytes_per_neuron": 528.643798828125,
+   "ratio": 1.9691898444806206,
+   "comp_GBps": 0.13917297634443915,
+   "decomp_GBps": 0.6331383416650008
+  },
+  "hot/symbols/zstd19": {
+   "bytes_per_neuron": 471.48388671875,
+   "ratio": 2.207922750541374,
+   "comp_GBps": 0.005233229722529706,
+   "decomp_GBps": 0.4500112706610173
+  },
+  "hot/bitshuffle/zstd3": {
+   "bytes_per_neuron": 662.111572265625,
+   "ratio": 1.5722425699914713,
+   "comp_GBps": 0.12038745926733278,
+   "decomp_GBps": 0.2524248302520407
+  },
+  "cold/raw/zstd3": {
+   "bytes_per_neuron": 316.034912109375,
+   "ratio": 3.293939878514831,
+   "comp_GBps": 0.42095270163066506,
+   "decomp_GBps": 1.6534753794065598
+  },
+  "cold/raw/lz4": {
+   "bytes_per_neuron": 510.6836751302083,
+   "ratio": 2.0384438561396694,
+   "comp_GBps": 0.7017549394519276,
+   "decomp_GBps": 3.5808405795800944
+  },
+  "cold/dfields/zstd3": {
+   "bytes_per_neuron": 286.7291666666667,
+   "ratio": 3.6306037927777375,
+   "comp_GBps": 0.3153990113959246,
+   "decomp_GBps": 0.5575104742147381
+  },
+  "cold/symbols/zstd3": {
+   "bytes_per_neuron": 219.125244140625,
+   "ratio": 4.750707770264624,
+   "comp_GBps": 0.19578778129060712,
+   "decomp_GBps": 0.8782088870034789
+  },
+  "cold/symbols/zstd19": {
+   "bytes_per_neuron": 210.24593098958334,
+   "ratio": 4.951344338034188,
+   "comp_GBps": 0.007581085136199078,
+   "decomp_GBps": 0.7964846563848534
+  },
+  "cold/bitshuffle/zstd3": {
+   "bytes_per_neuron": 378.311767578125,
+   "ratio": 2.7516987025390995,
+   "comp_GBps": 0.11975109375935497,
+   "decomp_GBps": 0.2671621692412866
+  }
+ },
+ "effective_90pct_cold": {
+  "best_ratio": [
+   "symbols/zstd19",
+   293.433837890625
+  ],
+  "symbols/zstd3": 301.4252197265625,
+  "dfields/zstd3": 362.26875,
+  "raw/zstd3": 388.6439208984375,
+  "raw/lz4": 563.8278076171874,
+  "uncompressed": 1041.0
+ }
+}

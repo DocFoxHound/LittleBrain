@@ -1,0 +1,14 @@
+
+[population behavior] groups A (6,144 neurons, old self) and B (4,096, stable memories), idle days 9-16
+  baseline                   A day9..16 0.03 0.06 0.14 0.17 | B liked 1.00 disliked 0.04 | A relearn median 2 (by 2: 0.92) curve [0.17, 0.543, 0.917, 0.991] | bytes/neuron 1041  (4s)
+  lossless-freeze            A day9..16 0.03 0.06 0.14 0.17 | B liked 1.00 disliked 0.04 | A relearn median 2 (by 2: 0.93) curve [0.166, 0.543, 0.918, 0.99] | bytes/neuron 389.1  (3s)
+  lossless-refreeze          A day9..16 0.03 0.06 0.14 0.17 | B liked 1.00 disliked 0.04 | A relearn median 2 (by 2: 0.93) curve [0.167, 0.544, 0.921, 0.991] | bytes/neuron 201.0  (3s)
+  deep-last                  A day9..16 0.03 0.07 0.20 0.20 | B liked 1.00 disliked 0.04 | A relearn median 2 (by 2: 0.92) curve [0.203, 0.565, 0.917, 0.99] | bytes/neuron 254.7  (4s)
+  ternary                    A day9..16 0.03 0.07 0.16 0.20 | B liked 1.00 disliked 0.04 | A relearn median 2 (by 2: 0.92) curve [0.199, 0.565, 0.915, 0.99] | bytes/neuron 235.1  (3s)
+  lossless-then-ternary      A day9..16 0.03 0.06 0.17 0.20 | B liked 1.00 disliked 0.04 | A relearn median 2 (by 2: 0.93) curve [0.204, 0.567, 0.924, 0.991] | bytes/neuron 218.0  (4s)
+  codebook64                 A day9..16 0.03 0.16 0.23 0.24 | B liked 1.00 disliked 0.04 | A relearn median 1 (by 2: 0.96) curve [0.245, 0.674, 0.952, 0.994] | bytes/neuron 197.5  (4s)
+  codebook256                A day9..16 0.03 0.08 0.13 0.14 | B liked 1.00 disliked 0.04 | A relearn median 2 (by 2: 0.90) curve [0.142, 0.481, 0.898, 0.988] | bytes/neuron 232.9  (5s)
+  lossless-refreeze-then-codebook64 A day9..16 0.03 0.06 0.21 0.21 | B liked 1.00 disliked 0.04 | A relearn median 2 (by 2: 0.95) curve [0.206, 0.618, 0.942, 0.993] | bytes/neuron 184.1  (3s)
+  surface-erased             A day9..16 0.03 0.07 0.14 0.17 | B liked 0.67 disliked 0.04 | A relearn median 2 (by 2: 0.94) curve [0.173, 0.564, 0.925, 0.991] | bytes/neuron 170.0  (3s)
+  all-erased-but-2bit-deep   A day9..16 0.03 0.07 0.16 0.21 | B liked 0.66 disliked 0.04 | A relearn median 2 (by 2: 0.93) curve [0.206, 0.58, 0.923, 0.991] | bytes/neuron 116.6  (3s)
+  deep-erased                A day9..16 0.03 0.03 0.03 0.03 | B liked 0.97 disliked 0.04 | A relearn median 3 (by 2: 0.00) curve [0.032, 0.06, 0.195, 0.68] | bytes/neuron 228.8  (3s)

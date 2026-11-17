@@ -1,0 +1,24 @@
+  eager/vq16                         day3 0.20  day6 0.20 [0.07-0.55]  ctrl6 0.86  relearn med 2 mean 1.6 max 3  >5: 0.00  bits 8.0  rewired 0.0  deepC +0.043->-0.098  surfC6 -0.121
+  eager/vq64                         day3 0.24  day6 0.25 [0.07-0.89]  ctrl6 0.87  relearn med 1 mean 1.4 max 3  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->-0.108  surfC6 -0.111
+  eager/vq256                        day3 0.17  day6 0.23 [0.08-0.68]  ctrl6 0.86  relearn med 2 mean 1.6 max 3  >5: 0.00  bits 12.0  rewired 0.0  deepC +0.043->-0.103  surfC6 -0.114
+  eager/vqm64                        day3 0.21  day6 0.21 [0.07-0.58]  ctrl6 0.88  relearn med 2 mean 1.6 max 3  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->-0.110  surfC6 -0.121
+  eager/vqm256                       day3 0.16  day6 0.19 [0.06-0.69]  ctrl6 0.88  relearn med 2 mean 1.7 max 4  >5: 0.00  bits 12.0  rewired 0.0  deepC +0.043->-0.117  surfC6 -0.130
+  eager/vqm_all                      day3 0.10  day6 0.18 [0.06-0.55]  ctrl6 0.87  relearn med 2 mean 1.7 max 4  >5: 0.00  bits 14.0  rewired 0.0  deepC +0.043->-0.099  surfC6 -0.125
+  eager/holo1                        day3 0.07  day6 0.16 [0.06-0.43]  ctrl6 0.87  relearn med 2 mean 1.8 max 3  >5: 0.00  bits 52.0  rewired 0.0  deepC +0.043->-0.098  surfC6 -0.133
+  eager/holo2                        day3 0.29  day6 0.50 [0.12-0.97]  ctrl6 0.79  relearn med 1 mean 1.2 max 3  >5: 0.00  bits 28.0  rewired 0.0  deepC +0.043->-0.061  surfC6 -0.102
+  eager/holo4                        day3 0.43  day6 0.47 [0.05-0.91]  ctrl6 0.52  relearn med 1 mean 1.4 max 4  >5: 0.00  bits 16.0  rewired 0.0  deepC +0.043->-0.014  surfC6 -0.048
+  eager/holo8                        day3 0.45  day6 0.56 [0.03-0.99]  ctrl6 0.47  relearn med 1 mean 1.4 max 6  >5: 0.03  bits 10.0  rewired 0.0  deepC +0.043->-0.011  surfC6 +0.037
+  eager/holo16                       day3 0.50  day6 0.44 [0.03-1.00]  ctrl6 0.41  relearn med 2 mean 2.1 max 7  >5: 0.09  bits 7.0  rewired 0.0  deepC +0.043->-0.006  surfC6 -0.009
+  lazy/vq16                          day3 0.20  day6 0.20 [0.07-0.55]  ctrl6 0.88  relearn med 1 mean 1.5 max 3  >5: 0.00  bits 8.0  rewired 0.0  deepC +0.043->-0.101  surfC6 -0.124
+  lazy/vq64                          day3 0.17  day6 0.17 [0.06-0.42]  ctrl6 0.85  relearn med 1 mean 1.5 max 3  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->-0.090  surfC6 -0.120
+  lazy/vq256                         day3 0.14  day6 0.28 [0.08-0.81]  ctrl6 0.87  relearn med 2 mean 1.5 max 3  >5: 0.00  bits 12.0  rewired 0.0  deepC +0.043->-0.110  surfC6 -0.111
+  lazy/vqm64                         day3 0.07  day6 0.14 [0.07-0.41]  ctrl6 0.88  relearn med 2 mean 1.8 max 3  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->-0.106  surfC6 -0.140
+  lazy/vqm256                        day3 0.07  day6 0.15 [0.06-0.30]  ctrl6 0.87  relearn med 2 mean 1.9 max 4  >5: 0.00  bits 12.0  rewired 0.0  deepC +0.043->-0.113  surfC6 -0.132
+  lazy/vqm_all                       day3 0.07  day6 0.16 [0.06-0.44]  ctrl6 0.86  relearn med 2 mean 1.7 max 3  >5: 0.00  bits 14.0  rewired 0.0  deepC +0.043->-0.106  surfC6 -0.131
+  lazy/holo1                         day3 0.07  day6 0.15 [0.06-0.40]  ctrl6 0.86  relearn med 2 mean 1.7 max 3  >5: 0.00  bits 52.0  rewired 0.0  deepC +0.043->-0.098  surfC6 -0.132
+  lazy/holo2                         day3 0.08  day6 0.20 [0.06-0.61]  ctrl6 0.84  relearn med 2 mean 1.8 max 3  >5: 0.00  bits 28.0  rewired 0.0  deepC +0.043->-0.100  surfC6 -0.133
+  lazy/holo4                         day3 0.14  day6 0.35 [0.09-0.83]  ctrl6 0.86  relearn med 1 mean 1.4 max 2  >5: 0.00  bits 16.0  rewired 0.0  deepC +0.043->-0.076  surfC6 -0.114
+  lazy/holo8                         day3 0.26  day6 0.42 [0.04-0.93]  ctrl6 0.85  relearn med 1 mean 1.5 max 4  >5: 0.00  bits 10.0  rewired 0.0  deepC +0.043->-0.081  surfC6 -0.114
+  lazy/holo16                        day3 0.28  day6 0.44 [0.05-0.98]  ctrl6 0.71  relearn med 1 mean 1.5 max 4  >5: 0.00  bits 7.0  rewired 0.0  deepC +0.043->-0.073  surfC6 -0.102
+(38s)
+bits/synapse reference: {(6, 6, 6): 22, (4, 4, 6): 18.3125, (2, 2, 4): 12.46875, (2, 2, 2): 10.46875}

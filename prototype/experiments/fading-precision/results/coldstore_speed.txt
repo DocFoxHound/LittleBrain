@@ -1,0 +1,7 @@
+  nb64/666          192 B/neuron  freeze   166,300 n/s  thaw   852,655 n/s (with 8-night evolution  175,043)  peak temp 9506 / 12612 B/neuron
+  nb64/446          226 B/neuron  freeze    84,177 n/s  thaw   840,384 n/s (with 8-night evolution  182,721)  peak temp 22092 / 12617 B/neuron
+  nb64/224          244 B/neuron  freeze    65,276 n/s  thaw   826,519 n/s (with 8-night evolution  182,051)  peak temp 22092 / 12617 B/neuron
+  nb1024/666        177 B/neuron  freeze   136,656 n/s  thaw   821,179 n/s (with 8-night evolution  182,762)  peak temp 9474 / 11556 B/neuron
+  nb1024/446        260 B/neuron  freeze    49,300 n/s  thaw   650,849 n/s (with 8-night evolution  164,685)  peak temp 21908 / 11813 B/neuron
+  nb1024/224        253 B/neuron  freeze    38,316 n/s  thaw   686,147 n/s (with 8-night evolution  175,649)  peak temp 21908 / 11813 B/neuron
+  for scale: hot forward 164,672 neurons/s, modulate 105,983, sleep 107,457 neurons/s (a frozen neuron's night costs nothing: one 3x3 matrix product per block)

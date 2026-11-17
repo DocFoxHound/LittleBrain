@@ -1,0 +1,258 @@
+
+## neocortex: perception, knowledge, planning; ~16 billion neurons in humans (Azevedo 2009)
+  sensory cortex (e.g. V1, S1)  (human count unknown)
+     26.000%  ○  L2/3 IT                  glutamate      [rat column, human-adjusted]
+     16.000%  ○  L4 stellate              glutamate      [rat]
+      9.000%  ○  L5 IT                    glutamate      [rat/human]
+      0.500%  ◐  L5 PT                    glutamate      [human]
+      1.000%  ○  L5/6 NP                  glutamate      [mouse]
+      6.000%  ○  L6 CT                    glutamate      [rat]
+      7.000%  ○  L6 IT                    glutamate      [rat]
+      1.500%  ○  L6b                      glutamate      [rat]
+     12.200%  ◐  PV basket                GABA           [mouse ratios x human total]
+      1.000%  ○  PV chandelier            GABA           [mouse]
+      6.000%  ◐  SST Martinotti           GABA           [mouse]
+      3.900%  ○  SST non-Martinotti       GABA           [mouse]
+      4.000%  ●  VIP                      GABA           [mouse]
+      4.000%  ◐  LAMP5 neurogliaform      GABA           [mouse]
+      1.400%  ○  CCK basket               GABA           [mouse]
+      0.500%  ◐  rosehip                  GABA           [human]
+    note: thick layer 4 receives the thalamus; in primate V1 layer 4 is subdivided (4A/4B/4Calpha/4Cbeta)
+  motor / prefrontal cortex  (human count unknown)
+     32.000%  ○  L2/3 IT                  glutamate      [rat column, human-adjusted]
+      3.000%  ◐  L4 stellate              glutamate      [human/mouse]
+     14.000%  ○  L5 IT                    glutamate      [rat/human]
+      0.700%  ◐  L5 PT                    glutamate      [human]
+      1.300%  ○  L5/6 NP                  glutamate      [mouse]
+      6.000%  ○  L6 CT                    glutamate      [rat]
+      8.500%  ○  L6 IT                    glutamate      [rat]
+      1.500%  ○  L6b                      glutamate      [rat]
+     12.200%  ◐  PV basket                GABA           [mouse ratios x human total]
+      1.000%  ○  PV chandelier            GABA           [mouse]
+      6.000%  ◐  SST Martinotti           GABA           [mouse]
+      3.900%  ○  SST non-Martinotti       GABA           [mouse]
+      4.000%  ●  VIP                      GABA           [mouse]
+      4.000%  ◐  LAMP5 neurogliaform      GABA           [mouse]
+      1.400%  ○  CCK basket               GABA           [mouse]
+      0.500%  ◐  rosehip                  GABA           [human]
+    note: layer 4 thin or absent; layer 2/3 relatively larger in humans
+  anterior cingulate / frontoinsular cortex  (human count unknown)
+     32.000%  ○  L2/3 IT                  glutamate      [rat column, human-adjusted]
+      3.000%  ○  L4 stellate              glutamate      [human]
+     13.000%  ○  L5 IT                    glutamate      [rat/human]
+      1.000%  ◐  von Economo              glutamate      [human]
+      0.700%  ◐  L5 PT                    glutamate      [human]
+      1.300%  ○  L5/6 NP                  glutamate      [mouse]
+      6.000%  ○  L6 CT                    glutamate      [rat]
+      8.500%  ○  L6 IT                    glutamate      [rat]
+      1.500%  ○  L6b                      glutamate      [rat]
+     12.200%  ◐  PV basket                GABA           [mouse ratios x human total]
+      1.000%  ○  PV chandelier            GABA           [mouse]
+      6.000%  ◐  SST Martinotti           GABA           [mouse]
+      3.900%  ○  SST non-Martinotti       GABA           [mouse]
+      4.000%  ●  VIP                      GABA           [mouse]
+      4.000%  ◐  LAMP5 neurogliaform      GABA           [mouse]
+      1.400%  ○  CCK basket               GABA           [mouse]
+      0.500%  ◐  rosehip                  GABA           [human]
+    note: von Economo neurons: emotional awareness, interoception (notes/03)
+
+## thalamus: relay and gate between senses, cortex and subcortex
+  first-order thalamus (LGN, VPM/VPL, MGBv)  (human count unknown)
+     55.000%  ○  TC core                  glutamate      [primate, core/matrix split ○]
+     20.000%  ○  TC matrix                glutamate      [primate]
+     25.000%  ◐  thalamic interneuron     GABA           [primate LGN (25-35%)]
+    note: drivers from the senses (~7% of relay synapses); layer 6 modulators 30-50%
+  higher-order thalamus (pulvinar, MD, POm)  (human count unknown)
+     45.000%  ○  TC core                  glutamate      [primate]
+     40.000%  ○  TC matrix                glutamate      [primate]
+     15.000%  ○  thalamic interneuron     GABA           [primate]
+    note: drivers from cortical layer 5 PT (~2% of relay synapses); most of the primate thalamus by volume
+  thalamic reticular nucleus  (human count unknown)
+    100.000%  ●  TRN                      GABA           [all]
+    note: 100% GABAergic; projects only to the dorsal thalamus
+
+## claustrum: coordinates cortex-wide state
+  claustrum  (human count unknown)
+     88.000%  ○  claustrum projection     glutamate      [analogy with cortex (no unbiased count)]
+      3.500%  ◐  PV basket                GABA           [mouse (22-29% of interneurons)]
+      4.500%  ◐  SST Martinotti           GABA           [mouse]
+      4.000%  ◐  VIP                      GABA           [mouse]
+    note: drives cortical interneurons; synchronous firing triggers cortical down-states
+
+## hippocampal formation: episodic memory, spatial maps, one-shot learning, replay in sleep
+  entorhinal cortex  (7,000,000 neurons in humans)
+      7.000%  ◐  EC L2 stellate           glutamate      [rat]
+      3.500%  ◐  EC L2 island             glutamate      [rat]
+     33.000%  ◐  EC L3 pyramidal          glutamate      [rat]
+     41.000%  ◐  EC L5/6 pyramidal        glutamate      [rat]
+      7.000%  ○  PV basket                GABA           [rodent (assumed cortical-typical)]
+      4.000%  ○  SST Martinotti           GABA           [rodent]
+      2.500%  ○  VIP                      GABA           [rodent]
+      2.000%  ○  LAMP5 neurogliaform      GABA           [rodent]
+    note: human total 7-13 million (two studies disagree); grid cells ~10-30% of MEC L2/3 (○), border cells ~10%
+  dentate gyrus  (17,000,000 neurons in humans)
+     92.500%  ●  DG granule               glutamate      [human (15 M granule cells)]
+      2.500%  ○  DG granule (young)       glutamate      [rat; disputed in adult humans]
+      3.000%  ◐  DG mossy cell            glutamate      [rat (~64% of hilar neurons)]
+      1.200%  ○  HIPP                     GABA           [rat]
+      0.600%  ○  PV basket                GABA           [rat]
+      0.200%  ○  PV chandelier            GABA           [rat]
+    note: human: ~700 new neurons/day by 14C dating (Spalding 2013) vs undetectable after childhood (Sorrells 2018)
+  CA3  (2,400,000 neurons in humans)
+     89.000%  ◐  CA3 pyramidal            glutamate      [rat]
+      1.600%  ○  CA PV basket             GABA           [rat (CA1 ratios applied)]
+      0.400%  ○  CA axo-axonic            GABA           [rat]
+      1.100%  ○  bistratified             GABA           [rat]
+      1.000%  ○  O-LM                     GABA           [rat]
+      1.500%  ○  CCK basket               GABA           [rat]
+      2.500%  ○  ivy                      GABA           [rat]
+      1.000%  ○  hippocampal neurogliaform GABA           [rat]
+      1.900%  ○  interneuron-specific     GABA           [rat]
+    note: recurrent collaterals: ~0.9% connection probability (Guzman 2016); human CA3+CA2 = 2.7 M
+  CA2  (300,000 neurons in humans)
+     89.000%  ○  CA2 pyramidal            glutamate      [rat]
+     11.000%  ○  CA PV basket             GABA           [rodent (dense PV plexus)]
+    note: social memory; counted with CA3 in humans
+  CA1  (16,000,000 neurons in humans)
+     89.000%  ●  CA1 pyramidal            glutamate      [rat; human 16 M pyramids (24 M at 47 y -> 11 M at 85 y)]
+      1.600%  ◐  CA PV basket             GABA           [rat]
+      0.400%  ◐  CA axo-axonic            GABA           [rat]
+      1.100%  ◐  bistratified             GABA           [rat (incl. CCK dendrite-targeting 0.5%)]
+      1.000%  ◐  O-LM                     GABA           [rat (incl. SST long-range 0.5%)]
+      1.000%  ◐  CCK basket               GABA           [rat]
+      2.600%  ◐  ivy                      GABA           [rat (most numerous: 23% of interneurons)]
+      1.100%  ◐  hippocampal neurogliaform GABA           [rat]
+      2.200%  ◐  interneuron-specific     GABA           [rat]
+    note: one-shot plateau learning (BTSP); compares CA3 (basal) with entorhinal input (apical tufts)
+  subiculum  (4,500,000 neurons in humans)
+     58.000%  ◐  subiculum bursting       glutamate      [rat]
+     32.000%  ◐  subiculum regular        glutamate      [rat]
+      5.000%  ○  PV basket                GABA           [rodent (assumed ~10% interneurons)]
+      3.000%  ○  O-LM                     GABA           [rodent]
+      2.000%  ○  hippocampal neurogliaform GABA           [rodent]
+    note: human count ~4.5 M (○, from memory of West & Gundersen); main hippocampal output
+
+## amygdala: threat, importance, emotional tagging of memory
+  basolateral amygdala (lateral + basal + accessory basal)  (8,500,000 neurons in humans)
+     41.750%  ○  BLA principal (+)        glutamate      [rat; valence split assumed 50/50]
+     41.750%  ○  BLA principal (-)        glutamate      [rat]
+      7.000%  ◐  PV basket                GABA           [rat (~40-50% of interneurons)]
+      2.500%  ○  SST Martinotti           GABA           [rat]
+      2.000%  ○  CCK basket               GABA           [rat]
+      4.500%  ○  interneuron-specific     GABA           [rat (CR/VIP: inhibit other interneurons)]
+      0.500%  ○  LAMP5 neurogliaform      GABA           [rodent]
+    note: ~80-85% principal cells; learns what things mean (good/bad)
+  intercalated cell masses  (human count unknown)
+    100.000%  ●  intercalated             GABA           [rodent/primate]
+    note: no reliable count in any species; gates BLA -> central amygdala; fear extinction
+  central amygdala  (360,000 neurons in humans)
+     33.000%  ◐  CeL PKCδ (off)           GABA           [mouse (~50% of CeL GABA cells)]
+     25.000%  ○  CeL SST (on)             GABA           [mouse]
+     10.000%  ○  CeA CRF                  GABA           [mouse/rat]
+     27.000%  ○  CeM output               GABA           [rodent]
+      5.000%  ○  VTA glutamate            glutamate      [rodent (VGluT2 minority)]
+    note: ~95% GABAergic; output to PAG (freezing), hypothalamus, brainstem (heart rate)
+
+## basal ganglia: action selection, habits, reward learning (direct = go, indirect = no-go, hyperdirect = stop)
+  striatum (caudate, putamen, accumbens)  (82,000,000 neurons in humans)
+     36.500%  ◐  D1 MSN                   GABA           [human total; D1:D2 ~1:1 (mouse)]
+     36.500%  ◐  D2 MSN                   GABA           [human total; D1:D2 ~1:1 (mouse)]
+      9.900%  ○  striosome MSN            GABA           [striosomes ~10-15% of volume]
+      8.000%  ○  striatal calretinin      GABA           [human (calretinin most common in primates)]
+      4.000%  ○  striatal PV FSI          GABA           [human split unknown]
+      3.000%  ○  striatal SST/NPY/NOS     GABA           [human split unknown]
+      1.500%  ◐  cholinergic TAN          acetylcholine  [human (~1-2%)]
+      0.600%  ○  striatal TH              GABA           [mouse]
+    note: human interneurons 17.1% (associative 21.9%, sensorimotor 12.8%, limbic 11.1%); rodent ~5%
+  globus pallidus externa  (human count unknown)
+     73.000%  ●  GPe prototypic           GABA           [rat/mouse (incl. ~8% other subtypes)]
+     27.000%  ●  GPe arkypallidal         GABA           [rat/mouse]
+    note: prototypic -> STN, GPi/SNr; arkypallidal -> striatum only ('stop')
+  globus pallidus interna  (human count unknown)
+    100.000%  ●  GPi                      GABA           [primate]
+    note: tonic inhibition of motor thalamus
+  subthalamic nucleus  (900,000 neurons in humans)
+    100.000%  ◐  STN                      glutamate      [human (240-560 k per side)]
+    note: the only excitatory nucleus of the basal ganglia; hyperdirect pathway from cortex
+  substantia nigra pars reticulata  (human count unknown)
+     70.000%  ●  SNr                      GABA           [rat]
+     30.000%  ◐  dopamine                 dopamine       [rat (displaced dopamine cells)]
+  substantia nigra pars compacta  (550,000 neurons in humans)
+     71.000%  ●  dopamine                 dopamine       [rat; human ~550 k pigmented SN neurons (Pakkenberg 1991)]
+     29.000%  ●  VTA GABA                 GABA           [rat]
+    note: dopamine for movement and habits; lost in Parkinson's disease
+
+## cerebellum: prediction and error correction for movement, timing, and thought
+  cerebellar cortex  (69,000,000,000 neurons in humans)
+     99.180%  ●  cerebellar granule       glutamate      [human]
+      0.030%  ●  Purkinje                 GABA           [human (15-30 M)]
+      0.081%  ◐  Golgi                    GABA           [human (~81 M, secondary source)]
+      0.180%  ◐  cerebellar basket        GABA           [cat]
+      0.511%  ◐  cerebellar stellate      GABA           [cat]
+      0.015%  ○  unipolar brush           glutamate      [rodent (dense only in vestibulocerebellum)]
+      0.003%  ○  Lugaro                   GABA           [rat (rare)]
+    note: granule cells are ~80% of all neurons in the human brain; each Purkinje cell gets exactly one climbing fiber
+  deep cerebellar nuclei  (human count unknown)
+     70.000%  ○  DCN projection           glutamate      [mouse (majority; exact share not found)]
+     20.000%  ○  nucleo-olivary           GABA           [mouse]
+     10.000%  ○  Golgi                    GABA           [mouse (local GABA/glycine interneurons)]
+    note: cerebellar output; rebound firing after Purkinje pauses
+  inferior olive  (human count unknown)
+    100.000%  ●  inferior olive           glutamate      [all]
+    note: climbing fibers: error/teaching signal; each olive cell reaches ~14-17 Purkinje cells (human)
+
+## neuromodulatory nuclei: the brain's chemical messengers (notes/07, notes/08)
+  ventral tegmental area  (human count unknown)
+     64.000%  ●  dopamine                 dopamine       [rat (Nair-Roberts 2008: 40,174 DA)]
+     33.500%  ●  VTA GABA                 GABA           [rat]
+      2.500%  ◐  VTA glutamate            glutamate      [rat]
+    note: reward prediction error -> accumbens, prefrontal cortex, amygdala, hippocampus
+  locus coeruleus  (50,000 neurons in humans)
+     95.000%  ●  LC noradrenaline         noradrenaline  [human (45-54 k)]
+      5.000%  ○  VTA GABA                 GABA           [rodent peri-LC GABA (not quantified)]
+    note: arousal, surprise; projects to the whole cortex
+  dorsal raphe  (400,000 neurons in humans)
+     40.000%  ○  raphe serotonin          serotonin      [human count 165 k; share ○]
+     40.000%  ○  VTA GABA                 GABA           [rodent]
+     15.000%  ○  VTA glutamate            glutamate      [rodent]
+      5.000%  ◐  dopamine                 dopamine       [human (5,600 DA cells)]
+    note: serotonin to forebrain; many 5-HT cells co-release glutamate
+  median raphe  (human count unknown)
+      8.500%  ◐  raphe serotonin          serotonin      [mouse; human 64 k 5-HT]
+     26.000%  ◐  VTA glutamate            glutamate      [mouse (VGluT3)]
+     37.000%  ◐  VTA GABA                 GABA           [mouse]
+     28.500%  ○  VTA glutamate            glutamate      [mouse (triple-negative, likely VGluT2)]
+    note: -> hippocampus and septum
+  nucleus basalis of Meynert  (400,000 neurons in humans)
+     90.000%  ●  basal forebrain ACh      acetylcholine  [human (~200 k cholinergic per hemisphere)]
+     10.000%  ◐  VTA GABA                 GABA           [human]
+    note: acetylcholine to the entire neocortex and amygdala; lost early in Alzheimer's disease
+  medial septum / diagonal band  (human count unknown)
+     25.000%  ○  PPN/LDT ACh              acetylcholine  [rat (ratio disputed)]
+     50.000%  ◐  septal PV pacemaker      GABA           [rat]
+     25.000%  ◐  VTA glutamate            glutamate      [rat]
+    note: theta pacemaker for the hippocampus; acetylcholine sets encoding mode
+  pedunculopontine / laterodorsal tegmental  (human count unknown)
+     24.000%  ◐  PPN/LDT ACh              acetylcholine  [rat (PPN 25%, LDT 22%)]
+     38.000%  ◐  VTA glutamate            glutamate      [rat]
+     38.000%  ◐  VTA GABA                 GABA           [rat]
+    note: arousal, REM sleep, locomotion
+
+## hypothalamus: drives and homeostasis: hunger, sleep/wake, stress, bonding, daily rhythm
+  arcuate nucleus (modeled populations)  (human count unknown)
+     47.000%  ◐  AgRP/NPY                 GABA           [mouse (~8,000 NPY)]
+     53.000%  ◐  POMC                     glutamate      [mouse (~9,000 POMC)]
+    note: human arcuate ~510 k neurons in total; peptide counts not available
+  lateral hypothalamus (modeled populations)  (human count unknown)
+     33.000%  ◐  orexin                   glutamate      [human ~70 k orexin; MCH 2-3x orexin (rat)]
+     67.000%  ◐  MCH                      GABA           [rat]
+    note: orexin stabilizes wakefulness (85-95% lost in narcolepsy); MCH promotes sleep
+  paraventricular nucleus (modeled populations)  (human count unknown)
+     40.000%  ○  PVN CRH                  glutamate      [no human counts]
+     30.000%  ○  PVN oxytocin             glutamate      [no human counts]
+     30.000%  ○  PVN/SON vasopressin      glutamate      [no human counts]
+    note: stress axis; bonding and caregiving
+  suprachiasmatic nucleus  (17,000 neurons in humans)
+     80.000%  ●  SCN clock                GABA           [human (6,890 AVP per side)]
+     20.000%  ●  SCN clock                GABA           [human (1,700 VIP per side; light-receiving core)]
+    note: the master clock; nearly all GABAergic

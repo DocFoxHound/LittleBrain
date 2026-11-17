@@ -1,0 +1,8 @@
+resident: pruned 4947768, mean rate 0.0900
+       paged K=8  : bit-identical to resident: True   (PCIe in  1938.8 MB, out  1936.7 MB)
+       paged K=40 : bit-identical to resident: True   (PCIe in   649.1 MB, out   649.1 MB)
+    zerocopy K=0  : bit-identical to resident: True   (PCIe in     0.0 MB, out     0.0 MB)
+     managed K=8  : bit-identical to resident: True   (PCIe in  1938.8 MB, out  1930.4 MB)
+     managed K=0  : bit-identical to resident: True   (PCIe in     0.0 MB, out     0.0 MB)
+managed_lazy K=8  : bit-identical to resident: True   (PCIe in  1938.8 MB, out  1930.4 MB)
+OK

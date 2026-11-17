@@ -1,0 +1,5 @@
+[N=1,048,576 modes=['managed']] init 0.5 s, VRAM pool 100 MB, host words 1.07 GB, {'VmHWM_MB': 1437.34375, 'VmRSS_MB': 1373.6484375}
+       managed K=  256 frac=0.050 churn=0.02: fwd     0.62 ms ['0.6', '0.6'] mod     0.61 ms |   1686.0 M n-steps/s,   84.0 M active/s | PCIe/step fwd in    1.0 out    0.0 MB, mod in    0.0 out    0.0 MB | x1.00 vs managed
+       managed K=  256 frac=0.050 churn=0.20: fwd     1.55 ms ['1.5', '1.7'] mod     0.87 ms |    675.2 M n-steps/s,   33.6 M active/s | PCIe/step fwd in   10.0 out    0.0 MB, mod in    0.0 out    0.0 MB | x1.00 vs managed
+       managed K=  256 frac=0.050 churn=1.00: fwd     9.42 ms ['9.4', '9.4'] mod     1.84 ms |    111.3 M n-steps/s,    5.5 M active/s | PCIe/step fwd in   40.4 out   40.4 MB, mod in    0.0 out    0.0 MB | x1.00 vs managed
+  peak {'VmHWM_MB': 1437.34375, 'VmRSS_MB': 1119.48828125}, VRAM this process 226 MB

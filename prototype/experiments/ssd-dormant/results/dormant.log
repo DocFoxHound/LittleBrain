@@ -1,0 +1,22 @@
+== Dormancy: compression of packed neurons ==
+  newborn neurons, column frames, zstd-3         ratio  7.35x      139 B/neuron   compress     230 MB/s  decompress     428 MB/s (1 thread)
+  aged 10 days, column frames, zstd-1            ratio  3.20x      320 B/neuron   compress     180 MB/s  decompress     768 MB/s (1 thread)
+  aged 10 days, column frames, zstd-3            ratio  3.37x      304 B/neuron   compress     178 MB/s  decompress     877 MB/s (1 thread)
+  aged 10 days, column frames, zstd-9            ratio  3.45x      297 B/neuron   compress      35 MB/s  decompress    1274 MB/s (1 thread)
+  aged 10 days, column frames, zstd-19           ratio  4.03x      254 B/neuron   compress       2 MB/s  decompress     905 MB/s (1 thread)
+  aged, column frames, byte-shuffled + zstd-3    ratio  3.51x      292 B/neuron   compress     133 MB/s  decompress     608 MB/s (1 thread)
+  aged, column frames, lz4                       ratio  1.88x      544 B/neuron   compress     259 MB/s  decompress    1177 MB/s (1 thread)
+  aged, one frame per neuron, zstd-3 (no dict)   ratio  2.35x      435 B/neuron   compress      61 MB/s  decompress     145 MB/s (1 thread)
+  aged, one frame per neuron, zstd-3 + 16 KiB dict ratio  3.10x      331 B/neuron   compress     103 MB/s  decompress     336 MB/s (1 thread)
+== Dormancy: recall latency, cold from the SSD (O_DIRECT), including 30 skipped nights applied on recall, then one forward pass ==
+  awake neuron in RAM: fire only                             p50      10 us  p99      19 us   [read      0 + unzip     0 + catch-up&fire     10]
+  neuron in RAM: catch up 30 nights + fire                   p50      35 us  p99      45 us   [read      0 + unzip     0 + catch-up&fire     35]
+  1 dormant neuron, raw, anywhere in the 24 GiB brain        p50     228 us  p99   1,537 us   [read    155 + unzip     0 + catch-up&fire     68]
+  1 dormant neuron, raw, within a 0.35 GB span               p50     145 us  p99     271 us   [read     74 + unzip     0 + catch-up&fire     69]
+  1 dormant neuron, own zstd+dict frame (0.35 GB archive)    p50     172 us  p99   1,234 us   [read     91 + unzip     8 + catch-up&fire     69]
+  1 dormant neuron, via its column's zstd frame              p50   2,441 us  p99   4,246 us   [read    340 + unzip 1,999 + catch-up&fire    109]
+  1 dormant column (1,024 neurons), raw (1 MiB read)         p50   4,326 us  p99   5,795 us   [read    603 + unzip     0 + catch-up&fire  3,706]
+  1 dormant column, zstd frame (~0.3 MiB read)               p50   6,176 us  p99   8,685 us   [read    399 + unzip 1,614 + catch-up&fire  3,779]
+== Dormancy: batch recall of 256 random columns (256 MiB raw) ==
+  raw:  read 78 ms + catch-up&fire = 785 ms (0.34 GB/s of neurons recalled, 0.33 M neurons/s)
+  zstd: read 41 ms + decompress 355 ms + catch-up&fire 735 ms = 1131 ms (0.24 GB/s recalled)

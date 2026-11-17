@@ -1,0 +1,1823 @@
+{
+  "log": [
+    {
+      "episode": 0,
+      "step": 0,
+      "neurons": 260212,
+      "s": 0.8965620450035203,
+      "hit_rate": 0.0,
+      "read_MB": 1067.450368,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 1,
+      "neurons": 260317,
+      "s": 0.6242945539997891,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 2,
+      "neurons": 260406,
+      "s": 0.6343723050013068,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 3,
+      "neurons": 260710,
+      "s": 0.5197880150008132,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 4,
+      "neurons": 260696,
+      "s": 0.35169070399570046,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 5,
+      "neurons": 260014,
+      "s": 0.33335620800062316,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 6,
+      "neurons": 260266,
+      "s": 0.33010234399989713,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 7,
+      "neurons": 260603,
+      "s": 0.23173796300397953,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 8,
+      "neurons": 259972,
+      "s": 0.2238210169962258,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 9,
+      "neurons": 260974,
+      "s": 0.23002920099679613,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 10,
+      "neurons": 260590,
+      "s": 0.31080009000288555,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 11,
+      "neurons": 261362,
+      "s": 0.24983102499390952,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 12,
+      "neurons": 260282,
+      "s": 0.3387162380022346,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 13,
+      "neurons": 260287,
+      "s": 0.32643018400267465,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 14,
+      "neurons": 260553,
+      "s": 0.37984764100110624,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 15,
+      "neurons": 260564,
+      "s": 0.3233245809969958,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 16,
+      "neurons": 260550,
+      "s": 0.34722658599639544,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 17,
+      "neurons": 260138,
+      "s": 0.35491888899559854,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 18,
+      "neurons": 261348,
+      "s": 0.3328764699981548,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 0,
+      "step": 19,
+      "neurons": 261388,
+      "s": 0.30538981299469015,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.24853515625
+    },
+    {
+      "episode": 1,
+      "step": 0,
+      "neurons": 261179,
+      "s": 0.39725273799558636,
+      "hit_rate": 0.3972602739726027,
+      "read_MB": 645.922816,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 1,
+      "neurons": 261841,
+      "s": 0.2294714509989717,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 2,
+      "neurons": 261336,
+      "s": 0.2273779269962688,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 3,
+      "neurons": 261990,
+      "s": 0.23122543500358006,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 4,
+      "neurons": 261300,
+      "s": 0.22494923500198638,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 5,
+      "neurons": 262267,
+      "s": 0.22509633599838708,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 6,
+      "neurons": 261492,
+      "s": 0.2305783230040106,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 7,
+      "neurons": 260978,
+      "s": 0.2286300370033132,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 8,
+      "neurons": 261535,
+      "s": 0.2294123000028776,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 9,
+      "neurons": 261636,
+      "s": 0.3318923589977203,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 10,
+      "neurons": 262187,
+      "s": 0.2366006739976001,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 11,
+      "neurons": 261088,
+      "s": 0.3042448400010471,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 12,
+      "neurons": 262050,
+      "s": 0.36410957900079666,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 13,
+      "neurons": 262082,
+      "s": 0.263868990004994,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 14,
+      "neurons": 261213,
+      "s": 0.25806637200003024,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 15,
+      "neurons": 262206,
+      "s": 0.2541264060055255,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 16,
+      "neurons": 261360,
+      "s": 0.2510940469946945,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 17,
+      "neurons": 260947,
+      "s": 0.2509952260006685,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 18,
+      "neurons": 261635,
+      "s": 0.24827951299812412,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 1,
+      "step": 19,
+      "neurons": 262173,
+      "s": 0.2398643590058782,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.39892578125
+    },
+    {
+      "episode": 2,
+      "step": 0,
+      "neurons": 261751,
+      "s": 0.4469763939996483,
+      "hit_rate": 0.6027397260273972,
+      "read_MB": 425.721856,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 1,
+      "neurons": 261759,
+      "s": 0.25888594499701867,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 2,
+      "neurons": 261933,
+      "s": 0.2403322960017249,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 3,
+      "neurons": 261468,
+      "s": 0.2624797389944433,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 4,
+      "neurons": 261177,
+      "s": 0.2515759469970362,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 5,
+      "neurons": 262358,
+      "s": 0.23636988500220468,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 6,
+      "neurons": 262042,
+      "s": 0.2637112030060962,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 7,
+      "neurons": 261643,
+      "s": 0.2611731190045248,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 8,
+      "neurons": 261875,
+      "s": 0.318895493997843,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 9,
+      "neurons": 261933,
+      "s": 0.2986863089972758,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 10,
+      "neurons": 262234,
+      "s": 0.2575400440036901,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 11,
+      "neurons": 261077,
+      "s": 0.24908959200547542,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 12,
+      "neurons": 261552,
+      "s": 0.2704908859959687,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 13,
+      "neurons": 262120,
+      "s": 0.34535293099906994,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 14,
+      "neurons": 260969,
+      "s": 0.3176715079971473,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 15,
+      "neurons": 260961,
+      "s": 0.2895464049943257,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 16,
+      "neurons": 261704,
+      "s": 0.3731753899992327,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 17,
+      "neurons": 261097,
+      "s": 0.3397700929999701,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 18,
+      "neurons": 261455,
+      "s": 0.2592069469974376,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 2,
+      "step": 19,
+      "neurons": 262000,
+      "s": 0.3036848909978289,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.498046875
+    },
+    {
+      "episode": 3,
+      "step": 0,
+      "neurons": 261286,
+      "s": 0.3627594630015665,
+      "hit_rate": 0.7257590597453477,
+      "read_MB": 293.60128,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 1,
+      "neurons": 262095,
+      "s": 0.2623441579999053,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 2,
+      "neurons": 261029,
+      "s": 0.24970378099533264,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 3,
+      "neurons": 261288,
+      "s": 0.2508265240030596,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 4,
+      "neurons": 261572,
+      "s": 0.26954377699439647,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 5,
+      "neurons": 261675,
+      "s": 0.29401579599652905,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 6,
+      "neurons": 261886,
+      "s": 0.2636673749948386,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 7,
+      "neurons": 261298,
+      "s": 0.3009855489945039,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 8,
+      "neurons": 261750,
+      "s": 0.36895168099727016,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 9,
+      "neurons": 262224,
+      "s": 0.3523972160037374,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 10,
+      "neurons": 261746,
+      "s": 0.3548550119958236,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 11,
+      "neurons": 260713,
+      "s": 0.37045101200055797,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 12,
+      "neurons": 260880,
+      "s": 0.3623858229984762,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 13,
+      "neurons": 260982,
+      "s": 0.27295479599706596,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 14,
+      "neurons": 261414,
+      "s": 0.373487810997176,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 15,
+      "neurons": 261287,
+      "s": 0.26955045500653796,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 16,
+      "neurons": 261169,
+      "s": 0.3074131590037723,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 17,
+      "neurons": 261325,
+      "s": 0.2661196709959768,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 18,
+      "neurons": 261993,
+      "s": 0.3242333900052472,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 3,
+      "step": 19,
+      "neurons": 261612,
+      "s": 0.2876784590043826,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.56640625
+    },
+    {
+      "episode": 4,
+      "step": 0,
+      "neurons": 261185,
+      "s": 0.44655870299902745,
+      "hit_rate": 0.8074656188605108,
+      "read_MB": 205.520896,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 1,
+      "neurons": 260883,
+      "s": 0.35192871800245484,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 2,
+      "neurons": 260224,
+      "s": 0.39153682500182185,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 3,
+      "neurons": 261091,
+      "s": 0.3032337019976694,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 4,
+      "neurons": 260587,
+      "s": 0.31117552900104783,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 5,
+      "neurons": 260667,
+      "s": 0.40136155399522977,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 6,
+      "neurons": 260559,
+      "s": 0.3696946480049519,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 7,
+      "neurons": 260539,
+      "s": 0.32634082900040084,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 8,
+      "neurons": 261248,
+      "s": 0.32200186700356426,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 9,
+      "neurons": 260698,
+      "s": 0.27436531800049124,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 10,
+      "neurons": 259987,
+      "s": 0.3374834439964616,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 11,
+      "neurons": 260426,
+      "s": 0.2615504819987109,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 12,
+      "neurons": 260987,
+      "s": 0.28508746300212806,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 13,
+      "neurons": 260727,
+      "s": 0.2588606540011824,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 14,
+      "neurons": 261123,
+      "s": 0.24645080600021174,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 15,
+      "neurons": 261068,
+      "s": 0.2658834429967101,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 16,
+      "neurons": 260901,
+      "s": 0.24260887900163652,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 17,
+      "neurons": 260927,
+      "s": 0.2938110559989582,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 18,
+      "neurons": 260081,
+      "s": 0.2845249519959907,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 4,
+      "step": 19,
+      "neurons": 260625,
+      "s": 0.44865304799895966,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.6142578125
+    },
+    {
+      "episode": 5,
+      "step": 0,
+      "neurons": 261522,
+      "s": 0.5093437860050471,
+      "hit_rate": 0.8333333333333334,
+      "read_MB": 178.25792,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 1,
+      "neurons": 261582,
+      "s": 0.40910936600266723,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 2,
+      "neurons": 261169,
+      "s": 0.35299883999687154,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 3,
+      "neurons": 261084,
+      "s": 0.45432050499948673,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 4,
+      "neurons": 260254,
+      "s": 0.4494963960023597,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 5,
+      "neurons": 260550,
+      "s": 0.3249774769938085,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 6,
+      "neurons": 260848,
+      "s": 0.3682239199988544,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 7,
+      "neurons": 261548,
+      "s": 0.3286562619978213,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 8,
+      "neurons": 260928,
+      "s": 0.35002013399935095,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 9,
+      "neurons": 260969,
+      "s": 0.40601414399861824,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 10,
+      "neurons": 261293,
+      "s": 0.407098503994348,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 11,
+      "neurons": 261290,
+      "s": 0.3897706999996444,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 12,
+      "neurons": 261527,
+      "s": 0.2604851910000434,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 13,
+      "neurons": 261174,
+      "s": 0.2615678929942078,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 14,
+      "neurons": 261078,
+      "s": 0.261949938001635,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 15,
+      "neurons": 261247,
+      "s": 0.31231082700105617,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 16,
+      "neurons": 261305,
+      "s": 0.28986198399798013,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 17,
+      "neurons": 261691,
+      "s": 0.297961383999791,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 18,
+      "neurons": 261226,
+      "s": 0.32957739799894625,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 5,
+      "step": 19,
+      "neurons": 261478,
+      "s": 0.3824321339998278,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.65576171875
+    },
+    {
+      "episode": 6,
+      "step": 0,
+      "neurons": 261057,
+      "s": 0.47637912900245283,
+      "hit_rate": 0.8644400785854617,
+      "read_MB": 144.703488,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 1,
+      "neurons": 260213,
+      "s": 0.3687692550010979,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 2,
+      "neurons": 260817,
+      "s": 0.34810527600347996,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 3,
+      "neurons": 260834,
+      "s": 0.37755901600030484,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 4,
+      "neurons": 259992,
+      "s": 0.2553357610013336,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 5,
+      "neurons": 260269,
+      "s": 0.35528064199752407,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 6,
+      "neurons": 260426,
+      "s": 0.304161276006198,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 7,
+      "neurons": 259890,
+      "s": 0.330743987004098,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 8,
+      "neurons": 260804,
+      "s": 0.29894771999533987,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 9,
+      "neurons": 260820,
+      "s": 0.2902883520000614,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 10,
+      "neurons": 260496,
+      "s": 0.2405993650027085,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 11,
+      "neurons": 260847,
+      "s": 0.268274943002325,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 12,
+      "neurons": 260920,
+      "s": 0.2518267370032845,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 13,
+      "neurons": 260241,
+      "s": 0.23984059099893784,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 14,
+      "neurons": 260696,
+      "s": 0.2606055069991271,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 15,
+      "neurons": 260966,
+      "s": 0.2605093539968948,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 16,
+      "neurons": 261310,
+      "s": 0.25591767500009155,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 17,
+      "neurons": 260998,
+      "s": 0.2561709930014331,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 18,
+      "neurons": 259841,
+      "s": 0.25759442200069316,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 6,
+      "step": 19,
+      "neurons": 260732,
+      "s": 0.24910098699911032,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.689453125
+    },
+    {
+      "episode": 7,
+      "step": 0,
+      "neurons": 261517,
+      "s": 0.2826790369945229,
+      "hit_rate": 0.8714425907752699,
+      "read_MB": 137.363456,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 1,
+      "neurons": 260781,
+      "s": 0.2525747030013008,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 2,
+      "neurons": 261064,
+      "s": 0.24337518100219313,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 3,
+      "neurons": 260760,
+      "s": 0.28799747100129025,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 4,
+      "neurons": 260880,
+      "s": 0.2649597760027973,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 5,
+      "neurons": 261182,
+      "s": 0.24046898799861083,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 6,
+      "neurons": 260323,
+      "s": 0.3357282569995732,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 7,
+      "neurons": 260314,
+      "s": 0.36433155000122497,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 8,
+      "neurons": 260788,
+      "s": 0.30137359599757474,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 9,
+      "neurons": 260822,
+      "s": 0.29955151100148214,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 10,
+      "neurons": 260717,
+      "s": 0.2520318709939602,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 11,
+      "neurons": 259700,
+      "s": 0.2479387530038366,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 12,
+      "neurons": 261762,
+      "s": 0.3068655770039186,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 13,
+      "neurons": 261312,
+      "s": 0.24638828100432875,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 14,
+      "neurons": 260801,
+      "s": 0.24228943599882768,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 15,
+      "neurons": 261468,
+      "s": 0.24477884500083746,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 16,
+      "neurons": 259932,
+      "s": 0.2312261179977213,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 17,
+      "neurons": 260236,
+      "s": 0.28737200899922755,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 18,
+      "neurons": 260319,
+      "s": 0.2608351979943109,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 7,
+      "step": 19,
+      "neurons": 260747,
+      "s": 0.25995407099981094,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.721435546875
+    },
+    {
+      "episode": 8,
+      "step": 0,
+      "neurons": 260657,
+      "s": 0.4106056050004554,
+      "hit_rate": 0.881139489194499,
+      "read_MB": 126.877696,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 1,
+      "neurons": 260037,
+      "s": 0.32400946100096917,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 2,
+      "neurons": 261100,
+      "s": 0.23289802799990866,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 3,
+      "neurons": 261440,
+      "s": 0.23278524900524644,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 4,
+      "neurons": 261181,
+      "s": 0.23295335000148043,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 5,
+      "neurons": 260303,
+      "s": 0.23457544200209668,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 6,
+      "neurons": 260881,
+      "s": 0.232253178000974,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 7,
+      "neurons": 260705,
+      "s": 0.24866362099419348,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 8,
+      "neurons": 260839,
+      "s": 0.23227203400165308,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 9,
+      "neurons": 260904,
+      "s": 0.2513984530014568,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 10,
+      "neurons": 260883,
+      "s": 0.25311122499988414,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 11,
+      "neurons": 260016,
+      "s": 0.24296022499765968,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 12,
+      "neurons": 260574,
+      "s": 0.2835863559957943,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 13,
+      "neurons": 260894,
+      "s": 0.3214691920002224,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 14,
+      "neurons": 260314,
+      "s": 0.23905240100430092,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 15,
+      "neurons": 260422,
+      "s": 0.2839206770004239,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 16,
+      "neurons": 259962,
+      "s": 0.24402352999459254,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 17,
+      "neurons": 260380,
+      "s": 0.34380709400284104,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 18,
+      "neurons": 261238,
+      "s": 0.24999240900069708,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 8,
+      "step": 19,
+      "neurons": 260635,
+      "s": 0.345716336996702,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7509765625
+    },
+    {
+      "episode": 9,
+      "step": 0,
+      "neurons": 260434,
+      "s": 0.3891015810004319,
+      "hit_rate": 0.8824681684622919,
+      "read_MB": 125.82912,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 1,
+      "neurons": 261139,
+      "s": 0.32052859800023725,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 2,
+      "neurons": 261656,
+      "s": 0.24410066299606115,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 3,
+      "neurons": 261248,
+      "s": 0.2656223429949023,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 4,
+      "neurons": 260800,
+      "s": 0.2543862120000995,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 5,
+      "neurons": 261498,
+      "s": 0.23366029300086666,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 6,
+      "neurons": 260973,
+      "s": 0.24980047200369881,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 7,
+      "neurons": 261663,
+      "s": 0.24574413299706066,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 8,
+      "neurons": 261627,
+      "s": 0.23397955900145462,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 9,
+      "neurons": 261584,
+      "s": 0.2507024860024103,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 10,
+      "neurons": 261314,
+      "s": 0.24520794300042326,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 11,
+      "neurons": 261217,
+      "s": 0.24279355599719565,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 12,
+      "neurons": 260430,
+      "s": 0.2433612470049411,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 13,
+      "neurons": 261406,
+      "s": 0.23671791800006758,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 14,
+      "neurons": 261238,
+      "s": 0.24412881000171183,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 15,
+      "neurons": 261832,
+      "s": 0.2391124010027852,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 16,
+      "neurons": 261981,
+      "s": 0.23956535899924347,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 17,
+      "neurons": 261833,
+      "s": 0.26827941599913174,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 18,
+      "neurons": 261585,
+      "s": 0.24481519200344337,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    },
+    {
+      "episode": 9,
+      "step": 19,
+      "neurons": 261445,
+      "s": 0.245596166998439,
+      "hit_rate": 1.0,
+      "read_MB": 0.0,
+      "pressure": 0.7802734375
+    }
+  ],
+  "neuron_steps_per_s": 864062.0067525591,
+  "hit_rate": 0.9843287241345494,
+  "read_GB": 3.351248896,
+  "spill_GB": 0.0,
+  "dirty_GiB": 3.12109375,
+  "day_wall_s": 62.87465052100015,
+  "night_compute_s": 2.159676142000535,
+  "night_write_s": 0.8327549570021802,
+  "night_neurons": 3272704,
+  "peak_rss_MiB": 4925.10546875,
+  "params": {
+    "episodes": 10,
+    "steps": 20,
+    "habit_cols": 2048,
+    "ctx_habit": 896,
+    "ctx_novel": 128,
+    "block_KiB": 64,
+    "cache_GiB": 4
+  }
+}

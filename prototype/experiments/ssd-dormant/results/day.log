@@ -1,0 +1,14 @@
+== Day: 10 episodes x 20 steps; context = 896 habitual + 128 novel columns; 25% of their neurons active per step; cache 4 GiB of 64 KiB blocks ==
+  episode  0: first step    897 ms (hit  0.0%, read   1067 MB); other steps median   333 ms (hit 100.0%);   681,642 neuron-steps/s; sleep pressure 24.9%
+  episode  1: first step    397 ms (hit 39.7%, read    646 MB); other steps median   240 ms (hit 100.0%); 1,001,025 neuron-steps/s; sleep pressure 39.9%
+  episode  2: first step    447 ms (hit 60.3%, read    426 MB); other steps median   264 ms (hit 100.0%);   895,373 neuron-steps/s; sleep pressure 49.8%
+  episode  3: first step    363 ms (hit 72.6%, read    294 MB); other steps median   294 ms (hit 100.0%);   848,304 neuron-steps/s; sleep pressure 56.6%
+  episode  4: first step    447 ms (hit 80.7%, read    206 MB); other steps median   303 ms (hit 100.0%);   811,839 neuron-steps/s; sleep pressure 61.4%
+  episode  5: first step    509 ms (hit 83.3%, read    178 MB); other steps median   350 ms (hit 100.0%);   730,987 neuron-steps/s; sleep pressure 65.6%
+  episode  6: first step    476 ms (hit 86.4%, read    145 MB); other steps median   261 ms (hit 100.0%);   876,582 neuron-steps/s; sleep pressure 68.9%
+  episode  7: first step    283 ms (hit 87.1%, read    137 MB); other steps median   260 ms (hit 100.0%);   956,481 neuron-steps/s; sleep pressure 72.1%
+  episode  8: first step    411 ms (hit 88.1%, read    127 MB); other steps median   249 ms (hit 100.0%);   958,330 neuron-steps/s; sleep pressure 75.1%
+  episode  9: first step    389 ms (hit 88.2%, read    126 MB); other steps median   245 ms (hit 100.0%); 1,017,461 neuron-steps/s; sleep pressure 78.0%
+  day: 864,062 neuron-steps/s overall; block hit rate 98.4%; read 3.35 GB; spilled 0.00 GB; dirty at bedtime 3.12 GiB (78% pressure)
+  lazy night on the dirty set (3.12 GiB = 3,272,704 neurons): compute 2.2 s + write-back 0.8 s (4.02 GB/s) = 3.0 s; the other 21,893,120 neurons stay dormant
+  peak RSS 4925 MiB

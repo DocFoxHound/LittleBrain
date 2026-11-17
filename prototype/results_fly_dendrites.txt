@@ -1,0 +1,22 @@
+1152 synapses, 16 levels, 12 days, turnover 10%/night, grace 3 nights, 8 neurons x 2 seeds
+   world                                                P         AUC  cluster  drive95  spike good   bad   bytes
+   parts  random rewiring, spikes                     128   0.75/0.74      3.8     0.78          0%    0%    1132
+   parts  seeded 64, spikes                           128   0.66/0.67      8.1    15.57         39%   24%    2375
+   parts  seeded 64, linear                           128   0.67/0.68      8.4    11.37         31%   17%    2236
+   parts  seeded 64, spikes, strong newborn           128   0.65/0.66      8.7    19.55         47%   31%    2544
+   parts  value-guided 64, spikes                     128   0.74/0.74      3.6     3.31         13%    4%    1845
+   parts  value-guided 64, linear                     128   0.75/0.74      3.6     1.61          6%    2%    1752
+   parts  value-guided 64, spikes, strong newborn     128   0.76/0.76      3.5     4.65         14%    5%    2088
+   parts  random rewiring, spikes                     512   0.61/0.60      3.8     0.51          0%    0%    1073
+   parts  seeded 64, spikes                           512   0.59/0.59      8.8     0.95          5%    3%    1696
+   parts  seeded 64, linear                           512   0.59/0.59      8.9     0.85          3%    2%    1687
+   parts  seeded 64, spikes, strong newborn           512   0.59/0.59      9.5     2.05         15%   10%    1964
+   parts  value-guided 64, spikes                     512   0.62/0.61      3.0     0.50          0%    0%    1595
+   parts  value-guided 64, linear                     512   0.62/0.61      3.0     0.50          0%    0%    1592
+   parts  value-guided 64, spikes, strong newborn     512   0.65/0.65      2.8     0.67          2%    1%    1857
+   random random rewiring, spikes                     128   0.91/0.89      3.5     0.52          0%    0%    1138
+   random seeded 64, spikes                           128   0.90/0.88      3.6     0.62          0%    0%    1719
+   random value-guided 64, spikes                     128   0.93/0.91      3.5     0.63          0%    0%    1699
+   random random rewiring, spikes                     512   0.62/0.61      3.6     0.48          0%    0%    1075
+   random seeded 64, spikes                           512   0.62/0.62      3.5     0.48          0%    0%    1675
+   random value-guided 64, spikes                     512   0.66/0.64      3.7     0.50          0%    0%    1670

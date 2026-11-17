@@ -1,0 +1,22 @@
+[
+ {
+  "n_inputs": 64,
+  "forward_s": 0.8088381490015308,
+  "modulate_s": 1.8820475840038853,
+  "sleep_s": 2.5247547659964766,
+  "peak_forward_MiB": 684.3572387695312,
+  "peak_modulate_MiB": 1174.9281768798828,
+  "peak_sleep_MiB": 1293.9478492736816,
+  "bytes_per_neuron": 1041.0
+ },
+ {
+  "n_inputs": 4096,
+  "forward_s": 0.8438373379976838,
+  "modulate_s": 1.9540558640001109,
+  "sleep_s": 2.550512088004325,
+  "peak_forward_MiB": 684.3572387695312,
+  "peak_modulate_MiB": 1174.927993774414,
+  "peak_sleep_MiB": 1293.9464111328125,
+  "bytes_per_neuron": 1041.0
+ }
+]

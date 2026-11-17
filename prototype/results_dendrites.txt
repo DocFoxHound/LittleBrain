@@ -1,0 +1,40 @@
+4096 synapses, 16 levels. AUC after practice / 6 days later (0.5 chance, 1 perfect).
+max act = most active synapses one branch gets from a pattern (random wiring ~ 13);
+spike good/bad = share of good/bad patterns that make at least one branch spike
+
+== rewiring budget 3% of slots per night ==
+                                 P  days         AUC  max act  spike good  spike bad  rewired   bytes
+   random rewiring, spikes     128     4   0.93/0.90     12.0          0%         0%    11.1%    1943
+   seeded choice, spikes       128     4   0.93/0.90     12.4          0%         0%    11.2%    2118
+   seeded choice, linear       128     4   0.93/0.90     12.4          0%         0%    11.2%    2118
+   random rewiring, spikes     128    12   0.99/0.99     12.0          0%         0%    27.4%    3097
+   seeded choice, spikes       128    12   0.99/0.99     13.0          0%         0%    27.4%    3525
+   seeded choice, linear       128    12   0.99/0.99     13.0          0%         0%    27.4%    3525
+   random rewiring, spikes     512     4   0.67/0.65     12.0          0%         0%    11.2%    1761
+   seeded choice, spikes       512     4   0.66/0.65     12.1          0%         0%    11.2%    1929
+   seeded choice, linear       512     4   0.66/0.65     12.1          0%         0%    11.2%    1929
+   random rewiring, spikes     512    12   0.74/0.73     12.0          0%         0%    27.5%    2842
+   seeded choice, spikes       512    12   0.74/0.73     12.4          0%         0%    27.5%    3263
+   seeded choice, linear       512    12   0.74/0.73     12.4          0%         0%    27.5%    3263
+== rewiring budget 10% of slots per night ==
+                                 P  days         AUC  max act  spike good  spike bad  rewired   bytes
+   random rewiring, spikes     128     4   0.94/0.90     12.1          0%         0%    32.6%    2576
+   seeded choice, spikes       128     4   0.94/0.90     13.5          0%         0%    32.7%    3083
+   seeded choice, linear       128     4   0.94/0.90     13.5          0%         0%    32.7%    3083
+   random rewiring, spikes     128    12   0.99/0.99     12.2          0%         0%    60.1%    3904
+   seeded choice, spikes       128    12   0.99/0.99     14.9          0%         0%    60.4%    4859
+   seeded choice, linear       128    12   0.99/0.99     14.9          0%         0%    60.4%    4859
+   random rewiring, spikes     512     4   0.67/0.66     12.0          0%         0%    32.8%    2394
+   seeded choice, spikes       512     4   0.67/0.65     12.6          0%         0%    32.8%    2896
+   seeded choice, linear       512     4   0.67/0.65     12.6          0%         0%    32.8%    2896
+   random rewiring, spikes     512    12   0.74/0.73     12.0          0%         0%    60.6%    3633
+   seeded choice, spikes       512    12   0.74/0.73     13.2          0%         0%    60.8%    4581
+   seeded choice, linear       512    12   0.74/0.73     13.2          0%         0%    60.8%    4581
+
+Grace 3 nights + anchored theme; budget 10%/night, 12 days
+   random rewiring, spikes     128  AUC 0.99/0.99  max act  12.2  spike good   0%  bad   0%  rewired 68.8%  bytes  4097
+   seeded choice, spikes       128  AUC 0.99/0.99  max act  14.4  spike good   0%  bad   0%  rewired 69.0%  bytes  5179
+   seeded choice, linear       128  AUC 0.99/0.99  max act  14.4  spike good   0%  bad   0%  rewired 69.0%  bytes  5179
+   random rewiring, spikes     512  AUC 0.75/0.74  max act  12.0  spike good   0%  bad   0%  rewired 69.2%  bytes  3831
+   seeded choice, spikes       512  AUC 0.75/0.74  max act  12.7  spike good   0%  bad   0%  rewired 69.1%  bytes  4890
+   seeded choice, linear       512  AUC 0.75/0.74  max act  12.7  spike good   0%  bad   0%  rewired 69.1%  bytes  4890

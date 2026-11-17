@@ -1,0 +1,105 @@
+
+== Diff formats on real snapshots (16,384 neurons; bytes per neuron averaged over ALL neurons;
+   materialize = rebuild 25% of neurons' rows from genome + diff, ns per neuron, median of 5)
+
+== Control: plain zstd on the dense words. Does the genome subtraction matter, or would any compressor do?
+   newborn brain, BASE words (innate weight stored in c0):     139.4 B/neuron
+   newborn brain, ANCHORED words (innate weight procedural):     0.1 B/neuron
+   BASE rules, day  1 (everything has drifted):             259.4 B/neuron
+   BASE rules, day  7 (everything has drifted):             378.7 B/neuron
+   BASE rules, day 20 (everything has drifted):             434.7 B/neuron
+   BASE rules, day 40 (everything has drifted):             466.9 B/neuron
+
+  sparse_default day 1: 39.2% of synapses differ, 100.0% of neurons, 100 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B       1015B        941B        437B        505B        802B       2048B        155B        165B
+           60ns       105ns       230ns       401ns        66ns       164ns      2508ns       860ns      1543ns   materialize
+            0ns       607ns      2155ns      1941ns      1169ns       841ns     20921ns      4025ns      3393ns   encode (rebuild)
+
+  sparse_default day 7: 71.2% of synapses differ, 100.0% of neurons, 182 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B       1025B       1028B        766B        916B       1459B       4096B        294B        287B
+
+  sparse_default day 20: 80.6% of synapses differ, 100.0% of neurons, 206 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B       1025B       1028B        861B       1035B       1650B       4096B        350B        334B
+
+  sparse_default day 40: 86.3% of synapses differ, 100.0% of neurons, 221 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B       1025B       1028B        920B       1109B       1767B       4096B        389B        368B
+           52ns        79ns       244ns       286ns        88ns       257ns      3121ns      1785ns      1683ns   materialize
+            0ns       590ns      1660ns      1528ns      1588ns      1028ns      8137ns     11769ns      9180ns   encode (rebuild)
+
+  targeted day 1: 10.7% of synapses differ, 99.9% of neurons, 28 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B        744B        444B        146B        141B        220B        512B         50B         59B
+           56ns       113ns       241ns       227ns        37ns        87ns      1691ns       254ns       960ns   materialize
+            0ns       723ns      1741ns      1258ns       687ns       494ns      1403ns      1422ns      2044ns   encode (rebuild)
+
+  targeted day 7: 36.7% of synapses differ, 100.0% of neurons, 94 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B       1025B        964B        412B        474B        752B       2048B        164B        173B
+
+  targeted day 20: 55.1% of synapses differ, 100.0% of neurons, 141 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B       1025B       1025B        601B        709B       1129B       2048B        214B        218B
+
+  targeted day 40: 74.3% of synapses differ, 100.0% of neurons, 190 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B       1025B       1028B        798B        956B       1523B       4096B        271B        260B
+           49ns        72ns       215ns       372ns        71ns       201ns      2763ns      1394ns      1496ns   materialize
+            0ns       558ns      1571ns      1890ns      1180ns       886ns      6477ns      6397ns      4791ns   encode (rebuild)
+
+  targeted_noprune day 1: 8.1% of synapses differ, 32.8% of neurons, 63 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B        337B        293B         95B        108B        166B        256B         35B         39B
+           44ns        52ns       146ns       133ns        32ns        58ns      2274ns       163ns       656ns   materialize
+            0ns       418ns      1199ns       649ns       694ns       530ns       834ns      1193ns      1288ns   encode (rebuild)
+
+  targeted_noprune day 7: 20.6% of synapses differ, 77.7% of neurons, 68 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B        750B        643B        239B        267B        422B       1024B         93B        101B
+
+  targeted_noprune day 20: 18.7% of synapses differ, 86.7% of neurons, 55 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B        782B        637B        223B        243B        383B       1024B         88B         96B
+
+  targeted_noprune day 40: 21.6% of synapses differ, 89.6% of neurons, 62 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B        832B        687B        254B        281B        443B       1024B         98B        106B
+           66ns        71ns       206ns       269ns        50ns        87ns      1559ns       357ns      1124ns   materialize
+            0ns       528ns      1579ns      1333ns       583ns       456ns      1244ns      2050ns      2886ns   encode (rebuild)
+
+  growing_world day 1: 4.1% of synapses differ, 9.4% of neurons, 113 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B         88B         76B         46B         57B         85B        128B         15B         15B
+           67ns        43ns       109ns        79ns        37ns        38ns      1869ns        69ns       184ns   materialize
+            0ns       381ns       966ns       303ns       369ns       249ns       304ns       608ns      1038ns   encode (rebuild)
+
+  growing_world day 7: 14.2% of synapses differ, 23.4% of neurons, 155 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B        238B        230B        154B        186B        291B        512B         64B         63B
+
+  growing_world day 20: 26.0% of synapses differ, 53.1% of neurons, 125 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B        538B        501B        285B        336B        532B       1024B        117B        118B
+
+  growing_world day 40: 51.3% of synapses differ, 100.0% of neurons, 131 entries per dirty neuron
+          dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+          1024B       1021B        989B        562B        661B       1052B       2048B        208B        212B
+           45ns        87ns       255ns       513ns        55ns       156ns      2116ns      1031ns      1839ns   materialize
+            0ns       555ns      1847ns      2169ns      1083ns       761ns      3450ns      5045ns      5543ns   encode (rebuild)
+
+== Synthetic sweep: bytes per neuron vs experience (values drawn from a real diff; dirty synapses clustered on branches)
+   dirty neurons per dirty  diff %       dense     block32      block8      bitmap         csr         coo        hash   zstd(csr) zstd(dense)
+            0.1%        16   0.01%     1024.0B        1.4B        4.4B        0.3B        4.1B        0.1B        0.2B        0.1B        0.2B
+            1.0%        16   0.06%     1024.0B        2.5B        5.5B        1.2B        4.8B        1.3B        2.0B        0.4B        0.7B
+            1.0%        64   0.25%     1024.0B        5.1B        8.1B        3.1B        7.2B        5.1B        8.0B        1.3B        1.8B
+            5.0%        32   0.62%     1024.0B       14.0B       17.0B        8.4B       12.0B       12.8B       32.0B        3.2B        4.5B
+           10.0%        32   1.25%     1024.0B       26.8B       29.8B       16.6B       20.0B       25.6B       64.0B        6.4B        8.3B
+           10.0%       128   5.00%     1024.0B       78.0B       81.0B       55.0B       68.0B      102.4B      256.0B       20.7B       24.8B
+           30.0%        64   7.50%     1024.0B      116.4B      119.4B       87.8B      100.0B      153.6B      256.0B       31.2B       37.9B
+          100.0%        16   6.25%     1024.0B      129.2B      132.1B      100.2B       84.0B      128.0B      256.0B       31.3B       36.7B
+          100.0%        64  25.00%     1024.0B      385.2B      388.2B      292.2B      324.0B      512.0B     1024.0B      102.5B      115.7B
+          100.0%       128  50.00%     1024.0B      769.2B      772.2B      548.2B      644.0B     1024.0B     2048.0B      200.5B      210.5B
+          100.0%       230  89.84%     1024.0B     1025.2B     1028.2B      956.2B     1154.0B     1840.0B     4096.0B      317.3B      293.3B

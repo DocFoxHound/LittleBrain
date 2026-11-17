@@ -1,0 +1,160 @@
+"""
+Brain descriptions for the federated brain (federation.py), built in the order of
+notes/regions/connections.md section 8. Pathway IDs refer to that file.
+
+  stage1()  sensory-thalamocortical core: retina -> thalamus -> area A -> area B (= notes/19 circuit)
+  stage2()  + hippocampal memory loop: B -> entorhinal -> DG -> CA3 -> CA1 -> subiculum -> EC L5 -> B
+"""
+
+from dataclasses import replace
+
+import celltypes as C
+from federation import GRID, Group, Pooled, Spec, Synaptic
+
+AREA_CELLS = {"L4": (C.L4_STELLATE, 6), "L23": (C.L23_IT, 10), "L5IT": (C.L5_IT, 3), "L5PT": (C.L5_PT, 3),
+              "L6": (C.L6_CT, 5), "PV": (C.PV, 4), "SST": (C.SST, 3), "VIP": (C.VIP, 2)}
+EXC = ["L4", "L23", "L5IT", "L5PT", "L6"]
+LOCAL = {
+    "L4":   {"basal": [("L4", 0.45), ("L6", 0.30), ("L23", 0.25)]},
+    "L23":  {"basal": [("L4", 0.35), ("L23", 0.50), ("L5IT", 0.15)], "apical": [("L23", 0.5), ("L5IT", 0.5)]},
+    "L5IT": {"basal": [("L23", 0.5), ("L5IT", 0.2), ("L5PT", 0.1), ("L4", 0.2)], "apical": [("L23", 1.0)]},
+    "L5PT": {"basal": [("L23", 0.5), ("L5IT", 0.2), ("L5PT", 0.1), ("L4", 0.2)], "apical": [("L23", 1.0)]},
+    "L6":   {"basal": [("L4", 0.3), ("L6", 0.3), ("L5IT", 0.2), ("L23", 0.2)]},
+}
+SPREAD = {"A": 0.12, "B": 0.25}
+
+
+def _with_local(dst_area, group, comp, long_paths):
+    """Long-range paths take their fraction first; local inputs share the rest (as in notes/19)."""
+    long_total = sum(p.frac for p in long_paths)
+    local = LOCAL[group][comp]
+    tot = sum(f for _, f in local)
+    paths = list(long_paths)
+    for src, f in local:
+        paths.append(Synaptic("local", f"{dst_area}.{src}", f"{dst_area}.{group}", comp,
+                              (1 - long_total) * f / tot, spread=SPREAD[dst_area], kind="local"))
+    return paths
+
+
+def _area_inhibition(area, topdown=None):
+    E = [f"{area}.{g}" for g in EXC]
+    p = [Pooled("PV<-E", E, f"{area}.PV", 6.0),
+         Pooled("SST<-E", E, f"{area}.SST", 4.0),
+         Pooled("SST<-VIP", f"{area}.VIP", f"{area}.SST", -2.0),
+         Pooled("VIP<-ACh", None, f"{area}.VIP", 1.0, signal="ach"),
+         Pooled("E<-PV", f"{area}.PV", E, 1.5, channel="pv"),
+         Pooled("E<-SST", f"{area}.SST", E, 1.0, channel="sst")]
+    if topdown:
+        p.append(Pooled("NM-12 VIP<-top-down", topdown, f"{area}.VIP", 2.0, sigma=0))
+    return p
+
+
+def stage1():
+    groups = [Group("retina", None, 4, "retina"),
+              Group("TH.TC", C.TC_RELAY, 4, "TH"), Group("TH.TRN", C.TRN, 1, "TH")]
+    for area in ("A", "B"):
+        groups += [Group(f"{area}.{g}", ct, k, area) for g, (ct, k) in AREA_CELLS.items()]
+    syn = [Synaptic("CT-2 retina->relay (driver)", "retina", "TH.TC", "basal", 0.3, 3.0, 0.05),
+           Synaptic("CT-3 L6 CT->relay (modulator)", "A.L6", "TH.TC", "basal", 0.7, 0.15, 0.08)]
+    long_ = {
+        ("A", "L4"): {"basal": [Synaptic("CT-1 core relay->L4 (driver)", "TH.TC", "A.L4", "basal", 0.10, 8.0, 0.06)]},
+        ("A", "L6"): {"basal": [Synaptic("CT-1 relay->L6", "TH.TC", "A.L6", "basal", 0.10, 5.0, 0.06)]},
+        ("A", "L23"): {"apical": [Synaptic("FB B->A L1 (apical)", "B.L5IT", "A.L23", "apical", 0.6, 1.0, 0.30)]},
+        ("A", "L5IT"): {"apical": [Synaptic("FB B->A L1", "B.L5IT", "A.L5IT", "apical", 0.6, 1.0, 0.30)]},
+        ("A", "L5PT"): {"apical": [Synaptic("FB B->A L1", "B.L5IT", "A.L5PT", "apical", 0.6, 1.0, 0.30)]},
+        ("B", "L4"): {"basal": [Synaptic("FF A->B L4", "A.L23", "B.L4", "basal", 0.10, 8.0, 0.25)]},
+        ("B", "L23"): {"basal": [Synaptic("FF A->B L2/3", "A.L23", "B.L23", "basal", 0.15, 3.0, 0.25)]},
+    }
+    for area in ("A", "B"):
+        for g in EXC:
+            for comp in LOCAL[g]:
+                syn += _with_local(area, g, comp, long_.get((area, g), {}).get(comp, []))
+    pooled = _area_inhibition("A", topdown="B.L5IT") + _area_inhibition("B")
+    pooled += [Pooled("CT-4 L6->TRN", "A.L6", "TH.TRN", 3.0, sigma=0),
+               Pooled("TRN<-relay collaterals", "TH.TC", "TH.TRN", 2.0, sigma=0),
+               Pooled("CT-5 TRN->relay", "TH.TRN", "TH.TC", 1.0, channel="inh")]
+    return Spec(groups, syn, pooled, inputs=["retina"])
+
+
+def _cap(ctype, cap):
+    return replace(ctype, long_range_max=cap)
+
+
+def stage2(with_hippocampus=True):
+    """Stage 1 + the hippocampal memory loop (HC pathways). DG/CA3/CA1/subiculum share one structure
+    label ("HPC"), so only cortex <-> entorhinal <-> hippocampus links count as long-range."""
+    spec = stage1()
+    if not with_hippocampus:
+        return spec
+    g = [Group("EC.stellate", _cap(C.EC_STELLATE, 0.8), 2, "EC"),
+         Group("EC.L3", _cap(C.EC_L3, 0.8), 2, "EC"),
+         Group("EC.L5", _cap(C.EC_L5, 0.8), 2, "EC"),
+         Group("EC.PV", C.PV, 1, "EC"),
+         Group("DG.gc", _cap(C.DG_GRANULE, 0.9), 6, "HPC", kwta=0.02),
+         Group("DG.mossy", C.MOSSY_CELL, 1, "HPC"),
+         Group("DG.PV", C.PV, 1, "HPC"), Group("DG.HIPP", C.HIPP, 1, "HPC"),
+         Group("CA3.pyr", _cap(C.CA3_PYR, 0.4), 4, "HPC", kwta=0.05), Group("CA3.PV", C.HC_PV_BASKET, 1, "HPC"),
+         Group("CA1.pyr", C.CA1_PYR, 4, "HPC", kwta=0.10), Group("CA1.PV", C.HC_PV_BASKET, 1, "HPC"),
+         Group("CA1.OLM", C.OLM, 1, "HPC"),
+         Group("SUB.pyr", C.SUB_BURST, 2, "HPC"), Group("SUB.PV", C.PV, 1, "HPC")]
+    spec.groups += g
+    S = Synaptic
+    spec.synaptic += [
+        S("HC-1 cortex->EC superficial", "B.L23", "EC.stellate", "basal", 0.7, 2.0, 0.3),
+        S("local", "EC.stellate", "EC.stellate", "basal", 0.3, spread=0.15, kind="local"),
+        S("HC-1 cortex->EC L3", "B.L23", "EC.L3", "basal", 0.6, 2.0, 0.3),
+        S("local", "EC.L3", "EC.L3", "basal", 0.4, spread=0.15, kind="local"),
+        S("local", "EC.L3", "EC.L3", "apical", 1.0, spread=0.15, kind="local"),
+        S("HC-14 subiculum->EC L5b", "SUB.pyr", "EC.L5", "basal", 0.5, 2.0, 0.3),
+        S("HC-13 CA1->EC L5", "CA1.pyr", "EC.L5", "basal", 0.2, 1.0, 0.3),
+        S("local", "EC.L5", "EC.L5", "basal", 0.3, spread=0.15, kind="local"),
+        S("local", "EC.L3", "EC.L5", "apical", 1.0, spread=0.15, kind="local"),
+        S("HC-3 perforant path->DG", "EC.stellate", "DG.gc", "basal", 0.85, 2.0, 0.4),
+        S("DG mossy cell loop", "DG.mossy", "DG.gc", "basal", 0.15, spread=0.4, kind="local"),
+        S("local", "DG.gc", "DG.mossy", "basal", 0.7, spread=0.3, kind="local"),
+        S("CA3 back-projection", "CA3.pyr", "DG.mossy", "basal", 0.3, spread=0.3),
+        S("HC-7 mossy fibers (detonator)", "DG.gc", "CA3.pyr", "basal", 0.05, 8.0, 0.1),
+        S("HC-8 CA3 recurrent", "CA3.pyr", "CA3.pyr", "basal", 0.65, 1.0, 0.5, kind="local", ach_suppress=0.8),
+        S("HC-4 perforant path->CA3", "EC.stellate", "CA3.pyr", "basal", 0.30, 1.0, 0.4),
+        S("HC-8 CA3 recurrent (apical)", "CA3.pyr", "CA3.pyr", "apical", 0.5, 1.0, 0.5, kind="local",
+          ach_suppress=0.8),
+        S("HC-4 perforant path->CA3 tuft", "EC.stellate", "CA3.pyr", "apical", 0.5, 1.0, 0.4),
+        S("HC-9 Schaffer collaterals", "CA3.pyr", "CA1.pyr", "basal", 0.9, 1.0, 0.4, ach_suppress=0.5),
+        S("local", "CA1.pyr", "CA1.pyr", "basal", 0.1, spread=0.2, kind="local"),
+        S("HC-5 temporoammonic->CA1 tuft", "EC.L3", "CA1.pyr", "apical", 1.0, 1.0, 0.3),
+        S("HC-13 CA1->subiculum", "CA1.pyr", "SUB.pyr", "basal", 0.7, 1.0, 0.3),
+        S("local", "SUB.pyr", "SUB.pyr", "basal", 0.3, spread=0.2, kind="local"),
+        S("local", "SUB.pyr", "SUB.pyr", "apical", 1.0, spread=0.2, kind="local"),
+    ]
+    # HC-15: entorhinal L5a -> neocortex, landing on apical tufts of area B layer 2/3
+    spec.synaptic = [p for p in spec.synaptic if not (p.dst == "B.L23" and p.comp == "apical")]
+    spec.synaptic += [S("HC-15 EC L5->cortex (apical)", "EC.L5", "B.L23", "apical", 0.4, 1.0, 0.3),
+                      S("local", "B.L23", "B.L23", "apical", 0.3, spread=0.25, kind="local"),
+                      S("local", "B.L5IT", "B.L23", "apical", 0.3, spread=0.25, kind="local")]
+    P = Pooled
+    ec = ["EC.stellate", "EC.L3", "EC.L5"]
+    spec.pooled += [
+        P("EC PV<-E", ec, "EC.PV", 6.0), P("EC E<-PV", "EC.PV", ec, 1.5, channel="pv"),
+        P("DG PV<-granule", "DG.gc", "DG.PV", 8.0), P("DG granule<-PV (sparse)", "DG.PV", "DG.gc", 3.0, channel="pv"),
+        P("HIPP<-granule", "DG.gc", "DG.HIPP", 4.0), P("granule<-HIPP", "DG.HIPP", "DG.gc", 1.0, channel="dend"),
+        P("mossy<-PV", "DG.PV", "DG.mossy", 1.0, channel="pv"),
+        P("CA3 PV<-pyr", "CA3.pyr", "CA3.PV", 6.0), P("CA3 pyr<-PV", "CA3.PV", "CA3.pyr", 1.5, channel="pv"),
+        P("CA1 PV<-pyr", "CA1.pyr", "CA1.PV", 6.0), P("CA1 PV<-CA3 (feedforward)", "CA3.pyr", "CA1.PV", 3.0),
+        P("CA1 pyr<-PV", "CA1.PV", "CA1.pyr", 1.5, channel="pv"),
+        P("O-LM<-CA1", "CA1.pyr", "CA1.OLM", 4.0), P("CA1 tuft<-O-LM", "CA1.OLM", "CA1.pyr", 1.0, channel="sst"),
+        P("SUB PV<-pyr", "SUB.pyr", "SUB.PV", 6.0), P("SUB pyr<-PV", "SUB.PV", "SUB.pyr", 1.5, channel="pv"),
+    ]
+    return spec
+
+
+def sized(spec, n_neurons):
+    """The same brain at a different size: every group (and the sensory input) scaled to give about
+    n_neurons simulated neurons, on the same map with the same connection rules. Testing sizes (notes/24):
+    fly ~140,000; 1,000,000."""
+    import copy
+    spec = copy.deepcopy(spec)
+    now = sum(g.per_tile for g in spec.groups if g.key not in spec.inputs) * GRID * GRID
+    f = n_neurons / now
+    for g in spec.groups:
+        g.per_tile = max(1, int(round(g.per_tile * f)))
+    return spec

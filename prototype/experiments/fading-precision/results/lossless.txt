@@ -1,0 +1,154 @@
+cold set: 12,288 neurons (nights unused: [8, 16]); hot set: 8,192
+  entropy A     gen=0.03  fast=-0.00  c0=3.13  c1=3.14  c2=3.09  tag=0.10  used=-0.00  triple(c0,c1,c2)=4.98  sum_of_fields=9.49  joint_bound=5.11
+  entropy B     gen=1.22  fast=-0.00  c0=3.44  c1=3.45  c2=3.46  tag=0.10  used=-0.00  triple(c0,c1,c2)=5.16  sum_of_fields=11.67  joint_bound=6.48
+  entropy E     gen=3.00  fast=-0.00  c0=0.85  c1=0.77  c2=0.93  tag=-0.00  used=-0.00  triple(c0,c1,c2)=2.03  sum_of_fields=5.55  joint_bound=5.03
+  entropy cold  gen=1.31  fast=-0.00  c0=3.84  c1=3.87  c2=3.90  tag=0.09  used=-0.00  triple(c0,c1,c2)=5.60  sum_of_fields=13.01  joint_bound=7.00
+  entropy hot   gen=2.60  fast=-0.00  c0=4.78  c1=4.41  c2=3.25  tag=1.06  used=-0.00  triple(c0,c1,c2)=8.41  sum_of_fields=16.10  joint_bound=12.07
+
+[layouts x codecs] cold set, 64-neuron blocks: bytes/neuron  ratio  comp GB/s  decomp GB/s
+  raw          zstd-5     424.7   2.45x   0.480   1.572
+  raw          zstd1      329.6   3.16x   0.466   1.565
+  raw          zstd3      316.0   3.29x   0.421   1.689
+  raw          zstd9      303.7   3.43x   0.048   1.857
+  raw          zstd19     260.4   4.00x   0.004   1.733
+  raw          lz4        510.7   2.04x   0.689   3.551
+  raw          lz4hc      363.4   2.86x   0.011   3.929
+  byteshuffle  zstd-5     615.0   1.69x   0.975   0.968
+  byteshuffle  zstd1      405.1   2.57x   0.747   0.807
+  byteshuffle  zstd3      393.9   2.64x   0.435   0.809
+  byteshuffle  zstd9      386.2   2.70x   0.073   0.764
+  byteshuffle  zstd19     364.3   2.86x   0.007   0.669
+  byteshuffle  lz4        644.6   1.61x   1.001   1.140
+  byteshuffle  lz4hc      522.0   1.99x   0.023   1.083
+  bitshuffle   zstd-5     430.9   2.42x   0.127   0.268
+  bitshuffle   zstd1      382.4   2.72x   0.122   0.271
+  bitshuffle   zstd3      378.3   2.75x   0.120   0.272
+  bitshuffle   zstd9      368.1   2.83x   0.093   0.272
+  bitshuffle   zstd19     346.9   3.00x   0.017   0.266
+  bitshuffle   lz4        440.4   2.36x   0.130   0.277
+  bitshuffle   lz4hc      396.8   2.62x   0.075   0.278
+  fields       zstd-5     692.4   1.50x   0.641   1.000
+  fields       zstd1      313.0   3.33x   0.492   0.875
+  fields       zstd3      338.1   3.08x   0.310   0.803
+  fields       zstd9      337.7   3.08x   0.067   0.751
+  fields       zstd19     269.0   3.87x   0.005   0.919
+  fields       lz4        692.1   1.50x   0.544   1.260
+  fields       lz4hc      485.6   2.14x   0.040   1.258
+  dfields      zstd-5     485.0   2.15x   0.413   0.522
+  dfields      zstd1      281.2   3.70x   0.374   0.570
+  dfields      zstd3      286.7   3.63x   0.317   0.586
+  dfields      zstd9      275.3   3.78x   0.051   0.612
+  dfields      zstd19     237.4   4.38x   0.003   0.556
+  dfields      lz4        535.0   1.95x   0.422   0.727
+  dfields      lz4hc      371.9   2.80x   0.009   0.793
+  dbitshuffle  zstd-5     333.6   3.12x   0.120   0.240
+  dbitshuffle  zstd1      274.5   3.79x   0.117   0.233
+  dbitshuffle  zstd3      273.3   3.81x   0.115   0.229
+  dbitshuffle  zstd9      273.1   3.81x   0.093   0.232
+  dbitshuffle  zstd19     267.6   3.89x   0.016   0.230
+  dbitshuffle  lz4        329.8   3.16x   0.121   0.243
+  dbitshuffle  lz4hc      308.9   3.37x   0.071   0.243
+  symbols      zstd-5     347.4   3.00x   0.206   1.069
+  symbols      zstd1      220.7   4.72x   0.199   0.936
+  symbols      zstd3      219.1   4.75x   0.195   0.955
+  symbols      zstd9      223.6   4.66x   0.111   0.921
+  symbols      zstd19     210.2   4.95x   0.008   0.860
+  symbols      lz4        350.1   2.97x   0.211   1.160
+  symbols      lz4hc      307.8   3.38x   0.046   1.145
+  sortrows     zstd-5     486.7   2.14x   0.390   0.556
+  sortrows     zstd1      283.5   3.67x   0.355   0.534
+  sortrows     zstd3      288.9   3.60x   0.299   0.554
+  sortrows     zstd9      277.1   3.76x   0.050   0.586
+  sortrows     zstd19     239.4   4.35x   0.003   0.547
+  sortrows     lz4        537.5   1.94x   0.398   0.675
+  sortrows     lz4hc      374.2   2.78x   0.009   0.750
+  (42s)
+
+[block size] cold set
+  raw        nb=1     zstd3        482.4 B/neuron   2.16x  comp 0.145  decomp 0.302 GB/s
+  raw        nb=1     zstd3+dict   392.8 B/neuron   2.65x  comp 0.240  decomp 0.584 GB/s
+  raw        nb=1     lz4          695.5 B/neuron   1.50x  comp 0.428  decomp 1.185 GB/s
+  raw        nb=4     zstd3        378.2 B/neuron   2.75x  comp 0.248  decomp 0.711 GB/s
+  raw        nb=4     zstd3+dict   349.7 B/neuron   2.98x  comp 0.327  decomp 0.832 GB/s
+  raw        nb=4     lz4          596.5 B/neuron   1.75x  comp 0.508  decomp 2.464 GB/s
+  raw        nb=16    zstd3        332.6 B/neuron   3.13x  comp 0.344  decomp 1.106 GB/s
+  raw        nb=16    zstd3+dict   326.8 B/neuron   3.19x  comp 0.364  decomp 0.926 GB/s
+  raw        nb=16    lz4          540.0 B/neuron   1.93x  comp 0.599  decomp 3.390 GB/s
+  raw        nb=64    zstd3        316.0 B/neuron   3.29x  comp 0.422  decomp 1.681 GB/s
+  raw        nb=64    lz4          510.7 B/neuron   2.04x  comp 0.698  decomp 3.684 GB/s
+  raw        nb=1024  zstd3        293.9 B/neuron   3.54x  comp 0.505  decomp 1.875 GB/s
+  raw        nb=1024  lz4          497.4 B/neuron   2.09x  comp 0.748  decomp 3.753 GB/s
+  dfields    nb=1     zstd3        388.2 B/neuron   2.68x  comp 0.039  decomp 0.058 GB/s
+  dfields    nb=1     zstd3+dict   377.2 B/neuron   2.76x  comp 0.041  decomp 0.056 GB/s
+  dfields    nb=1     lz4          643.2 B/neuron   1.62x  comp 0.047  decomp 0.067 GB/s
+  dfields    nb=4     zstd3        319.0 B/neuron   3.26x  comp 0.113  decomp 0.172 GB/s
+  dfields    nb=4     zstd3+dict   326.7 B/neuron   3.19x  comp 0.118  decomp 0.175 GB/s
+  dfields    nb=4     lz4          588.1 B/neuron   1.77x  comp 0.142  decomp 0.205 GB/s
+  dfields    nb=16    zstd3        289.9 B/neuron   3.59x  comp 0.239  decomp 0.404 GB/s
+  dfields    nb=16    zstd3+dict   290.9 B/neuron   3.58x  comp 0.197  decomp 0.397 GB/s
+  dfields    nb=16    lz4          558.1 B/neuron   1.87x  comp 0.332  decomp 0.484 GB/s
+  dfields    nb=64    zstd3        286.7 B/neuron   3.63x  comp 0.320  decomp 0.555 GB/s
+  dfields    nb=64    lz4          535.0 B/neuron   1.95x  comp 0.438  decomp 0.713 GB/s
+  dfields    nb=1024  zstd3        265.4 B/neuron   3.92x  comp 0.302  decomp 0.485 GB/s
+  dfields    nb=1024  lz4          521.9 B/neuron   1.99x  comp 0.445  decomp 0.518 GB/s
+  symbols    nb=1     zstd3        468.5 B/neuron   2.22x  comp 0.045  decomp 0.095 GB/s
+  symbols    nb=1     zstd3+dict   351.2 B/neuron   2.96x  comp 0.049  decomp 0.099 GB/s
+  symbols    nb=1     lz4          606.9 B/neuron   1.72x  comp 0.056  decomp 0.114 GB/s
+  symbols    nb=4     zstd3        310.2 B/neuron   3.36x  comp 0.102  decomp 0.288 GB/s
+  symbols    nb=4     zstd3+dict   254.3 B/neuron   4.09x  comp 0.102  decomp 0.293 GB/s
+  symbols    nb=4     lz4          447.8 B/neuron   2.32x  comp 0.123  decomp 0.350 GB/s
+  symbols    nb=16    zstd3        245.3 B/neuron   4.24x  comp 0.166  decomp 0.623 GB/s
+  symbols    nb=16    zstd3+dict   222.8 B/neuron   4.67x  comp 0.148  decomp 0.650 GB/s
+  symbols    nb=16    lz4          378.8 B/neuron   2.75x  comp 0.187  decomp 0.785 GB/s
+  symbols    nb=64    zstd3        219.1 B/neuron   4.75x  comp 0.193  decomp 0.927 GB/s
+  symbols    nb=64    lz4          350.1 B/neuron   2.97x  comp 0.214  decomp 1.190 GB/s
+  symbols    nb=1024  zstd3        223.0 B/neuron   4.67x  comp 0.176  decomp 0.713 GB/s
+  symbols    nb=1024  lz4          369.1 B/neuron   2.82x  comp 0.190  decomp 1.117 GB/s
+  (52s)
+
+[per group] 64-neuron blocks
+  A     raw        zstd3    301.0 B/neuron   3.46x
+  A     raw        lz4      496.8 B/neuron   2.10x
+  A     dfields    zstd3    253.2 B/neuron   4.11x
+  A     symbols    zstd3    189.8 B/neuron   5.48x
+  A     symbols    zstd19   187.3 B/neuron   5.56x
+  A     bitshuffle zstd3    366.5 B/neuron   2.84x
+  B     raw        zstd3    361.5 B/neuron   2.88x
+  B     raw        lz4      552.9 B/neuron   1.88x
+  B     dfields    zstd3    340.6 B/neuron   3.06x
+  B     symbols    zstd3    269.9 B/neuron   3.86x
+  B     symbols    zstd19   249.7 B/neuron   4.17x
+  B     bitshuffle zstd3    476.9 B/neuron   2.18x
+  E     raw        zstd3    270.2 B/neuron   3.85x
+  E     raw        lz4      467.7 B/neuron   2.23x
+  E     dfields    zstd3    279.6 B/neuron   3.72x
+  E     symbols    zstd3    205.6 B/neuron   5.06x
+  E     symbols    zstd19   200.3 B/neuron   5.20x
+  E     bitshuffle zstd3    216.4 B/neuron   4.81x
+  C     raw        zstd3    581.8 B/neuron   1.79x
+  C     raw        lz4      867.8 B/neuron   1.20x
+  C     dfields    zstd3    579.5 B/neuron   1.80x
+  C     symbols    zstd3    507.1 B/neuron   2.05x
+  C     symbols    zstd19   453.1 B/neuron   2.30x
+  C     bitshuffle zstd3    709.3 B/neuron   1.47x
+  D     raw        zstd3    632.3 B/neuron   1.65x
+  D     raw        lz4      966.4 B/neuron   1.08x
+  D     dfields    zstd3    546.3 B/neuron   1.91x
+  D     symbols    zstd3    564.5 B/neuron   1.84x
+  D     symbols    zstd19   502.1 B/neuron   2.07x
+  D     bitshuffle zstd3    583.4 B/neuron   1.78x
+  hot   raw        zstd3    600.7 B/neuron   1.73x
+  hot   raw        lz4      904.7 B/neuron   1.15x
+  hot   dfields    zstd3    567.0 B/neuron   1.84x
+  hot   symbols    zstd3    528.6 B/neuron   1.97x
+  hot   symbols    zstd19   471.5 B/neuron   2.21x
+  hot   bitshuffle zstd3    662.1 B/neuron   1.57x
+  cold  raw        zstd3    316.0 B/neuron   3.29x
+  cold  raw        lz4      510.7 B/neuron   2.04x
+  cold  dfields    zstd3    286.7 B/neuron   3.63x
+  cold  symbols    zstd3    219.1 B/neuron   4.75x
+  cold  symbols    zstd19   210.2 B/neuron   4.95x
+  cold  bitshuffle zstd3    378.3 B/neuron   2.75x
+
+90%-cold brain, bytes per neuron: {'best_ratio': ['symbols/zstd19', 293.433837890625], 'symbols/zstd3': 301.4252197265625, 'dfields/zstd3': 362.26875, 'raw/zstd3': 388.6439208984375, 'raw/lz4': 563.8278076171874, 'uncompressed': 1041.0}
+(62s)

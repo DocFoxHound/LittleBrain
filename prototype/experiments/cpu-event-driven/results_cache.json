@@ -1,0 +1,120 @@
+{
+ "size_sweep": [
+  {
+   "n_neurons": 2000,
+   "synapse_MiB": 1.953125,
+   "stream_read": 3.472450407571159e-05,
+   "dendrite_fwd": 0.0006571324993274175,
+   "axon_fwd": 0.0001404899994668085,
+   "bitslice_fwd": 0.00026588799664750695,
+   "dendrite_cu": 0.001134051002736669,
+   "bitslice_cu": 0.0014020685011928435
+  },
+  {
+   "n_neurons": 8000,
+   "synapse_MiB": 7.8125,
+   "stream_read": 0.00027487400075187907,
+   "dendrite_fwd": 0.002582118999271188,
+   "axon_fwd": 0.0005548839981202036,
+   "bitslice_fwd": 0.0010560750015429221,
+   "dendrite_cu": 0.0045961030045873486,
+   "bitslice_cu": 0.005603300996881444
+  },
+  {
+   "n_neurons": 23000,
+   "synapse_MiB": 22.4609375,
+   "stream_read": 0.0012251230000401847,
+   "dendrite_fwd": 0.00805970100191189,
+   "axon_fwd": 0.0016441909974673763,
+   "bitslice_fwd": 0.003261991005274467,
+   "dendrite_cu": 0.01440710699534975,
+   "bitslice_cu": 0.017671432004135568
+  },
+  {
+   "n_neurons": 64000,
+   "synapse_MiB": 62.5,
+   "stream_read": 0.0031593445019098,
+   "dendrite_fwd": 0.023265460502443602,
+   "axon_fwd": 0.0043241789971943945,
+   "bitslice_fwd": 0.008962551502918359,
+   "dendrite_cu": 0.039985588500712765,
+   "bitslice_cu": 0.04866621850305819
+  },
+  {
+   "n_neurons": 200000,
+   "synapse_MiB": 195.3125,
+   "stream_read": 0.009736987994983792,
+   "dendrite_fwd": 0.07085585300228558,
+   "axon_fwd": 0.013235664002422709,
+   "bitslice_fwd": 0.026406024997413624,
+   "dendrite_cu": 0.11999326299701352,
+   "bitslice_cu": 0.146344073000364
+  }
+ ],
+ "block_sweep": [
+  {
+   "block": 256,
+   "activity": 0.02,
+   "forward_s": 0.006468109997513238,
+   "modulate_s": 0.016137468999659177,
+   "index_bytes_per_neuron": 192.2156,
+   "accumulator_KiB": 10.0
+  },
+  {
+   "block": 1024,
+   "activity": 0.02,
+   "forward_s": 0.0035012309963349253,
+   "modulate_s": 0.011049080996599514,
+   "index_bytes_per_neuron": 48.1768,
+   "accumulator_KiB": 40.0
+  },
+  {
+   "block": 4096,
+   "activity": 0.02,
+   "forward_s": 0.002777301997411996,
+   "modulate_s": 0.00911023499793373,
+   "index_bytes_per_neuron": 12.29,
+   "accumulator_KiB": 160.0
+  },
+  {
+   "block": 8192,
+   "activity": 0.02,
+   "forward_s": 0.0026544270003796555,
+   "modulate_s": 0.00847462700039614,
+   "index_bytes_per_neuron": 6.3908,
+   "accumulator_KiB": 320.0
+  },
+  {
+   "block": 256,
+   "activity": 0.2,
+   "forward_s": 0.017130503998487256,
+   "modulate_s": 0.0811957930054632,
+   "index_bytes_per_neuron": 192.2156,
+   "accumulator_KiB": 10.0
+  },
+  {
+   "block": 1024,
+   "activity": 0.2,
+   "forward_s": 0.013423381002212409,
+   "modulate_s": 0.06316153900115751,
+   "index_bytes_per_neuron": 48.1768,
+   "accumulator_KiB": 40.0
+  },
+  {
+   "block": 4096,
+   "activity": 0.2,
+   "forward_s": 0.010873717001231853,
+   "modulate_s": 0.0591576420047204,
+   "index_bytes_per_neuron": 12.29,
+   "accumulator_KiB": 160.0
+  },
+  {
+   "block": 8192,
+   "activity": 0.2,
+   "forward_s": 0.0107507729990175,
+   "modulate_s": 0.05950847500207601,
+   "index_bytes_per_neuron": 6.3908,
+   "accumulator_KiB": 320.0
+  }
+ ]
+}

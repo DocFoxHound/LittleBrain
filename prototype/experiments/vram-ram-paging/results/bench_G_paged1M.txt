@@ -1,0 +1,3 @@
+[N=1,048,576 modes=['paged']] init 0.4 s, VRAM pool 368 MB, host words 1.07 GB, {'VmHWM_MB': 1436.77734375, 'VmRSS_MB': 1373.5859375}
+         paged K=  256 frac=0.050 churn=0.20: fwd     1.17 ms ['1.2', '1.2'] mod     0.86 ms |    899.4 M n-steps/s,   44.8 M active/s | PCIe/step fwd in   10.4 out    0.0 MB, mod in    0.0 out    0.0 MB | x1.00 vs paged
+  peak {'VmHWM_MB': 1436.77734375, 'VmRSS_MB': 1375.51171875}, VRAM this process 482 MB

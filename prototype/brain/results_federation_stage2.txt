@@ -1,0 +1,14 @@
+seed 0 done
+seed 1 done
+seed 2 done
+seed 3 done
+seed 4 done
+seed 5 done
+
+Stage 2: hippocampal loop (6 seeds; fill-in of the unseen half, ± s.e.)
+  cortex only, 1 presentation(s)                 0.091 ± 0.140
+  + hippocampus, 1 presentation(s)               0.004 ± 0.020
+  + hippocampus, lesioned at recall, 1           -0.037 ± 0.023
+  cortex only, 6 presentation(s)                 0.690 ± 0.043
+  + hippocampus, 6 presentation(s)               0.590 ± 0.131
+  + hippocampus, lesioned at recall, 6           0.700 ± 0.085

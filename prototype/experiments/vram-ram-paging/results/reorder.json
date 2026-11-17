@@ -1,0 +1,88 @@
+{
+ "rows": [
+  {
+   "frac": 0.01,
+   "churn": 0.02,
+   "noise": 0.0,
+   "active_neurons": 10240.0,
+   "blocks": {
+    "clustered": 10.0,
+    "scattered": 76.44333333333333,
+    "learned": 49.89333333333333
+   },
+   "cols_seen_during_day": 0.46875,
+   "learn_s": 2.787517108998145
+  },
+  {
+   "frac": 0.05,
+   "churn": 0.02,
+   "noise": 0.0,
+   "active_neurons": 52224.0,
+   "blocks": {
+    "clustered": 51.0,
+    "scattered": 341.53333333333336,
+    "learned": 65.03333333333333
+   },
+   "cols_seen_during_day": 0.9521484375,
+   "learn_s": 0.5587501720001455
+  },
+  {
+   "frac": 0.2,
+   "churn": 0.02,
+   "noise": 0.0,
+   "active_neurons": 209920.0,
+   "blocks": {
+    "clustered": 205.0,
+    "scattered": 852.3733333333333,
+    "learned": 205.0
+   },
+   "cols_seen_during_day": 1.0,
+   "learn_s": 1.0432159370029694
+  },
+  {
+   "frac": 0.05,
+   "churn": 0.02,
+   "noise": 0.1,
+   "active_neurons": 57207.89333333333,
+   "blocks": {
+    "clustered": 89.17,
+    "scattered": 373.5833333333333,
+    "learned": 99.04
+   },
+   "cols_seen_during_day": 1.0,
+   "learn_s": 0.5864685159976943
+  },
+  {
+   "frac": 0.05,
+   "churn": 0.2,
+   "noise": 0.1,
+   "active_neurons": 57198.08,
+   "blocks": {
+    "clustered": 89.25666666666666,
+    "scattered": 370.83,
+    "learned": 89.25666666666666
+   },
+   "cols_seen_during_day": 1.0,
+   "learn_s": 0.6214390500026639
+  }
+ ],
+ "paging": {
+  "frac": 0.05,
+  "churn": 0.02,
+  "noise": 0.1,
+  "cache_blocks": 256,
+  "scattered": {
+   "fwd_ms": 21.589606996712973,
+   "mod_ms": 22.241942504479084,
+   "h2d_MB": 441.36311466666666
+  },
+  "learned": {
+   "fwd_ms": 3.7385865034593735,
+   "mod_ms": 1.3687544997083023,
+   "h2d_MB": 31.369898666666668
+  },
+  "migration_s": 0.1796974019962363,
+  "sleep_s": 0.09935588399821427,
+  "rates_identical_after_migration": true
+ }
+}

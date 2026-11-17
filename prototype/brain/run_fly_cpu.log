@@ -1,0 +1,21 @@
+{'seed': 10, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.16917150815327964, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.003311286369959518, 'stage2 x6': 0.20832052985206245, 'lean MB': 0.86586275, 'minutes': 1.2505748550097147}
+{'seed': 9, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.46051079283157986, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.3672336382480959, 'stage2 x6': 0.6401661799948972, 'lean MB': 0.767818875, 'minutes': 1.2528260588645934}
+{'seed': 0, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.7026042758176724, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': 0.0008373172332842987, 'stage2 x6': 0.3327408224499474, 'lean MB': 0.77282675, 'minutes': 1.2578532020250957}
+{'seed': 2, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.521854626107961, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': 0.06496664931619306, 'stage2 x6': 0.5197239840247979, 'lean MB': 0.874816, 'minutes': 1.2736187060674031}
+{'seed': 8, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.025692260265350347, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.06454230091379334, 'stage2 x6': 0.02388132909933738, 'lean MB': 0.736589625, 'minutes': 1.5075393716494243}
+{'seed': 4, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.16405136833588282, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': 0.022878298846383885, 'stage2 x6': 0.5399507579393684, 'lean MB': 0.801121375, 'minutes': 1.7026776432991029}
+{'seed': 3, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.030365081701893355, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.03260980006307364, 'stage2 x6': 0.5265971053391695, 'lean MB': 0.991427125, 'minutes': 2.0411344011624655}
+{'seed': 1, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.4021326731269558, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.07372832189624508, 'stage2 x6': 0.8460865032548706, 'lean MB': 1.141678, 'minutes': 2.2441311399141948}
+{'seed': 7, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.3854470411936442, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': 0.1528589202935109, 'stage2 x6': 0.19337810184806586, 'lean MB': 0.749484, 'minutes': 2.250774149099986}
+{'seed': 5, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.7369385508199533, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.1092082784938005, 'stage2 x6': 0.4148356765198211, 'lean MB': 1.131926, 'minutes': 2.260953259468079}
+{'seed': 11, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.5214321424563726, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': 0.025643965508788825, 'stage2 x6': 0.05073932409286491, 'lean MB': 0.73280725, 'minutes': 2.3271185398101806}
+{'seed': 6, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.3211922235786915, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.03601589531948169, 'stage2 x6': 0.3266595884245665, 'lean MB': 0.831870625, 'minutes': 2.3616466164588927}
+{'seed': 13, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.28279032070810595, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': 0.0034903485483179487, 'stage2 x6': 0.7267597841098905, 'lean MB': 0.784913375, 'minutes': 1.2154473185539245}
+{'seed': 15, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.5048726587245862, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.10365336995261411, 'stage2 x6': 0.6076651707912485, 'lean MB': 0.865136625, 'minutes': 1.2342276652654012}
+{'seed': 12, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': -0.023206692375242713, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': 0.16531408795466027, 'stage2 x6': 0.5457177996635436, 'lean MB': 0.714109, 'minutes': 1.2577476143836974}
+{'seed': 14, 'neurons': 7104, 'device': 'cpu', 'stage1 x6': 0.528779853756229, 'n_neurons': 6848, 'synapses': 923136, 'stage2 x1': -0.023732840269804, 'stage2 x6': 0.44177900676925974, 'lean MB': 0.808881125, 'minutes': 1.2529746174812317}
+16 brains of ~6,848 neurons, 0.9M synapses (stage 2), 1.7 min per seed
+   stage1 x6  fill-in 0.36 ± 0.06   range -0.02 .. 0.74
+   stage2 x1  fill-in -0.02 ± 0.03   range -0.37 .. 0.17
+   stage2 x6  fill-in 0.43 ± 0.06   range 0.02 .. 0.85
+   lean long-term storage: 0.8 MB per brain

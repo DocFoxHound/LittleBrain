@@ -1,0 +1,67 @@
+{
+ "speed": {
+  "nb64/666": {
+   "bytes_per_neuron": 192.499755859375,
+   "freeze_neurons_per_s": 166300.32683962383,
+   "thaw_evolve_neurons_per_s": 175043.18386638205,
+   "thaw_plain_neurons_per_s": 852654.7615644812,
+   "freeze_GBps": 0.17311864024004842,
+   "thaw_plain_GBps": 0.887613606788625,
+   "peak_temp_freeze_bytes_per_neuron": 9505.734375,
+   "peak_temp_thaw_bytes_per_neuron": 12612.03125
+  },
+  "nb64/446": {
+   "bytes_per_neuron": 226.13623046875,
+   "freeze_neurons_per_s": 84177.06315768458,
+   "thaw_evolve_neurons_per_s": 182720.55109092465,
+   "thaw_plain_neurons_per_s": 840384.0660464573,
+   "freeze_GBps": 0.08762832274714964,
+   "thaw_plain_GBps": 0.874839812754362,
+   "peak_temp_freeze_bytes_per_neuron": 22091.625,
+   "peak_temp_thaw_bytes_per_neuron": 12617.40625
+  },
+  "nb64/224": {
+   "bytes_per_neuron": 244.240478515625,
+   "freeze_neurons_per_s": 65275.94793692326,
+   "thaw_evolve_neurons_per_s": 182051.42714591927,
+   "thaw_plain_neurons_per_s": 826519.4912373893,
+   "freeze_GBps": 0.06795226180233711,
+   "thaw_plain_GBps": 0.8604067903781222,
+   "peak_temp_freeze_bytes_per_neuron": 22092.375,
+   "peak_temp_thaw_bytes_per_neuron": 12617.34375
+  },
+  "nb1024/666": {
+   "bytes_per_neuron": 177.033203125,
+   "freeze_neurons_per_s": 136655.59456010355,
+   "thaw_evolve_neurons_per_s": 182762.40012845618,
+   "thaw_plain_neurons_per_s": 821178.876150254,
+   "freeze_GBps": 0.1422584739370678,
+   "thaw_plain_GBps": 0.8548472100724145,
+   "peak_temp_freeze_bytes_per_neuron": 9474.3740234375,
+   "peak_temp_thaw_bytes_per_neuron": 11556.341796875
+  },
+  "nb1024/446": {
+   "bytes_per_neuron": 260.44580078125,
+   "freeze_neurons_per_s": 49299.689841102474,
+   "thaw_evolve_neurons_per_s": 164684.65441142314,
+   "thaw_plain_neurons_per_s": 650849.2501516114,
+   "freeze_GBps": 0.05132097712458768,
+   "thaw_plain_GBps": 0.6775340694078273,
+   "peak_temp_freeze_bytes_per_neuron": 21908.2265625,
+   "peak_temp_thaw_bytes_per_neuron": 11812.841796875
+  },
+  "nb1024/224": {
+   "bytes_per_neuron": 253.2529296875,
+   "freeze_neurons_per_s": 38316.06255856286,
+   "thaw_evolve_neurons_per_s": 175648.51222245774,
+   "thaw_plain_neurons_per_s": 686147.1474757144,
+   "freeze_GBps": 0.039887021123463935,
+   "thaw_plain_GBps": 0.7142791805222187,
+   "peak_temp_freeze_bytes_per_neuron": 21908.2734375,
+   "peak_temp_thaw_bytes_per_neuron": 11812.826171875
+  },
+  "hot_forward_neurons_per_s": 164671.86961368332,
+  "hot_modulate_neurons_per_s": 105982.74237232163,
+  "hot_sleep_neurons_per_s": 107457.24754429141
+ }
+}

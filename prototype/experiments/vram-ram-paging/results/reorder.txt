@@ -1,0 +1,12 @@
+== Working set in 1,024-neuron blocks per step (1,048,576 neurons, 8,192 columns of 128, 1,024 assemblies of 8 columns) ==
+  scenario                           active neurons  clustered  scattered   learned  learned/ideal  scat/learned
+  1% active, churn 0.02, noise 0%            10,240       10.0       76.4      49.9           4.99          1.53   (day: 47% of columns seen; clustering 2.8 s)
+  5% active, churn 0.02, noise 0%            52,224       51.0      341.5      65.0           1.28          5.25   (day: 95% of columns seen; clustering 0.6 s)
+  20% active, churn 0.02, noise 0%          209,920      205.0      852.4     205.0           1.00          4.16   (day: 100% of columns seen; clustering 1.0 s)
+  5% active, churn 0.02, noise 10%           57,208       89.2      373.6      99.0           1.11          3.77   (day: 100% of columns seen; clustering 0.6 s)
+  5% active, churn 0.2, noise 10%            57,198       89.3      370.8      89.3           1.00          4.15   (day: 100% of columns seen; clustering 0.6 s)
+
+== Paging with a 256-block VRAM cache, 5% active, churn 0.02, noise 10% ==
+  scattered layout: forward  21.59 ms, modulate  22.24 ms, PCIe in  441.4 MB/step
+  learned layout:   forward   3.74 ms, modulate   1.37 ms, PCIe in   31.4 MB/step
+  sleep sweep 0.10 s, then migration (1 GiB of words + per-neuron state, host numpy): 0.18 s; rates identical per neuron after moving: True

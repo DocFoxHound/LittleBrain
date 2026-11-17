@@ -1,0 +1,138 @@
+{
+  "neurons": 25165824,
+  "chunk_MiB": 128,
+  "nbuf": 4,
+  "compute_only_neurons_per_s_1t": 248891.81551712693,
+  "compute_only_neurons_per_s_2t": 366296.0975939447,
+  "compute_only_neurons_per_s_3t": 389463.02368864027,
+  "gpu_cpu_identical_word_fraction": 1.0,
+  "gpu_compute_neurons_per_s": 1994905.3145082493,
+  "read only (no compute, no write)": {
+    "read_s": 1.6330989030029741,
+    "compute_s": 0.0,
+    "write_s": 0.0,
+    "pruned": 0,
+    "wall_s": 1.6347359189967392,
+    "cores": 0.13169038344255546,
+    "bytes": 4294967296,
+    "neurons": 4194304,
+    "GBps_through": 2.627315669821388,
+    "neurons_per_s": 2565737.958809949
+  },
+  "read only (no compute, no write) (all runs wall_s)": [
+    1.6347359189967392
+  ],
+  "I/O only (read + write back, no compute)": {
+    "read_s": 1.5292366410212708,
+    "compute_s": 0.0,
+    "write_s": 2.454218728991691,
+    "pruned": 0,
+    "wall_s": 2.508459668002615,
+    "cores": 0.15800692554710252,
+    "bytes": 4294967296,
+    "neurons": 4194304,
+    "GBps_through": 1.7121930843799087,
+    "neurons_per_s": 1672063.5589647547
+  },
+  "I/O only (read + write back, no compute) (all runs wall_s)": [
+    2.508459668002615
+  ],
+  "serial (read, then compute, then write)": {
+    "read_s": 1.5113974539999617,
+    "compute_s": 5.170491161989048,
+    "write_s": 1.9026313289941754,
+    "pruned": 1052934526,
+    "wall_s": 8.591373183997348,
+    "cores": 1.536104848126229,
+    "bytes": 4294967296,
+    "neurons": 4194304,
+    "GBps_through": 0.49991627694627283,
+    "neurons_per_s": 488199.4892053446
+  },
+  "serial (read, then compute, then write) (all runs wall_s)": [
+    8.591373183997348
+  ],
+  "pipelined (read-ahead + write-behind)": {
+    "read_s": 1.3526099810405867,
+    "compute_s": 5.5346550659960485,
+    "write_s": 1.5464809960103594,
+    "pruned": 1054522863,
+    "wall_s": 5.640968183994119,
+    "cores": 2.283242978846311,
+    "bytes": 4294967296,
+    "neurons": 4194304,
+    "GBps_through": 0.7613883212790832,
+    "neurons_per_s": 743543.2824991046
+  },
+  "pipelined (read-ahead + write-behind) (all runs wall_s)": [
+    5.640968183994119
+  ],
+  "pipelined, GPU compute": {
+    "read_s": 1.4851926759947673,
+    "compute_s": 2.1675422780244844,
+    "write_s": 2.3816068959931727,
+    "pruned": 0,
+    "wall_s": 2.5081551510011195,
+    "cores": 0.9809640360636972,
+    "bytes": 4294967296,
+    "neurons": 4194304,
+    "GBps_through": 1.712400963028815,
+    "neurons_per_s": 1672266.5654578272
+  },
+  "FULL NIGHT": {
+    "read_s": 8.39761027602799,
+    "compute_s": 39.50127579400578,
+    "write_s": 9.919165147912281,
+    "pruned": 6331160503,
+    "wall_s": 39.626603376993444,
+    "cores": 2.502104887888645,
+    "bytes": 25769803776,
+    "neurons": 25165824,
+    "GBps_through": 0.650315736901173,
+    "neurons_per_s": 635073.9618175518
+  },
+  "FULL NIGHT bit_exact_vs_RAM": true,
+  "pruned_fraction": 0.9827254499929646,
+  "FULL NIGHT, GPU compute": {
+    "read_s": 9.014387323004485,
+    "compute_s": 11.302767665983993,
+    "write_s": 15.086821935074113,
+    "pruned": 0,
+    "wall_s": 15.219096985005308,
+    "cores": 0.8611859174636455,
+    "bytes": 25769803776,
+    "neurons": 25165824,
+    "GBps_through": 1.693254455332654,
+    "neurons_per_s": 1653568.804035795
+  },
+  "FULL NIGHT, GPU compute bit_exact_vs_RAM": true,
+  "lazy": {
+    "0.05": {
+      "read_s": 0.4170702919946052,
+      "compute_s": 2.8455175169947324,
+      "write_s": 0.706837852987519,
+      "pruned": 317463370,
+      "wall_s": 2.942514715003199,
+      "cores": 2.7083827174646147,
+      "bytes": 1288699904,
+      "neurons": 1258496,
+      "GBps_through": 0.43795869479571964,
+      "neurons_per_s": 427694.03788644494
+    },
+    "0.2": {
+      "read_s": 1.8199763260126929,
+      "compute_s": 7.50297920799494,
+      "write_s": 2.156635356004699,
+      "pruned": 1270469979,
+      "wall_s": 7.603452670002298,
+      "cores": 2.5118387433842284,
+      "bytes": 5153751040,
+      "neurons": 5032960,
+      "GBps_through": 0.6778172053773621,
+      "neurons_per_s": 661930.8646263302
+    }
+  },
+  "soma_night_s": 0.07938373999786563,
+  "peak_rss_MiB": 1634.89453125,
+  "ssd_written_GB_total": 132.471506339
+}

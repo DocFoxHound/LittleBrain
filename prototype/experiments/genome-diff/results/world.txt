@@ -1,0 +1,101 @@
+
+== world scenario 'base_rules': BASE: baseline rules, genome = birth state
+  day  1: synapses differing  97.8% = rewired 27.7% + learned 67.3% (>=2 steps 34.7%) + tag-only  2.9% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day  2: synapses differing  99.4% = rewired 35.4% + learned 61.0% (>=2 steps 35.4%) + tag-only  3.0% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day  3: synapses differing  99.5% = rewired 38.3% + learned 58.8% (>=2 steps 37.0%) + tag-only  2.4% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day  5: synapses differing  99.7% = rewired 43.3% + learned 54.5% (>=2 steps 35.6%) + tag-only  1.8% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day  7: synapses differing  99.8% = rewired 47.5% + learned 51.1% (>=2 steps 35.1%) + tag-only  1.3% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 10: synapses differing  99.9% = rewired 51.3% + learned 47.7% (>=2 steps 34.1%) + tag-only  0.9% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 14: synapses differing  99.9% = rewired 54.7% + learned 44.7% (>=2 steps 33.7%) + tag-only  0.5% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 20: synapses differing 100.0% = rewired 57.6% + learned 42.0% (>=2 steps 32.9%) + tag-only  0.3% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 21: synapses differing 100.0% = rewired 58.0% + learned 41.7% (>=2 steps 33.4%) + tag-only  0.3% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 25: synapses differing 100.0% = rewired 59.5% + learned 40.3% (>=2 steps 33.3%) + tag-only  0.2% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 30: synapses differing 100.0% = rewired 60.9% + learned 39.0% (>=2 steps 32.6%) + tag-only  0.2% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 40: synapses differing 100.0% = rewired 63.0% + learned 36.9% (>=2 steps 32.0%) + tag-only  0.1% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  16,384 neurons, 8000 awake steps, 1939 dopamine events, 25.4% of neuron-steps evaluated (event-driven); awake 72.4s, sleep 1.8s, total 78s
+
+== world scenario 'anchored': ANCHORED + genome clock, baseline pruning
+  day  1: synapses differing  87.7% = rewired 51.1% + learned 27.8% (>=2 steps  7.8%) + tag-only  8.8% | neurons 100.0% (>=2 steps  89.4%) | regions seen 100%
+  day  2: synapses differing  91.0% = rewired 51.1% + learned 26.6% (>=2 steps  8.9%) + tag-only 13.3% | neurons 100.0% (>=2 steps  98.3%) | regions seen 100%
+  day  3: synapses differing  98.2% = rewired 58.0% + learned 26.5% (>=2 steps  9.3%) + tag-only 13.7% | neurons 100.0% (>=2 steps  99.0%) | regions seen 100%
+  day  5: synapses differing  97.8% = rewired 61.6% + learned 27.1% (>=2 steps 11.4%) + tag-only  9.2% | neurons 100.0% (>=2 steps  99.0%) | regions seen 100%
+  day  7: synapses differing  98.5% = rewired 65.0% + learned 26.7% (>=2 steps 12.6%) + tag-only  6.8% | neurons 100.0% (>=2 steps  99.7%) | regions seen 100%
+  day 10: synapses differing  99.0% = rewired 68.1% + learned 26.0% (>=2 steps 13.8%) + tag-only  5.0% | neurons 100.0% (>=2 steps  99.8%) | regions seen 100%
+  day 14: synapses differing  99.5% = rewired 70.7% + learned 25.9% (>=2 steps 15.6%) + tag-only  3.0% | neurons 100.0% (>=2 steps  99.9%) | regions seen 100%
+  day 20: synapses differing  99.8% = rewired 72.6% + learned 25.4% (>=2 steps 17.2%) + tag-only  1.8% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 21: synapses differing  99.7% = rewired 72.8% + learned 25.4% (>=2 steps 17.9%) + tag-only  1.6% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 25: synapses differing  99.8% = rewired 73.4% + learned 25.4% (>=2 steps 19.3%) + tag-only  1.0% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 30: synapses differing  99.9% = rewired 73.9% + learned 25.2% (>=2 steps 20.0%) + tag-only  0.8% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 40: synapses differing  99.9% = rewired 74.5% + learned 24.9% (>=2 steps 21.0%) + tag-only  0.5% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  16,384 neurons, 8000 awake steps, 1939 dopamine events, 25.4% of neuron-steps evaluated (event-driven); awake 62.5s, sleep 1.8s, total 68s
+
+== world scenario 'sparse_default': + prune only active cells, 5%/night turnover, tag>=2 consolidation, snap<=1q
+  day  1: synapses differing  39.2% = rewired  2.6% + learned 27.8% (>=2 steps  7.8%) + tag-only  8.8% | neurons 100.0% (>=2 steps  89.4%) | regions seen 100%
+  day  2: synapses differing  57.1% = rewired  4.3% + learned 35.3% (>=2 steps 10.1%) + tag-only 17.4% | neurons 100.0% (>=2 steps  98.9%) | regions seen 100%
+  day  3: synapses differing  65.7% = rewired  6.0% + learned 37.3% (>=2 steps 11.1%) + tag-only 22.4% | neurons 100.0% (>=2 steps  99.8%) | regions seen 100%
+  day  5: synapses differing  70.0% = rewired  8.6% + learned 39.8% (>=2 steps 13.7%) + tag-only 21.6% | neurons 100.0% (>=2 steps  99.8%) | regions seen 100%
+  day  7: synapses differing  71.2% = rewired 11.0% + learned 40.1% (>=2 steps 15.5%) + tag-only 20.1% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 10: synapses differing  74.0% = rewired 14.4% + learned 39.9% (>=2 steps 17.4%) + tag-only 19.8% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 14: synapses differing  76.0% = rewired 18.4% + learned 40.5% (>=2 steps 19.9%) + tag-only 17.0% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 20: synapses differing  80.6% = rewired 23.7% + learned 40.0% (>=2 steps 22.0%) + tag-only 16.9% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 21: synapses differing  81.3% = rewired 24.4% + learned 40.6% (>=2 steps 23.1%) + tag-only 16.3% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 25: synapses differing  81.5% = rewired 27.4% + learned 40.1% (>=2 steps 25.0%) + tag-only 14.1% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 30: synapses differing  84.8% = rewired 30.8% + learned 40.3% (>=2 steps 26.2%) + tag-only 13.7% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 40: synapses differing  86.3% = rewired 36.5% + learned 38.0% (>=2 steps 28.0%) + tag-only 11.8% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  16,384 neurons, 8000 awake steps, 1939 dopamine events, 25.4% of neuron-steps evaluated (event-driven); awake 66.2s, sleep 2.2s, total 72s
+
+== world scenario 'noise_1pct': sparse_default + 1% random background input (20 days: slow, most cells active)
+  day  1: synapses differing  81.9% = rewired  0.4% + learned 41.9% (>=2 steps 14.6%) + tag-only 39.6% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day  2: synapses differing  94.5% = rewired  0.5% + learned 53.5% (>=2 steps 18.7%) + tag-only 40.5% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day  3: synapses differing  97.5% = rewired  0.5% + learned 60.2% (>=2 steps 20.7%) + tag-only 36.8% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day  5: synapses differing  98.8% = rewired  0.6% + learned 68.8% (>=2 steps 27.3%) + tag-only 29.4% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day  7: synapses differing  98.9% = rewired  0.6% + learned 72.6% (>=2 steps 31.2%) + tag-only 25.8% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 10: synapses differing  99.1% = rewired  0.6% + learned 76.8% (>=2 steps 38.0%) + tag-only 21.8% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 14: synapses differing  99.1% = rewired  0.6% + learned 81.0% (>=2 steps 45.4%) + tag-only 17.4% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  day 20: synapses differing  99.2% = rewired  0.6% + learned 83.3% (>=2 steps 51.4%) + tag-only 15.2% | neurons 100.0% (>=2 steps 100.0%) | regions seen 100%
+  16,384 neurons, 4000 awake steps, 978 dopamine events, 89.1% of neuron-steps evaluated (event-driven); awake 99.2s, sleep 1.0s, total 102s
+
+== world scenario 'targeted': sparse_default + dopamine reaches only the valenced thing's column
+  day  1: synapses differing  10.7% = rewired  2.6% + learned  6.8% (>=2 steps  2.6%) + tag-only  1.4% | neurons  99.9% (>=2 steps  19.9%) | regions seen 100%
+  day  2: synapses differing  19.1% = rewired  5.0% + learned  9.9% (>=2 steps  2.6%) + tag-only  4.2% | neurons 100.0% (>=2 steps  32.4%) | regions seen 100%
+  day  3: synapses differing  24.7% = rewired  7.8% + learned 10.1% (>=2 steps  2.7%) + tag-only  6.8% | neurons 100.0% (>=2 steps  33.2%) | regions seen 100%
+  day  5: synapses differing  30.7% = rewired 13.0% + learned 10.8% (>=2 steps  3.3%) + tag-only  6.9% | neurons 100.0% (>=2 steps  43.7%) | regions seen 100%
+  day  7: synapses differing  36.7% = rewired 17.7% + learned 11.4% (>=2 steps  3.5%) + tag-only  7.7% | neurons 100.0% (>=2 steps  52.2%) | regions seen 100%
+  day 10: synapses differing  42.4% = rewired 23.7% + learned 10.7% (>=2 steps  3.3%) + tag-only  7.9% | neurons 100.0% (>=2 steps  55.8%) | regions seen 100%
+  day 14: synapses differing  49.1% = rewired 30.9% + learned 10.5% (>=2 steps  3.6%) + tag-only  7.8% | neurons 100.0% (>=2 steps  58.9%) | regions seen 100%
+  day 20: synapses differing  55.1% = rewired 40.0% + learned  9.0% (>=2 steps  4.0%) + tag-only  6.1% | neurons 100.0% (>=2 steps  58.3%) | regions seen 100%
+  day 21: synapses differing  57.6% = rewired 41.4% + learned  9.7% (>=2 steps  4.1%) + tag-only  6.6% | neurons 100.0% (>=2 steps  61.7%) | regions seen 100%
+  day 25: synapses differing  62.0% = rewired 46.4% + learned  8.9% (>=2 steps  4.3%) + tag-only  6.7% | neurons 100.0% (>=2 steps  61.6%) | regions seen 100%
+  day 30: synapses differing  67.0% = rewired 51.7% + learned  8.9% (>=2 steps  4.6%) + tag-only  6.3% | neurons 100.0% (>=2 steps  63.0%) | regions seen 100%
+  day 40: synapses differing  74.3% = rewired 60.3% + learned  8.1% (>=2 steps  5.0%) + tag-only  5.9% | neurons 100.0% (>=2 steps  64.6%) | regions seen 100%
+  16,384 neurons, 8000 awake steps, 1939 dopamine events, 25.4% of neuron-steps evaluated (event-driven); awake 39.8s, sleep 1.4s, total 45s
+
+== world scenario 'targeted_noprune': targeted, no pruning at all (pure learning diff)
+  day  1: synapses differing   8.1% = rewired  0.0% + learned  6.8% (>=2 steps  2.6%) + tag-only  1.4% | neurons  32.8% (>=2 steps  19.9%) | regions seen 100%
+  day  2: synapses differing  14.3% = rewired  0.0% + learned 10.0% (>=2 steps  2.6%) + tag-only  4.3% | neurons  54.7% (>=2 steps  32.5%) | regions seen 100%
+  day  3: synapses differing  17.3% = rewired  0.0% + learned 10.3% (>=2 steps  2.7%) + tag-only  7.0% | neurons  64.1% (>=2 steps  33.3%) | regions seen 100%
+  day  5: synapses differing  18.5% = rewired  0.0% + learned 11.2% (>=2 steps  3.3%) + tag-only  7.3% | neurons  73.4% (>=2 steps  44.0%) | regions seen 100%
+  day  7: synapses differing  20.6% = rewired  0.0% + learned 12.1% (>=2 steps  3.6%) + tag-only  8.5% | neurons  77.7% (>=2 steps  52.5%) | regions seen 100%
+  day 10: synapses differing  21.0% = rewired  0.0% + learned 11.6% (>=2 steps  3.3%) + tag-only  9.3% | neurons  85.6% (>=2 steps  56.9%) | regions seen 100%
+  day 14: synapses differing  21.5% = rewired  0.0% + learned 11.8% (>=2 steps  3.7%) + tag-only  9.7% | neurons  85.4% (>=2 steps  59.9%) | regions seen 100%
+  day 20: synapses differing  18.7% = rewired  0.0% + learned 10.4% (>=2 steps  4.1%) + tag-only  8.3% | neurons  86.7% (>=2 steps  59.8%) | regions seen 100%
+  day 21: synapses differing  20.6% = rewired  0.0% + learned 11.5% (>=2 steps  4.2%) + tag-only  9.2% | neurons  87.2% (>=2 steps  63.3%) | regions seen 100%
+  day 25: synapses differing  20.7% = rewired  0.0% + learned 10.7% (>=2 steps  4.4%) + tag-only 10.0% | neurons  87.5% (>=2 steps  63.5%) | regions seen 100%
+  day 30: synapses differing  21.2% = rewired  0.0% + learned 11.1% (>=2 steps  4.8%) + tag-only 10.0% | neurons  87.3% (>=2 steps  65.4%) | regions seen 100%
+  day 40: synapses differing  21.6% = rewired  0.0% + learned 10.7% (>=2 steps  5.3%) + tag-only 10.9% | neurons  89.6% (>=2 steps  68.0%) | regions seen 100%
+  16,384 neurons, 8000 awake steps, 1939 dopamine events, 25.4% of neuron-steps evaluated (event-driven); awake 68.8s, sleep 2.2s, total 76s
+
+== world scenario 'growing_world': targeted, world opens up: 4 regions on day 1, +1.5/day
+  day  1: synapses differing   4.1% = rewired  0.1% + learned  3.7% (>=2 steps  3.0%) + tag-only  0.3% | neurons   9.4% (>=2 steps   5.8%) | regions seen   9%
+  day  2: synapses differing   5.9% = rewired  0.3% + learned  4.9% (>=2 steps  3.6%) + tag-only  0.7% | neurons  10.9% (>=2 steps   7.7%) | regions seen  11%
+  day  3: synapses differing   8.3% = rewired  0.5% + learned  6.8% (>=2 steps  5.5%) + tag-only  1.0% | neurons  14.1% (>=2 steps  10.9%) | regions seen  14%
+  day  5: synapses differing  10.7% = rewired  0.9% + learned  8.5% (>=2 steps  6.2%) + tag-only  1.3% | neurons  18.8% (>=2 steps  15.6%) | regions seen  19%
+  day  7: synapses differing  14.2% = rewired  1.4% + learned 10.5% (>=2 steps  7.4%) + tag-only  2.4% | neurons  23.4% (>=2 steps  18.8%) | regions seen  23%
+  day 10: synapses differing  16.5% = rewired  2.2% + learned 12.0% (>=2 steps  8.3%) + tag-only  2.2% | neurons  29.7% (>=2 steps  23.4%) | regions seen  30%
+  day 14: synapses differing  19.0% = rewired  4.1% + learned 12.0% (>=2 steps  8.3%) + tag-only  2.9% | neurons  39.1% (>=2 steps  28.1%) | regions seen  39%
+  day 20: synapses differing  26.0% = rewired  8.0% + learned 12.9% (>=2 steps  8.5%) + tag-only  5.0% | neurons  53.1% (>=2 steps  36.9%) | regions seen  53%
+  day 21: synapses differing  27.2% = rewired  8.8% + learned 13.3% (>=2 steps  8.5%) + tag-only  5.1% | neurons  56.2% (>=2 steps  36.1%) | regions seen  56%
+  day 25: synapses differing  33.5% = rewired 12.0% + learned 14.0% (>=2 steps  8.5%) + tag-only  7.4% | neurons  65.6% (>=2 steps  43.9%) | regions seen  66%
+  day 30: synapses differing  37.8% = rewired 17.5% + learned 13.8% (>=2 steps  9.0%) + tag-only  6.4% | neurons  76.6% (>=2 steps  49.5%) | regions seen  77%
+  day 40: synapses differing  51.3% = rewired 32.0% + learned 13.4% (>=2 steps  9.0%) + tag-only  6.0% | neurons 100.0% (>=2 steps  59.8%) | regions seen 100%
+  16,384 neurons, 8000 awake steps, 1921 dopamine events, 21.4% of neuron-steps evaluated (event-driven); awake 62.9s, sleep 1.4s, total 69s

@@ -1,0 +1,18 @@
+seed 0 done
+seed 1 done
+seed 2 done
+seed 3 done
+seed 4 done
+seed 5 done
+
+Which pathway carries recall? (6 seeds; fill-in of the unseen right half; ± = standard error)
+condition                                  fill-in  identify (A)  identify (B)
+intact                                0.476 ± 0.116          0.42          0.31
+no apical feedback (B->A)             0.174 ± 0.124          0.36          0.33
+no top-down to VIP (B->A)             0.299 ± 0.096          0.36          0.22
+no B->A at all                        0.249 ± 0.059          0.36          0.33
+area B silenced                       0.319 ± 0.101          0.44          0.17
+A's local synapses can't learn        0.102 ± 0.055          0.53          0.33
+long-range synapses can't learn       0.075 ± 0.052          0.53          0.33
+B->A cut at recall only               0.242 ± 0.113          0.39          0.28
+area B silenced at recall only        0.293 ± 0.098          0.33          0.17

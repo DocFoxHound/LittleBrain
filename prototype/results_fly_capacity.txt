@@ -1,0 +1,15 @@
+AUC good vs bad (0.5 chance, 1 perfect), mean over 8 neurons x 2 worlds; after practice / 6 days later
+Storage after practice: synapses changed, long-term bytes per neuron (all ideas)
+
+== 1152 synapses (9 branches x 128) ==
+                                      P=8          P=32         P=128         P=512   storage at P=128
+   16 lv                        1.00/1.00     1.00/0.97     0.80/0.76     0.60/0.59    18.9%     454 B
+   32 lv                        1.00/1.00     1.00/1.00     0.92/0.89     0.66/0.64    44.4%    1149 B
+== 2304 synapses (18 branches x 128) ==
+                                      P=8          P=32         P=128         P=512   storage at P=128
+   16 lv                        1.00/1.00     1.00/0.99     0.87/0.82     0.63/0.62    18.5%     884 B
+   32 lv                        1.00/1.00     1.00/1.00     0.97/0.95     0.71/0.70    44.6%    2292 B
+== 4096 synapses (32 branches x 128) ==
+                                      P=8          P=32         P=128         P=512   storage at P=128
+   16 lv                        1.00/1.00     1.00/1.00     0.94/0.90     0.67/0.64    18.7%    1582 B
+   32 lv                        1.00/1.00     1.00/1.00     0.99/0.98     0.76/0.74    44.0%    4011 B

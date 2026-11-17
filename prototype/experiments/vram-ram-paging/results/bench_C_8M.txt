@@ -1,0 +1,8 @@
+[N=8,388,608 modes=['paged', 'zerocopy']] init 2.9 s, VRAM pool 1938 MB, host words 8.59 GB, {'VmHWM_MB': 8660.22265625, 'VmRSS_MB': 8596.83984375}
+         paged K= 1536 frac=0.200 churn=0.02: fwd    33.40 ms ['34.5', '31.7'] mod    35.79 ms |    251.1 M n-steps/s,   50.2 M active/s | PCIe/step fwd in  244.3 out  244.3 MB, mod in  211.5 out  211.5 MB | x1.00 vs paged
+      zerocopy K= 1536 frac=0.200 churn=0.02: fwd   140.14 ms ['140.3', '139.9'] mod   174.14 ms |     59.9 M n-steps/s,   12.0 M active/s | PCIe/step fwd in 1717.6 out  279.9 MB, mod in 1822.1 out 1816.0 MB | x4.24 vs paged
+         paged K= 1536 frac=0.200 churn=1.00: fwd   129.62 ms ['130.1', '129.2'] mod   363.39 ms |     64.7 M n-steps/s,   12.9 M active/s | PCIe/step fwd in 1370.3 out 1370.3 MB, mod in 3732.3 out 3732.3 MB | x1.00 vs paged
+      zerocopy K= 1536 frac=0.200 churn=1.00: fwd   146.04 ms ['149.4', '143.3'] mod   501.66 ms |     57.4 M n-steps/s,   11.5 M active/s | PCIe/step fwd in 1717.6 out  786.3 MB, mod in 5342.9 out 5141.3 MB | x1.13 vs paged
+         paged sleep: 0.835 s (['0.880', '0.791']) -> 10.0 M neurons/s; PCIe in 7785 MB, out 8590 MB
+      zerocopy sleep: 0.852 s (['0.849', '0.856']) -> 9.8 M neurons/s; PCIe in 0 MB, out 0 MB
+  peak {'VmHWM_MB': 8660.22265625, 'VmRSS_MB': 8601.93359375}, VRAM this process 2044 MB

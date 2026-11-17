@@ -1,0 +1,38 @@
+[
+ {
+  "region": 64,
+  "mean_gap": 1.999863624572754,
+  "spacers_per_synapse": 0.000377655029296875,
+  "bytes_per_synapse": 4.0015106201171875
+ },
+ {
+  "region": 128,
+  "mean_gap": 3.9994850158691406,
+  "spacers_per_synapse": 0.02101421356201172,
+  "bytes_per_synapse": 4.084056854248047
+ },
+ {
+  "region": 256,
+  "mean_gap": 7.997977256774902,
+  "spacers_per_synapse": 0.1698312759399414,
+  "bytes_per_synapse": 4.679325103759766
+ },
+ {
+  "region": 512,
+  "mean_gap": 15.992093086242676,
+  "spacers_per_synapse": 0.6232872009277344,
+  "bytes_per_synapse": 6.4931488037109375
+ },
+ {
+  "region": 1024,
+  "mean_gap": 31.96860980987549,
+  "spacers_per_synapse": 1.6442623138427734,
+  "bytes_per_synapse": 10.577049255371094
+ },
+ {
+  "region": 4096,
+  "mean_gap": 127.49506950378418,
+  "spacers_per_synapse": 7.97835636138916,
+  "bytes_per_synapse": 35.91342544555664
+ }
+]

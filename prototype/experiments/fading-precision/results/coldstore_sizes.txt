@@ -1,0 +1,61 @@
+[cold store] bytes per neuron (incl. 17 B per-neuron state) after fading, by layout; zstd-3, 64-neuron blocks
+  day16/A/666      raw=  304  fields=  317  dfields=  258  symbols=  193   fixed-width 721
+  day16/A/466      raw=  322  fields=  342  dfields=  280  symbols=  212   fixed-width 662
+  day16/A/446      raw=  336  fields=  356  dfields=  300  symbols=  226   fixed-width 603
+  day16/A/334      raw=  326  fields=  310  dfields=  345  symbols=  289   fixed-width 480
+  day16/A/224      raw=  311  fields=  265  dfields=  400  symbols=  239   fixed-width 416
+  day16/A/222      raw=  249  fields=  199  dfields=  255  symbols=  191   fixed-width 352
+  day16/A/004      raw=  206  fields=  135  dfields=  268  symbols=  135   fixed-width 278
+  day16/A/002      raw=  123  fields=   80  dfields=  141  symbols=   80   fixed-width 214
+  day16/A/vqm64    symbols=  142
+  day16/A/vqm256   symbols=  166
+  day16/B/666      raw=  361  fields=  414  dfields=  344  symbols=  270   fixed-width 721
+  day16/B/466      raw=  375  fields=  439  dfields=  378  symbols=  353   fixed-width 662
+  day16/B/446      raw=  391  fields=  457  dfields=  404  symbols=  370   fixed-width 603
+  day16/B/334      raw=  367  fields=  407  dfields=  413  symbols=  348   fixed-width 480
+  day16/B/224      raw=  324  fields=  337  dfields=  399  symbols=  314   fixed-width 416
+  day16/B/222      raw=  275  fields=  274  dfields=  280  symbols=  227   fixed-width 352
+  day16/B/004      raw=  245  fields=  203  dfields=  333  symbols=  203   fixed-width 278
+  day16/B/002      raw=  193  fields=  148  dfields=  213  symbols=  147   fixed-width 214
+  day16/B/vqm64    symbols=  217
+  day16/B/vqm256   symbols=  244
+  day16/E/666      raw=  270  fields=  276  dfields=  280  symbols=  206   fixed-width 721
+  day16/E/466      raw=  270  fields=  276  dfields=  280  symbols=  206   fixed-width 662
+  day16/E/446      raw=  270  fields=  276  dfields=  280  symbols=  206   fixed-width 603
+  day16/E/334      raw=  270  fields=  276  dfields=  280  symbols=  206   fixed-width 480
+  day16/E/224      raw=  315  fields=  285  dfields=  320  symbols=  241   fixed-width 416
+  day16/E/222      raw=  322  fields=  286  dfields=  320  symbols=  243   fixed-width 352
+  day16/E/004      raw=  215  fields=  172  dfields=  227  symbols=  170   fixed-width 278
+  day16/E/002      raw=  222  fields=  174  dfields=  230  symbols=  171   fixed-width 214
+  day16/E/vqm64    symbols=  186
+  day16/E/vqm256   symbols=  202
+  day16/C/666      raw=  587  fields=  596  dfields=  588  symbols=  510   fixed-width 721
+  day16/C/466      raw=  538  fields=  565  dfields=  606  symbols=  476   fixed-width 662
+  day16/C/446      raw=  507  fields=  538  dfields=  612  symbols=  456   fixed-width 603
+  day16/C/334      raw=  466  fields=  487  dfields=  580  symbols=  420   fixed-width 480
+  day16/C/224      raw=  421  fields=  434  dfields=  544  symbols=  374   fixed-width 416
+  day16/C/222      raw=  369  fields=  366  dfields=  419  symbols=  306   fixed-width 352
+  day16/C/004      raw=  345  fields=  297  dfields=  435  symbols=  293   fixed-width 278
+  day16/C/002      raw=  284  fields=  234  dfields=  303  symbols=  232   fixed-width 214
+  day16/C/vqm64    symbols=  315
+  day16/C/vqm256   symbols=  379
+  day8/A/666       raw=  509  fields=  454  dfields=  482  symbols=  462   fixed-width 721
+  day8/A/466       raw=  497  fields=  456  dfields=  487  symbols=  456   fixed-width 662
+  day8/A/446       raw=  495  fields=  442  dfields=  489  symbols=  467   fixed-width 603
+  day8/A/334       raw=  439  fields=  376  dfields=  478  symbols=  435   fixed-width 480
+  day8/A/224       raw=  387  fields=  319  dfields=  469  symbols=  375   fixed-width 416
+  day8/A/222       raw=  335  fields=  258  dfields=  357  symbols=  276   fixed-width 352
+  day8/A/004       raw=  235  fields=  175  dfields=  298  symbols=  174   fixed-width 278
+  day8/A/002       raw=  191  fields=  121  dfields=  181  symbols=  120   fixed-width 214
+  day8/A/vqm64     symbols=  224
+  day8/A/vqm256    symbols=  292
+  day8/B/666       raw=  458  fields=  473  dfields=  479  symbols=  397   fixed-width 721
+  day8/B/466       raw=  414  fields=  446  dfields=  496  symbols=  363   fixed-width 662
+  day8/B/446       raw=  386  fields=  421  dfields=  502  symbols=  344   fixed-width 603
+  day8/B/334       raw=  348  fields=  372  dfields=  469  symbols=  306   fixed-width 480
+  day8/B/224       raw=  312  fields=  318  dfields=  431  symbols=  240   fixed-width 416
+  day8/B/222       raw=  255  fields=  254  dfields=  307  symbols=  193   fixed-width 352
+  day8/B/004       raw=  251  fields=  183  dfields=  323  symbols=  184   fixed-width 278
+  day8/B/002       raw=  189  fields=  125  dfields=  192  symbols=  125   fixed-width 214
+  day8/B/vqm64     symbols=  200
+  day8/B/vqm256    symbols=  254

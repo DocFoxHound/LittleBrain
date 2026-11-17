@@ -1,0 +1,19 @@
+== Night: streaming sleep sweep (25,165,824 neurons, 24 GiB on SSD, 128 MiB chunks x 4 buffers = 512 MiB RAM) ==
+  compute only (RAM, 1 thread): 0.25 M neurons/s = 0.06 G synapse-updates/s = 0.25 GB/s of brain -> 101 s per night for 24 GiB
+  compute only (RAM, 2 threads): 0.37 M neurons/s = 0.09 G synapse-updates/s = 0.38 GB/s of brain -> 69 s per night for 24 GiB
+  compute only (RAM, 3 threads): 0.39 M neurons/s = 0.10 G synapse-updates/s = 0.40 GB/s of brain -> 65 s per night for 24 GiB
+  compute only (GPU incl. copies to and from VRAM): 1.99 M neurons/s = 2.04 GB/s of brain; identical to the CPU night: 100.000000% of words
+  -- 4 GiB regions --
+  read only (no compute, no write)                4.0 GiB     1.6 s   2.63 GB/s (read+write 2.63)   2.57 M neurons/s   0.66 G syn/s  busy: read 1.6 / compute 0.0 / write 0.0 s, cores 0.1
+  I/O only (read + write back, no compute)        4.0 GiB     2.5 s   1.71 GB/s (read+write 3.42)   1.67 M neurons/s   0.43 G syn/s  busy: read 1.5 / compute 0.0 / write 2.5 s, cores 0.2
+  serial (read, then compute, then write)         4.0 GiB     8.6 s   0.50 GB/s (read+write 1.00)   0.49 M neurons/s   0.12 G syn/s  busy: read 1.5 / compute 5.2 / write 1.9 s, cores 1.5
+  pipelined (read-ahead + write-behind)           4.0 GiB     5.6 s   0.76 GB/s (read+write 1.52)   0.74 M neurons/s   0.19 G syn/s  busy: read 1.4 / compute 5.5 / write 1.5 s, cores 2.3
+  pipelined, GPU compute                          4.0 GiB     2.5 s   1.71 GB/s (read+write 3.42)   1.67 M neurons/s   0.43 G syn/s  busy: read 1.5 / compute 2.2 / write 2.4 s, cores 1.0
+  FULL NIGHT, whole brain (24 GiB)               24.0 GiB    39.6 s   0.65 GB/s (read+write 1.30)   0.64 M neurons/s   0.16 G syn/s  busy: read 8.4 / compute 39.5 / write 9.9 s, cores 2.5
+  night on SSD == same night computed in RAM by Numba (2,000 neurons, bit-exact): True; checksum changed: True; synapses regrown: 98.3%
+  FULL NIGHT, GPU compute, whole brain (24 GiB)   24.0 GiB    15.2 s   1.69 GB/s (read+write 3.39)   1.65 M neurons/s   0.42 G syn/s  busy: read 9.0 / compute 11.3 / write 15.1 s, cores 0.9
+  night on SSD == same night computed in RAM by Numba (2,000 neurons, bit-exact): True; checksum changed: True
+  LAZY night, 5% of columns touched               1.2 GiB     2.9 s   0.44 GB/s (read+write 0.88)   0.43 M neurons/s   0.11 G syn/s  busy: read 0.4 / compute 2.8 / write 0.7 s, cores 2.7
+  LAZY night, 20% of columns touched              4.8 GiB     7.6 s   0.68 GB/s (read+write 1.36)   0.66 M neurons/s   0.17 G syn/s  busy: read 1.8 / compute 7.5 / write 2.2 s, cores 2.5
+  soma part of the night (RAM, 25,165,824 neurons): 0.08 s
+  peak RSS 1635 MiB; SSD bytes written by this experiment so far: 132.5 GB

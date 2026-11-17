@@ -1,0 +1,35 @@
+== forward: GPU kernel vs PackedPopulation.forward (20,000 neurons, 64 inputs) ==
+    step 0: max |rate diff| 2.38e-07, neurons >1e-4: 0, words identical: True, max |thr diff| 4.8e-07, history equal: 1.0000
+    step 1: max |rate diff| 2.38e-07, neurons >1e-4: 0, words identical: True, max |thr diff| 4.8e-07, history equal: 1.0000
+    step 2: max |rate diff| 2.98e-07, neurons >1e-4: 0, words identical: True, max |thr diff| 4.8e-07, history equal: 1.0000
+    step 3: max |rate diff| 2.38e-07, neurons >1e-4: 0, words identical: True, max |thr diff| 4.8e-07, history equal: 1.0000
+    step 4: max |rate diff| 2.38e-07, neurons >1e-4: 0, words identical: True, max |thr diff| 4.8e-07, history equal: 0.9999
+  worst |rate diff| over 5 steps: 2.98e-07; neurons differing by >1e-4: 0
+
+== modulate / sleep (20,000 neurons) ==
+  modulate (normal; dopamine 0.7, ACh 0.6, arousal 0.8)
+    fast          numpy: within 1 step 100.000%, mean err +0.0001 steps | gpu: within 1 step 100.000%, mean err -0.0001 steps
+    tag           numpy: within 1 step 100.000%, mean err +0.0001 steps | gpu: within 1 step 100.000%, mean err -0.0000 steps
+    gen and used bits unchanged and equal: True
+  modulate (one-shot; dopamine 1.0, ACh 0.95, arousal 0.8)
+    fast          numpy: within 1 step 100.000%, mean err -0.0002 steps | gpu: within 1 step 100.000%, mean err -0.0000 steps
+    tag           numpy: within 1 step 100.000%, mean err -0.0001 steps | gpu: within 1 step 100.000%, mean err -0.0001 steps
+    c0            numpy: within 1 step 93.712%, mean err -0.0001 steps | gpu: within 1 step 100.000%, mean err +0.0001 steps
+    c1            numpy: within 1 step 100.000%, mean err -0.0002 steps | gpu: within 1 step 100.000%, mean err -0.0001 steps
+    c2            numpy: within 1 step 100.000%, mean err -0.0001 steps | gpu: within 1 step 100.000%, mean err +0.0002 steps
+    gen and used bits unchanged and equal: True
+  sleep: pruned numpy 1,025,123 vs gpu 1,024,721 (-0.04%)
+    c0: mean numpy +0.04583 gpu +0.04585; identical 53.4%, within 1 step 93.65%
+    c1: mean numpy +0.01261 gpu +0.01264; identical 67.5%, within 1 step 99.41%
+    c2: mean numpy +0.00056 gpu +0.00057; identical 76.4%, within 1 step 99.50%
+    fast all zero: numpy True, gpu True; used cleared: True; tag mean numpy 1.4002 gpu 1.4001
+    rewired fraction numpy 0.2002 gpu 0.2001
+
+== Speed (median of 3) ==
+  numpy    100,000 neurons: forward    751.7 ms  modulate   1416.5 ms  sleep   1731.6 ms   -> forward   0.133 M neuron-steps/s
+  gpu      100,000 neurons: forward     0.50 ms  modulate     0.92 ms  sleep     0.97 ms   -> forward   201.0 M neuron-steps/s (51.5 G synapses/s)
+         VRAM: words 1028 B/neuron + state 25 B/neuron (+0.07 per-block, +0.8 kB shared); temporaries after a step: 0.00 MB
+  gpu    1,000,000 neurons: forward     4.41 ms  modulate     9.03 ms  sleep     8.97 ms   -> forward   226.7 M neuron-steps/s (58.0 G synapses/s)
+         VRAM: words 1024 B/neuron + state 25 B/neuron (+0.07 per-block, +0.8 kB shared); temporaries after a step: 0.00 MB
+  speed-up per neuron vs numpy (gpu100000): forward 1,511x, modulate 1,539x, sleep 1,776x
+  speed-up per neuron vs numpy (gpu1000000): forward 1,704x, modulate 1,569x, sleep 1,930x
