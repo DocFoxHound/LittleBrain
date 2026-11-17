@@ -6,6 +6,7 @@ notes/regions/connections.md section 8. Pathway IDs refer to that file.
   stage2()  + hippocampal memory loop: B -> entorhinal -> DG -> CA3 -> CA1 -> subiculum -> EC L5 -> B
 """
 
+import os
 from dataclasses import replace
 
 import celltypes as C
@@ -22,6 +23,9 @@ LOCAL = {
     "L6":   {"basal": [("L4", 0.3), ("L6", 0.3), ("L5IT", 0.2), ("L23", 0.2)]},
 }
 SPREAD = {"A": 0.12, "B": 0.25}
+# Strength of the L4 -> L2/3 feedforward synapses (notes/28). 1 = as before; 3 lets the sensory signal outweigh
+# L2/3's own recurrent chatter (L4 fires sparsely here, so L2/3 heard it at ~1/5 the volume of its neighbours).
+L4_L23_GAIN = float(os.environ.get("L4_L23_GAIN", "1"))
 
 
 def _with_local(dst_area, group, comp, long_paths):
@@ -31,8 +35,9 @@ def _with_local(dst_area, group, comp, long_paths):
     tot = sum(f for _, f in local)
     paths = list(long_paths)
     for src, f in local:
+        gain = L4_L23_GAIN if (src, group) == ("L4", "L23") else 1.0
         paths.append(Synaptic("local", f"{dst_area}.{src}", f"{dst_area}.{group}", comp,
-                              (1 - long_total) * f / tot, spread=SPREAD[dst_area], kind="local"))
+                              (1 - long_total) * f / tot, gain, spread=SPREAD[dst_area], kind="local"))
     return paths
 
 

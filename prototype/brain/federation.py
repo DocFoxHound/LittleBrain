@@ -144,6 +144,14 @@ class Brain:
         self.kernels = {}
         self.ablated = set()
         self.homeostasis = 0.02      # always-on intrinsic plasticity (0 = off)
+        self.max_scale = float(os.environ.get("MAX_SCALE", "0")) or None  # cap on intrinsic sharpness (None = no cap)
+        # How the always-on homeostasis corrects a cell's firing (notes/28):
+        #   "quantile": nudge up when it fires, down when it doesn't (settles at the target, but recovers from
+        #               silence ~12x slower than from over-firing at an 8% target)
+        #   "log":      push by log(recent rate / target), so 10x too quiet and 10x too loud are corrected
+        #               equally fast; inhibitory plasticity uses the same error
+        self.homeo_rule = os.environ.get("HOMEO_RULE", "quantile")
+        self._ravg = {}
         self._stats = {}
         self._wire()
         self.device = "cpu"
@@ -361,8 +369,10 @@ class Brain:
             cut = xpof(v).partition(v, v.size - k)[v.size - k]
             over = 1.0 / (1.0 + np.exp(-(4.0 * (v - cut) / (v.std() + 1e-6) + 1.0)))
             target = np.where(v >= cut, np.maximum(target, over), 0.05 * target)
+        log_rule = self.homeostasis and self.homeo_rule == "log"
         if "pv" in ch:
-            grp.inhibitory_plasticity(ch["pv"], eta=0.05)
+            grp.inhibitory_plasticity(ch["pv"], eta=0.05, err=self._rate_error(key, grp) if log_rule else None)
+        grp.own_threshold_rule = not log_rule   # the log rule replaces the cell's own slow, asymmetric drift
         grp.update(target, learn=learn)
         if self.homeostasis:
             self._homeostasis(key, grp, self.homeostasis)
@@ -404,8 +414,26 @@ class Brain:
         var = 0.98 * var + 0.02 * (g.soma - mean) ** 2
         self._stats[key] = (mean, var)
         std = np.sqrt(var) + 1e-3
-        g.scale = (slope / g.c.slope / std).astype(np.float32)
-        g.threshold += (eta * (std + 0.05) * ((g.soma > g.threshold) - g.c.target_rate)).astype(np.float32)
+        g.scale = self._cap_scale(slope / g.c.slope / std)
+        if self.homeo_rule == "log":
+            avg = self._ravg.get(key)
+            avg = like(g.rate, np.full(g.n, g.c.target_rate, np.float32)) if avg is None else avg
+            self._ravg[key] = avg + 0.02 * (g.rate - avg)
+            g.threshold += (eta * (std + 0.05) * 0.4 * self._rate_error(key, g)).astype(np.float32)
+        else:
+            g.threshold += (eta * (std + 0.05) * ((g.soma > g.threshold) - g.c.target_rate)).astype(np.float32)
+
+    def _rate_error(self, key, g):
+        """log(recent rate / target), clipped: 0 at target, about +-2 at saturated or silent."""
+        t = g.c.target_rate
+        avg = self._ravg.get(key)
+        if avg is None:
+            return xpof(g.rate).zeros_like(g.rate)
+        return np.clip(np.log((avg + 0.2 * t) / (1.2 * t)), -3.0, 3.0).astype(np.float32)
+
+    def _cap_scale(self, s):
+        s = np.minimum(s, self.max_scale) if self.max_scale else s
+        return s.astype(np.float32)
 
     def sleep(self):
         for key, grp in self.g.items():
@@ -493,7 +521,7 @@ class Brain:
                 mean[k] = 0.98 * mean[k] + 0.02 * g.soma
                 var[k] = 0.98 * var[k] + 0.02 * (g.soma - mean[k]) ** 2
                 std = np.sqrt(var[k]) + 1e-3
-                g.scale = (slope / g.c.slope / std).astype(np.float32)
+                g.scale = self._cap_scale(slope / g.c.slope / std)
                 g.threshold += (eta * (std + 0.05) * ((g.soma > g.threshold) - g.c.target_rate)).astype(np.float32)
         self._stats = {k: (mean[k], var[k]) for k in E}
         self.homeostasis = live

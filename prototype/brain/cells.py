@@ -393,12 +393,15 @@ class ExcitatoryGroup:
             if self.apical is not None:
                 self.apical.trace(xs_a, self.rate)
         # Homeostasis: threshold drifts to keep the cell near its target rate (sparse coding)
-        self.threshold += c.rules.threshold_lr * (self.rate - c.target_rate)
+        if getattr(self, "own_threshold_rule", True):
+            self.threshold += c.rules.threshold_lr * (self.rate - c.target_rate)
         self.avg_rate += c.rules.rate_avg_tau * (self.rate - self.avg_rate)
 
-    def inhibitory_plasticity(self, pv_in, eta=0.01):
-        """Vogels-style: PV inhibition onto a cell grows when the cell is above its target rate."""
-        self.inh_gain = np.maximum(self.inh_gain + eta * (self.rate - self.c.target_rate) * pv_in, 0.0)
+    def inhibitory_plasticity(self, pv_in, eta=0.01, err=None):
+        """Vogels-style: PV inhibition onto a cell grows when the cell is above its target rate.
+        err: optional symmetric rate error (log of recent rate / target, from the brain's homeostasis)."""
+        e = (self.rate - self.c.target_rate) if err is None else 0.3 * err
+        self.inh_gain = np.maximum(self.inh_gain + eta * e * pv_in, 0.0)
 
     def banks(self):
         return [b for b in (self.basal, self.apical) if b is not None]

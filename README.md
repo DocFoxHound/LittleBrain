@@ -35,7 +35,14 @@ way we do, so it can relate to people on a more genuine level.
 5. ✅ Organize the chosen structure into brain regions (note 21; percentages per region, `prototype/brain/regions.py`)
 6. ✅ Refine how each type learns; retool how specific neurons cluster and learn (note 22)
 7. Piece them together into a federated system on the tiered prototype architecture (note 15)
+   - ⚠️ Brain-level memory scores were a timing artifact (note 26). **2026-11-17:** honest tests added, and cortex area A made reliable (note 28); no memory yet.
 8. Then: sleep and dreams
+
+### New end goal (2026-11-17)
+A tool that plugs this brain into small simulated games, to see how characters learn under different inputs and
+environments, plus a desktop visualizer of what the neurons are doing and tools to inspect and edit what was
+learned. Order: (1) make the brain learn, measured honestly; (2) game interface + a first tiny game;
+(3) desktop visualizer; (4) analysis and editing tools.
 
 ## ⭐ Current focus: neurons first
 - **[Neuron catalog](notes/12-neuron-catalog.md):** the six neuron types (workhorse, core, hub, transient, inhibitory, modulatory), each based on a real human neuron. This is where the build starts.
@@ -74,8 +81,9 @@ way we do, so it can relate to people on a more genuine level.
 26. [Lean neuron plan, results](notes/24-lean-neuron-plan.md): precision, sizes, seeded choice, suites, the official synapse scale
 27. [The brain on lean neurons](notes/25-lean-brain.md): port results; brain-to-brain variance; GPU; fly brains
 28. [Fixing the hippocampus](notes/26-hippocampus.md): why it did nothing (7 causes), fixes, first hippocampal memory
+30. [Making the cortex listen to its input](notes/28-reliable-cortex.md): honest reliability + memory tests; why L2/3 ignored L4 and went silent after sleep; symmetric homeostasis
 29. [Physical neurons](notes/27-physical-neurons.md): building neurons from materials (plastic ion neurons, silver nanowire webs) instead of simulating them; project paused on hardware
-30. [Reading list](reading-list.md)
+31. [Reading list](reading-list.md)
 
 ## Parked for later 📌
 - **Self-generated training before birth:** retinal waves, learning in the womb. Sleep and dreaming are now started in note 09; this part is still parked.
