@@ -211,3 +211,60 @@ def stage_bg(n_actions=N_ACTIONS):
     ]
     spec.inputs = ["retina", "MOT"]
     return spec
+
+
+def stage_da(n_actions=N_ACTIONS, so_weight=None):
+    """stage_bg + dopamine cells that compute reward prediction error themselves (notes/32).
+    US: the reward signal arriving from the body (lateral hypothalamus / brainstem), set by the agent.
+    STR.SO: striosome MSNs learn, from cortex, how much reward the situation predicts, and inhibit the dopamine
+    cells by that much (striosome -> SNc/VTA; Crittenden et al. 2016). VTA.DA fires above its tonic level when
+    reward beats the prediction and dips below it when reward falls short."""
+    spec = stage_bg(n_actions)
+    so_weight = float(os.environ.get("SO_WEIGHT", "4")) if so_weight is None else so_weight
+    lr, decay = float(os.environ.get("MSN_LR", "0.6")), float(os.environ.get("MSN_DECAY", "0.99995"))
+    lr = float(os.environ.get("SO_LR", lr))   # striosomes can learn expectations faster than actions
+    so = replace(C.STRIOSOME_MSN, long_range_max=1.0, rules=replace(C.STRIOSOME_MSN.rules, lr=lr, fast_decay=decay))
+    spec.groups += [Group("US", None, 1, "US"), Group("STR.SO", so, 1, "STR"), Group("VTA.DA", C.DA_NEURON, 1, "VTA")]
+    spec.synaptic += [Synaptic("BG-3 cortex->striosome", ["A.L5IT", "A.L5PT", "A.L23"], "STR.SO", "basal", 0.8, 1.0, 0.5),
+                      Synaptic("BG-4 thalamus->striosome", "TH.TC", "STR.SO", "basal", 0.2, 1.0, 0.5)]
+    spec.pooled += [Pooled("reward -> dopamine", "US", "VTA.DA", 1.0, sigma=None),
+                    Pooled("striosome -> dopamine (expectation)", "STR.SO", "VTA.DA", -so_weight, sigma=None),
+                    Pooled("MSN<-FSI", "STR.FSI", "STR.SO", 1.0, channel="pv", sigma=None),
+                    # the chosen action's copy reaches striosomes too, so their expectation arrives when the outcome
+                    # is due and is specific to (situation, action): an action value
+                    Pooled("efference -> striosome", "MOT", "STR.SO", float(os.environ.get("SO_MOT", "1.0")),
+                           channel="exc", sigma=0)]
+    spec.inputs = spec.inputs + ["US"]
+    return spec
+
+
+def stage_amy(n_actions=N_ACTIONS):
+    """stage_da + amygdala (notes/32). Basolateral amygdala (BLA) principal cells, positive and negative valence,
+    hear the thalamus (fast "low road") and cortex ("high road"); pain or reward arriving from the body teaches them in
+    a few tries, gated by arousal (BLA_RULES). Negative cells learn from dopamine dips (punishment), positive from
+    bursts. The central amygdala chain BLA(-) -> CeL SST (fear-on) -| CeL PKCd (fear-off) -| CeM output sets arousal
+    (via locus coeruleus). BLA also reaches the dopamine cells: a learned danger cue makes dopamine dip before the
+    pain arrives, a learned good cue makes it rise."""
+    spec = stage_da(n_actions)
+    noap = lambda ct, **kw: replace(ct, n_apical=0, long_range_max=1.0, **kw)
+    spec.groups += [Group("BLA.pos", noap(C.BLA_POSITIVE), 2, "BLA"),
+                    Group("BLA.neg", noap(C.BLA_NEGATIVE, dopamine_sign=-1.0), 2, "BLA"),
+                    Group("BLA.PV", C.PV, 1, "BLA"),
+                    Group("CeL.SST", replace(C.CEL_SST, long_range_max=1.0), 1, "CeA"),
+                    Group("CeL.PKCD", C.CEL_PKCD, 1, "CeA"), Group("CeM", C.CEM_OUTPUT, 1, "CeA")]
+    for bla in ("BLA.pos", "BLA.neg"):
+        spec.synaptic += [Synaptic("AM-1 thalamus->LA (low road)", "TH.TC", bla, "basal", 0.3, 1.0, 0.5),
+                          Synaptic("AM-2 cortex->LA (high road)", ["A.L23", "A.L5IT"], bla, "basal", 0.7, 1.0, 0.5)]
+    spec.synaptic += [Synaptic("AM-3 BLA->CeL", "BLA.neg", "CeL.SST", "basal", 1.0, 2.0, 0.5)]
+    us = float(os.environ.get("AMY_US", "2.0"))
+    spec.pooled += [
+        Pooled("reward -> BLA(+)", "US", "BLA.pos", us, channel="exc", sigma=None),
+        Pooled("pain -> BLA(-)", "US", "BLA.neg", -us, channel="exc", sigma=None),
+        Pooled("BLA PV<-E", ["BLA.pos", "BLA.neg"], "BLA.PV", 6.0, sigma=None),
+        Pooled("BLA E<-PV", "BLA.PV", ["BLA.pos", "BLA.neg"], 1.5, channel="pv", sigma=None),
+        Pooled("CeL SST -| PKCd", "CeL.SST", "CeL.PKCD", -3.0, sigma=None),
+        Pooled("CeL PKCd -| CeM", "CeL.PKCD", "CeM", -1.0, sigma=None),
+        Pooled("BLA(-) -> dopamine dip (via CeA / RMTg)", "BLA.neg", "VTA.DA", -float(os.environ.get("AMY_DA", "2.0")), sigma=None),
+        Pooled("BLA(+) -> dopamine", "BLA.pos", "VTA.DA", float(os.environ.get("AMY_DA", "2.0")), sigma=None),
+    ]
+    return spec

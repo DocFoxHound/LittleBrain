@@ -26,7 +26,7 @@ import threading
 import time
 from pathlib import Path
 
-for k, v in {"HOMEO_RULE": "log", "L4_L23_GAIN": "3", "CORTEX_LRF": "0.05"}.items():
+for k, v in {"HOMEO_RULE": "log", "L4_L23_GAIN": "3", "CORTEX_LRF": "0.05", "HOMEO_SLOW": "STR.SO:0.1"}.items():
     os.environ.setdefault(k, v)
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "brain"))
@@ -68,6 +68,9 @@ TERRITORY = {
     "EC": ("deep", [ell(0.44, 0.665, 0.036, 0.018)], "entorhinal cortex"),
     "TH": ("deep", [ell(*TH_SHAPE)], "thalamus"),
     "TH.TRN": ("deep", [crescent(*TH_SHAPE, 1.04, 1.22, math.radians(115), math.radians(300))], "reticular nucleus"),
+    "BLA": ("deep", [ell(0.398, 0.614, 0.024, 0.019)], "basolateral amygdala"),
+    "CeA": ("deep", [ell(0.437, 0.604, 0.020, 0.016)], "central amygdala"),
+    "VTA": ("deep", [ell(0.588, 0.645, 0.022, 0.013)], "dopamine cells (VTA / SNc)"),
     "STR": ("deep", [ell(0.365, 0.385, 0.05, 0.04),                                             # caudate head
                      [(0.39, 0.352), (0.47, 0.338), (0.55, 0.352), (0.605, 0.378), (0.598, 0.398), (0.545, 0.377),
                       (0.47, 0.367), (0.40, 0.388)],                                             # caudate body
@@ -85,7 +88,7 @@ TERRITORY = {
 NOT_BUILT = {"amygdala": [ell(0.405, 0.612, 0.026, 0.020)], "hypothalamus": [ell(0.478, 0.588, 0.030, 0.017)],
              "claustrum": [[(0.372, 0.43), (0.378, 0.43), (0.385, 0.51), (0.379, 0.51)]]}
 LOBE_LABELS = [((0.155, 0.33), "frontal lobe · not simulated"), ((0.25, 0.68), "temporal lobe"),
-               ((0.66, 0.70), "cerebellum · not built yet"), ((0.55, 0.88), "brainstem · dopamine etc. are signals for now")]
+               ((0.66, 0.70), "cerebellum · not built yet"), ((0.55, 0.88), "brainstem · noradrenaline, serotonin: not built yet")]
 
 BG, INK, DIM = (14, 16, 22), (225, 228, 235), (120, 126, 140)
 TISSUE, TISSUE_EDGE = (34, 30, 38), (92, 78, 92)
@@ -205,11 +208,14 @@ def kind_of(b, key):
 def describe(b, key):
     ct = next((gr.ctype for gr in b.spec.groups if gr.key == key), None)
     if ct is None:
-        return key, {"retina": "light-sensitive input (the picture)", "MOT": "copy of the chosen action"}.get(key, "input")
+        return key, {"retina": "light-sensitive input (the picture)", "MOT": "copy of the chosen action",
+                     "US": "reward arriving from the body (lateral hypothalamus / brainstem)"}.get(key, "input")
     return ct.name, ct.human
 
 
 def territory_of(key):
+    if key == "CeM" or key.startswith("CeL."):
+        return "CeA"
     return key if key in TERRITORY else key.partition(".")[0]
 
 
@@ -302,31 +308,29 @@ class App:
     def build(self, scale):
         """Prepare a brain of this size (cached on disk), in a background thread."""
         def work():
+            try:
+                build_brain()
+            except Exception:
+                import traceback
+                self.loading = ("error", traceback.format_exc(), time.time())
+
+        def build_brain():
             from federation import Brain
             from run_signal_game import prepare
-            import brainspec as S
-            from dataclasses import replace
-            cache = HERE / ".cache" / f"bg_scale{scale:g}_seed{self.seed}.brain"
+            cache = HERE / ".cache" / f"{os.environ.get('BRAIN', 'bg')}_scale{scale:g}_seed{self.seed}.brain"
             t0 = time.time()
             if cache.exists():
                 b = Brain.load(cache)
             else:
-                base = S.stage_bg
-
-                def scaled():
-                    spec = base()
-                    spec.groups = [replace(g, per_tile=max(1, int(round(g.per_tile * scale)))) for g in spec.groups]
-                    return spec
-                S.stage_bg = scaled
-                try:
-                    b = prepare(self.seed)
-                finally:
-                    S.stage_bg = base
+                b = prepare(self.seed, scale=scale)
                 cache.parent.mkdir(exist_ok=True)
                 b.save(cache)
             self.loading = ("done", b, time.time() - t0)
         self.loading = ("busy", scale, time.time())
-        threading.Thread(target=work, daemon=True).start()
+        if self.headless:
+            work()          # no window to keep responsive: build right here
+        else:
+            threading.Thread(target=work, daemon=True).start()
 
     def adopt(self, b):
         from agent import BrainAgent
@@ -467,7 +471,10 @@ class App:
                     pg.draw.polygon(s, (22, 19, 27), P(poly))
                 for poly in T.polys:
                     pg.draw.polygon(s, (84, 72, 92), P(poly), 1)
+        built = {"amygdala": "BLA"}
         for name, polys in NOT_BUILT.items():
+            if built.get(name) in L.terr:
+                continue
             for poly in polys:
                 pg.draw.polygon(s, (70, 64, 78), P(poly), 1)
         # eye
@@ -500,11 +507,13 @@ class App:
             for (pos, txt) in LOBE_LABELS:
                 s.blit(self.small.render(txt, True, (82, 84, 98)), S(pos))
             for name, polys in NOT_BUILT.items():
+                if built.get(name) in L.terr:
+                    continue
                 at = {"amygdala": (0.215, 0.60), "hypothalamus": (0.455, 0.612), "claustrum": (0.205, 0.468)}[name]
                 s.blit(self.small.render(f"{name} · not built yet", True, (82, 84, 98)), S(at))
             spots = {"A": (0.79, 0.07), "B": (0.56, 0.085), "MOT": (0.27, 0.075), "TH": (0.60, 0.41), "TH.TRN": (0.62, 0.53),
                      "STR": (0.19, 0.40), "GPe": (0.30, 0.53), "GPi": (0.53, 0.555), "retina": (0.005, 0.57),
-                     "EC": (0.36, 0.69), "DG": (0.47, 0.67), "CA3": (0.52, 0.66), "CA1": (0.56, 0.645), "SUB": (0.60, 0.635)}
+                     "EC": (0.36, 0.69), "VTA": (0.62, 0.655), "BLA": (0.215, 0.60), "CeA": (0.44, 0.582), "DG": (0.47, 0.67), "CA3": (0.52, 0.66), "CA1": (0.56, 0.645), "SUB": (0.60, 0.635)}
             for tk in L.terr:
                 txt = TERRITORY[tk][2]
                 s.blit(self.small.render(txt, True, (170, 172, 186)), S(spots.get(tk, (0.5, 0.95))))
@@ -661,6 +670,15 @@ class App:
         else:
             self.build(self.scale)
         while not self.quit:
+            if self.loading and self.loading[0] == "error":
+                print(self.loading[1], flush=True)
+                if self.headless:
+                    break
+                self.status = "building the brain failed: " + self.loading[1].strip().splitlines()[-1][:120]
+                self.loading = None
+                if self.brain is None:
+                    break
+                continue
             if self.loading and self.loading[0] == "busy":
                 if self.headless:
                     time.sleep(0.2)
@@ -694,11 +712,13 @@ def main():
     ap.add_argument("--scale", type=float, default=1.0, help="brain size factor (0.25 .. 4)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--game", default="signal", help="which game to plug in (games.REGISTRY)")
+    ap.add_argument("--brain", default="amy", help="which brain: bg | da (dopamine cells) | amy (+ amygdala)")
     ap.add_argument("--shots", default="", help="headless: comma-separated turns to screenshot")
     ap.add_argument("--out", default="shots")
     ap.add_argument("--hover", default="", help="headless: pretend the mouse is at x,y (shows the info box)")
     a = ap.parse_args()
     shots = [int(t) for t in a.shots.split(",") if t]
+    os.environ["BRAIN"] = a.brain
     import games
     make = lambda: games.REGISTRY[a.game](seed=a.seed)
     app = App(make, a.scale, a.seed, headless=bool(shots), shots=shots, out=a.out)

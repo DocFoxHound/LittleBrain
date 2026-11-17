@@ -34,6 +34,9 @@ class BrainAgent:
         P = brain.pos["retina"]
         self._px = P
         self.last = {}
+        # Dopamine from the brain's own dopamine cells if it has them (reward goes in through the US input);
+        # otherwise the stand-in critic below computes it
+        self.own_dopamine = "US" in brain.pos and "VTA.DA" in brain.g
         # Called after every brain step as on_step(phase, info): phase is "look", "act" or "rest". The visualizer
         # uses it to draw (and to pause the brain between steps).
         self.on_step = None
@@ -49,6 +52,12 @@ class BrainAgent:
         iy = np.minimum((self._px[:, 1] * h).astype(int), h - 1)
         return image[iy, ix].astype(np.float32)
 
+    def _inputs(self, x, action=None, us=0.0):
+        d = {"retina": x, "MOT": self._mot(action)}
+        if self.own_dopamine:
+            d["US"] = np.full(len(self.b.pos["US"]), us, np.float32)
+        return d
+
     def _mot(self, action=None):
         m = np.zeros(len(self.chan["MOT"]), np.float32)
         if action is not None:
@@ -62,7 +71,7 @@ class BrainAgent:
     def choose(self, image):
         x, gpi, feats = self._retina(image), [], []
         for s in range(self.look):
-            self.b.step({"retina": x, "MOT": self._mot()}, learn=self.learn, ach=self.ach)
+            self.b.step(self._inputs(x), learn=self.learn, ach=self.ach)
             self._tick("look", image=image, step=s)
             if s >= self.look - self.read:
                 gpi.append(self._per_channel("GPi"))
@@ -89,12 +98,20 @@ class BrainAgent:
             expected = self.expected
             self.expected += 0.05 * (reward - self.expected)
         rpe = float(np.clip(reward - expected, -1, 1)) * self.dopamine_gain
-        for s in range(self.act):
-            self.b.step({"retina": x, "MOT": self._mot(action)}, learn=self.learn, ach=self.ach,
-                        dopamine=rpe if (self.learn and s == 2) else 0.0, arousal=0.3)
-            self._tick("act", action=action, reward=reward, dopamine=rpe if s == 2 else 0.0, step=s)
+        if self.own_dopamine:
+            rpe = 0.0
+            for s in range(self.act):
+                self.b.step(self._inputs(x, action, us=reward if s == 2 else 0.0), learn=self.learn, ach=self.ach,
+                            arousal=0.3)
+                rpe += self.b.last_dopamine if s == 2 else 0.0
+                self._tick("act", action=action, reward=reward, dopamine=self.b.last_dopamine, step=s)
+        else:
+            for s in range(self.act):
+                self.b.step(self._inputs(x, action), learn=self.learn, ach=self.ach,
+                            dopamine=rpe if (self.learn and s == 2) else 0.0, arousal=0.3)
+                self._tick("act", action=action, reward=reward, dopamine=rpe if s == 2 else 0.0, step=s)
         for s in range(self.rest):
-            self.b.step({"retina": 0 * x, "MOT": self._mot()}, ach=self.ach)
+            self.b.step(self._inputs(0 * x), ach=self.ach)
             self._tick("rest", step=s)
         return rpe
 
@@ -107,10 +124,10 @@ class BrainAgent:
             action, x = self.choose(obs.image)
             obs_next, reward, done, info = game.step(action)
             self.last_info = info
-            self.outcome(x, action, reward)
+            self.last_rpe = self.outcome(x, action, reward)
             rewards.append(reward)
             if log is not None:
-                log.append({"turn": t, "action": action, "reward": reward, **info, **self.last})
+                log.append({"turn": t, "action": action, "reward": reward, "dopamine": self.last_rpe, **info, **self.last})
             if sleep_every and (t + 1) % sleep_every == 0:
                 self.b.sleep()
             obs = game.reset() if done else obs_next

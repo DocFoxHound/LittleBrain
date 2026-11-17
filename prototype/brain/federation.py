@@ -153,7 +153,14 @@ class Brain:
         self.homeo_rule = os.environ.get("HOMEO_RULE", "quantile")
         # Groups left out of the always-on homeostasis (e.g. striatal cells, whose learned firing it would undo)
         self.homeo_skip = set(filter(None, os.environ.get("HOMEO_SKIP", "").split(",")))
+        # Per-group homeostasis speed, e.g. HOMEO_SLOW="STR.SO:0.1" (slow enough not to erase what they learn)
+        self.homeo_speed = {k: float(v) for k, v in (x.split(":") for x in
+                            filter(None, os.environ.get("HOMEO_SLOW", "").split(",")))}
         self._ravg = {}
+        # If the brain has dopamine cells (notes/32), their phasic firing is the dopamine signal for learning,
+        # added to any dopamine passed to step()
+        self.dopamine_group = "VTA.DA"
+        self.da_base, self.last_dopamine = None, 0.0
         self._stats = {}
         self._wire()
         self.device = "cpu"
@@ -299,6 +306,12 @@ class Brain:
         # a one-step lag in feedback inhibition destabilizes the network).
         new = {}
         for phase in (1, 2):
+            if phase == 2 and getattr(self, "dopamine_group", None) in self.g:
+                dopamine = dopamine + self._own_dopamine()   # the brain's dopamine cells, after they updated
+                sig["dopamine"] = dopamine
+            if phase == 2 and "CeM" in self.g:
+                arousal = float(np.clip(arousal + self._own_arousal(), 0.0, 1.0))   # amygdala alarm -> LC
+                sig["arousal"] = arousal
             chan = self._channels(sig, excitatory=(phase == 2))
             for key, grp in self.g.items():
                 if isinstance(grp, ExcitatoryGroup) != (phase == 2):
@@ -312,6 +325,26 @@ class Brain:
                     self.r[self.index[key]] = new[key]
         for key, rate in new.items():
             self.r[self.index[key]] = rate
+
+    def _own_dopamine(self, deadzone=0.03):
+        """Phasic dopamine: the dopamine cells' firing relative to their own slow (tonic) level. A burst is
+        better than expected, a dip worse. Small wobbles are ignored."""
+        g = self.g[self.dopamine_group]
+        rate = float(np.mean(to_host(g.rate)))
+        if self.da_base is None:
+            self.da_base = rate
+        da = (rate - self.da_base) / 0.7
+        self.da_base += 0.005 * (rate - self.da_base)
+        self.last_dopamine = float(np.clip(da, -1, 1)) if abs(da) > deadzone else 0.0
+        return self.last_dopamine
+
+    def _own_arousal(self, gain=2.0):
+        """Central amygdala output above its resting level raises arousal (CeM -> locus coeruleus)."""
+        rate = float(np.mean(to_host(self.g["CeM"].rate)))
+        base = getattr(self, "cem_base", None)
+        self.cem_base = rate if base is None else base + 0.005 * (rate - base)
+        self.last_arousal = max(gain * (rate - self.cem_base), 0.0)
+        return self.last_arousal
 
     def _channels(self, sig, excitatory):
         chan = {key: {} for key in self.g}
@@ -378,7 +411,7 @@ class Brain:
         grp.own_threshold_rule = not (log_rule or skip)   # the log rule replaces the cell's own asymmetric drift
         grp.update(target, learn=learn)
         if self.homeostasis and not skip:
-            self._homeostasis(key, grp, self.homeostasis)
+            self._homeostasis(key, grp, self.homeostasis * getattr(self, "homeo_speed", {}).get(key, 1.0))
         if learn:
             grp.modulate(dopamine, ach, arousal)
         grp.tick(n)

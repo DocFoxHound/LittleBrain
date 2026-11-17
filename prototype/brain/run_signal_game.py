@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 
 # The cortex fixes from notes/28 are on by default for games (override with env)
-for k, v in {"HOMEO_RULE": "log", "L4_L23_GAIN": "3", "CORTEX_LRF": "0.05"}.items():
+for k, v in {"HOMEO_RULE": "log", "L4_L23_GAIN": "3", "CORTEX_LRF": "0.05", "HOMEO_SLOW": "STR.SO:0.1"}.items():
     os.environ.setdefault(k, v)
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -27,17 +27,27 @@ from games import SignalGame  # noqa: E402
 from run_wiring_test import blobs  # noqa: E402
 
 
-def prepare(seed):
-    b = Brain(S.stage_bg(), seed=seed)
+SPECS = {"bg": "stage_bg", "da": "stage_da", "amy": "stage_amy"}
+
+
+def prepare(seed, brain=None, scale=1.0):
+    """brain: which brain description (env BRAIN): bg = basal ganglia loop with a computed dopamine stand-in,
+    da = + dopamine cells and striosomes (notes/32), amy = + amygdala."""
+    brain = brain or os.environ.get("BRAIN", "bg")
+    spec = getattr(S, SPECS[brain])()
+    if scale != 1.0:   # bigger or smaller brain: more or fewer cells of every type per map tile
+        from dataclasses import replace
+        spec.groups = [replace(g, per_tile=max(1, int(round(g.per_tile * scale)))) for g in spec.groups]
+    b = Brain(spec, seed=seed)
     rng = np.random.default_rng(1000 + seed)
-    zero = np.zeros(len(b.pos["MOT"]), np.float32)
-    b.calibrate(lambda: {"retina": (rng.random(len(b.pos["retina"])) < 0.2).astype(np.float32), "MOT": zero})
-    b.develop(lambda: {"retina": blobs(b.pos["retina"], rng), "MOT": zero}, days=2)
+    quiet = {k: np.zeros(len(b.pos[k]), np.float32) for k in b.spec.inputs if k != "retina"}
+    b.calibrate(lambda: {"retina": (rng.random(len(b.pos["retina"])) < 0.2).astype(np.float32), **quiet})
+    b.develop(lambda: {"retina": blobs(b.pos["retina"], rng), **quiet}, days=2)
     x = None
     for t in range(360):   # wake up: the night's changes leave the cortex quiet for a while (notes/28)
         if t % 9 == 0:
             x = blobs(b.pos["retina"], rng)
-        b.step({"retina": x if t % 9 < 6 else 0 * x, "MOT": zero}, ach=0.5)
+        b.step({"retina": x if t % 9 < 6 else 0 * x, **quiet}, ach=0.5)
     return b
 
 
