@@ -41,7 +41,7 @@ way we do, so it can relate to people on a more genuine level.
 ### New end goal (2026-11-17)
 A tool that plugs this brain into small simulated games, to see how characters learn under different inputs and
 environments, plus a desktop visualizer of what the neurons are doing and tools to inspect and edit what was
-learned. Order: (1) make the brain learn, measured honestly; (2) game interface + a first tiny game (✅ note 29: the character learns, ~2x chance);
+learned. Order: (1) make the brain learn, measured honestly; (2) game interface + a first tiny game (✅ notes 29-30: the character learns, ~0.7 correct vs 0.25 chance);
 (3) desktop visualizer; (4) analysis and editing tools.
 
 ## ⭐ Current focus: neurons first
@@ -81,10 +81,11 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 26. [Lean neuron plan, results](notes/24-lean-neuron-plan.md): precision, sizes, seeded choice, suites, the official synapse scale
 27. [The brain on lean neurons](notes/25-lean-brain.md): port results; brain-to-brain variance; GPU; fly brains
 28. [Fixing the hippocampus](notes/26-hippocampus.md): why it did nothing (7 causes), fixes, first hippocampal memory
+32. [Raising the ceiling](notes/30-raising-the-ceiling.md): the striatum had learned every answer; one look was too noisy. Looking longer: ~0.7 correct (chance 0.25)
 31. [The first game](notes/29-first-game.md): game interface, basal ganglia action loop, a character that learns which button goes with which picture (~2x chance)
 30. [Making the cortex listen to its input](notes/28-reliable-cortex.md): honest reliability + memory tests; why L2/3 ignored L4 and went silent after sleep; symmetric homeostasis
 29. [Physical neurons](notes/27-physical-neurons.md): building neurons from materials (plastic ion neurons, silver nanowire webs) instead of simulating them; project paused on hardware
-32. [Reading list](reading-list.md)
+33. [Reading list](reading-list.md)
 
 ## Parked for later 📌
 - **Self-generated training before birth:** retinal waves, learning in the womb. Sleep and dreaming are now started in note 09; this part is still parked.

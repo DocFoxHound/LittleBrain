@@ -151,6 +151,8 @@ class Brain:
         #   "log":      push by log(recent rate / target), so 10x too quiet and 10x too loud are corrected
         #               equally fast; inhibitory plasticity uses the same error
         self.homeo_rule = os.environ.get("HOMEO_RULE", "quantile")
+        # Groups left out of the always-on homeostasis (e.g. striatal cells, whose learned firing it would undo)
+        self.homeo_skip = set(filter(None, os.environ.get("HOMEO_SKIP", "").split(",")))
         self._ravg = {}
         self._stats = {}
         self._wire()
@@ -369,12 +371,13 @@ class Brain:
             cut = xpof(v).partition(v, v.size - k)[v.size - k]
             over = 1.0 / (1.0 + np.exp(-(4.0 * (v - cut) / (v.std() + 1e-6) + 1.0)))
             target = np.where(v >= cut, np.maximum(target, over), 0.05 * target)
-        log_rule = self.homeostasis and self.homeo_rule == "log"
+        skip = key in self.homeo_skip
+        log_rule = self.homeostasis and self.homeo_rule == "log" and not skip
         if "pv" in ch:
             grp.inhibitory_plasticity(ch["pv"], eta=0.05, err=self._rate_error(key, grp) if log_rule else None)
-        grp.own_threshold_rule = not log_rule   # the log rule replaces the cell's own slow, asymmetric drift
+        grp.own_threshold_rule = not (log_rule or skip)   # the log rule replaces the cell's own asymmetric drift
         grp.update(target, learn=learn)
-        if self.homeostasis:
+        if self.homeostasis and not skip:
             self._homeostasis(key, grp, self.homeostasis)
         if learn:
             grp.modulate(dopamine, ach, arousal)

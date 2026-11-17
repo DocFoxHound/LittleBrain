@@ -52,9 +52,11 @@ def main():
     b = prepare(seed)
     print(f"{b.n_neurons} neurons, prepared in {time.time() - t0:.0f} s", flush=True)
     results = {}
-    for name, learn in (("learning", True), ("learning off", False)):
+    runs = (("learning", True),) if os.environ.get("NO_CONTROL") else (("learning", True), ("learning off", False))
+    for name, learn in runs:
         t0 = time.time()
-        agent = BrainAgent(copy.deepcopy(b), 4, seed=seed, learn=learn)
+        agent = BrainAgent(copy.deepcopy(b), 4, seed=seed, learn=learn, critic=os.environ.get("CRITIC", "average"),
+                           look=int(os.environ.get("LOOK", "20")), read=int(os.environ.get("READ", "16")))
         log = []
         r = agent.play(SignalGame(seed=seed), turns, log=log)
         results[name] = (r, log)

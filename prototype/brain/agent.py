@@ -9,7 +9,9 @@ game (prototype/games). Each turn:
               answers, and dopamine (reward minus expected reward) arrives while the eligibility traces are hot.
   4. rest:    a short blank.
 
-Dopamine here is a stand-in critic: one running average of reward (no cue-specific expectation yet).
+Dopamine = reward - expected reward. critic="average": one running average of reward. critic="cortex": the
+expectation is read out of the cortical activity during the look phase (a linear readout learned by the delta
+rule), a stand-in for striosomes / ventral striatum, which learn what each situation is worth (notes/30).
 """
 
 import numpy as np
@@ -19,13 +21,15 @@ from brainspec import action_channel
 
 
 class BrainAgent:
-    def __init__(self, brain, n_actions, look=6, act=4, rest=3, temperature=0.02, ach=0.6, seed=0,
-                 learn=True, dopamine_gain=1.0):
+    def __init__(self, brain, n_actions, look=20, read=16, act=4, rest=3, temperature=0.02, ach=0.6, seed=0,
+                 learn=True, dopamine_gain=1.0, critic="average", critic_lr=0.3):
         self.b, self.n = brain, n_actions
-        self.look, self.act, self.rest = look, act, rest
+        self.look, self.act, self.rest, self.read = look, act, rest, read   # read: last steps of the look that count
         self.temperature, self.ach, self.learn, self.dopamine_gain = temperature, ach, learn, dopamine_gain
         self.rng = np.random.default_rng(seed)
         self.expected = 0.0
+        self.critic, self.critic_lr, self.w_value, self.features = critic, critic_lr, None, None
+        self.value_groups = ("A.L23", "A.L5IT", "A.L5PT")
         self.chan = {k: action_channel(brain.tile[k], n_actions) for k in ("MOT", "GPi", "STR.D1", "STR.D2")}
         P = brain.pos["retina"]
         self._px = P
@@ -48,11 +52,13 @@ class BrainAgent:
         return np.array([r[self.chan[key] == a].mean() for a in range(self.n)])
 
     def choose(self, image):
-        x, gpi = self._retina(image), []
+        x, gpi, feats = self._retina(image), [], []
         for s in range(self.look):
             self.b.step({"retina": x, "MOT": self._mot()}, learn=self.learn, ach=self.ach)
-            if s >= self.look - 3:
+            if s >= self.look - self.read:
                 gpi.append(self._per_channel("GPi"))
+                feats.append(np.concatenate([to_host(self.b.g[k].rate) for k in self.value_groups]))
+        self.features = np.mean(feats, 0)
         release = -np.mean(gpi, 0)
         p = np.exp((release - release.max()) / self.temperature)
         p /= p.sum()
@@ -61,8 +67,19 @@ class BrainAgent:
         return action, x
 
     def outcome(self, x, action, reward):
-        rpe = float(np.clip(reward - self.expected, -1, 1)) * self.dopamine_gain
-        self.expected += 0.05 * (reward - self.expected)
+        if self.critic == "cortex":
+            f = self.features
+            if self.w_value is None:
+                self.w_value = np.zeros_like(f)
+            expected = float(self.expected + self.w_value @ f)
+            delta = reward - expected
+            if self.learn:  # normalized delta rule; the bias term is the running average
+                self.w_value += self.critic_lr * delta * f / (f @ f + 1.0)
+                self.expected += 0.05 * delta
+        else:
+            expected = self.expected
+            self.expected += 0.05 * (reward - self.expected)
+        rpe = float(np.clip(reward - expected, -1, 1)) * self.dopamine_gain
         for s in range(self.act):
             self.b.step({"retina": x, "MOT": self._mot(action)}, learn=self.learn, ach=self.ach,
                         dopamine=rpe if (self.learn and s == 2) else 0.0, arousal=0.3)
