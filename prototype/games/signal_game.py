@@ -17,6 +17,7 @@ class SignalGame(Game):
         self.images = [blob_image(rng.uniform(0.1, 0.9, (blobs, 2)), size) for _ in range(n_signals)]
         self.answer = rng.integers(n_actions, size=n_signals)
         self.rng, self.signal = rng, 0
+        self.chance = 1.0 / n_actions
 
     def reset(self):
         self.signal = int(self.rng.integers(len(self.images)))

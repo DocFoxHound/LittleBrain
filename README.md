@@ -1,5 +1,7 @@
 # LittleBrain
 
+![LittleBrain viewer](docs/screenshots/viewer.png)
+
 A small brain built from simulated human neuron types, heading toward a tool for watching game characters learn. (Formerly "Memory Philosophy": working notes toward a decision-making "brain", a system of specialized parts that
 learn together, with a language model as only one of those parts.)
 
@@ -42,7 +44,7 @@ way we do, so it can relate to people on a more genuine level.
 A tool that plugs this brain into small simulated games, to see how characters learn under different inputs and
 environments, plus a desktop visualizer of what the neurons are doing and tools to inspect and edit what was
 learned. Order: (1) make the brain learn, measured honestly; (2) game interface + a first tiny game (✅ notes 29-30: the character learns, ~0.7 correct vs 0.25 chance);
-(3) desktop visualizer; (4) analysis and editing tools.
+(3) desktop visualizer (✅ note 31); (4) analysis and editing tools.
 
 ## ⭐ Current focus: neurons first
 - **[Neuron catalog](notes/12-neuron-catalog.md):** the six neuron types (workhorse, core, hub, transient, inhibitory, modulatory), each based on a real human neuron. This is where the build starts.
@@ -85,7 +87,8 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 31. [The first game](notes/29-first-game.md): game interface, basal ganglia action loop, a character that learns which button goes with which picture (~2x chance)
 30. [Making the cortex listen to its input](notes/28-reliable-cortex.md): honest reliability + memory tests; why L2/3 ignored L4 and went silent after sleep; symmetric homeostasis
 29. [Physical neurons](notes/27-physical-neurons.md): building neurons from materials (plastic ion neurons, silver nanowire webs) instead of simulating them; project paused on hardware
-33. [Reading list](reading-list.md)
+33. [The desktop viewer](notes/31-viewer.md): a side view of the brain, live; level of detail by brain size; game-agnostic
+34. [Reading list](reading-list.md)
 
 ## Parked for later 📌
 - **Self-generated training before birth:** retinal waves, learning in the womb. Sleep and dreaming are now started in note 09; this part is still parked.

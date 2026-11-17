@@ -34,6 +34,14 @@ class BrainAgent:
         P = brain.pos["retina"]
         self._px = P
         self.last = {}
+        # Called after every brain step as on_step(phase, info): phase is "look", "act" or "rest". The visualizer
+        # uses it to draw (and to pause the brain between steps).
+        self.on_step = None
+        self.turn = self.turns_played = 0
+
+    def _tick(self, phase, **info):
+        if self.on_step is not None:
+            self.on_step(phase, info)
 
     def _retina(self, image):
         h, w = image.shape
@@ -55,6 +63,7 @@ class BrainAgent:
         x, gpi, feats = self._retina(image), [], []
         for s in range(self.look):
             self.b.step({"retina": x, "MOT": self._mot()}, learn=self.learn, ach=self.ach)
+            self._tick("look", image=image, step=s)
             if s >= self.look - self.read:
                 gpi.append(self._per_channel("GPi"))
                 feats.append(np.concatenate([to_host(self.b.g[k].rate) for k in self.value_groups]))
@@ -83,16 +92,21 @@ class BrainAgent:
         for s in range(self.act):
             self.b.step({"retina": x, "MOT": self._mot(action)}, learn=self.learn, ach=self.ach,
                         dopamine=rpe if (self.learn and s == 2) else 0.0, arousal=0.3)
-        for _ in range(self.rest):
+            self._tick("act", action=action, reward=reward, dopamine=rpe if s == 2 else 0.0, step=s)
+        for s in range(self.rest):
             self.b.step({"retina": 0 * x, "MOT": self._mot()}, ach=self.ach)
+            self._tick("rest", step=s)
         return rpe
 
     def play(self, game, turns, sleep_every=0, log=None):
         """Play `turns` turns; returns the list of rewards. sleep_every: sleep after this many turns (0 = never)."""
         obs, rewards = game.reset(), []
         for t in range(turns):
+            self.turn = self.turns_played
+            self.turns_played += 1
             action, x = self.choose(obs.image)
             obs_next, reward, done, info = game.step(action)
+            self.last_info = info
             self.outcome(x, action, reward)
             rewards.append(reward)
             if log is not None:
