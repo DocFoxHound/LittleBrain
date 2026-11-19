@@ -2,6 +2,8 @@
 
 ![LittleBrain viewer](docs/screenshots/viewer.png)
 
+> **AI agents and new contributors: start with [AGENTS.md](AGENTS.md)**: setup, how the brain works, ground rules, baselines to reproduce, and the next tasks.
+
 A small brain built from simulated human neuron types, heading toward a tool for watching game characters learn. (Formerly "Memory Philosophy": working notes toward a decision-making "brain", a system of specialized parts that
 learn together, with a language model as only one of those parts.)
 
