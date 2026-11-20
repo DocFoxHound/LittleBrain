@@ -1,5 +1,6 @@
 """Measure the default game brain and matched controls from a common checkpoint."""
 import argparse
+import copy
 import json
 import numpy as np
 
@@ -35,6 +36,21 @@ def metrics(game, block):
                 completions=sum(e["ended"] for e in block))
 
 
+def appetite_probe(agent, game):
+    """Offer matched brains the same food image under sustained hunger or satiety."""
+    from games.core import Observation
+    results = {}
+    for state, hunger in (("hungry", 1.), ("sated", 0.)):
+        probe = BrainAgent(copy.deepcopy(agent.b), game.n_actions, seed=0, learn=False)
+        probabilities = []
+        for _ in range(12):
+            probe.begin_turn(Observation(game.image, {"hunger": hunger}))
+            probabilities.append(probe.last["p"][0])
+            probe.finish_turn(0, {"feedback": False})
+        results[state] = mean(probabilities[4:])
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=0)
@@ -57,6 +73,9 @@ def main():
         a.play(g, min(50, args.turns - start), log=log)
         print(json.dumps(dict(seed=args.seed, game=args.game, condition=args.condition, turns=len(log),
                               **metrics(args.game, log[-100:]))), flush=True)
+    if args.game == "forage":
+        print(json.dumps(dict(seed=args.seed, game=args.game, condition=args.condition,
+                              appetite_probe=appetite_probe(a, g))), flush=True)
 
 
 if __name__ == "__main__":

@@ -99,6 +99,10 @@ class BrainAgent:
         if "TH.core" in self.b.g:
             from striatal_projection import activity
             self.sensory_trace = activity(self.b)
+            self.timing_trace = None
+            if hasattr(self.b, "parallel_fiber_ltd"):
+                from association import timing_activity
+                self.timing_trace = timing_activity(self.b)
         self.features = np.mean(feats, 0)
         release = -np.mean(gpi, 0)
         p = np.exp((release - release.max()) / self.temperature)
@@ -135,6 +139,9 @@ class BrainAgent:
                     rpe = self.b.last_dopamine
                     if self.learn and "TH.core" in self.b.g:
                         from striatal_projection import pair_outcome, reinforce
+                        if "timing_error" in self.last_info:
+                            from association import climbing_fiber_credit
+                            climbing_fiber_credit(self.b, self.timing_trace, self._mot(action))
                         pair_outcome(self.b, self.sensory_trace, reward)
                         reinforce(self.b, self.sensory_trace, self._mot(action), rpe)
                     if self.learn and self.timed:

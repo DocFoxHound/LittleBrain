@@ -20,6 +20,13 @@ def anatomy(b):
     catalog = {v.name for v in vars(C).values() if isinstance(v, C.CellType)}
     assert {grp.c.name for grp in b.g.values()} == catalog
     assert all(territory_of(k) in TERRITORY for k in b.g)
+    incoming, outgoing = set(), set()
+    for path in [*b.spec.synaptic, *b.spec.pooled]:
+        incoming.update(path.dst if isinstance(path.dst, list) else [path.dst])
+        outgoing.update(path.src if isinstance(path.src, list) else [path.src])
+    # VTA supplies phasic dopamine to plasticity. MCH regulates replay ACh.
+    assert set(b.g) <= incoming
+    assert set(b.g) <= outgoing | {"VTA.DA", "LH.MCH"}
     print(f"{b.n_neurons} neurons, {b.storage()['synapses']} sampled synapses, "
           f"{len(b.g)} mapped populations, {len(catalog)} catalog types")
     assert b.n_neurons == 14656
@@ -30,7 +37,7 @@ def night(b, seed):
     before = [bank.src.copy() for bank in banks]
     n = banks[0].night
     a = BrainAgent(b, 4, seed=seed)
-    # The first 63 turns of the schedule need no special setup at a cycle boundary.
+    # Exercise the scheduled boundary in one turn on the normally developed brain.
     a.turns_played = 63
     a.play(SignalGame(seed=seed), 1)
     changed = sum(np.count_nonzero(bank.src != prev) for bank, prev in zip(banks, before))

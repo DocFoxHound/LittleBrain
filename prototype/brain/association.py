@@ -33,10 +33,24 @@ def target(brain, key, ordinary):
         drive = brain.g["PONS.relay"].rate.reshape(64, -1)[:, 0].max()
         group.temporal_rates += (drive - group.temporal_rates) * xp.asarray([.4, .07, .025, .009])
         cells[:, 0] = xp.repeat(group.temporal_rates, 16)
+        if hasattr(brain, "parallel_fiber_ltd"):
+            # A slow mossy-fiber current falls after sensory offset. Different
+            # granule thresholds produce overlapping intervals without a game clock.
+            group.post_cue = xp.maximum(getattr(group, "post_cue", drive) * .993, drive)
+            centers = (xp.arange(8, dtype=np.float32) + .5) / 8
+            phases = xp.exp(-0.5 * ((group.post_cue - centers) / .09) ** 2)
+            cells[:, min(1, cells.shape[1] - 1)] = xp.repeat(phases, 8)
+    elif key == "CB.Purkinje" and hasattr(brain, "parallel_fiber_ltd"):
+        phase = timing_activity(brain)
+        depression = xp.clip(brain.parallel_fiber_ltd @ phase, 0., 1.)
+        cells[:, 0] = 1.0 - depression[xp.arange(64) % 8]
     elif key == "DCN.proj":
         mossy = brain.g["CB.granule"].rate.reshape(64, -1)[:, 0]
         purkinje = brain._pool("CB.Purkinje")
-        cells[:, 0] = mossy / (1.0 + purkinje)
+        if hasattr(brain, "parallel_fiber_ltd"):
+            cells[:, 0] = 1.0 - purkinje
+        else:
+            cells[:, 0] = mossy / (1.0 + purkinje)
     elif key == "VA.relay":
         cells[:, 0] = brain.g["DCN.proj"].rate.reshape(64, -1)[:, 0]
     return ordinary
@@ -53,3 +67,26 @@ def context(brain):
     balance = brain.g["HYP.AgRP"].rate.mean() - brain.g["HYP.POMC"].rate.mean()
     # A small signed projection lets learned food choices depend on appetite.
     return xp.concatenate((0.65 * pfc, 3.0 * (temporal - temporal.mean()), xp.atleast_1d(5.0 * balance)))
+
+
+def timing_activity(brain):
+    granule = brain.g["CB.granule"].rate.reshape(8, 8, -1)
+    phases = granule[:, :, min(1, granule.shape[2] - 1)].mean(axis=1)
+    return phases / xpof(phases).maximum(phases.sum(), 1e-6)
+
+
+def climbing_fiber_credit(brain, phase, motor):
+    """Climbing-fiber input depresses active parallel fibers in the motor channel."""
+    xp = xpof(brain.r)
+    if not hasattr(brain, "parallel_fiber_ltd"):
+        brain.parallel_fiber_ltd = xp.zeros((8, 8), dtype=np.float32)
+        return
+    if phase is None:
+        return
+    cf = brain.g["IO.olive"].rate.mean()
+    stripes = brain.tile["MOT"] % 8
+    selected = xp.bincount(stripes, weights=xp.asarray(motor), minlength=8) / xp.bincount(stripes)
+    weights = brain.parallel_fiber_ltd
+    change = cf - weights @ phase
+    weights += .6 * (selected * change)[:, None] * phase
+    xp.clip(weights, 0., 2., out=weights)

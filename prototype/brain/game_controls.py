@@ -21,7 +21,7 @@ class Controls:
             elif kind in ("axis", "pointer"):
                 values = control["values"]
             elif kind == "text":
-                ops.append(dict(label=name, scalar_range=(0, 0x110000 - 0x800)))
+                ops.append(dict(label=name, name=name, scalar_range=(0, 0x110000 - 0x800)))
                 continue
             else:
                 raise ValueError(f"unknown control kind {kind}")
@@ -52,9 +52,9 @@ class Controls:
             lo, hi = item["scalar_range"]
             if hi - lo == 1:
                 self.stack[:] = self.stack[:1]
-                return [dict(kind="text", value=chr(lo if lo < 0xd800 else lo + 0x800))]
+                return [dict(kind="text", name=item["name"], value=chr(lo if lo < 0xd800 else lo + 0x800))]
             stride = math.ceil((hi - lo) / 7)
-            self.stack.append([dict(label=f"symbol {i:x}", scalar_range=(i, min(i + stride, hi)))
+            self.stack.append([dict(label=f"symbol {i:x}", name=item["name"], scalar_range=(i, min(i + stride, hi)))
                                for i in range(lo, hi, stride)])
             return []
         event = item["event"]
@@ -85,8 +85,7 @@ class Controls:
         frame = np.repeat(np.repeat(image, max(1, math.ceil(24 / height)), 0),
                           max(1, math.ceil(32 / width)), 1)
         strip = np.zeros((max(2, frame.shape[0] // 4), frame.shape[1]), np.float32)
-        for i, label in enumerate(self.panel()["slots"] + ["back"]):
-            slot = i if label != "back" else 7
+        for slot, label in [*enumerate(self.panel()["slots"]), (7, "back")]:
             bits = np.unpackbits(np.frombuffer(hashlib.sha256(label.encode()).digest(), dtype=np.uint8))
             segment = strip[:, slot * frame.shape[1] // 8:(slot + 1) * frame.shape[1] // 8]
             segment[:] = np.resize(bits, segment.shape)

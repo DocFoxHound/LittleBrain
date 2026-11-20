@@ -185,13 +185,22 @@ class Brain:
     def save(self, path):
         """Save the whole brain (host copy, compressed). Load on either device with Brain.load."""
         import pickle
+        import tempfile
         import zlib
         device = self.device
         self.to("cpu")
+        temporary = None
         try:
-            with open(path, "wb") as f:
+            with tempfile.NamedTemporaryFile(dir=os.path.dirname(os.path.abspath(path)), delete=False) as f:
+                temporary = f.name
                 f.write(zlib.compress(pickle.dumps(self, protocol=5), 1))
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(temporary, path)
+            temporary = None
         finally:
+            if temporary is not None:
+                os.unlink(temporary)
             self.to(device)
 
     @staticmethod
@@ -412,7 +421,7 @@ class Brain:
                              ais_in=ch.get("ais", 0.0), volume_in=ch.get("volume", 0.0),
                              external=ch.get("exc", 0.0), apical_mode=1.0 - 0.5 * (ach - 0.5),
                              allow_burst=ach < 0.3, cf=ch.get("cf", 0.0))
-        if "VA.relay" in self.g and "TH.core" in self.g and key in ("TH.core", "PFC.IT", "MD.relay", "PONS.relay", "CB.granule", "DCN.proj", "VA.relay"):
+        if "VA.relay" in self.g and "TH.core" in self.g and key in ("TH.core", "PFC.IT", "MD.relay", "PONS.relay", "CB.granule", "CB.Purkinje", "DCN.proj", "VA.relay"):
             import association
             target = association.target(self, key, target)
         if "conditioned" in ch:

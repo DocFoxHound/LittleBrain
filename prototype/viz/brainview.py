@@ -218,15 +218,13 @@ class GroupDots:
 
 
 def kind_of(b, key):
-    from cells import ExcitatoryGroup, ModulatorGroup
+    from cells import ModulatorGroup
     if key in b.spec.inputs:
         return "input"
     g = b.g[key]
-    if isinstance(g, ExcitatoryGroup):
-        return "exc" if g.c.sign > 0 else "inh"   # MSNs are 'excitatory-style' cells that release GABA
     if isinstance(g, ModulatorGroup):
         return "mod"
-    return "inh"
+    return "exc" if g.c.sign > 0 else "inh"
 
 
 def describe(b, key):
@@ -392,7 +390,7 @@ class App:
         self.phase, self.info = phase, info
         if "image" in info:
             self.seen = info["image"]
-        self.dopa.append(info.get("dopamine", 0.0))
+        self.dopa.append(info.get("dopamine", self.brain.last_dopamine))
         self.dopa = self.dopa[-400:]
         self.frame += 1
         draw_now = self.headless and self._want_shot() or (not self.headless and self.frame % max(1, self.speed) == 0)
@@ -553,6 +551,9 @@ class App:
                     continue
                 at = {"amygdala": (0.215, 0.60), "hypothalamus": (0.455, 0.612), "claustrum": (0.205, 0.468)}[name]
                 s.blit(self.small.render(f"{name} · not built yet", True, (82, 84, 98)), S(at))
+            for tk, label, point in (("CB", "cerebellum", (.73, .75)), ("LC", "brainstem", (.58, .88))):
+                if tk in L.terr:
+                    s.blit(self.small.render(label, True, DIM), S(point))
             spots = {"PFC": (0.12, 0.28), "A": (0.79, 0.07), "B": (0.56, 0.085), "MOT": (0.27, 0.075), "TH": (0.60, 0.41), "TH.TRN": (0.62, 0.53),
                      "STR": (0.19, 0.40), "GPe": (0.30, 0.53), "GPi": (0.53, 0.555), "retina": (0.005, 0.57),
                      "EC": (0.36, 0.69), "VTA": (0.62, 0.655), "BLA": (0.215, 0.60), "CeA": (0.44, 0.582), "DG": (0.47, 0.67), "CA3": (0.52, 0.66), "CA1": (0.56, 0.645), "SUB": (0.60, 0.635)}
@@ -634,6 +635,9 @@ class App:
             pg.draw.rect(s, (12, 13, 18), (X, 100, 176, 176))
         pg.draw.rect(s, (90, 96, 120), (X, 100, 176, 176), 1)
         s.blit(self.small.render("what it sees", True, DIM), (X, 280))
+        body = "  ".join(f"{k} {v:.2f}" for k, v in a.body_signals.items() if k != "satiety")
+        if body:
+            s.blit(self.small.render(body, True, INK), (X, 296))
         phase = {"look": "looking…", "act": "acting", "rest": "resting"}[self.phase]
         s.blit(self.font.render(f"{self.game_name} · turn {a.turn + 1} · {phase}", True, INK), (X + 200, 100))
         s.blit(self.font.render(f"learning {'ON' if a.learn else 'OFF'}" + ("   ⏸ paused" if self.paused else ""),
@@ -662,7 +666,7 @@ class App:
                    (X + 200, 274))
         # dopamine and reward
         self.plot((X, 330, 500, 80), self.dopa, -1, 1, (120, 220, 160), ref=0,
-                  label="dopamine: surprise about reward (up = better than expected)")
+                  label="dopamine · rise above or dip below tonic firing")
         rr = np.array(self.rewards)
         roll = [rr[max(0, i - 49):i + 1].mean() for i in range(len(rr))]
         lo, hi = (min(0.0, min(roll)), max(1.0, max(roll))) if roll else (0, 1)
@@ -673,16 +677,17 @@ class App:
         # legend
         y = 610
         s.blit(self.font.render("Legend", True, INK), (X, y))
-        for k, (kind, name) in enumerate((("exc", "excitatory cells (pyramidal, stellate, relay, striatal)"),
-                                         ("inh", "inhibitory cells (interneurons, pallidum)"),
+        for k, (kind, name) in enumerate((("exc", "excitatory cells (pyramidal, stellate, relay)"),
+                                         ("inh", "inhibitory cells (interneurons, striatum, pallidum)"),
+                                         ("mod", "modulatory cells (dopamine, serotonin, ACh, noradrenaline)"),
                                          ("input", "inputs (eye, action copy)"))):
             for j, v in enumerate((0.1, 0.5, 1.0)):
                 pg.draw.circle(s, self.color(kind, np.array([v]))[0], (X + 10 + 14 * j, y + 32 + 22 * k), 5)
             s.blit(self.small.render(name, True, DIM), (X + 56, y + 25 + 22 * k))
         per = np.median([g.per_dot for g in self.layout.groups])
-        s.blit(self.small.render("dim → bright = quiet → firing (each group scaled to its own usual range)", True, DIM), (X, y + 96))
+        s.blit(self.small.render("dim → bright = quiet → firing (each group scaled to its own usual range)", True, DIM), (X, y + 118))
         s.blit(self.small.render(f"one dot ≈ {per:.0f} neuron{'s' if per >= 1.5 else ''} · bigger brains get more and larger "
-                                 "dots, up to a cap", True, DIM), (X, y + 116))
+                                 "dots, up to a cap", True, DIM), (X, y + 138))
         keys = "Space pause · ←/→ speed · L learn · S sleep · [ ] size · T labels · P paths · hover"
         s.blit(self.small.render(keys, True, (100, 104, 120)), (X, 860))
         if self.status:

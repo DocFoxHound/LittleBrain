@@ -55,6 +55,10 @@ def transmit(brain, chan):
         if old is not None:
             brain.sensory_striatal[:, :old.shape[1]] = old
     current = brain.sensory_striatal @ features
+    if hasattr(brain, "parallel_fiber_ltd"):
+        # VA relays the disinhibited cerebellar correction to indirect-path MSNs.
+        correction = brain.g["VA.relay"].rate.reshape(GRID, GRID, -1).mean(axis=(0, 2))
+        current -= 3.0 * correction
     current -= current.mean()
     for key, sign in (("STR.D1", 1), ("STR.D2", -1)):
         chan[key]["plateau"] = sign * current[brain.tile[key] % GRID]
