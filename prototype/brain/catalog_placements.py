@@ -115,6 +115,10 @@ PLACEMENTS = {
         Circuit("MS.ACh", C.PPN_ACH, "LH.orexin", "CA1.IS", "drive", .2, human="medial septal cholinergic projection to hippocampal interneurons"),
         Circuit("MS.Glu", C.VTA_GLU, "CA1.pyr", "CA1.PV", "drive", .25, human="septohippocampal glutamatergic neuron (lateral septal return relay lumped)"),
     ],
+    "pedunculopontine nucleus": [
+        Circuit("PPN.GABA", C.VTA_GABA, "STN.proj", "PPN.ACh", "drive", -.25, human="pedunculopontine GABAergic neuron"),
+        Circuit("PPN.Glu", C.VTA_GLU, "STN.proj", "SNc.DA", "drive", .25, human="pedunculopontine glutamatergic projection to nigral dopamine neurons"),
+    ],
 }
 
 
