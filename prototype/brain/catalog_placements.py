@@ -54,6 +54,11 @@ PLACEMENTS = {
         Circuit("CLA.SST", C.SST, "CLA.pyr", "CLA.pyr", "dend", .3),
         Circuit("CLA.VIP", C.VIP, "PFC.IT", "CLA.SST", "drive", -.3),
     ],
+    "entorhinal cortex": [
+        Circuit("EC.SST", C.SST, "EC.L3", "EC.L3", "sst", .3),
+        Circuit("EC.VIP", C.VIP, "B.L23", "EC.SST", "drive", -.3),
+        Circuit("EC.NGF", C.LAMP5_NGF, "B.L23", "EC.stellate", "volume", .3),
+    ],
 }
 
 
