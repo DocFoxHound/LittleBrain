@@ -96,6 +96,9 @@ PLACEMENTS = {
     "deep cerebellar nuclei": [
         Circuit("DCN.local", C.GOLGI, "PONS.relay", "DCN.NO", "drive", -.25, human="deep nuclear GABA/glycine interneuron (catalog Golgi-type approximation)"),
     ],
+    "locus coeruleus": [
+        Circuit("LC.GABA", C.VTA_GABA, "PFC.IT", "LC.NE", "drive", -.25, human="peri-coerulear GABAergic neuron gating noradrenergic cells"),
+    ],
 }
 
 

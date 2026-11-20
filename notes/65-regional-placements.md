@@ -26,3 +26,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | nigra pars reticulata | SNr.DA | 18,112 | 0.7 / 0.7 / 0.7 | 0.19286 / 0.19285 / 0.19287 |
 | nigra pars compacta | SNc.GABA | 18,176 | 0.41018 / 0.41018 / 0.41018 | 0.175 / 0.175 / 0.175 |
 | deep cerebellar nuclei | DCN.local | 18,240 | 0.34182 / 0.34182 / 0.34182 | 0.0043169 / 0.0043121 / 0.0043185 |
+| locus coeruleus | LC.GABA | 18,304 | 0.41018 / 0.41018 / 0.41018 | 0.175 / 0.175 / 0.175 |
