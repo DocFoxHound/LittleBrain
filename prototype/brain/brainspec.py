@@ -268,3 +268,15 @@ def stage_amy(n_actions=N_ACTIONS):
         Pooled("BLA(+) -> dopamine", "BLA.pos", "VTA.DA", float(os.environ.get("AMY_DA", "2.0")), sigma=None),
     ]
     return spec
+
+
+def stage_timed_dopamine():
+    """Reconstructed phasic VTA stage. Cue and outcome are separate events."""
+    spec = stage_amy()
+    spec.timed_dopamine = True
+    # VTA receives the difference between cue value and the preceding expectation.
+    # The timing of the paired afferents is a stand-in (Eshel et al., 2015).
+    spec.pooled = [p for p in spec.pooled if p.dst != "VTA.DA"]
+    spec.pooled += [Pooled("timed value -> VTA", None, "VTA.DA", 1.0, signal="value_change"),
+                    Pooled("reward -> VTA", "US", "VTA.DA", 1.0, sigma=None)]
+    return spec

@@ -27,6 +27,8 @@ class BrainAgent:
         self.look, self.act, self.rest, self.read = look, act, rest, read   # read: last steps of the look that count
         self.temperature, self.ach, self.learn, self.dopamine_gain = temperature, ach, learn, dopamine_gain
         self.rng = np.random.default_rng(seed)
+        self.timed = getattr(brain.spec, "timed_dopamine", False)
+        self.cue_value = 0.0
         self.expected = 0.0
         self.critic, self.critic_lr, self.w_value, self.features = critic, critic_lr, None, None
         self.value_groups = ("A.L23", "A.L5IT", "A.L5PT")
@@ -71,7 +73,14 @@ class BrainAgent:
     def choose(self, image):
         x, gpi, feats = self._retina(image), [], []
         for s in range(self.look):
-            self.b.step(self._inputs(x), learn=self.learn, ach=self.ach)
+            signals = {}
+            if self.timed and s == self.look - 1:
+                rates = self.b.g
+                value = (float(to_host(rates["STR.SO"].rate).mean())
+                         + 4 * float(to_host(rates["BLA.pos"].rate - rates["BLA.neg"].rate).mean()))
+                self.cue_value = float(np.clip(value, -1, 1))
+                signals["value_change"] = self.cue_value
+            self.b.step(self._inputs(x), learn=self.learn, ach=self.ach, signals=signals)
             self._tick("look", image=image, step=s)
             if s >= self.look - self.read:
                 gpi.append(self._per_channel("GPi"))
@@ -102,7 +111,7 @@ class BrainAgent:
             rpe = 0.0
             for s in range(self.act):
                 self.b.step(self._inputs(x, action, us=reward if s == 2 else 0.0), learn=self.learn, ach=self.ach,
-                            arousal=0.3)
+                            arousal=0.3, signals={"value_change": -self.cue_value if self.timed and s == 2 else 0.0})
                 rpe += self.b.last_dopamine if s == 2 else 0.0
                 self._tick("act", action=action, reward=reward, dopamine=self.b.last_dopamine, step=s)
         else:
