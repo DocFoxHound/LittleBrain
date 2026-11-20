@@ -318,3 +318,7 @@ See [note 53](notes/53-cerebellar-input-md.md) for the isolated change, matched 
 ### Keep Purkinje teaching and inhibitory inputs active during timing
 
 See [note 54](notes/54-purkinje-timing-inputs.md) for the isolated change, matched controls and all three seeds. Run the regional audit and integrated runtime check from note 50 and section 7 on the developed reference brain.
+
+### Sign of learned mossy-fiber input
+
+Note 55 records the post-development dentate-to-CA3 polarity failure, its matched negative-contact intervention and the network-wide scope of signed glutamatergic weights. The regional audit reproduces all three comparisons with its standard command. It leaves the examined checkpoint intact.

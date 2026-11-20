@@ -116,6 +116,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 45. [Restore cortical input to the pontine timing relay](notes/52-pontine-cortical-input.md)
 46. [Admit cerebellar input to the mediodorsal relay](notes/53-cerebellar-input-md.md)
 47. [Keep Purkinje teaching and inhibitory inputs active during timing](notes/54-purkinje-timing-inputs.md)
+48. [Dentate input to CA3 after development](notes/55-hippocampal-transmission.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

@@ -114,6 +114,35 @@ def followup_probes(b):
     return results
 
 
+def glutamate_signs(b):
+    """Count signed excitatory contacts and isolate their contribution to CA3."""
+    negative = contacts = affected = routes = 0
+    for group in b.excitatory().values():
+        for bank in group.banks():
+            weights = bank.weights()
+            for i, (source, _, _) in enumerate(bank.paths):
+                if source not in b.g or b.g[source].c.transmitter != "glutamate":
+                    continue
+                slots = (bank.path == i) & (bank.gain > 0)
+                if np.any(slots):
+                    n = int(np.count_nonzero(weights[slots] < 0))
+                    negative += n
+                    contacts += int(slots.sum())
+                    affected += int(n > 0)
+                    routes += 1
+    trial = copy.deepcopy(b)
+    mossy = trial.g["CA3.pyr"].basal
+    slots = np.isin(mossy.src, trial.index["DG.gc"])
+    weights = mossy.weights()
+    reversed_slots = slots & (weights < 0.)
+    mossy.gain[reversed_slots] = 0.
+    return dict(negative_contacts=negative, contacts=contacts, affected_routes=affected, routes=routes,
+                mossy_contacts=int(slots.sum()), mossy_negative=int(reversed_slots.sum()),
+                mossy_mean_weight=float(weights[slots].mean()),
+                soma_intact=projection(b, "DG.gc", "CA3.pyr", soma=True),
+                soma_negative_muted=projection(trial, "DG.gc", "CA3.pyr", soma=True))
+
+
 def territory(key):
     return "TRN" if key == "TH.TRN" else key.partition(".")[0]
 
@@ -264,4 +293,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     brain = Brain.load(args.load_brain) if args.load_brain else prepare(args.seed, brain="full")
     print(json.dumps({"territories": audit(brain), "composition": composition(brain),
-                      "followup": followup_probes(brain)}, indent=2))
+                      "followup": followup_probes(brain), "glutamate": glutamate_signs(brain)}, indent=2))
