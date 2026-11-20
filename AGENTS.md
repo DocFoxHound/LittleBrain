@@ -314,3 +314,7 @@ See [note 52](notes/52-pontine-cortical-input.md) for the isolated change, match
 ### Admit cerebellar input to the mediodorsal relay
 
 See [note 53](notes/53-cerebellar-input-md.md) for the isolated change, matched controls and all three seeds. Run the regional audit and integrated runtime check from note 50 and section 7 on the developed reference brain.
+
+### Keep Purkinje teaching and inhibitory inputs active during timing
+
+See [note 54](notes/54-purkinje-timing-inputs.md) for the isolated change, matched controls and all three seeds. Run the regional audit and integrated runtime check from note 50 and section 7 on the developed reference brain.

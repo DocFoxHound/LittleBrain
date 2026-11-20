@@ -78,7 +78,11 @@ def isolated_responses(b):
     assert projection(acquiring, "DCN.proj", "MD.relay", {"PFC.IT": .5}) > 1e-6
     acquiring.hold_context = True
     assert projection(acquiring, "DCN.proj", "MD.relay", {"PFC.IT": .5}) == 0.
-    print("Thalamic brakes, corticopontine transmission and state-dependent input to MD passed.")
+    timing = copy.copy(b)
+    timing.parallel_fiber_ltd = np.zeros((8, 8), np.float32)
+    for source, sign in (("IO.olive", 1), ("CB.basket", -1), ("CB.stellate", -1)):
+        assert sign * projection(timing, source, "CB.Purkinje") > 1e-6, source
+    print("Seven previously masked projections passed the isolated receiver tests.")
 
 
 def night(b, seed):

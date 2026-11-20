@@ -60,7 +60,15 @@ def target(brain, key, ordinary, channels):
     elif key == "CB.Purkinje" and hasattr(brain, "parallel_fiber_ltd"):
         phase = timing_activity(brain)
         depression = xp.clip(brain.parallel_fiber_ltd @ phase, -1., 1.)
-        cells[:, 0] = .5 - .5 * depression[xp.arange(64) % 8]
+        simple = .5 - .5 * depression[xp.arange(64) % 8]
+        # The timed simple-spike drive arrives on dendrites. Apply the same
+        # stellate inhibition, climbing-fiber spike and axon veto as ordinary cells.
+        def terminal(name):
+            values = channels.get(name)
+            return 0. if values is None else values.reshape(64, -1)[:, 0]
+
+        simple /= 1.0 + 1.5 * terminal("dend")
+        cells[:, 0] = group.spike_output(simple, terminal("cf"), terminal("ais"))
     elif key == "DCN.proj":
         mossy = brain.g["CB.granule"].rate.reshape(64, -1)[:, 0]
         purkinje = brain._pool("CB.Purkinje")

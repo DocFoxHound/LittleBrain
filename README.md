@@ -115,6 +115,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 44. [Basal ganglia inhibition of thalamic relay cells](notes/51-thalamic-brakes.md)
 45. [Restore cortical input to the pontine timing relay](notes/52-pontine-cortical-input.md)
 46. [Admit cerebellar input to the mediodorsal relay](notes/53-cerebellar-input-md.md)
+47. [Keep Purkinje teaching and inhibitory inputs active during timing](notes/54-purkinje-timing-inputs.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

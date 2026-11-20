@@ -372,7 +372,10 @@ class ExcitatoryGroup:
         self._xs = (xs_b, xs_a)
         self.soma = soma
         out = sigmoid(c.slope * self.scale * (soma - self.threshold))
-        if c.family == "purkinje":
+        return self.spike_output(out, cf, ais_in)
+
+    def spike_output(self, out, cf, ais_in):
+        if self.c.family == "purkinje":
             out = np.maximum(out, cf)  # climbing fiber input: a complex spike
         # Chandelier / basket "pinceau" synapses on the axon initial segment veto the output itself
         return out / (1.0 + 3.0 * ais_in)
