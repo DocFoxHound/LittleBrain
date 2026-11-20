@@ -108,3 +108,13 @@ Four different visual cues require different actions. Chance accuracy is 25%. Th
 | 0 | 100.0% / 22.0% |
 | 1 | 94.0% / 22.0% |
 | 2 | 98.0% / 13.0% |
+
+### Danger avoidance
+
+A uniform random policy gets hurt on 75% of danger trials and collects food on 25% of food trials. The control silences BLA, CeL and CeM.
+
+| Seed | Hurt on danger, intact / lesion | Fed on food, intact / lesion |
+|---:|---:|---:|
+| 0 | 0.0% / 34.5% | 97.8% / 71.1% |
+| 1 | 3.6% / 43.6% | 84.4% / 91.1% |
+| 2 | 3.9% / 62.7% | 98.0% / 69.4% |
