@@ -84,6 +84,9 @@ PLACEMENTS = {
         Circuit("BLA.IS", C.IS_CELL, "BLA.pos", "BLA.SST", "drive", -.3),
         Circuit("BLA.NGF", C.LAMP5_NGF, "B.L23", "BLA.neg", "volume", .3),
     ],
+    "central amygdala": [
+        Circuit("CeL.Glu", C.VTA_GLU, "BLA.neg", "CeM", "drive", .25, human="central amygdala glutamatergic minority (VGluT2 cell model)"),
+    ],
 }
 
 

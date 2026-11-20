@@ -22,3 +22,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | CA1 | CA1.CCK | 17,600 | 0.27345 / 0.27345 / 0.27345 | 0.31691 / 0.31532 / 0.31649 |
 | subiculum | SUB.OLM, SUB.NGF | 17,728 | 0.020509 / 0.020509 / 0.020509 | 0.030453 / 0.030936 / 0.031859 |
 | basolateral amygdala | BLA.CCK, BLA.SST, BLA.IS, BLA.NGF | 17,984 | 0.020509 / 0.020509 / 0.020509 | 0.0027721 / 0.0027721 / 0.0027721 |
+| central amygdala | CeL.Glu | 18,048 | 7.6964 / 7.2284 / 6.9078 | 0.094631 / 0.09463 / 0.094632 |
