@@ -14,3 +14,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | prefrontal cortex | PFC.L4, PFC.L23, PFC.L5PT, PFC.L6CT, PFC.L6b, PFC.CCK, PFC.chandelier, PFC.SST, PFC.SSTnonMartinotti, PFC.VIP, PFC.NGF, PFC.rosehip | 15,552 | 0.020509 / 0.020509 / 0.020509 | 0.003655 / 0.0011367 / 1.55e-05 |
 | cingulate and insular cortex | INS.L4, ACC.L23, ACC.L5PT, INS.NP, ACC.L6CT, INS.L6IT, INS.L6b, ACC.CCK, INS.chandelier, ACC.SST, INS.SSTnonMartinotti, ACC.VIP, INS.NGF, ACC.rosehip | 16,448 | 0.020509 / 0.020509 / 0.020509 | 0.0002474 / 0.0002491 / 0.0002465 |
 | first-order thalamus | TH.matrix | 16,512 | 3.4675 / 3.3282 / 3.2285 | 0.096335 / 0.093634 / 0.094114 |
+| higher-order thalamus | PUL.core, PUL.interneuron | 16,640 | 0.41018 / 0.41018 / 0.41018 | 0.34987 / 0.34992 / 0.34982 |

@@ -45,6 +45,10 @@ PLACEMENTS = {
     "first-order thalamus": [
         Circuit("TH.matrix", C.TC_MATRIX, "retina", "A.L23", "tuft", .25),
     ],
+    "higher-order thalamus": [
+        Circuit("PUL.core", C.TC_CORE, "B.L5PT", "B.L4", "exc", .35),
+        Circuit("PUL.interneuron", C.TH_INTERNEURON, "B.L5PT", "PUL.matrix", "inh", .3),
+    ],
 }
 
 
