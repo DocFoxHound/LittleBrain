@@ -72,4 +72,4 @@ class TimingGame(Game):
         done = action == 1 or self.elapsed >= 2 * self.interval
         error = min(1.0, abs(self.elapsed - self.interval) / self.interval) if done else 0.0
         self.elapsed += 1
-        return Observation(self.blank), float(done and error == 0), done, {"timing_error": error}
+        return Observation(self.blank), float(done and error == 0), done, {"timing_error": error, "ended": done}

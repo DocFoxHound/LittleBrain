@@ -33,7 +33,7 @@ class BrainAgent:
         self.expected = 0.0
         self.critic, self.critic_lr, self.w_value, self.features = critic, critic_lr, None, None
         self.value_groups = ("A.L23", "A.L5IT", "A.L5PT")
-        self.chan = {k: action_channel(brain.tile[k], n_actions) for k in ("MOT", "GPi", "STR.D1", "STR.D2")}
+        self.chan = {k: action_channel(to_host(brain.tile[k]), n_actions) for k in ("MOT", "GPi", "STR.D1", "STR.D2")}
         P = brain.pos["retina"]
         self._px = P
         self.last_info = {}

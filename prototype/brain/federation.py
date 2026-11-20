@@ -408,10 +408,9 @@ class Brain:
                              ais_in=ch.get("ais", 0.0), volume_in=ch.get("volume", 0.0),
                              external=ch.get("exc", 0.0), apical_mode=1.0 - 0.5 * (ach - 0.5),
                              allow_burst=ach < 0.3, cf=ch.get("cf", 0.0))
-        if key == "TH.core":
-            # Tonic relay has a sustained, retinotopic driver as well as transient bursts.
-            driver = self._pool("retina")[self.tile[key]]
-            target = 0.85 * driver + 0.15 * target
+        if "VA.relay" in self.g and "TH.core" in self.g and key in ("TH.core", "PFC.IT", "MD.relay", "PONS.relay", "CB.granule", "DCN.proj", "VA.relay"):
+            import association
+            target = association.target(self, key, target)
         if "plateau" in ch:
             # Coincident thalamostriatal input can recruit an MSN up-state. The
             # contribution saturates and precedes the cell's own membrane kinetics.

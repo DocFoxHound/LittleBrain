@@ -60,6 +60,8 @@ TH_SHAPE = (0.565, 0.475, 0.065, 0.042)
 # Where each simulated region lives: territory polygons (cortex is clipped to the cerebrum's outline), seen from
 # the side. Cortex is a sheet covering the surface, so a cortical area's neurons fill its lobe face-on.
 TERRITORY = {
+    "PFC": ("cortex", [[(0.08, 0.10), (0.43, 0.10), (0.405, 0.39), (0.34, 0.40),
+                         (0.27, 0.50), (0.12, 0.56), (0.08, 0.48)]], "prefrontal cortex"),
     "A": ("cortex", [[(0.785, 0.08), (1.0, 0.08), (1.0, 0.75), (0.745, 0.64), (0.762, 0.40)]],
           "visual cortex (V1, occipital lobe)"),
     "B": ("cortex", [[(0.515, 0.05), (0.80, 0.05), (0.775, 0.36), (0.70, 0.40), (0.60, 0.415), (0.505, 0.375),
@@ -87,7 +89,7 @@ TERRITORY = {
 }
 # Approximate centers on the side-view diagram; depth is projected onto the page.
 REGIONAL_TERRITORIES = {
-    "PFC": (0.29, 0.28, .12, .10, "prefrontal cortex"),
+
     "ACC": (.42, .29, .065, .025, "anterior cingulate"), "INS": (.34, .45, .044, .022, "insula"),
     "HYP": (.478, .588, .028, .016, "arcuate hypothalamus"), "LH": (.455, .596, .015, .008, "lateral hypothalamus"),
     "PVN": (.478, .566, .012, .008, "paraventricular nucleus"), "SCN": (.445, .585, .009, .006, "suprachiasmatic nucleus"),
@@ -104,7 +106,7 @@ REGIONAL_TERRITORIES = {
     "MS": (.413, .52, .011, .007, "medial septum"), "PPN": (.585, .661, .009, .006, "pedunculopontine nucleus"),
 }
 for region, (x, y, rx, ry, label) in REGIONAL_TERRITORIES.items():
-    TERRITORY[region] = ("deep", [ell(x, y, rx, ry)], label)
+    TERRITORY[region] = ("cortex" if region in {"ACC", "INS"} else "deep", [ell(x, y, rx, ry)], label)
 
 # Regions designed (cell types, percentages) but not wired into this brain yet: drawn as faint outlines
 NOT_BUILT = {"amygdala": [ell(0.405, 0.612, 0.026, 0.020)], "hypothalamus": [ell(0.478, 0.588, 0.030, 0.017)],
@@ -342,8 +344,8 @@ class App:
         def build_brain():
             from federation import Brain
             from run_signal_game import DEFAULT_BRAIN, SPECS, S, prepare
-            cache = HERE / ".cache" / f"{os.environ.get('BRAIN', 'bg')}_scale{scale:g}_seed{self.seed}.brain"
             name = os.environ.get("BRAIN", DEFAULT_BRAIN)
+            cache = HERE / ".cache" / f"{name}_scale{scale:g}_seed{self.seed}.brain"
             if name not in ("bg", "da", "amy"):
                 digest = hashlib.sha256(repr(getattr(S, SPECS[name])()).encode()).hexdigest()[:12]
                 cache = cache.with_suffix(f".reconstructed-{digest}.brain")
@@ -546,7 +548,7 @@ class App:
                     continue
                 at = {"amygdala": (0.215, 0.60), "hypothalamus": (0.455, 0.612), "claustrum": (0.205, 0.468)}[name]
                 s.blit(self.small.render(f"{name} · not built yet", True, (82, 84, 98)), S(at))
-            spots = {"A": (0.79, 0.07), "B": (0.56, 0.085), "MOT": (0.27, 0.075), "TH": (0.60, 0.41), "TH.TRN": (0.62, 0.53),
+            spots = {"PFC": (0.12, 0.28), "A": (0.79, 0.07), "B": (0.56, 0.085), "MOT": (0.27, 0.075), "TH": (0.60, 0.41), "TH.TRN": (0.62, 0.53),
                      "STR": (0.19, 0.40), "GPe": (0.30, 0.53), "GPi": (0.53, 0.555), "retina": (0.005, 0.57),
                      "EC": (0.36, 0.69), "VTA": (0.62, 0.655), "BLA": (0.215, 0.60), "CeA": (0.44, 0.582), "DG": (0.47, 0.67), "CA3": (0.52, 0.66), "CA1": (0.56, 0.645), "SUB": (0.60, 0.635)}
             for tk in L.terr:
