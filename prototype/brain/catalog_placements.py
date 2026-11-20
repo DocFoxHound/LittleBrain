@@ -99,6 +99,11 @@ PLACEMENTS = {
     "locus coeruleus": [
         Circuit("LC.GABA", C.VTA_GABA, "PFC.IT", "LC.NE", "drive", -.25, human="peri-coerulear GABAergic neuron gating noradrenergic cells"),
     ],
+    "dorsal raphe": [
+        Circuit("DR.GABA", C.VTA_GABA, "PFC.IT", "DR.5HT", "drive", -.25, human="dorsal raphe local GABAergic neuron"),
+        Circuit("DR.Glu", C.VTA_GLU, "PFC.IT", "VTA.DA", "drive", .2, human="dorsal raphe glutamatergic projection neuron"),
+        Circuit("DR.DA", C.DA_NEURON, "LH.orexin", "CeL.CRF", "drive", .2, human="dorsal raphe dopamine neuron projecting to extended amygdala (reduced receptor response)"),
+    ],
 }
 
 
