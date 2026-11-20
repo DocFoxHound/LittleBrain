@@ -17,7 +17,7 @@ python -m venv .venv
 .venv/bin/python prototype/viz/brainview.py
 ```
 
-The viewer opens the foraging game with 18,624 neurons across 182 populations. The first run calibrates the brain and develops it for two simulated days. To change tasks, pass `--game signal`, `danger`, `delayed`, or `timing`. The command-line runners and external game bridge use the same full brain by default. Development, learning and scheduled sleep run on CPU with the dependencies above.
+The viewer opens the foraging game with 18,688 neurons across 183 populations. The first run calibrates the brain and develops it for two simulated days. To change tasks, pass `--game signal`, `danger`, `delayed`, or `timing`. The command-line runners and external game bridge use the same full brain by default. Development, learning and scheduled sleep run on CPU with the dependencies above.
 
 [Regional verification](notes/56-regional-verification.md) · [Recovery provenance and earlier game results](notes/48-full-brain-reconstruction.md) · [Scaling rules](docs/scaling.md) · [Connect an external game](notes/45-game-bridge.md)
 

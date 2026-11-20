@@ -108,6 +108,9 @@ PLACEMENTS = {
         Circuit("MR.GABA", C.VTA_GABA, "PFC.IT", "MR.5HT", "drive", -.25, human="median raphe local GABAergic neuron"),
         Circuit("MR.Glu", C.VTA_GLU, "LH.orexin", "CA1.PV", "drive", .25, human="median raphe glutamatergic projection to hippocampal interneurons"),
     ],
+    "nucleus basalis": [
+        Circuit("NB.GABA", C.VTA_GABA, "PFC.IT", "A.PV", "drive", -.25, human="basal forebrain GABAergic corticopetal neuron"),
+    ],
 }
 
 

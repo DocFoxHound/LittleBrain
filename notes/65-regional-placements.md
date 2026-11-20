@@ -29,3 +29,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | locus coeruleus | LC.GABA | 18,304 | 0.41018 / 0.41018 / 0.41018 | 0.175 / 0.175 / 0.175 |
 | dorsal raphe | DR.GABA, DR.Glu, DR.DA | 18,496 | 0.41018 / 0.41018 / 0.41018 | 0.0031396 / 0.0031396 / 0.0031396 |
 | median raphe | MR.GABA, MR.Glu | 18,624 | 0.41018 / 0.41018 / 0.41018 | 0.00875 / 0.00875 / 0.00875 |
+| nucleus basalis | NB.GABA | 18,688 | 0.41018 / 0.41018 / 0.41018 | 0.062799 / 0.055706 / 0.065748 |
