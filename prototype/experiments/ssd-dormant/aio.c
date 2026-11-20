@@ -9,15 +9,17 @@
  *   (or, if buf_offs is NULL, a ring of qd slots: buf + slot * size).
  *   Returns bytes moved, or a negative errno.
  *
- * Built automatically by common.py with:  gcc -O2 -shared -fPIC aio.c -o _aio.so
+ * Build with ../build_native.py.
  */
 #define _GNU_SOURCE
 #include <errno.h>
 #include <linux/aio_abi.h>
 #include <stdint.h>
+#include "aio.h"
 #include <stdlib.h>
 #include <string.h>
 #include <sys/syscall.h>
+#include <sys/mman.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -103,4 +105,25 @@ out:
     sys_io_destroy(ctx);
     free(cbs); free(ptrs); free(ev); free(start); free(freelist);
     return err ? err : moved;
+}
+
+/* Return resident bytes for a file mapping, or a negative errno. */
+int64_t resident_bytes(int fd, int64_t size) {
+    if (size == 0) return 0;
+    long page = sysconf(_SC_PAGESIZE);
+    if (page <= 0 || size < 0) return -EINVAL;
+    size_t pages = 1 + ((size_t)size - 1) / page;
+    unsigned char *vec = calloc(pages, 1);
+    if (!vec) return -ENOMEM;
+    void *addr = mmap(NULL, size, PROT_READ, MAP_SHARED, fd, 0);
+    int64_t bytes = 0;
+    if (addr == MAP_FAILED) {
+        bytes = -errno;
+    } else {
+        if (mincore(addr, size, vec) == -1) bytes = -errno;
+        else for (size_t i = 0; i < pages; i++) bytes += (vec[i] & 1) * page;
+        munmap(addr, size);
+    }
+    free(vec);
+    return bytes;
 }

@@ -15,9 +15,10 @@
  *           + movemask), run the baseline per-synapse update, transpose again.
  * Inputs must be binary spikes (0/1).
  *
- * Build: gcc -O3 -march=native -fopenmp -shared -fPIC bitslice.c -o libbitslice.so
+ * Build with ../build_native.py.
  */
 #include <stdint.h>
+#include "bitslice.h"
 #include <string.h>
 #include <math.h>
 #include <immintrin.h>

@@ -1,5 +1,7 @@
 # ssd-dormant: dormant neurons live on the NVMe SSD
 
+Build the local C kernel once from the repository root with `python prototype/experiments/build_native.py aio`. Use a Linux development environment with CFFI, setuptools and a C compiler.
+
 **Verdict: mixed.** The SSD works well as the home of the *sleeping and dormant* brain. It is a
 poor home for the *waking* brain unless a RAM cache holds the hot working set. Two design rules
 came out of this, and they matter more than any single speed number:

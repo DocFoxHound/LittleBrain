@@ -1,5 +1,7 @@
 # VRAM–RAM paging: virtual memory for a brain
 
+Managed-memory hints use NVIDIA’s CUDA 13 Python driver package (`cuda-bindings>=13,<14`).
+
 **Verdict: promising, with two conditions.** An 8.4-million-neuron population (8.6 GB of packed
 synapses, which does not fit the 2.5 GB VRAM cap) runs at 3.5 ms per step with 5% of neurons
 active. That is about 120 M active neuron-steps/s, as fast per active neuron as a fully resident

@@ -6,3 +6,4 @@ __pycache__/
 *.npz
 prototype/viz/.cache/
 shots/
+/prototype/experiments/*/_lb_*.so

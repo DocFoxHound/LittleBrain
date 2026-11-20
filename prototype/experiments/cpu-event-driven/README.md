@@ -1,5 +1,7 @@
 # cpu-event-driven: making the CPU a real home for neurons
 
+Build the local C kernel once from the repository root with `python prototype/experiments/build_native.py bitslice`. Use a Linux development environment with CFFI, setuptools and a C compiler with OpenMP support.
+
 **Question.** Brains are event-driven: a synapse costs (almost) nothing unless a spike arrives at
 it, and most of the brain's energy goes into exactly those arrivals (Attwell & Laughlin 2001). Our
 NumPy code instead touches every synapse every step and builds huge temporary arrays. How fast and
@@ -21,7 +23,7 @@ Run everything (about 4 minutes, 3 threads, under 2.5 GB RAM):
 |---|---|---|---|
 | `dm_fused.py` | **1. Fused kernel** (Numba, `parallel`, `fastmath`) on the *current* layout | dendrite-major `words[n, branch, slot]`, input = hash | 4 |
 | `axon_major.py` | **2. Event-driven, axon-major** (Numba) | buckets of synapses per (block of neurons, input) + 16-bit post id | 6 |
-| `bitslice.c`, `bitslice.py` | **3. Bit-sliced branches** (C, AVX2 + BMI2, via ctypes) | a branch = 32x32 bit matrix; wiring bitmap in the 4 gen planes | 4 |
+| `bitslice.c`, `bitslice.py` | **3. Bit-sliced branches** (C, AVX2 + BMI2, via a compiled Python extension) | a branch = 32x32 bit matrix; wiring bitmap in the 4 gen planes | 4 |
 | `bench_cache.py` | **4. Cache awareness** | size sweep across the 24 MB L3, axon-major tile size | |
 | `wiring_bits.py` | can axon-major wiring fit in the 4 freed gen bits? | delta-coded post ids | |
 | `validate.py`, `behavior.py` | correctness and the behavior story for all of them | | |

@@ -374,3 +374,7 @@ The reduced deep-nucleus readout in association.py admits sampled pontine drive.
 ### Data-only checkpoints
 
 [Note 68](notes/68-data-only-checkpoints.md) documents the save format, legacy cache behavior and end-to-end tests. Keep new persisted fields in the explicit checkpoint schema.
+
+### Native research kernels
+
+[Note 69](notes/69-build-time-research-kernels.md) covers the development-only kernel build step and comparisons with the earlier benchmarks.

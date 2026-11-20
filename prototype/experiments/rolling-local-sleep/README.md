@@ -1,5 +1,7 @@
 # Rolling local sleep: the GPU stays awake while the CPU sleeps
 
+Build the local C kernel once from the repository root with `python prototype/experiments/build_native.py csleep`. Use a Linux development environment with CFFI, setuptools and a C compiler with OpenMP support.
+
 **Verdict: mixed.**
 - **Fast CPU sleep kernel:** a clear win. It is 30–85× faster than the NumPy prototype and needs no temporaries.
 - **Rolling sleep for throughput:** a dead end. The night is under 1% of the GPU's day.
@@ -24,7 +26,7 @@ the brain as a whole never goes offline.
 ## What I built
 | file | what |
 |---|---|
-| `csleep.c` + `cpu_sleep.py` | The CPU night, run in place on the packed uint32 words, one synapse at a time in registers. It does catch-up of the lazy clock → consolidate → 100 flow steps (one 3×3 matrix) → downscale → prune/regrow → clear → fade tags. C/OpenMP via ctypes (the GIL is released). Built with **clang** `-O3 -march=native`, which processes 8 synapses per AVX2 instruction (gcc 15 refuses to vectorize this loop). A Numba `@njit(parallel=True)` version with the same code is also included. |
+| `csleep.c` + `cpu_sleep.py` | The CPU night, run in place on the packed uint32 words, one synapse at a time in registers. It does catch-up of the lazy clock → consolidate → 100 flow steps (one 3×3 matrix) → downscale → prune/regrow → clear → fade tags. C/OpenMP via a compiled Python extension (the GIL is released). Built with **clang** `-O3 -march=native`, which processes 8 synapses per AVX2 instruction (gcc 15 refuses to vectorize this loop). A Numba `@njit(parallel=True)` version with the same code is also included. |
 | `gpu_kernels.py` | CUDA kernels via CuPy: `forward` (one block per neuron, one warp per branch), `modulate`, `catchup`, and a GPU `sleep`. No temporaries. |
 | `population.py` | `Block`: a group of neurons with **its own lazy clock** that can move between VRAM and pinned RAM (async copies). `KernelPopulation` / `KernelNeuron`: the prototype's interfaces on top of the kernels. |
 | `bench_sleep.py` | Experiment 1: kernel correctness and speed, PCIe, GPU awake kernels. |

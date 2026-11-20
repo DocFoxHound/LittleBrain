@@ -1,0 +1,5 @@
+# Build-time research kernels
+
+The CPU bit-slice, rolling sleep and Linux AIO benchmarks now import fixed Python extensions compiled from their checked-in C sources during setup. Each experiment’s README lists its build command. The desktop application has no dependency on these kernels. The SSD experiment queries page residency in its own extension, and the optional GPU paging experiment uses NVIDIA’s CUDA 13 Python driver bindings.
+
+On this Linux CPU, the C and Numba sleep kernels produced identical packed words and both reported 635 rewired contacts in the same small test. A two-request direct read returned the expected 8,192 bytes and per-request timings. On the bit-slice benchmark, the checked-in reference revision and the new extension returned identical validation output at both 64 and 4,096 inputs. Eight historical assertions still fail on both revisions, including the older storage estimate and exact modulation comparison. This experiment is separate from the full-brain simulation. The CUDA bindings and signatures were checked on this host. GPU execution requires hardware.

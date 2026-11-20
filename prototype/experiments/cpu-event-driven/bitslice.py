@@ -10,57 +10,15 @@ Behavior differences from the baseline (deliberate, checked in behavior.py):
 
 import common  # noqa: F401
 
-import ctypes
-import os
-import subprocess
+from _lb_bitslice import ffi, lib
 
 import numpy as np
 from numba import njit
 
 from packed_neuron import MAX_PENDING, Q, USED_RATE, PackedPopulation, _flow_matrix
 
-SRC = os.path.join(common.HERE, "bitslice.c")
-LIB = os.path.join(common.HERE, "libbitslice.so")
-
-
-def _build():
-    # clang vectorizes the per-synapse loops (8-wide AVX2); gcc 15 does not. gcc is the fallback.
-    for cc in ("clang", "gcc"):
-        try:
-            subprocess.run([cc, "-O3", "-march=native", "-fopenmp", "-shared", "-fPIC", SRC, "-o", LIB, "-lm"],
-                           check=True, capture_output=True)
-            return ctypes.CDLL(LIB)
-        except (OSError, subprocess.CalledProcessError):
-            continue
-    raise RuntimeError("could not build bitslice.c")
-
-
-def _load():
-    if not os.path.exists(LIB) or os.path.getmtime(LIB) < os.path.getmtime(SRC):
-        lib = _build()
-    else:
-        try:
-            lib = ctypes.CDLL(LIB)
-        except OSError:
-            lib = _build()
-    P, I64, I, F, D, U64 = ctypes.c_void_p, ctypes.c_int64, ctypes.c_int, ctypes.c_float, ctypes.c_double, ctypes.c_uint64
-    lib.bs_pack.argtypes = [I64, P, P, P]
-    lib.bs_unpack.argtypes = [I64, P, P, P]
-    lib.bs_windows.argtypes = [I64, I, I64, I64, P]
-    lib.bs_forward.argtypes = [I64, I, I64, I64, P, P, F, F, F, F, P, I, P, F, F, F, F, I, F, F, F, P, P, I]
-    lib.bs_modulate.argtypes = [I64, I, I64, I64, P, P, P, I, P, P, P, F, F, F, F, U64, I, I]
-    lib.bs_modulate_exact.argtypes = [I64, I, I64, I64, P, P, P, I, P, P, P, F, F, F, F, I, P, P, P, I]
-    lib.bs_catch_up.argtypes = [I64, P, P, F, F, U64, I]
-    lib.bs_sleep.argtypes = [I64, I, P, P, F, F, F, F, F, D, U64, I]
-    lib.bs_sleep.restype = I64
-    return lib
-
-
-lib = _load()
-
-
 def ptr(a):
-    return a.ctypes.data_as(ctypes.c_void_p) if a is not None else None
+    return ffi.NULL if a is None else ffi.cast("void *", ffi.from_buffer(a))
 
 
 @njit(cache=True)

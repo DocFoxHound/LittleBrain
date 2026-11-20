@@ -7,47 +7,22 @@ One pass, one synapse at a time in registers:
 No temporaries beyond a per-neuron prune counter (4 bytes per neuron).
 
 Two implementations with identical math and RNG (bit-identical results for the same seed):
-  "c"     csleep.c via ctypes, clang -O3 -march=native -fopenmp (AVX2, 8 synapses per instruction;
+  "c"     csleep.c as an installed extension, clang -O3 -march=native -fopenmp (AVX2, 8 synapses per instruction;
           gcc 15 does not vectorize this loop, clang 21 does)
   "numba" @njit(parallel=True), same code; LLVM does not vectorize it (64-bit typing), ~10x slower
 Randomness is a counter-based hash (lowbias32 of seed + 4*synapse index + k), 16-bit uniforms.
 Not bit-identical to the NumPy prototype (different random numbers), only statistically equal.
 """
 
-import ctypes
 import os
-import subprocess
 import time
 
+from common import flow3  # configure the benchmark thread limits before importing Numba
 import numpy as np
 from numba import njit, prange
 
-import common  # noqa: F401  (thread caps, sys.path)
-from common import HERE, flow3
-
-# ---------------------------------------------------------------- C version (ctypes)
-
-_SO = HERE / "build" / "_csleep.so"
-_C = HERE / "csleep.c"
-CFLAGS = ["-O3", "-march=native", "-fopenmp", "-ffp-contract=off", "-fno-math-errno",
-          "-fno-trapping-math", "-shared", "-fPIC"]
-
-
-def _build():
-    _SO.parent.mkdir(exist_ok=True)
-    if not _SO.exists() or _SO.stat().st_mtime < _C.stat().st_mtime:
-        subprocess.check_call(["clang", *CFLAGS, str(_C), "-o", str(_SO)])
-
-
-os.environ.setdefault("OMP_WAIT_POLICY", "PASSIVE")  # idle OpenMP threads must not spin
+os.environ.setdefault("OMP_WAIT_POLICY", "PASSIVE")
 os.environ.setdefault("KMP_BLOCKTIME", "0")
-_build()
-_lib = ctypes.CDLL(str(_SO))  # CDLL releases the GIL during the call
-_P = ctypes.c_void_p
-_lib.sleep_words.argtypes = [_P, ctypes.c_int64, ctypes.c_int32, _P, ctypes.c_int32, _P,
-                             ctypes.c_float, ctypes.c_float, ctypes.c_float, ctypes.c_float,
-                             ctypes.c_float, ctypes.c_uint32, ctypes.c_int64, _P, ctypes.c_int32]
-_lib.sleep_words.restype = None
 
 # ---------------------------------------------------------------- Numba version
 
@@ -159,10 +134,13 @@ def cpu_sleep(words2d: np.ndarray, t, pending: int, fast_scale: float, seed: int
     seed32 = int(seed) & 0xFFFFFFFF
     t0 = time.perf_counter()
     if impl == "c":
-        _lib.sleep_words(flat.ctypes.data, n, syn, P.ctypes.data, int(pending > 0), S.ctypes.data,
-                         float(np.float32(fast_scale)), float(t.w_max), float(np.float32(1 - t.downscale)),
-                         float(t.prune_eps), float(t.tag_decay), seed32, int(base_index),
-                         pruned.ctypes.data, int(threads))
+        from _lb_csleep import ffi, lib
+        lib.sleep_words(
+            ffi.from_buffer("uint32_t[]", flat), n, syn, ffi.from_buffer("float[]", P),
+            int(pending > 0), ffi.from_buffer("float[]", S), float(np.float32(fast_scale)),
+            float(t.w_max), float(np.float32(1 - t.downscale)), float(t.prune_eps),
+            float(t.tag_decay), seed32, int(base_index), ffi.from_buffer("int32_t[]", pruned), int(threads),
+        )
     else:
         import numba
         numba.set_num_threads(threads)

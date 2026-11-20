@@ -1,12 +1,12 @@
 /*
- * CPU sleep kernel in C (called through ctypes, which releases the GIL).
+ * CPU sleep kernel in C (built as a Python extension that releases the GIL).
  * Same math, same operation order and same counter-based RNG as sleep_k in gpu_kernels.py,
  * so for a given seed the CPU and GPU nights are bit-identical (FMA contraction is off in both).
  *
- * Build: clang -O3 -march=native -fopenmp -ffp-contract=off -fno-math-errno -fno-trapping-math
- *        -shared -fPIC csleep.c -o _csleep.so
+ * Build with ../build_native.py csleep.
  */
 #include <stdint.h>
+#include "csleep.h"
 #include <math.h>
 
 static inline uint32_t h32(uint32_t x) {            /* "lowbias32" integer hash */

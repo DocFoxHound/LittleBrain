@@ -90,35 +90,30 @@ def _pow_table(t: NeuronType) -> np.ndarray:
     return tab
 
 
-# ---- CUDA driver API (managed-memory hints; the runtime wrappers reject host locations in CUDA 13)
-class _Loc(ctypes.Structure):
-    _fields_ = [("type", ctypes.c_int), ("id", ctypes.c_int)]
-
-
-_cu = None
-
-
-def _driver():
-    global _cu
-    if _cu is None:
-        _cu = ctypes.CDLL("libcuda.so.1")
-        _cu.cuMemAdvise_v2.argtypes = [ctypes.c_uint64, ctypes.c_size_t, ctypes.c_int, _Loc]
-        _cu.cuMemPrefetchAsync_v2.argtypes = [ctypes.c_uint64, ctypes.c_size_t, _Loc, ctypes.c_uint, ctypes.c_void_p]
-    return _cu
-
-
-LOC_DEV, LOC_HOST = _Loc(1, 0), _Loc(2, 0)
+# CUDA 13 driver bindings support host locations in managed-memory hints.
+LOC_DEV, LOC_HOST = 1, 2
 ADV_PREFERRED, ADV_ACCESSED_BY = 3, 5
 
 
+def _location(driver, kind):
+    loc = driver.CUmemLocation()
+    loc.type = driver.CUmemLocationType(kind)
+    loc.id = 0
+    return loc
+
+
 def mem_advise(ptr, size, advice, loc):
-    r = _driver().cuMemAdvise_v2(ptr, size, advice, loc)
-    assert r == 0, f"cuMemAdvise failed: {r}"
+    from cuda.bindings import driver
+    status, = driver.cuMemAdvise(ptr, size, driver.CUmem_advise(advice), _location(driver, loc))
+    if status != driver.CUresult.CUDA_SUCCESS:
+        raise RuntimeError(f"cuMemAdvise failed: {status}")
 
 
 def prefetch(ptr, size, loc, stream):
-    r = _driver().cuMemPrefetchAsync_v2(ptr, size, loc, 0, ctypes.c_void_p(stream.ptr))
-    assert r == 0, f"cuMemPrefetchAsync failed: {r}"
+    from cuda.bindings import driver
+    status, = driver.cuMemPrefetchAsync(ptr, size, _location(driver, loc), 0, driver.CUstream(stream.ptr))
+    if status != driver.CUresult.CUDA_SUCCESS:
+        raise RuntimeError(f"cuMemPrefetchAsync failed: {status}")
 
 
 def pinned_array(nbytes, dtype=np.uint32):
