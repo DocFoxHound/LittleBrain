@@ -62,6 +62,15 @@ PLACEMENTS = {
     "dentate gyrus": [
         Circuit("DG.chandelier", C.CHANDELIER, "DG.gc", "DG.gc", "ais", .3),
     ],
+    "CA3": [
+        Circuit("CA3.axoaxonic", C.HC_AXOAXONIC, "CA3.pyr", "CA3.pyr", "ais", .3),
+        Circuit("CA3.bistratified", C.BISTRATIFIED, "CA3.pyr", "CA3.pyr", "dend", .3),
+        Circuit("CA3.OLM", C.OLM, "CA3.pyr", "CA3.pyr", "sst", .3),
+        Circuit("CA3.CCK", C.CCK_BASKET, "CA3.pyr", "CA3.pyr", "pv", .3),
+        Circuit("CA3.ivy", C.IVY, "CA3.pyr", "CA3.pyr", "volume", .3),
+        Circuit("CA3.NGF", C.HC_NGF, "EC.stellate", "CA3.pyr", "volume", .3),
+        Circuit("CA3.IS", C.IS_CELL, "CA3.pyr", "CA3.OLM", "drive", -.3),
+    ],
 }
 
 
