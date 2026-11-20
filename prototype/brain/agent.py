@@ -115,7 +115,10 @@ class BrainAgent:
             for s in range(self.act):
                 self.b.step(self._inputs(x, action, us=reward if s == 2 else 0.0), learn=self.learn, ach=self.ach,
                             arousal=0.3, signals={"value_change": -self.cue_value if self.timed and s == 2 else 0.0})
-                rpe += self.b.last_dopamine if s == 2 else 0.0
+                if s == 2:
+                    rpe = self.b.last_dopamine
+                    if self.learn and self.timed:
+                        self.b.record_waking_outcome(rpe)
                 self._tick("act", action=action, reward=reward, dopamine=self.b.last_dopamine, step=s)
         else:
             for s in range(self.act):

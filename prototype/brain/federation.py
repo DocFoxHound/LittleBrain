@@ -289,15 +289,20 @@ class Brain:
             self.kernels[sigma] = like(self.r, _kernel(sigma))
         return self.kernels[sigma]
 
+    def record_waking_outcome(self, dopamine):
+        """Retain a signed activity snapshot for the next night's partner selection."""
+        if dopamine:
+            self._log.append((float(dopamine), self.r.astype(np.float16)))
+            if len(self._log) > LOG_MAX:
+                self._log.pop(int(self.rng.integers(len(self._log))))
+
     def step(self, inputs: dict, learn=False, ach=0.5, dopamine=0.0, arousal=0.0, signals=None):
         """inputs: {group key: rates} for input groups. signals: extra global scalars by name."""
         sig = {"ach": ach, "dopamine": dopamine, "arousal": arousal, **(signals or {})}
         for key, x in inputs.items():
             self.r[self.index[key]] = like(self.r, x)
-        if learn and dopamine:  # day log of moments that mattered, for value-guided rewiring at night
-            self._log.append((float(dopamine), self.r.astype(np.float16)))
-            if len(self._log) > LOG_MAX:
-                self._log.pop(int(self.rng.integers(len(self._log))))
+        if learn:
+            self.record_waking_outcome(dopamine)
         self.clock += 1
         if self.lod_frac:
             self._level_of_detail()
