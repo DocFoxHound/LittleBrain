@@ -267,3 +267,28 @@ The release workflow, build command and viewer save behavior are documented in [
 ### Store media for v0.1.0
 
 [Note 35](notes/35-store-media.md) contains the copy and media links. The packaged viewer produced the gallery using `--game signal --shots 35` and `--game danger --shots 8`.
+
+### Full game brain recovery
+
+The normal game runner, external bridge and viewer use the reconstructed full specification. The desktop opens Forage. Run the CPU commands in [note 48](notes/48-full-brain-reconstruction.md) from the repository root. It records the source provenance, physiological assumptions, seeded results, silencing controls and remaining limits. The reconstruction spans `brainspec.py`, `regional_circuits.py`, `federation.py`, `association.py`, `striatal_projection.py`, the game agent, games, bridge, controls and viewer.
+
+For repeatable behavioral comparisons, develop each seed once and start every condition from that seed's checkpoint.
+
+```sh
+export OPENBLAS_NUM_THREADS=1
+for seed in 0 1 2; do
+    brain="/tmp/littlebrain-seed-$seed.brain"
+    python prototype/brain/check_full_games.py --seed "$seed" --prepare-only "$brain"
+    python prototype/brain/check_full_runtime.py --seed "$seed" --load-brain "$brain"
+    for game in signal danger forage delayed timing; do
+        control=lesion
+        if [ "$game" = signal ]; then control=off; fi
+        for condition in learning "$control"; do
+            python prototype/brain/check_full_games.py --seed "$seed" --load-brain "$brain" \
+                --game "$game" --condition "$condition" --turns 300
+        done
+    done
+done
+```
+
+The original 58 Git objects and any private learned brain state are outside this history. New verification should use the current measurements and retain original public baselines under their named comparison stages.
