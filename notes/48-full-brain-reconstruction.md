@@ -58,3 +58,15 @@ In an additional sleep control, identical copies received the same five waking S
 ## Failures during integration
 
 On the first full-scale visual projection, seed 0 scored 22% at turn 200 in the trailing 100 Signal turns (four-action chance is 25%). The initial timing repair also looked promising over a short run. Directional olivary feedback alone reached errors of 0.167, 0.136 and 0.115 by turn 100, then regressed to 0.831, 0.845 and 0.825 at turn 300. Inspecting the relay revealed that reading only the motor stripes had erased the temporal pattern from the striatal learning input. Reward for a correctly timed movement could subsequently release that movement at the wrong time. The revised projection carries interval and motor correction on separate axes of the existing map. It saturates the associative current before combining them.
+
+## Behavioral measurements
+
+In Signal, the same four pictures have a different randomly assigned button mapping for each seed. In Danger, the action that avoids damage also forfeits food. Each entry below covers the last 100 turns of 300.
+
+| Seed | Signal correct, learning | Signal correct, learning off | Danger hurt, intact | Food collected on food trials, intact |
+|---:|---:|---:|---:|---:|
+| 0 | 100% | 26% | 0% | 100% |
+| 1 | 100% | 27% | 3.64% | 88.89% |
+| 2 | 97% | 15% | 0% | 100% |
+
+The Signal chance rate is 25%. Random selection in Danger has a 75% hurt rate and a 25% food collection rate. The reference gates are at least 60% Signal accuracy and at most 40% hurt on every seed.
