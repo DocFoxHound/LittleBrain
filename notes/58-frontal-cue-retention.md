@@ -13,3 +13,15 @@ To isolate the effect, each developed brain saw both possible cues from identica
 The acute SNr terminal intervention preserved much more cue separation on all three seeds. Removing the cerebellar input to MD had a smaller effect. Completely silencing MD eliminated the surviving cue difference at choice. The trained frozen-policy and behavior measurements are in [note 56](56-regional-verification.md).
 
 Reproduce the four-condition probe with `python prototype/brain/check_full_games.py --probe-held-cue --seed N --load-brain PATH` on each developed reference checkpoint. The output gives separation after viewing the cue, both intervening blanks, and the final choice image.
+
+## Training intervention on the failed seed
+
+An exploratory seed-1 run blocked each terminal separately throughout 300 turns of training, starting from the same checkpoint as the original failure. The intact and single-terminal comparisons below use the version before the local recurrence repair. Chance choice accuracy is 50%.
+
+| Training condition | Correct in final 25 choices | Frozen probability correct for left / right |
+|---|---:|---:|
+| Both terminals active | 88% | 0% / 100% |
+| SNr → MD blocked | 92% | 100% / 100% |
+| DCN → MD blocked | 100% | 100% / 2.17% |
+
+Blocking the nigral terminal restored both cue responses on this seed. Blocking the cerebellar terminal improved the training-window score while leaving a one-sided frozen response. These interventions help explain why the successful repair retained both afferents and restored the missing local holding current. [Three-seed repair comparison](59-local-frontal-maintenance.md)
