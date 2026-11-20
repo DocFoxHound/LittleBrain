@@ -1,6 +1,6 @@
 # LittleBrain
 
-![LittleBrain viewer](docs/screenshots/viewer.png)
+![The default 14,656-neuron LittleBrain playing the foraging game](docs/screenshots/full-brain-forage.png)
 
 > **AI agents and new contributors: start with [AGENTS.md](AGENTS.md)**: setup, how the brain works, ground rules, baselines to reproduce, and the next tasks.
 
@@ -8,6 +8,18 @@ A small brain built from simulated human neuron types, heading toward a tool for
 learn together, with a language model as only one of those parts.)
 
 *Started 2026-10-27. This is a living document; the aim is still being found.*
+
+## Run the full brain
+
+```sh
+python -m venv .venv
+.venv/bin/python -m pip install numpy==2.5.4 pygame-ce==2.5.8
+.venv/bin/python prototype/viz/brainview.py
+```
+
+The viewer opens the foraging game with 14,656 neurons across 120 populations. The first run calibrates the brain and develops it for two simulated days. To change tasks, pass `--game signal`, `danger`, `delayed`, or `timing`. The command-line runners and external game bridge use the same full brain by default. Development, learning and scheduled sleep run on CPU with the dependencies above.
+
+[Recovery provenance and test results](notes/48-full-brain-reconstruction.md) · [Scaling rules](docs/scaling.md) · [Connect an external game](notes/45-game-bridge.md)
 
 ## Working thesis
 
@@ -94,6 +106,10 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 35. [LittleBrain license](notes/33-mit-license.md)
 36. [Linux desktop release](notes/34-desktop-release.md) covers the packaged viewer and its launch check.
 37. [Store description and screenshots](notes/35-store-media.md)
+38. [Game Bridge v1](notes/45-game-bridge.md)
+39. [Game control layouts](notes/46-game-controls.md)
+40. [LittleBrainWorld design](notes/47-littlebrainworld-design.md)
+41. [Full-brain reconstruction and verification](notes/48-full-brain-reconstruction.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
