@@ -9,7 +9,7 @@ import numpy as np
 from backend import xpof
 
 
-def target(brain, key, ordinary):
+def target(brain, key, ordinary, channels):
     group = brain.g[key]
     xp = xpof(ordinary)
     cells = ordinary.reshape(64, -1)
@@ -64,6 +64,10 @@ def target(brain, key, ordinary):
             cells[:, 0] = mossy / (1.0 + purkinje)
     elif key == "VA.relay":
         cells[:, 0] = brain.g["DCN.proj"].rate.reshape(64, -1)[:, 0]
+    if key in ("MD.relay", "VA.relay") and "inh" in channels:
+        # The projection ensemble receives pallidal/nigral inhibition even
+        # when its excitatory drive is supplied by the reduced relay model.
+        cells[:, 0] /= 1.0 + channels["inh"].reshape(64, -1)[:, 0]
     return ordinary
 
 

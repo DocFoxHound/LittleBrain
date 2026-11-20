@@ -302,3 +302,7 @@ The phase-one update in federation.py now publishes filtered inhibition and pept
 ### Region-by-region audit
 
 See note 50 for the measured changes and controls on all three seeds. Run `OPENBLAS_NUM_THREADS=1 python prototype/brain/check_regional_audit.py --seed N` for N = 0, 1 and 2. Measurements used checkpoints freshly prepared at bfc1c6a and the optional --load-brain argument. The script compares composition against all 36 catalog entries, verifies the sampled partners, pulses one projection per runtime territory and repeats an identical stimulus schedule with each territory silenced. A successful pulse supports a local effect. Task-specific learning requires a matched behavioral experiment. Seven direct inputs were masked at this revision; see subsequent notes for fixes.
+
+### Basal ganglia inhibition of thalamic relay cells
+
+See [note 51](notes/51-thalamic-brakes.md) for the isolated change, matched controls and all three seeds. Run the regional audit and integrated runtime check from note 50 and section 7 on the developed reference brain.

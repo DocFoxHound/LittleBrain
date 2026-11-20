@@ -432,7 +432,7 @@ class Brain:
                              allow_burst=ach < 0.3, cf=ch.get("cf", 0.0))
         if "VA.relay" in self.g and "TH.core" in self.g and key in ("TH.core", "PFC.IT", "MD.relay", "PONS.relay", "CB.granule", "CB.Purkinje", "DCN.proj", "VA.relay"):
             import association
-            target = association.target(self, key, target)
+            target = association.target(self, key, target, ch)
         if "conditioned" in ch:
             # A valence projection ensemble in each BLA tile receives the learned cue.
             target.reshape(T, -1)[:, 0] = ch["conditioned"]

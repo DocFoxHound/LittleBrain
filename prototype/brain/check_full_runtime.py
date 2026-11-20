@@ -66,6 +66,14 @@ def slow_terminals(b):
     print(f"{len(groups)} slow outputs transmitted and silenced.")
 
 
+def thalamic_brakes(b):
+    from check_regional_audit import projection
+    for source, target, driver in (("GPi", "VA.relay", "DCN.proj"), ("SNr.out", "MD.relay", "PFC.IT")):
+        delta = projection(b, source, target, {driver: .5})
+        assert delta < -1e-6, (source, target, delta)
+    print("Both basal ganglia brakes reduced thalamic firing.")
+
+
 def night(b, seed):
     banks = [bank for grp in b.excitatory().values() for bank in grp.banks()]
     before = [bank.src.copy() for bank in banks]
@@ -133,6 +141,7 @@ def main():
     b = Brain.load(args.load_brain) if args.load_brain else prepare(args.seed)
     anatomy(b)
     slow_terminals(b)
+    thalamic_brakes(b)
     regional_responses(b)
     night(b, args.seed)
     bridge(b, args.seed)
