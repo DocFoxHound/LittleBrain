@@ -298,3 +298,7 @@ The original 58 Git objects and any private learned brain state are outside this
 ### Slow output verification
 
 The phase-one update in federation.py now publishes filtered inhibition and peptide release. See note 49 for the before/after pulse measurements for seeds 0, 1 and 2. Ran the three prototype/brain/test_*.py scripts listed in section 7 and, for each developed reference checkpoint, `python prototype/brain/check_full_runtime.py --seed "$seed" --load-brain "$brain"`. All passed. No new game-learning claim.
+
+### Region-by-region audit
+
+See note 50 for the measured changes and controls on all three seeds. Run `OPENBLAS_NUM_THREADS=1 python prototype/brain/check_regional_audit.py --seed N` for N = 0, 1 and 2. Measurements used checkpoints freshly prepared at bfc1c6a and the optional --load-brain argument. The script compares composition against all 36 catalog entries, verifies the sampled partners, pulses one projection per runtime territory and repeats an identical stimulus schedule with each territory silenced. A successful pulse supports a local effect. Task-specific learning requires a matched behavioral experiment. Seven direct inputs were masked at this revision; see subsequent notes for fixes.

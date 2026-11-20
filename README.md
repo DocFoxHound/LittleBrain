@@ -111,6 +111,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 40. [LittleBrainWorld design](notes/47-littlebrainworld-design.md)
 41. [Full-brain reconstruction and verification](notes/48-full-brain-reconstruction.md)
 42. [Slow regional outputs](notes/49-slow-regional-outputs.md)
+43. [Region-by-region wiring and response audit](notes/50-regional-audit.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
