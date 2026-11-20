@@ -346,3 +346,7 @@ The conductance floor in cells.py and federation.py applies to new and saved HC-
 ### Entorhinal island-cell target
 
 The regional specification and old full checkpoint loader now route island cells through CA1 neurogliaform cells. [Note 61](notes/61-island-feedforward-inhibition.md) records all three paired feedforward tests and the commands.
+
+### Direct pontine input to deep cerebellar output
+
+The reduced deep-nucleus readout in association.py admits sampled pontine drive. [Note 62](notes/62-pontine-collateral.md) records the failed spike-output blend, the two-mode contact lesion and Purkinje controls on seeds 0–2.

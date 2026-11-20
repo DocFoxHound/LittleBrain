@@ -83,6 +83,12 @@ def target(brain, key, ordinary, channels):
             cells[:, 0] = .5 * (1.0 - purkinje) + .5 * xp.repeat(timing_activity(brain), 8)
         else:
             cells[:, 0] = mossy / (1.0 + purkinje)
+        # The sampled pontine collateral reaches the same projection cell.
+        # Its suprabasal membrane drive can recruit the fraction of the
+        # population output still available after the granule/Purkinje input.
+        soma = group.soma.reshape(64, -1)[:, 0]
+        collateral = xp.maximum(soma - group.c.baseline, 0.)
+        cells[:, 0] = (cells[:, 0] + collateral) / (1.0 + collateral)
     elif key == "VA.relay":
         cells[:, 0] = brain.g["DCN.proj"].rate.reshape(64, -1)[:, 0]
     if key in ("MD.relay", "VA.relay") and "inh" in channels:

@@ -117,6 +117,7 @@ def followup_probes(b):
     # training step. Test its instantaneous Purkinje output independently of LTD.
     timing = copy.deepcopy(b)
     timing.parallel_fiber_ltd = np.zeros((8, 8), np.float32)
+    results["pontine_collateral_during_timing"] = projection(timing, "PONS.relay", "DCN.proj")
     for source in ("IO.olive", "CB.basket", "CB.stellate"):
         results[source + "_during_timing"] = projection(timing, source, "CB.Purkinje")
     return results

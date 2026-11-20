@@ -87,6 +87,13 @@ def isolated_responses(b):
     assert projection(acquiring, "DCN.proj", "MD.relay", {"PFC.IT": .5}) == 0.
     timing = copy.copy(b)
     timing.parallel_fiber_ltd = np.zeros((8, 8), np.float32)
+    for mode in (b, timing):
+        assert projection(mode, "PONS.relay", "DCN.proj") > 1e-6
+        assert projection(mode, "CB.Purkinje", "DCN.proj") < -1e-6
+        muted = copy.deepcopy(mode)
+        bank = muted.g["DCN.proj"].basal
+        bank.gain[np.isin(bank.src, muted.index["PONS.relay"])] = 0.
+        assert projection(muted, "PONS.relay", "DCN.proj") == 0.
     for source, sign in (("IO.olive", 1), ("CB.basket", -1), ("CB.stellate", -1)):
         assert sign * projection(timing, source, "CB.Purkinje") > 1e-6, source
     print("Seven previously masked projections passed the isolated receiver tests.")
