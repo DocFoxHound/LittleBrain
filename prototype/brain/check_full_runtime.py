@@ -10,6 +10,7 @@ from run_signal_game import Brain, BrainAgent, prepare
 from games import SignalGame
 from game_controls import Controls
 import celltypes as C
+from cells import InhibitoryGroup
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "prototype/viz"))
@@ -49,6 +50,20 @@ def regional_responses(b):
         assert np.max(np.abs(response[1] - response[0])) > 1e-6, (source, target)
     print(f"{len(paths)} paired regional activity probes passed.")
 
+
+
+def slow_terminals(b):
+    trial = copy.deepcopy(b)
+    groups = {k: g for k, g in trial.g.items() if isinstance(g, InhibitoryGroup) and g.c.slow}
+    assert groups
+    trial.step({"retina": 1., "MOT": 0., "US": 0.}, signals={"hunger": 1., "social_contact": 1.})
+    for key, group in groups.items():
+        np.testing.assert_allclose(trial.r[trial.index[key]], group.level, err_msg=key)
+    assert not np.allclose(trial.g["HYP.AgRP"].level, trial.g["HYP.AgRP"].rate)
+    trial.ablated.update(groups)
+    trial.step({})
+    assert all(np.all(trial.r[trial.index[key]] == 0) for key in groups)
+    print(f"{len(groups)} slow outputs transmitted and silenced.")
 
 
 def night(b, seed):
@@ -117,6 +132,7 @@ def main():
     args = parser.parse_args()
     b = Brain.load(args.load_brain) if args.load_brain else prepare(args.seed)
     anatomy(b)
+    slow_terminals(b)
     regional_responses(b)
     night(b, args.seed)
     bridge(b, args.seed)

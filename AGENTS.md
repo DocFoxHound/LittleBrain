@@ -294,3 +294,7 @@ done
 ```
 
 The original 58 Git objects and any private learned brain state are outside this history. New verification should use the current measurements and retain original public baselines under their named comparison stages.
+
+### Slow output verification
+
+The phase-one update in federation.py now publishes filtered inhibition and peptide release. See note 49 for the before/after pulse measurements for seeds 0, 1 and 2. Ran the three prototype/brain/test_*.py scripts listed in section 7 and, for each developed reference checkpoint, `python prototype/brain/check_full_runtime.py --seed "$seed" --load-brain "$brain"`. All passed. No new game-learning claim.

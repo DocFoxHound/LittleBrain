@@ -409,7 +409,8 @@ class Brain:
         n = self.every[key]
         if phase == 1:
             if isinstance(grp, InhibitoryGroup):
-                grp.step(ch.get("drive", xpof(self.r).zeros(grp.n, np.float32)), steps=n)
+                # Slow GABA and peptide terminals release the filtered output.
+                return grp.step(ch.get("drive", xpof(self.r).zeros(grp.n, np.float32)), steps=n)
             elif isinstance(grp, ModulatorGroup):
                 grp.step(float(np.mean(ch.get("drive", 0.0))), steps=n)
             elif key == "IO.olive" and "offset" in ch:
