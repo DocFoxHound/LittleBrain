@@ -292,3 +292,19 @@ def stage_hypothalamus():
                     Pooled("POMC suppresses LH", "HYP.POMC", "LH.orexin", -1.),
                     Pooled("fed state -> MCH", "HYP.POMC", "LH.MCH", 1.)]
     return spec
+
+
+def stage_prefrontal():
+    spec = stage_hypothalamus()
+    spec.groups += [Group("PFC.IT", _cortex(C.L5_IT), 3, "PFC"), Group("PFC.PV", C.PV, 1, "PFC"),
+                    Group("MD.relay", C.MD, 1, "MD")]
+    spec.synaptic += [Synaptic("association cortex -> PFC", "B.L23", "PFC.IT", "basal", 0.08),
+                      Synaptic("PFC recurrent", "PFC.IT", "PFC.IT", "basal", 0.84, kind="local"),
+                      Synaptic("MD -> PFC", "MD.relay", "PFC.IT", "basal", 0.08),
+                      Synaptic("MD -> PFC tuft", "MD.relay", "PFC.IT", "apical", 0.16),
+                      Synaptic("PFC recurrent tuft", "PFC.IT", "PFC.IT", "apical", 0.84, kind="local"),
+                      Synaptic("PFC -> MD", "PFC.IT", "MD.relay", "basal", 1.0)]
+    spec.pooled += [Pooled("PFC feedforward inhibition", "PFC.IT", "PFC.PV", 4.),
+                    Pooled("PFC PV -> IT", "PFC.PV", "PFC.IT", 1.5, channel="pv"),
+                    Pooled("PFC -> striatum", "PFC.IT", ["STR.D1", "STR.D2"], 0.3, channel="exc")]
+    return spec
