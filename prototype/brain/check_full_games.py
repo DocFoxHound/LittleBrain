@@ -77,6 +77,39 @@ def delayed_probe(agent, game, seed):
     return results
 
 
+def held_cue_distances(brain, seed):
+    """Track separation of the two PFC cues through identical passive movements."""
+    from games.core import Observation
+    from games.regional_games import DelayedCueGame
+
+    results = {}
+    for name, lesion in (("intact", set()), ("no_nigral_gate", {"SNr.out -> MD.relay"}),
+                         ("no_cerebellar_input", {"cerebellothalamic"}), ("MD_silent", {"MD"})):
+        traces = []
+        for side in (0, 1):
+            b = copy.deepcopy(brain)
+            b.ablated.update(lesion)
+            probe = BrainAgent(b, 2, seed=seed, learn=False)
+            game = DelayedCueGame(seed=seed)
+            game.reset()
+            game.side = side
+            obs = Observation(game.cues[side])
+            phases = []
+            while True:
+                probe.begin_turn(obs)
+                phases.append(b.g["PFC.IT"].rate.reshape(64, -1)[:, 0].copy())
+                obs, reward, done, info = game.step(0)
+                if done:
+                    break
+                # The game ignored this movement. Supply the same efference
+                # copy on both trials to isolate the past visual cue.
+                probe.pending = (0, probe.pending[1])
+                probe.finish_turn(reward, info)
+            traces.append(np.stack(phases))
+        results[name] = np.linalg.norm(traces[1] - traces[0], axis=1).tolist()
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=0)
@@ -85,10 +118,14 @@ def main():
     parser.add_argument("--condition", choices=["learning", "off", "lesion"], default="learning")
     parser.add_argument("--load-brain", help="trusted local checkpoint")
     parser.add_argument("--prepare-only", metavar="PATH")
+    parser.add_argument("--probe-held-cue", action="store_true", help="measure PFC cue separation across a delay")
     args = parser.parse_args()
     b = Brain.load(args.load_brain) if args.load_brain else prepare(args.seed)
     if args.prepare_only:
         b.save(args.prepare_only)
+        return
+    if args.probe_held_cue:
+        print(json.dumps(held_cue_distances(b, args.seed)))
         return
     g = REGISTRY[args.game](seed=args.seed)
     if args.condition == "lesion":

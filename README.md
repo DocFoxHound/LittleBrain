@@ -119,6 +119,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 48. [Dentate input to CA3 after development](notes/55-hippocampal-transmission.md)
 49. [Verification after the regional wiring repairs](notes/56-regional-verification.md)
 50. [Connection plan compared with the game brain](notes/57-connection-plan-audit.md)
+51. [Holding a cue across two blank turns](notes/58-frontal-cue-retention.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

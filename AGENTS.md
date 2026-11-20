@@ -330,3 +330,7 @@ Note 56 records the default CPU brain after all seven terminal repairs, includin
 ### Connection plan comparison
 
 Note 57 compares the 94 numbered anatomical routes in notes/regions/connections.md to actual source and target groups. The regional audit's follow-up output reproduces the EC island and deep nuclear collateral probes on seeds 0, 1 and 2. HC-6 has a receiver mismatch, the direct pontine collateral has a zero effect at reference scale, and several planned contextual and extinction pathways are absent.
+
+### Working-memory signal diagnosis
+
+Note 58 reports a paired prefrontal retention assay from the actual delayed game. The normal CLI can run it using --probe-held-cue. A matched motor copy during passive viewing separates loss of the visual trace from action selection. Both blank turns and the choice period are measured for all three seeds.
