@@ -59,6 +59,9 @@ PLACEMENTS = {
         Circuit("EC.VIP", C.VIP, "B.L23", "EC.SST", "drive", -.3),
         Circuit("EC.NGF", C.LAMP5_NGF, "B.L23", "EC.stellate", "volume", .3),
     ],
+    "dentate gyrus": [
+        Circuit("DG.chandelier", C.CHANDELIER, "DG.gc", "DG.gc", "ais", .3),
+    ],
 }
 
 

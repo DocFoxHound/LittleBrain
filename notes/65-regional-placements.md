@@ -17,3 +17,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | higher-order thalamus | PUL.core, PUL.interneuron | 16,640 | 0.41018 / 0.41018 / 0.41018 | 0.34987 / 0.34992 / 0.34982 |
 | claustrum | CLA.PV, CLA.SST, CLA.VIP | 16,832 | 0.035343 / 0.035349 / 0.035355 | 0.0027748 / 0.0027748 / 0.0027748 |
 | entorhinal cortex | EC.SST, EC.VIP, EC.NGF | 17,024 | 0.020509 / 0.020509 / 0.020509 | 0.0010568 / 0.0014989 / 0.0007085 |
+| dentate gyrus | DG.chandelier | 17,088 | 0.25 / 0.25 / 0.25 | 3.6e-06 / 3.6e-06 / 3.4e-06 |
