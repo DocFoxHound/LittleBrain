@@ -163,7 +163,7 @@ class Brain:
         self.da_base, self.last_dopamine = None, 0.0
         self._stats = {}
         self._wire()
-        self._mossy_conductance()
+        self._configure_afferent_plasticity()
         self.device = "cpu"
         if backend.DEVICE == "gpu":
             self.to("gpu")
@@ -219,19 +219,21 @@ class Brain:
                         b.ablated.remove(path.id)
                         b.ablated.add("EC.island -> CA1.NGF")
                     path.id, path.dst, path.channel = "EC.island -> CA1.NGF", "CA1.NGF", "drive"
-        b._mossy_conductance()
+        b._configure_afferent_plasticity()
         return b.to(device or backend.DEVICE)
 
     # ---------- wiring ----------
 
-    def _mossy_conductance(self):
-        # Mossy-fiber depression can silence transmission. It cannot turn
-        # a dentate granule cell into an inhibitory input to a CA3 pyramid.
-        # Nightly turnover samples a new partner within the same pathway.
-        if "CA3.pyr" in self.g and "DG.gc" in self.index:
-            bank = self.g["CA3.pyr"].basal
-            granule = np.isin(bank.src, self.index["DG.gc"])
-            bank.conductance_floor = np.where(granule, 0., -np.inf).astype(np.float32)
+    def _configure_afferent_plasticity(self):
+        # These two glutamatergic routes reversed their net current after
+        # development. Depression can silence them. Turnover keeps the route.
+        for source, target in (("DG.gc", "CA3.pyr"), ("TH.TC", "STR.SO")):
+            if target in self.g and source in self.index:
+                bank = self.g[target].basal
+                slots = np.isin(bank.src, self.index[source])
+                bank.conductance_floor = np.where(slots, 0., -np.inf).astype(np.float32)
+                if target == "STR.SO":
+                    bank.thalamic_afferents = slots
 
     def _partner_caps(self, sample=64):
         """Per destination compartment: CONTACTS x the effective number of distinct partners within reach,

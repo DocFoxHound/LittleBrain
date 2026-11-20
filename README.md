@@ -125,6 +125,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 54. [Entorhinal island-cell inhibition through CA1](notes/61-island-feedforward-inhibition.md)
 55. [Pontine collaterals reach deep cerebellar output](notes/62-pontine-collateral.md)
 56. [Regional placement budgets at reference scale](notes/63-placement-budget.md)
+57. [Thalamic excitation of striosomes](notes/64-thalamic-striosome-input.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

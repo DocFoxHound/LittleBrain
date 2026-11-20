@@ -99,6 +99,7 @@ def followup_probes(b):
     results = {
         "raphe_with_BLA_drive": projection(b, "DR.5HT", "BLA.PV", {"BLA.pos": .5}),
         "SNc_with_cortical_drive": projection(b, "SNc.DA", "STR.FSI", {"A.L5IT": .5, "A.L5PT": .5}),
+        "thalamus_to_striosome_soma": projection(b, "TH.TC", "STR.SO", soma=True),
         "mossy_fiber_soma": projection(b, "DG.gc", "CA3.pyr", soma=True),
         "prefrontal_to_claustrum": projection(b, "PFC.IT", "CLA.pyr"),
         "prefrontal_to_L6IT": projection(b, "PFC.IT", "PFC.L6IT"),

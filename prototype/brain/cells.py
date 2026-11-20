@@ -46,6 +46,7 @@ class SynapseBank:
         self.branch_open = None                        # optional (N,B): closed branches don't learn (context gating)
 
     conductance_floor = None
+    thalamic_afferents = None
 
     def weights(self):
         weights = self._signed_weights()
@@ -86,7 +87,21 @@ class SynapseBank:
         if self.heterosynaptic:
             # Heterosynaptic plasticity: when some of a cell's synapses strengthen, the rest weaken a
             # little, so its total input stays balanced (prevents runaway excitation in recurrent circuits)
-            delta = delta - delta.mean(axis=(1, 2), keepdims=True)
+            axes = (1, 2)
+            if self.thalamic_afferents is None:
+                delta = delta - delta.mean(axis=axes, keepdims=True)
+            else:
+                # Conserve the budget separately for thalamic and cortical
+                # afferents. Cortical activity cannot depress an entire
+                # thalamic input field through heterosynaptic competition.
+                thalamic = self.thalamic_afferents
+                count = thalamic.sum(axis=axes, keepdims=True)
+                thalamic_sum = (delta * thalamic).sum(axis=axes, keepdims=True)
+                cortical_sum = delta.sum(axis=axes, keepdims=True) - thalamic_sum
+                cortical_count = delta.shape[1] * delta.shape[2] - count
+                mean = np.where(thalamic, thalamic_sum / np.maximum(count, 1),
+                                cortical_sum / np.maximum(cortical_count, 1))
+                delta = delta - mean.astype(delta.dtype)
         self.fast = np.clip(self.fast + delta, -self.t.fast_range, self.t.fast_range)
         self.mark(arousal * abs(dopamine) * self.elig)
         if abs(dopamine) * ach > self.t.oneshot_level and plateau is not None:

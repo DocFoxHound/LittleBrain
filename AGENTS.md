@@ -354,3 +354,7 @@ The reduced deep-nucleus readout in association.py admits sampled pontine drive.
 ### Local placement budgets
 
 [Note 63](notes/63-placement-budget.md) gives the cost of the 67 missing placements under three allocation choices, computed from the regional audit and the 64-cell game-map minimum. The anatomy decision affects reference population counts.
+
+### Striosome thalamic input
+
+[Note 64](notes/64-thalamic-striosome-input.md) records the failed zero-floor control, within-class plasticity in cells.py and the three-seed pulse and signal comparisons.

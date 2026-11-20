@@ -74,10 +74,11 @@ def isolated_responses(b):
     assert projection(b, "EC.island", "CA1.NGF") > 1e-6
     assert projection(b, "EC.island", "CA1.pyr", soma=True) == 0.
     assert projection(b, "EC.island", "CA1.pyr", soma=True, interneuron="CA1.NGF") < -1e-6
-    bank = b.g["CA3.pyr"].basal
-    mossy = np.isin(bank.src, b.index["DG.gc"])
-    assert mossy.any() and (bank.weights()[mossy] >= 0).all()
-    assert projection(b, "DG.gc", "CA3.pyr", soma=True) > 1e-6
+    for source, receiver in (("DG.gc", "CA3.pyr"), ("TH.TC", "STR.SO")):
+        bank = b.g[receiver].basal
+        contacts = np.isin(bank.src, b.index[source])
+        assert contacts.any() and (bank.weights()[contacts] >= 0).all()
+        assert projection(b, source, receiver, soma=True) > 1e-6, receiver
     assert projection(b, "A.L5PT", "PONS.relay") > 1e-6
     acquiring = copy.copy(b)
     acquiring.hold_context = False
