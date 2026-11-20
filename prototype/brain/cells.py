@@ -406,7 +406,7 @@ class ExcitatoryGroup:
     def banks(self):
         return [b for b in (self.basal, self.apical) if b is not None]
 
-    def modulate(self, dopamine, ach, arousal):
+    def modulate(self, dopamine, ach, arousal, credit=None):
         """D2 cells (dopamine_sign -1): a dopamine burst weakens and a dip strengthens their synapses."""
         if self.c.rules.encoding_learning:
             # Hippocampus: NMDA plasticity during encoding (high ACh) needs no reward signal; the pattern
@@ -415,7 +415,8 @@ class ExcitatoryGroup:
         if self.c.learns and dopamine:
             self.basal.branch_open = self.branch_open
             for b in self.banks():
-                b.modulate(self.plasticity, dopamine * self.c.dopamine_sign, ach, arousal, self.plateau())
+                sensitivity = self.plasticity if credit is None else self.plasticity * credit
+                b.modulate(sensitivity, dopamine * self.c.dopamine_sign, ach, arousal, self.plateau())
             if self.c.rules.branch_lr:
                 # Branch strength plasticity: a branch that spiked before a learning signal becomes
                 # more excitable as a whole (Losonczy et al. 2008)

@@ -116,7 +116,7 @@ class BrainAgent:
             rpe = 0.0
             for s in range(self.act):
                 self.b.step(self._inputs(x, action, us=reward if s == 2 else 0.0), learn=self.learn, ach=self.ach,
-                            arousal=0.3, signals={**self.body_signals, "timing_error": self.last_info.get("timing_error", 0.0) if s == 2 else 0.0, "value_change": -self.cue_value if self.timed and s == 2 else 0.0})
+                            arousal=0.3, signals={**self.body_signals, "timing_error": self.last_info.get("timing_error", 0.0) if s == 2 else 0.0, "outcome_due": s == 2, "value_change": -self.cue_value if self.timed and s == 2 else 0.0})
                 if s == 2:
                     rpe = self.b.last_dopamine
                     if self.learn and self.timed:

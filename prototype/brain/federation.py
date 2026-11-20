@@ -303,6 +303,8 @@ class Brain:
             self.r[self.index[key]] = like(self.r, x)
         if learn:
             self.record_waking_outcome(dopamine)
+        timed = getattr(self.spec, "timed_dopamine", False)
+        outcome_due = bool(sig.get("outcome_due", False))
         self.clock += 1
         if self.lod_frac:
             self._level_of_detail()
@@ -325,7 +327,13 @@ class Brain:
                 if self.clock % self.every[key] or key.split(".")[0] in self.dormant:
                     self.lod_skipped += 1
                     continue
-                new[key] = self._update(key, grp, chan[key], phase, learn, ach, dopamine, arousal)
+                credit = None
+                if timed and key in ("STR.D1", "STR.D2"):
+                    if outcome_due:
+                        credit = self._pool("MOT")[self.tile[key]]
+                    else:
+                        credit = 0.0
+                new[key] = self._update(key, grp, chan[key], phase, learn, ach, dopamine, arousal, credit)
                 if phase == 1:
                     self.r[self.index[key]] = new[key]
         for key, rate in new.items():
@@ -336,6 +344,12 @@ class Brain:
         better than expected, a dip worse. Small wobbles are ignored."""
         g = self.g[self.dopamine_group]
         rate = float(np.mean(to_host(g.rate)))
+        if getattr(self.spec, "timed_dopamine", False):
+            # A pause has the baseline-to-zero range. A burst has the remaining headroom.
+            baseline = g.c.baseline
+            span = 1.0 - baseline if rate >= baseline else baseline
+            self.last_dopamine = float(np.clip((rate - baseline) / span, -1., 1.))
+            return self.last_dopamine
         if self.da_base is None:
             self.da_base = rate
         da = (rate - self.da_base) / 0.7
@@ -370,7 +384,7 @@ class Brain:
                 c += p.weight * field_[self.tile[dst]]
         return chan
 
-    def _update(self, key, grp, ch, phase, learn, ach, dopamine, arousal):
+    def _update(self, key, grp, ch, phase, learn, ach, dopamine, arousal, credit=None):
         if key.split(".")[0] in self.ablated or key in self.ablated:
             grp.rate[:] = 0.0
             return grp.rate
@@ -421,7 +435,7 @@ class Brain:
             if grp.c.family == "purkinje" and "cf" in ch:
                 grp.climbing_fiber(ch["cf"])
             else:
-                grp.modulate(dopamine, ach, arousal)
+                grp.modulate(dopamine, ach, arousal, credit=credit)
         grp.tick(n)
         return grp.rate
 
