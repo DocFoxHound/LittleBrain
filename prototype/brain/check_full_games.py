@@ -51,6 +51,32 @@ def appetite_probe(agent, game):
     return results
 
 
+def delayed_probe(agent, game, seed):
+    """Evaluate both possible cues from identical trained neural states."""
+    from games.core import Observation
+    results = {}
+    for condition in ("intact", "pfc_md_silenced"):
+        probabilities = []
+        for side in (0, 1):
+            b = copy.deepcopy(agent.b)
+            if condition != "intact":
+                b.ablated.update(LESIONS["delayed"])
+            probe = BrainAgent(b, game.n_actions, seed=seed, learn=False)
+            trial = type(game)(seed=seed, delay=game.delay)
+            trial.reset()
+            trial.side = side
+            obs = Observation(trial.cues[side])
+            while True:
+                action = probe.begin_turn(obs)
+                obs, reward, done, info = trial.step(action)
+                probe.finish_turn(reward, info)
+                if done:
+                    probabilities.append(round(float(probe.last["p"][side]), 4))
+                    break
+        results[condition] = probabilities
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--seed", type=int, default=0)
@@ -73,6 +99,9 @@ def main():
         a.play(g, min(50, args.turns - start), log=log)
         print(json.dumps(dict(seed=args.seed, game=args.game, condition=args.condition, turns=len(log),
                               **metrics(args.game, log[-100:]))), flush=True)
+    if args.game == "delayed" and args.condition == "learning":
+        print(json.dumps(dict(seed=args.seed, game=args.game, condition=args.condition,
+                              delayed_probe=delayed_probe(a, g, args.seed))), flush=True)
     if args.game == "forage":
         print(json.dumps(dict(seed=args.seed, game=args.game, condition=args.condition,
                               appetite_probe=appetite_probe(a, g))), flush=True)

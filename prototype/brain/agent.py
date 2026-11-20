@@ -184,7 +184,14 @@ class BrainAgent:
             # Pre-meal drive modulates only the food component of the outcome.
             balance = float(to_host(self.b.g["HYP.AgRP"].rate - self.b.g["HYP.POMC"].rate).mean())
             reward = np.clip(reward - food + food * balance, -1.0, 1.0)
+        waiting = self.last_info.get("action_applied") is False
+        if "TH.core" in self.b.g and waiting:
+            # An unapplied motor command leaves the observed context in working memory.
+            self.b.hold_context = True
         self.last_rpe = self.outcome(retina, action, reward)
+        if getattr(self.b, "hold_context", False) and not waiting:
+            self.b.hold_context = False
+            self.b.clear_context_steps = 5
         self.turns_played += 1
         if sleep_every is None:
             sleep_every = 64 if "MS.theta" in self.b.g else 0

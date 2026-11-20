@@ -50,7 +50,7 @@ class DelayedCueGame(Game):
             return Observation(self.blank), float(correct), True, {"choice": True, "correct": correct}
         self.phase += 1
         image = self.go if self.phase == self.delay + 1 else self.blank
-        return Observation(image), 0.0, False, {"choice": False, "feedback": False}
+        return Observation(image), 0.0, False, {"choice": False, "feedback": False, "action_applied": False}
 
 
 class TimingGame(Game):

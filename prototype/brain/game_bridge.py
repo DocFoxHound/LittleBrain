@@ -72,7 +72,7 @@ class Session:
             info = {k: number(msg[k]) for k in ("food_reward", "timing_error") if k in msg}
             if "timing_offset" in msg:
                 info["timing_offset"] = number(msg["timing_offset"], -1, 1)
-            for flag in ("food_contact", "feedback"):
+            for flag in ("food_contact", "feedback", "action_applied"):
                 if flag in msg:
                     if type(msg[flag]) is not bool:
                         raise ValueError(f"{flag} must be boolean")

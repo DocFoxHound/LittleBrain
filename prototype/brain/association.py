@@ -20,9 +20,18 @@ def target(brain, key, ordinary):
         relay = brain.g["MD.relay"].rate.reshape(64, -1)[:, 0]
         sensory = brain._pool("TH.core")
         # Positive feedback outlasts a stimulus, then slowly extinguishes.
-        cells[:, 0] = xp.clip(0.985 * relay + 0.11 * sensory, 0, 1)
+        if getattr(brain, "clear_context_steps", 0):
+            cells[:, 0] = 0.
+        elif getattr(brain, "hold_context", False):
+            cells[:, 0] = .999 * relay
+        else:
+            cells[:, 0] = xp.clip(0.985 * relay + 0.11 * sensory, 0, 1)
     elif key == "MD.relay":
-        cells[:, 0] = brain.g["PFC.IT"].rate.reshape(64, -1)[:, 0]
+        if getattr(brain, "clear_context_steps", 0):
+            cells[:, 0] = 0.
+            brain.clear_context_steps -= 1
+        else:
+            cells[:, 0] = brain.g["PFC.IT"].rate.reshape(64, -1)[:, 0]
     elif key == "PONS.relay":
         cells[:, 0] = brain._pool("TH.core")
     elif key == "CB.granule":
@@ -64,7 +73,11 @@ def context(brain):
     pfc = brain.g["PFC.IT"].rate.reshape(64, -1)[:, 0]
     # Lateral contrast preserves which part of the retinotopic map is active.
     pfc = pfc - pfc.mean()
-    pfc = pfc / xp.maximum(xp.linalg.norm(pfc), 1.0)
+    if getattr(brain, "hold_context", False):
+        # MD-supported maintenance amplifies the context reaching striatum.
+        pfc = 3.0 * pfc / xp.maximum(xp.linalg.norm(pfc), .1)
+    else:
+        pfc = pfc / xp.maximum(xp.linalg.norm(pfc), 1.0)
     temporal = brain.g["VA.relay"].rate.reshape(4, 16, -1)[:, :, 0].mean(axis=1)
     balance = brain.g["HYP.AgRP"].rate.mean() - brain.g["HYP.POMC"].rate.mean()
     # A small signed projection lets learned food choices depend on appetite.
