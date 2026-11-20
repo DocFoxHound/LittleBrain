@@ -74,6 +74,10 @@ PLACEMENTS = {
     "CA1": [
         Circuit("CA1.CCK", C.CCK_BASKET, "CA3.pyr", "CA1.pyr", "pv", .3),
     ],
+    "subiculum": [
+        Circuit("SUB.OLM", C.OLM, "SUB.pyr", "SUB.pyr", "sst", .3),
+        Circuit("SUB.NGF", C.HC_NGF, "EC.L3", "SUB.pyr", "volume", .3),
+    ],
 }
 
 
