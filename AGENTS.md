@@ -350,3 +350,7 @@ The regional specification and old full checkpoint loader now route island cells
 ### Direct pontine input to deep cerebellar output
 
 The reduced deep-nucleus readout in association.py admits sampled pontine drive. [Note 62](notes/62-pontine-collateral.md) records the failed spike-output blend, the two-mode contact lesion and Purkinje controls on seeds 0–2.
+
+### Local placement budgets
+
+[Note 63](notes/63-placement-budget.md) gives the cost of the 67 missing placements under three allocation choices, computed from the regional audit and the 64-cell game-map minimum. The anatomy decision affects reference population counts.

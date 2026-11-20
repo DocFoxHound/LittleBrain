@@ -124,6 +124,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 53. [Excitatory transmission from dentate granule cells](notes/60-mossy-conductance.md)
 54. [Entorhinal island-cell inhibition through CA1](notes/61-island-feedforward-inhibition.md)
 55. [Pontine collaterals reach deep cerebellar output](notes/62-pontine-collateral.md)
+56. [Regional placement budgets at reference scale](notes/63-placement-budget.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
