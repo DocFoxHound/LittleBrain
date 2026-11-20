@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 
 for k, v in {"HOMEO_RULE": "log", "L4_L23_GAIN": "3", "CORTEX_LRF": "0.05", "HOMEO_SLOW": "STR.SO:0.1",
-             "BRAIN": "amy"}.items():
+             "BRAIN": "full"}.items():
     os.environ.setdefault(k, v)
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))

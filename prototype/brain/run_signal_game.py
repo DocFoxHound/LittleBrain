@@ -28,13 +28,16 @@ from run_wiring_test import blobs  # noqa: E402
 
 
 SPECS = {"bg": "stage_bg", "da": "stage_da", "amy": "stage_amy", "td": "stage_timed_dopamine",
-         "hyp": "stage_hypothalamus"}
+         "hyp": "stage_hypothalamus", "pfc": "stage_prefrontal", "cerebellum": "stage_cerebellum",
+         "hippocampus": "stage_game_hippocampus", "ca2": "stage_ca2", "insula": "stage_insula",
+         "full": "full_brain"}
+DEFAULT_BRAIN = "full"
 
 
 def prepare(seed, brain=None, scale=1.0):
     """brain: which brain description (env BRAIN): bg = basal ganglia loop with a computed dopamine stand-in,
     da = + dopamine cells and striosomes (notes/32), amy = + amygdala."""
-    brain = brain or os.environ.get("BRAIN", "bg")
+    brain = brain or os.environ.get("BRAIN", DEFAULT_BRAIN)
     spec = getattr(S, SPECS[brain])()
     if scale != 1.0:   # bigger or smaller brain: more or fewer cells of every type per map tile
         from dataclasses import replace

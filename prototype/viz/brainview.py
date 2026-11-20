@@ -18,6 +18,7 @@ Keys: Space pause | Right/Left faster/slower | L learning on/off | S sleep | [ /
 """
 
 import argparse
+import hashlib
 import copy
 import math
 import os
@@ -84,6 +85,27 @@ TERRITORY = {
     "retina": ("eye", [crescent(EYE[0][0], EYE[0][1], EYE[1], EYE[1], 0.74, 0.94, math.radians(-70),
                                 math.radians(70))], "retina (back of the eye)"),
 }
+# Approximate centers on the side-view diagram; depth is projected onto the page.
+REGIONAL_TERRITORIES = {
+    "PFC": (0.29, 0.28, .12, .10, "prefrontal cortex"),
+    "ACC": (.42, .29, .065, .025, "anterior cingulate"), "INS": (.34, .45, .044, .022, "insula"),
+    "HYP": (.478, .588, .028, .016, "arcuate hypothalamus"), "LH": (.455, .596, .015, .008, "lateral hypothalamus"),
+    "PVN": (.478, .566, .012, .008, "paraventricular nucleus"), "SCN": (.445, .585, .009, .006, "suprachiasmatic nucleus"),
+    "MD": (.545, .476, .017, .010, "mediodorsal thalamus"), "PUL": (.604, .462, .022, .017, "pulvinar"),
+    "VA": (.526, .489, .012, .009, "motor thalamus"), "CLA": (.382, .479, .007, .038, "claustrum"),
+    "STN": (.549, .555, .014, .008, "subthalamic nucleus"), "SNr": (.56, .61, .015, .010, "substantia nigra pars reticulata"),
+    "SNc": (.56, .59, .015, .009, "substantia nigra pars compacta"), "LHb": (.61, .505, .010, .007, "lateral habenula"),
+    "RMTg": (.565, .65, .010, .006, "rostromedial tegmentum"), "PAG": (.59, .575, .010, .011, "periaqueductal gray"),
+    "CA2": (.535, .632, .011, .007, "CA2"), "ITC": (.413, .617, .007, .004, "intercalated amygdala"),
+    "CB": (.746, .648, .071, .034, "cerebellar cortex"), "DCN": (.72, .663, .017, .010, "deep cerebellar nuclei"),
+    "PONS": (.563, .704, .02, .012, "pontine nuclei"), "IO": (.61, .802, .012, .013, "inferior olive"),
+    "LC": (.591, .683, .009, .006, "locus coeruleus"), "DR": (.578, .638, .009, .007, "dorsal raphe"),
+    "MR": (.576, .67, .008, .007, "median raphe"), "NB": (.422, .542, .013, .008, "nucleus basalis"),
+    "MS": (.413, .52, .011, .007, "medial septum"), "PPN": (.585, .661, .009, .006, "pedunculopontine nucleus"),
+}
+for region, (x, y, rx, ry, label) in REGIONAL_TERRITORIES.items():
+    TERRITORY[region] = ("deep", [ell(x, y, rx, ry)], label)
+
 # Regions designed (cell types, percentages) but not wired into this brain yet: drawn as faint outlines
 NOT_BUILT = {"amygdala": [ell(0.405, 0.612, 0.026, 0.020)], "hypothalamus": [ell(0.478, 0.588, 0.030, 0.017)],
              "claustrum": [[(0.372, 0.43), (0.378, 0.43), (0.385, 0.51), (0.379, 0.51)]]}
@@ -319,8 +341,12 @@ class App:
 
         def build_brain():
             from federation import Brain
-            from run_signal_game import prepare
+            from run_signal_game import DEFAULT_BRAIN, SPECS, S, prepare
             cache = HERE / ".cache" / f"{os.environ.get('BRAIN', 'bg')}_scale{scale:g}_seed{self.seed}.brain"
+            name = os.environ.get("BRAIN", DEFAULT_BRAIN)
+            if name not in ("bg", "da", "amy"):
+                digest = hashlib.sha256(repr(getattr(S, SPECS[name])()).encode()).hexdigest()[:12]
+                cache = cache.with_suffix(f".reconstructed-{digest}.brain")
             t0 = time.time()
             if self.save_root or getattr(sys, "frozen", False):
                 # A distributed viewer develops its brain locally without loading pickle files.
@@ -407,7 +433,7 @@ class App:
                 elif e.key == pg.K_l and self.agent:
                     self.agent.learn = not self.agent.learn
                 elif e.key == pg.K_s and self.brain:
-                    self.brain.sleep()
+                    self.agent.sleep_requested = True
                     self.status = "slept: the day's learning was consolidated"
                 elif e.key == pg.K_t:
                     self.labels = not self.labels
@@ -477,7 +503,7 @@ class App:
                     pg.draw.polygon(s, (22, 19, 27), P(poly))
                 for poly in T.polys:
                     pg.draw.polygon(s, (84, 72, 92), P(poly), 1)
-        built = {"amygdala": "BLA"}
+        built = {"amygdala": "BLA", "hypothalamus": "HYP", "claustrum": "CLA"}
         for name, polys in NOT_BUILT.items():
             if built.get(name) in L.terr:
                 continue
@@ -511,6 +537,9 @@ class App:
         # labels
         if self.labels:
             for (pos, txt) in LOBE_LABELS:
+                if any(t in L.terr and txt.startswith(label) for t, label in
+                       (("PFC", "frontal lobe"), ("CB", "cerebellum"), ("LC", "brainstem"))):
+                    continue
                 s.blit(self.small.render(txt, True, (82, 84, 98)), S(pos))
             for name, polys in NOT_BUILT.items():
                 if built.get(name) in L.terr:
@@ -521,6 +550,8 @@ class App:
                      "STR": (0.19, 0.40), "GPe": (0.30, 0.53), "GPi": (0.53, 0.555), "retina": (0.005, 0.57),
                      "EC": (0.36, 0.69), "VTA": (0.62, 0.655), "BLA": (0.215, 0.60), "CeA": (0.44, 0.582), "DG": (0.47, 0.67), "CA3": (0.52, 0.66), "CA1": (0.56, 0.645), "SUB": (0.60, 0.635)}
             for tk in L.terr:
+                if tk in REGIONAL_TERRITORIES:
+                    continue  # anatomical detail is available on hover
                 txt = TERRITORY[tk][2]
                 s.blit(self.small.render(txt, True, (170, 172, 186)), S(spots.get(tk, (0.5, 0.95))))
             d1 = next((g for g in L.groups if g.key == "STR.D1"), None)
@@ -718,7 +749,8 @@ def main():
     ap.add_argument("--scale", type=float, default=1.0, help="brain size factor (0.25 .. 4)")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--game", default="signal", help="which game to plug in (games.REGISTRY)")
-    ap.add_argument("--brain", default="amy", help="which brain: bg | da (dopamine cells) | amy (+ amygdala)")
+    from run_signal_game import DEFAULT_BRAIN, SPECS
+    ap.add_argument("--brain", default=os.environ.get("BRAIN", DEFAULT_BRAIN), choices=SPECS)
     ap.add_argument("--shots", default="", help="headless: comma-separated turns to screenshot")
     ap.add_argument("--out", default="shots")
     ap.add_argument("--hover", default="", help="headless: pretend the mouse is at x,y (shows the info box)")
