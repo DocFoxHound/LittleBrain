@@ -28,3 +28,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | deep cerebellar nuclei | DCN.local | 18,240 | 0.34182 / 0.34182 / 0.34182 | 0.0043169 / 0.0043121 / 0.0043185 |
 | locus coeruleus | LC.GABA | 18,304 | 0.41018 / 0.41018 / 0.41018 | 0.175 / 0.175 / 0.175 |
 | dorsal raphe | DR.GABA, DR.Glu, DR.DA | 18,496 | 0.41018 / 0.41018 / 0.41018 | 0.0031396 / 0.0031396 / 0.0031396 |
+| median raphe | MR.GABA, MR.Glu | 18,624 | 0.41018 / 0.41018 / 0.41018 | 0.00875 / 0.00875 / 0.00875 |

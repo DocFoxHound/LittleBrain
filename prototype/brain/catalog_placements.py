@@ -104,6 +104,10 @@ PLACEMENTS = {
         Circuit("DR.Glu", C.VTA_GLU, "PFC.IT", "VTA.DA", "drive", .2, human="dorsal raphe glutamatergic projection neuron"),
         Circuit("DR.DA", C.DA_NEURON, "LH.orexin", "CeL.CRF", "drive", .2, human="dorsal raphe dopamine neuron projecting to extended amygdala (reduced receptor response)"),
     ],
+    "median raphe": [
+        Circuit("MR.GABA", C.VTA_GABA, "PFC.IT", "MR.5HT", "drive", -.25, human="median raphe local GABAergic neuron"),
+        Circuit("MR.Glu", C.VTA_GLU, "LH.orexin", "CA1.PV", "drive", .25, human="median raphe glutamatergic projection to hippocampal interneurons"),
+    ],
 }
 
 
