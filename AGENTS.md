@@ -306,3 +306,7 @@ See note 50 for the measured changes and controls on all three seeds. Run `OPENB
 ### Basal ganglia inhibition of thalamic relay cells
 
 See [note 51](notes/51-thalamic-brakes.md) for the isolated change, matched controls and all three seeds. Run the regional audit and integrated runtime check from note 50 and section 7 on the developed reference brain.
+
+### Restore cortical input to the pontine timing relay
+
+See [note 52](notes/52-pontine-cortical-input.md) for the isolated change, matched controls and all three seeds. Run the regional audit and integrated runtime check from note 50 and section 7 on the developed reference brain.

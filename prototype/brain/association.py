@@ -33,7 +33,9 @@ def target(brain, key, ordinary, channels):
         else:
             cells[:, 0] = brain.g["PFC.IT"].rate.reshape(64, -1)[:, 0]
     elif key == "PONS.relay":
-        cells[:, 0] = brain._pool("TH.core")
+        # Preserve the sampled corticopontine current in the visual timing
+        # ensemble, using the same sustained/transient mix as the sensory relay.
+        cells[:, 0] = .85 * brain._pool("TH.core") + .15 * cells[:, 0]
     elif key == "CB.granule":
         if not hasattr(group, "temporal_rates"):
             group.temporal_rates = xp.zeros(4, dtype=np.float32)
