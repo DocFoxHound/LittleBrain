@@ -23,3 +23,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | subiculum | SUB.OLM, SUB.NGF | 17,728 | 0.020509 / 0.020509 / 0.020509 | 0.030453 / 0.030936 / 0.031859 |
 | basolateral amygdala | BLA.CCK, BLA.SST, BLA.IS, BLA.NGF | 17,984 | 0.020509 / 0.020509 / 0.020509 | 0.0027721 / 0.0027721 / 0.0027721 |
 | central amygdala | CeL.Glu | 18,048 | 7.6964 / 7.2284 / 6.9078 | 0.094631 / 0.09463 / 0.094632 |
+| nigra pars reticulata | SNr.DA | 18,112 | 0.7 / 0.7 / 0.7 | 0.19286 / 0.19285 / 0.19287 |

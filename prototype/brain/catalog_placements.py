@@ -87,6 +87,9 @@ PLACEMENTS = {
     "central amygdala": [
         Circuit("CeL.Glu", C.VTA_GLU, "BLA.neg", "CeM", "drive", .25, human="central amygdala glutamatergic minority (VGluT2 cell model)"),
     ],
+    "nigra pars reticulata": [
+        Circuit("SNr.DA", C.DA_NEURON, "STN.proj", "STR.D1", "exc", .2, human="displaced nigral dopamine neuron (D1 excitability approximation)"),
+    ],
 }
 
 
