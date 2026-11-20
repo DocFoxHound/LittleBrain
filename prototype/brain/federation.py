@@ -329,6 +329,8 @@ class Brain:
                 arousal = float(np.clip(arousal + self._own_arousal(), 0.0, 1.0))   # amygdala alarm -> LC
                 sig["arousal"] = arousal
             chan = self._channels(sig, excitatory=(phase == 2))
+            if phase == 1 and "timing_offset" in sig and "IO.olive" in self.g:
+                chan["IO.olive"]["offset"] = sig["timing_offset"]
             if phase == 2 and "TH.core" in self.g:
                 from striatal_projection import amygdala_input, transmit
                 amygdala_input(self, chan)
@@ -410,6 +412,12 @@ class Brain:
                 grp.step(ch.get("drive", xpof(self.r).zeros(grp.n, np.float32)), steps=n)
             elif isinstance(grp, ModulatorGroup):
                 grp.step(float(np.mean(ch.get("drive", 0.0))), steps=n)
+            elif key == "IO.olive" and "offset" in ch:
+                # Separate olivary ensembles carry errors of opposite direction.
+                offset = ch["offset"]
+                drive = ch.get("drive", 0.)
+                early = self.tile[key] % GRID < GRID // 2
+                grp.step(xpof(self.r).where(early, drive if offset < 0 else 0., drive if offset > 0 else 0.))
             else:  # olive / pacemaker groups take a single drive
                 grp.step(float(np.mean(ch.get("drive", 0.0))))
             return grp.rate

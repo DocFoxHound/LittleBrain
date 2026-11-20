@@ -71,5 +71,10 @@ class TimingGame(Game):
     def step(self, action):
         done = action == 1 or self.elapsed >= 2 * self.interval
         error = min(1.0, abs(self.elapsed - self.interval) / self.interval) if done else 0.0
+        info = {"timing_error": error, "ended": done, "feedback": done}
+        if action == 1:
+            # Knowledge of results arrives only after a movement, as early/late
+            # sensory feedback. No clock or target time appears in the observation.
+            info["timing_offset"] = float(np.clip((self.elapsed - self.interval) / self.interval, -1., 1.))
         self.elapsed += 1
-        return Observation(self.blank), float(done and error == 0), done, {"timing_error": error, "ended": done, "feedback": done}
+        return Observation(self.blank), float(done and error == 0), done, info

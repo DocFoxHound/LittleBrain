@@ -133,6 +133,8 @@ class BrainAgent:
                 signals = dict(self.body_signals, outcome_due=due,
                                timing_error=self.last_info.get("timing_error", 0.0) if due else 0.0,
                                value_change=-self.cue_value if self.timed and due else 0.0)
+                if due and "timing_offset" in self.last_info:
+                    signals["timing_offset"] = self.last_info["timing_offset"]
                 self.b.step(self._inputs(x, action, us=reward if due else 0.0),
                             learn=self.learn, ach=self.ach, arousal=0.3, signals=signals)
                 if due:

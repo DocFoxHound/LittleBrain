@@ -42,8 +42,8 @@ def target(brain, key, ordinary):
             cells[:, min(1, cells.shape[1] - 1)] = xp.repeat(phases, 8)
     elif key == "CB.Purkinje" and hasattr(brain, "parallel_fiber_ltd"):
         phase = timing_activity(brain)
-        depression = xp.clip(brain.parallel_fiber_ltd @ phase, 0., 1.)
-        cells[:, 0] = 1.0 - depression[xp.arange(64) % 8]
+        depression = xp.clip(brain.parallel_fiber_ltd @ phase, -1., 1.)
+        cells[:, 0] = .5 - .5 * depression[xp.arange(64) % 8]
     elif key == "DCN.proj":
         mossy = brain.g["CB.granule"].rate.reshape(64, -1)[:, 0]
         purkinje = brain._pool("CB.Purkinje")
@@ -83,10 +83,21 @@ def climbing_fiber_credit(brain, phase, motor):
         return
     if phase is None:
         return
-    cf = brain.g["IO.olive"].rate.mean()
+    olive = brain.g["IO.olive"].rate.reshape(8, 8, -1).mean(axis=(0, 2))
+    early, late = olive[:4].mean(), olive[4:].mean()
+    cf = xp.maximum(early, late)
     stripes = brain.tile["MOT"] % 8
     selected = xp.bincount(stripes, weights=xp.asarray(motor), minlength=8) / xp.bincount(stripes)
     weights = brain.parallel_fiber_ltd
     change = cf - weights @ phase
     weights += .6 * (selected * change)[:, None] * phase
-    xp.clip(weights, 0., 2., out=weights)
+    # A directional error also releases the same movement at a neighboring
+    # phase, earlier for a late response and later for an early one. Equal CF
+    # activity (an unsigned error) only corrects the active parallel fibers.
+    later_phase = xp.zeros_like(phase)
+    later_phase[:-1] = phase[1:]
+    earlier_phase = xp.zeros_like(phase)
+    earlier_phase[1:] = phase[:-1]
+    shift = xp.maximum(early - late, 0.) * later_phase + xp.maximum(late - early, 0.) * earlier_phase
+    weights -= .6 * selected[:, None] * shift
+    xp.clip(weights, -1.0, 2.0, out=weights)
