@@ -339,3 +339,16 @@ def stage_game_hippocampus():
     spec.synaptic = [p for p in spec.synaptic if p not in core.synaptic] + memory.synaptic
     spec.pooled += [p for p in memory.pooled if p not in core.pooled]
     return spec
+
+
+def stage_ca2():
+    spec = stage_game_hippocampus()
+    spec.groups += [Group("CA2.pyr", C.CA2_PYR, 1, "HPC"), Group("CA2.PV", C.HC_PV_BASKET, 1, "HPC")]
+    spec.synaptic += [Synaptic("CA3 -> CA2", "CA3.pyr", "CA2.pyr", "basal", 0.9),
+                      Synaptic("EC -> CA2", "EC.L3", "CA2.pyr", "basal", 0.1),
+                      Synaptic("CA3 -> CA2 proximal apical", "CA3.pyr", "CA2.pyr", "apical", 0.9),
+                      Synaptic("EC -> CA2 distal apical", "EC.L3", "CA2.pyr", "apical", 0.1),
+                      Synaptic("CA2 -> CA1", "CA2.pyr", "CA1.pyr", "basal", 0.2)]
+    spec.pooled += [Pooled("CA2 basket recruitment", "CA2.pyr", "CA2.PV", 5.),
+                    Pooled("CA2 basket inhibition", "CA2.PV", "CA2.pyr", 1., channel="pv")]
+    return spec
