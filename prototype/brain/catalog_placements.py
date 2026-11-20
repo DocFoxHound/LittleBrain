@@ -42,6 +42,9 @@ PLACEMENTS = {
         Circuit("INS.NGF", C.LAMP5_NGF, "B.L23", "INS.IT", "volume", .3),
         Circuit("ACC.rosehip", C.ROSEHIP, "ACC.L23", "ACC.L5PT", "sst", .3),
     ],
+    "first-order thalamus": [
+        Circuit("TH.matrix", C.TC_MATRIX, "retina", "A.L23", "tuft", .25),
+    ],
 }
 
 

@@ -361,7 +361,7 @@ class ExcitatoryGroup:
         self._xs = None
 
     def compute(self, r, pv_in=0.0, sst_in=0.0, trn_in=0.0, gain=1.0, apical_mode=1.0, external=0.0,
-                allow_burst=True, dend_in=0.0, ais_in=0.0, volume_in=0.0, cf=0.0):
+                allow_burst=True, dend_in=0.0, ais_in=0.0, volume_in=0.0, cf=0.0, tuft_in=0.0):
         """Target rate from inputs. pv/sst/trn_in: inhibition per cell. gain: wave excitability.
         allow_burst: relay cells can burst only when brainstem ACh/NE is low (drowsy, asleep)."""
         c, rules = self.c, self.c.rules
@@ -375,7 +375,7 @@ class ExcitatoryGroup:
         apical, xs_a = 0.0, None
         if self.apical is not None:
             da, xs_a = self.apical.drive(r)
-            apical = np.maximum(self.anorm * da.sum(axis=1), 0.0) * apical_mode / (1.0 + 2.0 * sst_in)
+            apical = np.maximum(self.anorm * da.sum(axis=1) + tuft_in, 0.0) * apical_mode / (1.0 + 2.0 * sst_in)
         soma = basal * (1.0 + c.apical_gain * apical) + c.apical_drive * apical
         # Layer 5 "BAC firing": basal and apical input arriving together trigger a calcium burst
         if c.bac_gain:

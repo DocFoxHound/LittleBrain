@@ -212,9 +212,11 @@ def check_wiring(b):
         for target in members(p.dst):
             assert target in b.g, (p.id, target)
             if hasattr(p, "channel"):
-                channels = {"pv", "sst", "dend", "ais", "volume", "inh", "exc", "cf"} if isinstance(
+                channels = {"pv", "sst", "dend", "ais", "volume", "inh", "exc", "cf", "tuft"} if isinstance(
                     b.g[target], ExcitatoryGroup) else {"drive"}
                 assert p.channel in channels, (p.id, target, p.channel)
+                if p.channel == "tuft":
+                    assert b.g[target].apical is not None, (p.id, target)
                 assert p.weight != 0
             for source in members(p.src):
                 if source is None:

@@ -450,7 +450,7 @@ class Brain:
         target = grp.compute(self.r, pv_in=ch.get("pv", 0.0), sst_in=ch.get("sst", 0.0),
                              trn_in=ch.get("inh", 0.0), dend_in=ch.get("dend", 0.0),
                              ais_in=ch.get("ais", 0.0), volume_in=ch.get("volume", 0.0),
-                             external=ch.get("exc", 0.0), apical_mode=1.0 - 0.5 * (ach - 0.5),
+                             external=ch.get("exc", 0.0), tuft_in=ch.get("tuft", 0.0), apical_mode=1.0 - 0.5 * (ach - 0.5),
                              allow_burst=ach < 0.3, cf=ch.get("cf", 0.0))
         if "VA.relay" in self.g and "TH.core" in self.g and key in ("TH.core", "PFC.IT", "MD.relay", "PONS.relay", "CB.granule", "CB.Purkinje", "DCN.proj", "VA.relay"):
             import association
