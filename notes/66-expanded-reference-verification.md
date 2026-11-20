@@ -28,6 +28,18 @@ The two repaired glutamatergic projections had zero negative transmitted contact
 
 All 36 cell and learning checks and all three integrated runtime checks passed. Scheduled sleep changed 44,595, 44,722 and 44,747 sampled partners respectively. The external game bridge, action controls, learned checkpoint round trip and frontal retention checks passed. The viewer mapped all 187 populations and rendered a Forage turn. A saved 14,656-neuron checkpoint also resumed play at its original size.
 
+## Game behavior
+
+Each Signal comparison began from two copies of the same developed checkpoint. The learning condition included the first scheduled night at turn 64. The frozen control disabled reinforcement and scheduled sleep. Four actions give 25% chance accuracy.
+
+| Seed | Correct with learning | Correct with learning off |
+|---:|---:|---:|
+| 0 | 51/64 | 17/64 |
+| 1 | 59/64 | 14/64 |
+| 2 | 60/64 | 19/64 |
+
+Danger, delayed cue, timing and foraging also completed 12 turns each on every seed, including their configured follow-up probes. Those short runs exercise the game interfaces. The 300-turn timing comparison in note 62 used the earlier 14,656-neuron brain, and long-run behavior of the expanded reference remains unmeasured. For Signal, run `check_full_games.py --seed N --load-brain PATH --game signal --turns 64 --condition learning` and repeat with `--condition off`.
+
 ## Reproduction
 
 For each seed N in 0, 1 and 2, run the following from the repository root using the project Python and CPU backend.
