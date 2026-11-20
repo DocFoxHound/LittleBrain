@@ -91,7 +91,8 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 29. [Physical neurons](notes/27-physical-neurons.md): building neurons from materials (plastic ion neurons, silver nanowire webs) instead of simulating them; project paused on hardware
 33. [The desktop viewer](notes/31-viewer.md): a side view of the brain, live; level of detail by brain size; game-agnostic
 34. [Dopamine cells and the amygdala](notes/32-dopamine-and-amygdala.md): the brain makes its own prediction-error dopamine; the amygdala learns danger, but avoidance needs a relief signal
-35. [Reading list](reading-list.md)
+35. [LittleBrain license](notes/33-mit-license.md)
+36. [Reading list](reading-list.md)
 
 ## Parked for later 📌
 - **Self-generated training before birth:** retinal waves, learning in the womb. Sleep and dreaming are now started in note 09; this part is still parked.
