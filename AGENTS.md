@@ -310,3 +310,7 @@ See [note 51](notes/51-thalamic-brakes.md) for the isolated change, matched cont
 ### Restore cortical input to the pontine timing relay
 
 See [note 52](notes/52-pontine-cortical-input.md) for the isolated change, matched controls and all three seeds. Run the regional audit and integrated runtime check from note 50 and section 7 on the developed reference brain.
+
+### Admit cerebellar input to the mediodorsal relay
+
+See [note 53](notes/53-cerebellar-input-md.md) for the isolated change, matched controls and all three seeds. Run the regional audit and integrated runtime check from note 50 and section 7 on the developed reference brain.

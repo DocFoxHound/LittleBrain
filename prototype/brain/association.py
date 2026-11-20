@@ -31,7 +31,13 @@ def target(brain, key, ordinary, channels):
             cells[:, 0] = 0.
             brain.clear_context_steps -= 1
         else:
-            cells[:, 0] = brain.g["PFC.IT"].rate.reshape(64, -1)[:, 0]
+            frontal = brain.g["PFC.IT"].rate.reshape(64, -1)[:, 0]
+            cells[:, 0] = frontal
+            if "exc" in channels and not getattr(brain, "hold_context", False):
+                # Admit new cerebellar input while encoding. During the delay
+                # the maintained frontal ensemble is protected from overwrite.
+                drive = channels["exc"].reshape(64, -1)[:, 0]
+                cells[:, 0] = (frontal + drive) / (1.0 + drive)
     elif key == "PONS.relay":
         # Preserve the sampled corticopontine current in the visual timing
         # ensemble, using the same sustained/transient mix as the sensory relay.

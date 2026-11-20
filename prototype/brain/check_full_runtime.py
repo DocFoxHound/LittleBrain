@@ -72,7 +72,13 @@ def isolated_responses(b):
         delta = projection(b, source, target, {driver: .5})
         assert delta < -1e-6, (source, target, delta)
     assert projection(b, "A.L5PT", "PONS.relay") > 1e-6
-    print("Thalamic brakes and cortical drive to pons passed.")
+    acquiring = copy.copy(b)
+    acquiring.hold_context = False
+    acquiring.clear_context_steps = 0
+    assert projection(acquiring, "DCN.proj", "MD.relay", {"PFC.IT": .5}) > 1e-6
+    acquiring.hold_context = True
+    assert projection(acquiring, "DCN.proj", "MD.relay", {"PFC.IT": .5}) == 0.
+    print("Thalamic brakes, corticopontine transmission and state-dependent input to MD passed.")
 
 
 def night(b, seed):
