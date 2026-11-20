@@ -1,7 +1,8 @@
 {
   "thumbnail": "title.png",
   "gallery": [
-    {"image": "screenshots/signal.png", "caption": "Turn 35 of the signal game. Compare the picture with the four button choices and the reward history."},
-    {"image": "screenshots/danger.png", "caption": "On turn 8 the brain chooses to hide. The white outline marks its choice."}
+    {"image": "screenshots/signal.png", "caption": "Four buttons, one picture. On turn 35 the brain chooses button 3 and earns a reward. The green trace shows simulated dopamine."},
+    {"image": "screenshots/danger.png", "caption": "On turn 8 of the danger game, the brain hides. The white outline marks its choice and the numbers give the odds for each action."},
+    {"image": "viewer.png", "caption": "Eat or wait? On turn 12 of the forage game, the brain waits. The panel shows its hunger alongside the cue it sees."}
   ]
 }
