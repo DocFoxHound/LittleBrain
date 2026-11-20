@@ -102,6 +102,9 @@ def followup_probes(b):
         "sensory_chandelier": projection(b, "A.L23", "A.chandelier"),
         "CA1_axoaxonic": projection(b, "CA1.pyr", "CA1.axoaxonic"),
         "B_VIP_with_ACh": projection(b, "ach", "B.VIP"),
+        "pontine_collateral_to_DCN": projection(b, "PONS.relay", "DCN.proj"),
+        "EC_island_to_CA1_soma": projection(b, "EC.island", "CA1.pyr", soma=True),
+        "EC_island_to_CA1_NGF": projection(b, "EC.island", "CA1.NGF"),
         "corticopontine": projection(b, "A.L5PT", "PONS.relay"),
         "cerebellar_MD": projection(b, "DCN.proj", "MD.relay"),
     }

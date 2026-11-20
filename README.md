@@ -118,6 +118,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 47. [Keep Purkinje teaching and inhibitory inputs active during timing](notes/54-purkinje-timing-inputs.md)
 48. [Dentate input to CA3 after development](notes/55-hippocampal-transmission.md)
 49. [Verification after the regional wiring repairs](notes/56-regional-verification.md)
+50. [Connection plan compared with the game brain](notes/57-connection-plan-audit.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

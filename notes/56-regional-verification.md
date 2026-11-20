@@ -1,6 +1,6 @@
 # Verification after the regional wiring repairs
 
-Three default brains were built, calibrated, developed for two days, and woken on CPU at runtime revision `b296613`. Their seeds were 0, 1 and 2. All three contain 14,656 neurons in 120 populations. The implementation and the evidence for each repaired mechanism are in notes 49 and 51–54. The original comparison with the regional composition plan is in [note 50](50-regional-audit.md).
+Three default brains were built, calibrated, developed for two days, and woken on CPU at runtime revision `b296613`. Their seeds were 0, 1 and 2. All three contain 14,656 neurons in 120 populations. The implementation and the evidence for each repaired mechanism are in notes 49 and 51–54. The composition comparison is in [note 50](50-regional-audit.md). A [comparison of all 94 connection-plan entries](57-connection-plan-audit.md) identifies missing projections, substitute targets and limits of the reduced circuits.
 
 ## Network and cell checks
 

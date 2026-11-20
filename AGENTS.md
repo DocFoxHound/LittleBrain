@@ -326,3 +326,7 @@ Note 55 records the post-development dentate-to-CA3 polarity failure, its matche
 ### Post-repair verification
 
 Note 56 records the default CPU brain after all seven terminal repairs, including the measured signed pulse for each of the 45 territories on seeds 0, 1 and 2. Rebuilt each checkpoint using check_full_games.py --prepare-only, then reran check_regional_audit.py and check_full_runtime.py with --load-brain and the same seed. All integrated checks passed. The remaining hippocampal sign reversal is quantified in note 55.
+
+### Connection plan comparison
+
+Note 57 compares the 94 numbered anatomical routes in notes/regions/connections.md to actual source and target groups. The regional audit's follow-up output reproduces the EC island and deep nuclear collateral probes on seeds 0, 1 and 2. HC-6 has a receiver mismatch, the direct pontine collateral has a zero effect at reference scale, and several planned contextual and extinction pathways are absent.
