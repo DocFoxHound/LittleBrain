@@ -72,3 +72,17 @@ Dorsal raphe required background excitation in its BLA PV target. With that co-d
 ## Reproduction
 
 Use the commands in note 50 to develop or load each seed. Run `python prototype/brain/check_full_runtime.py --seed N --load-brain PATH` against the same checkpoint. The standard CPU environment for these measurements used NumPy and pygame-ce. The baseline and repaired audit can be compared using their respective commits.
+
+## Behavioral comparisons
+
+Each game ran for 300 turns on each of the three freshly developed CPU brains, with a matched control from the same checkpoint. The last block covers the final 100 turns. The [recorded learning curves](regional-verification-games.jsonl) contain every 50-turn report and frozen probe. Reproduce each case with `python prototype/brain/check_full_games.py --seed N --load-brain PATH --game GAME --condition CONDITION --turns 300`.
+
+### Delayed cue
+
+The cue disappears for two blank turns before a two-way choice. Chance accuracy is 50%. The control has PFC and MD silenced throughout training. The separate frozen two-cue probe gives the probability of choosing correctly from identical learned states.
+
+| Seed | Final accuracy, intact / lesion | Frozen intact, correct probability left / right | Frozen after PFC/MD lesion, left / right |
+|---:|---:|---:|---:|
+| 0 | 80.0% / 84.0% | 100.0% / 100.0% | 100.0% / 0.0% |
+| 1 | 88.0% / 68.0% | 0.0% / 100.0% | 100.0% / 1.4% |
+| 2 | 92.0% / 100.0% | 100.0% / 100.0% | 100.0% / 1.6% |
