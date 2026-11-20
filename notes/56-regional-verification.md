@@ -2,6 +2,15 @@
 
 Three default brains were built, calibrated, developed for two days, and woken on CPU at runtime revision `b296613`. Their seeds were 0, 1 and 2. All three contain 14,656 neurons in 120 populations. The implementation and the evidence for each repaired mechanism are in notes 49 and 51–54. The composition comparison is in [note 50](50-regional-audit.md). A [comparison of all 94 connection-plan entries](57-connection-plan-audit.md) identifies missing projections, substitute targets and limits of the reduced circuits.
 
+## Findings at completion
+
+* Silencing each of the 45 territories changed a downstream readout on all three seeds. All 36 original cell and learning checks and the integrated runtime checks passed. Eleven slow cell populations now publish their filtered output, and seven previously masked projections affect their receivers.
+* Signal learning and danger avoidance passed the original thresholds on every seed. The matched hunger probe tested whether appetite changed food choice at a fixed image. The five game tables below include all 30 three-hundred-turn cases.
+* The final frontal recurrence repair restored both cue responses in the frozen probe on every seed. Delayed choice accuracy was 92%, 96% and 92%. A brain trained with PFC/MD silenced can still learn by other routes. [Current working-memory results](59-local-frontal-maintenance.md)
+* Cerebellar timing error was lower with the circuit intact on every seed. Error reached its minimum before the final training block. Only seed 2 finished with lower error than in its first 50 turns. Enabling the thalamic brakes in isolation on previously developed checkpoints also worsened final timing error on all three seeds. [Isolated brake comparison](51-thalamic-brakes.md)
+* The exact local cell-type comparison found 67 missing placements across 22 of 36 catalog subregions. The connection plan also specifies a CA1 inhibitory intermediary for entorhinal island cells; the simulation excites pyramids directly. The direct pontine collateral into deep cerebellar projection cells remains functionally silent at this scale. [Regional composition](50-regional-audit.md) · [Anatomical connection plan comparison](57-connection-plan-audit.md)
+* Dentate mossy fibers reduced CA3 membrane drive after development on all three seeds. Muting only their negative effective contacts restored a positive membrane response. This failure is independent of whether the brain can solve a game. [Hippocampal sign intervention](55-hippocampal-transmission.md)
+
 ## Network and cell checks
 
 | Measure | Seed 0 | Seed 1 | Seed 2 |
