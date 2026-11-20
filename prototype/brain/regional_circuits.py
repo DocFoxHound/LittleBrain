@@ -52,7 +52,7 @@ CIRCUITS = [
     Circuit("B.rosehip", C.ROSEHIP, "B.L23", "B.L23", "sst", 0.3),
     Circuit("TH.core", C.TC_CORE, "retina", "A.L4", "exc", 0.4, copies=3),
     Circuit("TH.interneuron", C.TH_INTERNEURON, "retina", "TH.TC", "inh", 0.3),
-    Circuit("EC.island", C.EC_ISLAND, "B.L23", "CA1.pyr", "exc", 0.3),
+    Circuit("EC.island", C.EC_ISLAND, "B.L23", "CA1.NGF", "drive", 0.3),
     Circuit("SUB.regular", C.SUB_REGULAR, "CA1.pyr", "EC.L5", "exc", 0.4),
     Circuit("CA1.axoaxonic", C.HC_AXOAXONIC, "CA1.pyr", "CA1.pyr", "ais", 0.4),
     Circuit("CA1.bistratified", C.BISTRATIFIED, "CA3.pyr", "CA1.pyr", "dend", 0.4),
@@ -80,7 +80,16 @@ CIRCUITS = [
 
 
 def extend(spec, through):
-    for circuit in CIRCUITS:
+    keys = [c.key for c in CIRCUITS]
+    if through not in keys:
+        raise ValueError(f"unknown reconstruction stage {through!r}")
+    last = keys.index(through)
+    circuits = CIRCUITS[:last + 1]
+    # Earlier partial reconstructions need the island cell's SLM receiver.
+    # Keep full-brain population order stable for seeded wiring and saved maps.
+    if keys.index("EC.island") <= last < keys.index("CA1.NGF"):
+        circuits.append(CIRCUITS[keys.index("CA1.NGF")])
+    for circuit in circuits:
         region = circuit.key.partition(".")[0]
         cell = circuit.cell
         sampled = cell.family in {"pyramidal", "stellate", "relay", "granule", "msn", "rebound", "learning_inh"}
@@ -105,6 +114,4 @@ def extend(spec, through):
         elif circuit.key == "RMTg.GABA":
             # Replace the earlier indirect habenula terminal with its GABA relay.
             spec.pooled = [p for p in spec.pooled if p.id != "LHb.proj -> VTA.DA"]
-        if circuit.key == through:
-            return spec
-    raise ValueError(f"unknown reconstruction stage {through!r}")
+    return spec

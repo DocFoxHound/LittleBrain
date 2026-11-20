@@ -122,6 +122,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 51. [Holding a cue across two blank turns](notes/58-frontal-cue-retention.md)
 52. [Restore local recurrent support for a held frontal cue](notes/59-local-frontal-maintenance.md)
 53. [Excitatory transmission from dentate granule cells](notes/60-mossy-conductance.md)
+54. [Entorhinal island-cell inhibition through CA1](notes/61-island-feedforward-inhibition.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

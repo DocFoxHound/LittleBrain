@@ -210,6 +210,15 @@ class Brain:
         import zlib
         with open(path, "rb") as f:
             b = pickle.loads(zlib.decompress(f.read()))
+        if "CA1.NGF" in b.g:
+            # Repair the original HC-6 pooled terminal in saved full brains.
+            for path in b.spec.pooled:
+                if (path.id, path.src, path.dst, path.channel) == (
+                        "EC.island -> CA1.pyr", "EC.island", "CA1.pyr", "exc"):
+                    if path.id in b.ablated:
+                        b.ablated.remove(path.id)
+                        b.ablated.add("EC.island -> CA1.NGF")
+                    path.id, path.dst, path.channel = "EC.island -> CA1.NGF", "CA1.NGF", "drive"
         b._mossy_conductance()
         return b.to(device or backend.DEVICE)
 

@@ -62,7 +62,7 @@ PROJECTIONS = {
 }
 
 
-def projection(b, source, target, background=None, soma=False):
+def projection(b, source, target, background=None, soma=False, interneuron=None):
     from striatal_projection import amygdala_input, transmit
 
     rates = []
@@ -78,6 +78,10 @@ def projection(b, source, target, background=None, soma=False):
         if target == "phasic dopamine":
             rates.append(trial._own_dopamine())
             continue
+        if interneuron:
+            channels = trial._channels({"ach": ach}, False)
+            trial.r[trial.index[interneuron]] = trial._update(
+                interneuron, trial.g[interneuron], channels[interneuron], 1, False, ach, 0., 0.)
         group = trial.g[target]
         exc = isinstance(group, ExcitatoryGroup)
         channels = trial._channels({"ach": ach}, exc)
@@ -104,6 +108,7 @@ def followup_probes(b):
         "B_VIP_with_ACh": projection(b, "ach", "B.VIP"),
         "pontine_collateral_to_DCN": projection(b, "PONS.relay", "DCN.proj"),
         "EC_island_to_CA1_soma": projection(b, "EC.island", "CA1.pyr", soma=True),
+        "EC_island_via_CA1_NGF": projection(b, "EC.island", "CA1.pyr", soma=True, interneuron="CA1.NGF"),
         "EC_island_to_CA1_NGF": projection(b, "EC.island", "CA1.NGF"),
         "corticopontine": projection(b, "A.L5PT", "PONS.relay"),
         "cerebellar_MD": projection(b, "DCN.proj", "MD.relay"),

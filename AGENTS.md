@@ -342,3 +342,7 @@ The frontal holding ensemble in association.py now receives both local recurrent
 ### Dentate mossy-fiber transmission
 
 The conductance floor in cells.py and federation.py applies to new and saved HC-7 contacts. [Note 60](notes/60-mossy-conductance.md) gives the direct and recall controls, reproduction commands and three-seed results.
+
+### Entorhinal island-cell target
+
+The regional specification and old full checkpoint loader now route island cells through CA1 neurogliaform cells. [Note 61](notes/61-island-feedforward-inhibition.md) records all three paired feedforward tests and the commands.
