@@ -11,3 +11,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | Catalog cohort | New populations | Reference neurons | Minimum afferent effect, 0 / 1 / 2 | Minimum efferent effect, 0 / 1 / 2 |
 |---|---|---:|---:|---:|
 | sensory cortex | A.NP, B.L6IT | 14,784 | 0.38523 / 0.39891 / 0.37576 | 0.15 / 0.15 / 0.15 |
+| prefrontal cortex | PFC.L4, PFC.L23, PFC.L5PT, PFC.L6CT, PFC.L6b, PFC.CCK, PFC.chandelier, PFC.SST, PFC.SSTnonMartinotti, PFC.VIP, PFC.NGF, PFC.rosehip | 15,552 | 0.020509 / 0.020509 / 0.020509 | 0.003655 / 0.0011367 / 1.55e-05 |
