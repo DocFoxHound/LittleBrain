@@ -58,6 +58,18 @@
 {"seed": 0, "game": "danger", "condition": "lesion", "turns": 200, "hurt": 0.3962, "fed": 0.6596, "dopamine": {"food_reward": 0.9298, "food_miss": -0.1545, "danger_hide": -0.1556, "danger_hurt": -1.0}}
 {"seed": 0, "game": "danger", "condition": "lesion", "turns": 250, "hurt": 0.383, "fed": 0.7358, "dopamine": {"food_reward": 0.9297, "food_miss": -0.1529, "danger_hide": -0.1466, "danger_hurt": -1.0}}
 {"seed": 0, "game": "danger", "condition": "lesion", "turns": 300, "hurt": 0.3818, "fed": 0.7111, "dopamine": {"food_reward": 0.9361, "food_miss": -0.1401, "danger_hide": -0.1459, "danger_hurt": -1.0}}
+{"seed": 1, "game": "danger", "condition": "lesion", "turns": 50, "hurt": 0.4333, "fed": 0.6, "dopamine": {"food_reward": 0.9165, "food_miss": -0.1832, "danger_hide": -0.175, "danger_hurt": -1.0}}
+{"seed": 1, "game": "danger", "condition": "lesion", "turns": 100, "hurt": 0.4211, "fed": 0.6512, "dopamine": {"food_reward": 0.9226, "food_miss": -0.1626, "danger_hide": -0.1643, "danger_hurt": -1.0}}
+{"seed": 1, "game": "danger", "condition": "lesion", "turns": 150, "hurt": 0.4231, "fed": 0.7917, "dopamine": {"food_reward": 0.9341, "food_miss": -0.1377, "danger_hide": -0.1468, "danger_hurt": -1.0}}
+{"seed": 1, "game": "danger", "condition": "lesion", "turns": 200, "hurt": 0.449, "fed": 0.8824, "dopamine": {"food_reward": 0.9349, "food_miss": -0.1321, "danger_hide": -0.1433, "danger_hurt": -1.0}}
+{"seed": 1, "game": "danger", "condition": "lesion", "turns": 250, "hurt": 0.5094, "fed": 0.9149, "dopamine": {"food_reward": 0.9344, "food_miss": -0.1285, "danger_hide": -0.1515, "danger_hurt": -1.0}}
+{"seed": 1, "game": "danger", "condition": "lesion", "turns": 300, "hurt": 0.5273, "fed": 0.9778, "dopamine": {"food_reward": 0.9352, "food_miss": -0.125, "danger_hide": -0.156, "danger_hurt": -1.0}}
+{"seed": 2, "game": "danger", "condition": "lesion", "turns": 50, "hurt": 0.5909, "fed": 0.75, "dopamine": {"food_reward": 0.9247, "food_miss": -0.1631, "danger_hide": -0.1792, "danger_hurt": -1.0}}
+{"seed": 2, "game": "danger", "condition": "lesion", "turns": 100, "hurt": 0.5833, "fed": 0.8654, "dopamine": {"food_reward": 0.9303, "food_miss": -0.1631, "danger_hide": -0.1652, "danger_hurt": -1.0}}
+{"seed": 2, "game": "danger", "condition": "lesion", "turns": 150, "hurt": 0.6, "fed": 1.0, "dopamine": {"food_reward": 0.9359, "food_miss": null, "danger_hide": -0.1487, "danger_hurt": -1.0}}
+{"seed": 2, "game": "danger", "condition": "lesion", "turns": 200, "hurt": 0.5455, "fed": 1.0, "dopamine": {"food_reward": 0.9369, "food_miss": null, "danger_hide": -0.1412, "danger_hurt": -1.0}}
+{"seed": 2, "game": "danger", "condition": "lesion", "turns": 250, "hurt": 0.5088, "fed": 1.0, "dopamine": {"food_reward": 0.9386, "food_miss": null, "danger_hide": -0.1383, "danger_hurt": -1.0}}
+{"seed": 2, "game": "danger", "condition": "lesion", "turns": 300, "hurt": 0.6667, "fed": 1.0, "dopamine": {"food_reward": 0.9375, "food_miss": null, "danger_hide": -0.1497, "danger_hurt": -1.0}}
 {"seed": 0, "game": "forage", "condition": "learning", "turns": 50, "hungry_eat": 0.5, "sated_eat": 0.0}
 {"seed": 0, "game": "forage", "condition": "learning", "turns": 100, "hungry_eat": 0.5, "sated_eat": 0.0}
 {"seed": 0, "game": "forage", "condition": "learning", "turns": 150, "hungry_eat": null, "sated_eat": 0.0}
@@ -79,12 +91,66 @@
 {"seed": 2, "game": "forage", "condition": "learning", "turns": 250, "hungry_eat": null, "sated_eat": 0.0}
 {"seed": 2, "game": "forage", "condition": "learning", "turns": 300, "hungry_eat": null, "sated_eat": 0.0}
 {"seed": 2, "game": "forage", "condition": "learning", "appetite_probe": {"hungry": 1.0, "sated": 0.0}}
+{"seed": 0, "game": "forage", "condition": "lesion", "turns": 50, "hungry_eat": null, "sated_eat": 0.4694}
+{"seed": 0, "game": "forage", "condition": "lesion", "turns": 100, "hungry_eat": null, "sated_eat": 0.4343}
+{"seed": 0, "game": "forage", "condition": "lesion", "turns": 150, "hungry_eat": null, "sated_eat": 0.42}
+{"seed": 0, "game": "forage", "condition": "lesion", "turns": 200, "hungry_eat": null, "sated_eat": 0.4184}
+{"seed": 0, "game": "forage", "condition": "lesion", "turns": 250, "hungry_eat": null, "sated_eat": 0.3474}
+{"seed": 0, "game": "forage", "condition": "lesion", "turns": 300, "hungry_eat": null, "sated_eat": 0.3299}
+{"seed": 0, "game": "forage", "condition": "lesion", "appetite_probe": {"hungry": 0.478, "sated": 0.478}}
+{"seed": 1, "game": "forage", "condition": "lesion", "turns": 50, "hungry_eat": null, "sated_eat": 0.5}
+{"seed": 1, "game": "forage", "condition": "lesion", "turns": 100, "hungry_eat": null, "sated_eat": 0.5}
+{"seed": 1, "game": "forage", "condition": "lesion", "turns": 150, "hungry_eat": null, "sated_eat": 0.4947}
+{"seed": 1, "game": "forage", "condition": "lesion", "turns": 200, "hungry_eat": null, "sated_eat": 0.4947}
+{"seed": 1, "game": "forage", "condition": "lesion", "turns": 250, "hungry_eat": null, "sated_eat": 0.4949}
+{"seed": 1, "game": "forage", "condition": "lesion", "turns": 300, "hungry_eat": null, "sated_eat": 0.5556}
+{"seed": 1, "game": "forage", "condition": "lesion", "appetite_probe": {"hungry": 0.5534, "sated": 0.5534}}
+{"seed": 2, "game": "forage", "condition": "lesion", "turns": 50, "hungry_eat": null, "sated_eat": 0.5}
+{"seed": 2, "game": "forage", "condition": "lesion", "turns": 100, "hungry_eat": null, "sated_eat": 0.52}
+{"seed": 2, "game": "forage", "condition": "lesion", "turns": 150, "hungry_eat": null, "sated_eat": 0.5}
+{"seed": 2, "game": "forage", "condition": "lesion", "turns": 200, "hungry_eat": null, "sated_eat": 0.3913}
+{"seed": 2, "game": "forage", "condition": "lesion", "turns": 250, "hungry_eat": null, "sated_eat": 0.5}
+{"seed": 2, "game": "forage", "condition": "lesion", "turns": 300, "hungry_eat": null, "sated_eat": 0.68}
+{"seed": 2, "game": "forage", "condition": "lesion", "appetite_probe": {"hungry": 0.5187, "sated": 0.5187}}
+{"seed": 0, "game": "delayed", "condition": "learning", "turns": 50, "accuracy": 0.8333, "choices": 12}
+{"seed": 0, "game": "delayed", "condition": "learning", "turns": 100, "accuracy": 0.92, "choices": 25}
+{"seed": 0, "game": "delayed", "condition": "learning", "turns": 150, "accuracy": 1.0, "choices": 25}
+{"seed": 0, "game": "delayed", "condition": "learning", "turns": 200, "accuracy": 1.0, "choices": 25}
+{"seed": 0, "game": "delayed", "condition": "learning", "turns": 250, "accuracy": 1.0, "choices": 25}
+{"seed": 0, "game": "delayed", "condition": "learning", "turns": 300, "accuracy": 0.96, "choices": 25}
+{"seed": 0, "game": "delayed", "condition": "learning", "delayed_probe": {"intact": [1.0, 1.0], "pfc_md_silenced": [0.002, 0.9988]}}
+{"seed": 1, "game": "delayed", "condition": "learning", "turns": 50, "accuracy": 0.8333, "choices": 12}
+{"seed": 1, "game": "delayed", "condition": "learning", "turns": 100, "accuracy": 0.92, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "learning", "turns": 150, "accuracy": 1.0, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "learning", "turns": 200, "accuracy": 1.0, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "learning", "turns": 250, "accuracy": 0.96, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "learning", "turns": 300, "accuracy": 0.96, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "learning", "delayed_probe": {"intact": [1.0, 1.0], "pfc_md_silenced": [0.0, 1.0]}}
+{"seed": 2, "game": "delayed", "condition": "learning", "turns": 50, "accuracy": 0.8333, "choices": 12}
+{"seed": 2, "game": "delayed", "condition": "learning", "turns": 100, "accuracy": 0.92, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "learning", "turns": 150, "accuracy": 1.0, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "learning", "turns": 200, "accuracy": 1.0, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "learning", "turns": 250, "accuracy": 0.96, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "learning", "turns": 300, "accuracy": 0.96, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "learning", "delayed_probe": {"intact": [1.0, 1.0], "pfc_md_silenced": [1.0, 0.0]}}
 {"seed": 0, "game": "delayed", "condition": "lesion", "turns": 50, "accuracy": 0.5, "choices": 12}
 {"seed": 0, "game": "delayed", "condition": "lesion", "turns": 100, "accuracy": 0.64, "choices": 25}
 {"seed": 0, "game": "delayed", "condition": "lesion", "turns": 150, "accuracy": 0.64, "choices": 25}
 {"seed": 0, "game": "delayed", "condition": "lesion", "turns": 200, "accuracy": 0.64, "choices": 25}
 {"seed": 0, "game": "delayed", "condition": "lesion", "turns": 250, "accuracy": 0.76, "choices": 25}
 {"seed": 0, "game": "delayed", "condition": "lesion", "turns": 300, "accuracy": 0.88, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "lesion", "turns": 50, "accuracy": 0.25, "choices": 12}
+{"seed": 1, "game": "delayed", "condition": "lesion", "turns": 100, "accuracy": 0.48, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "lesion", "turns": 150, "accuracy": 0.6, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "lesion", "turns": 200, "accuracy": 0.56, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "lesion", "turns": 250, "accuracy": 0.68, "choices": 25}
+{"seed": 1, "game": "delayed", "condition": "lesion", "turns": 300, "accuracy": 0.88, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "lesion", "turns": 50, "accuracy": 0.5, "choices": 12}
+{"seed": 2, "game": "delayed", "condition": "lesion", "turns": 100, "accuracy": 0.4, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "lesion", "turns": 150, "accuracy": 0.48, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "lesion", "turns": 200, "accuracy": 0.76, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "lesion", "turns": 250, "accuracy": 0.76, "choices": 25}
+{"seed": 2, "game": "delayed", "condition": "lesion", "turns": 300, "accuracy": 0.76, "choices": 25}
 {"seed": 0, "game": "timing", "condition": "learning", "turns": 50, "error": 0.2619, "completions": 14}
 {"seed": 0, "game": "timing", "condition": "learning", "turns": 100, "error": 0.1605, "completions": 27}
 {"seed": 0, "game": "timing", "condition": "learning", "turns": 150, "error": 0.1884, "completions": 23}
@@ -109,3 +175,15 @@
 {"seed": 0, "game": "timing", "condition": "lesion", "turns": 200, "error": 0.8286, "completions": 35}
 {"seed": 0, "game": "timing", "condition": "lesion", "turns": 250, "error": 0.8333, "completions": 40}
 {"seed": 0, "game": "timing", "condition": "lesion", "turns": 300, "error": 0.8519, "completions": 45}
+{"seed": 1, "game": "timing", "condition": "lesion", "turns": 50, "error": 0.7867, "completions": 25}
+{"seed": 1, "game": "timing", "condition": "lesion", "turns": 100, "error": 0.7536, "completions": 46}
+{"seed": 1, "game": "timing", "condition": "lesion", "turns": 150, "error": 0.7778, "completions": 45}
+{"seed": 1, "game": "timing", "condition": "lesion", "turns": 200, "error": 0.8707, "completions": 49}
+{"seed": 1, "game": "timing", "condition": "lesion", "turns": 250, "error": 0.8527, "completions": 43}
+{"seed": 1, "game": "timing", "condition": "lesion", "turns": 300, "error": 0.781, "completions": 35}
+{"seed": 2, "game": "timing", "condition": "lesion", "turns": 50, "error": 0.6923, "completions": 26}
+{"seed": 2, "game": "timing", "condition": "lesion", "turns": 100, "error": 0.7589, "completions": 47}
+{"seed": 2, "game": "timing", "condition": "lesion", "turns": 150, "error": 0.8376, "completions": 39}
+{"seed": 2, "game": "timing", "condition": "lesion", "turns": 200, "error": 0.8333, "completions": 42}
+{"seed": 2, "game": "timing", "condition": "lesion", "turns": 250, "error": 0.7857, "completions": 42}
+{"seed": 2, "game": "timing", "condition": "lesion", "turns": 300, "error": 0.7207, "completions": 37}

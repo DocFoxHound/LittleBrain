@@ -78,3 +78,26 @@ With interval and motor activity retained separately, normalized timing error in
 In the initial delayed task, intact seed 0 scored 64% on the last 25 choices while a copy trained throughout with PFC/MD silenced scored 88%. This failed to establish a benefit from the reconstructed loop. Continuous input could overwrite the held cue and carry over activity between trials. The revised gate maintains the existing PFC/MD firing while the host reports a motor command had no effect during passive viewing. An applied response releases the gate and briefly clears that ensemble. This is a reduced working-memory gating mechanism (O’Reilly and Frank, 2006). The host reports whether it applied the command, without disclosing the cue identity or correct response. The training-time lesion allows compensatory pathways to learn. An additional frozen probe silences the same loop only after training and tests both cues from identical starting states.
 
 The [raw learning curves](full-brain-games.jsonl) record the tests in 50-turn increments with a rolling window of up to 100 turns. In Danger, the four dopamine means distinguish food collection, food omission, injury and successful avoidance. A null mean indicates that the corresponding event did not occur in that window. In Forage, the paired appetite probe reports the probability of choosing food from the same trained starting state under sustained high or low hunger. In Delayed, the frozen probe reports the probability assigned to the correct button for each of the two possible cues.
+
+## Matched results
+
+The columns give intact / control values in seed order. Controls disable reinforcement for Signal, silence the amygdala for Danger, silence PFC and MD for Delayed, and silence the cerebellar cortex, deep nuclei and inferior olive for Timing. Each Delayed block has 25 scored choices.
+
+| Measure | Seed 0 | Seed 1 | Seed 2 |
+|---|---:|---:|---:|
+| Signal correct | 100.0% / 26.0% | 100.0% / 27.0% | 97.0% / 15.0% |
+| Danger hurt on danger | 0.0% / 38.2% | 3.6% / 52.7% | 0.0% / 66.7% |
+| Danger fed on food | 100.0% / 71.1% | 88.9% / 97.8% | 100.0% / 100.0% |
+| Delayed correct | 96.0% / 88.0% | 96.0% / 88.0% | 96.0% / 76.0% |
+| Timing mean normalized error | 0.197 / 0.852 | 0.288 / 0.781 | 0.258 / 0.721 |
+
+| Frozen probe | Seed 0 | Seed 1 | Seed 2 |
+|---|---:|---:|---:|
+| Forage eating probability, hungry / sated (intact) | 100.0% / 0.0% | 100.0% / 0.0% | 100.0% / 0.0% |
+| Forage eating probability, hungry / sated (hypothalamus silenced) | 47.8% / 47.8% | 55.3% / 55.3% | 51.9% / 51.9% |
+| Delayed probability of correct choice, left cue / right cue (intact) | 100.0% / 100.0% | 100.0% / 100.0% | 100.0% / 100.0% |
+| Delayed probability of correct choice, left cue / right cue (PFC/MD silenced after training) | 0.2% / 99.9% | 0.0% / 100.0% | 100.0% / 0.0% |
+
+All three normally foraging brains regulated intake before hunger reached the high reporting band in the final block. The paired probe supplies the missing comparison by holding the image fixed and imposing both hunger states. The training-time PFC/MD lesions retained substantial delayed-cue accuracy on some seeds. Other active pathways could carry information across the delay. In the frozen two-cue probe, silencing the loop after normal training changed the learned policy.
+
+The Linux executable was built from runtime revision `e5f7ec1` in a clean source export and rendered the default full-brain foraging game headlessly. All 36 original cell checks and the integrated runtime checks passed against that export. These comparisons cover the reference scale and the specified tasks. Generalization to longer delays, larger worlds and prolonged training remains open.
