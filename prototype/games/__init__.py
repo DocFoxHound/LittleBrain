@@ -5,3 +5,7 @@ from .danger_game import DangerGame  # noqa: F401
 
 # Games the tools can load by name (viewer --game, experiment runners). Add yours here.
 REGISTRY = {"signal": SignalGame, "danger": DangerGame}
+
+from .regional_games import DelayedCueGame, ForageGame, TimingGame
+
+REGISTRY.update(forage=ForageGame, delayed=DelayedCueGame, timing=TimingGame)
