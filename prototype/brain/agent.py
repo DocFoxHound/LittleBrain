@@ -43,6 +43,9 @@ class BrainAgent:
         # uses it to draw (and to pause the brain between steps).
         self.on_step = None
         self.turn = self.turns_played = 0
+        self.pending = None
+        self.game = self.next_observation = None
+        self.sleep_requested = False
 
     def _tick(self, phase, **info):
         if self.on_step is not None:
@@ -124,20 +127,39 @@ class BrainAgent:
             self._tick("rest", step=s)
         return rpe
 
+    def begin_turn(self, obs):
+        if self.pending is not None:
+            raise ValueError("the previous action still needs its outcome")
+        self.turn = self.turns_played
+        action, retina = self.choose(obs.image)
+        self.pending = action, retina
+        return action
+
+    def finish_turn(self, reward, info=None, sleep_every=0):
+        if self.pending is None:
+            raise ValueError("observe before reporting an outcome")
+        action, retina = self.pending
+        self.last_info = dict(info or {})
+        self.last_rpe = self.outcome(retina, action, reward)
+        self.turns_played += 1
+        if self.sleep_requested or (sleep_every and self.turns_played % sleep_every == 0):
+            self.b.sleep()
+            self.sleep_requested = False
+        self.pending = None
+        return self.last_rpe
+
     def play(self, game, turns, sleep_every=0, log=None):
-        """Play `turns` turns; returns the list of rewards. sleep_every: sleep after this many turns (0 = never)."""
-        obs, rewards = game.reset(), []
-        for t in range(turns):
-            self.turn = self.turns_played
-            self.turns_played += 1
-            action, x = self.choose(obs.image)
-            obs_next, reward, done, info = game.step(action)
-            self.last_info = info
-            self.last_rpe = self.outcome(x, action, reward)
+        """Continue the current episode across calls, including single-turn viewer updates."""
+        if game is not self.game:
+            self.game, self.next_observation = game, game.reset()
+        rewards = []
+        for _ in range(turns):
+            action = self.begin_turn(self.next_observation)
+            obs, reward, done, info = game.step(action)
+            self.finish_turn(reward, info, sleep_every)
             rewards.append(reward)
             if log is not None:
-                log.append({"turn": t, "action": action, "reward": reward, "dopamine": self.last_rpe, **info, **self.last})
-            if sleep_every and (t + 1) % sleep_every == 0:
-                self.b.sleep()
-            obs = game.reset() if done else obs_next
+                log.append({"turn": self.turn, "action": action, "reward": reward,
+                            "dopamine": self.last_rpe, **info, **self.last})
+            self.next_observation = game.reset() if done else obs
         return rewards
