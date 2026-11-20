@@ -368,3 +368,16 @@ def stage_insula():
                     Pooled("insula -> amygdala", "INS.IT", "BLA.neg", 0.3, channel="exc"),
                     Pooled("cingulate -> striatum", "ACC.IT", "STR.D1", 0.3, channel="exc")]
     return spec
+
+
+def full_brain(through=None):
+    """Reconstructed reference scale including every catalogued cell type.
+
+    One 8x8 map is the rare-type minimum. Give the granule expansion another
+    twelve maps at this scale. These reconstructed counts are not archived counts.
+    """
+    from regional_circuits import CIRCUITS, extend
+    spec = extend(stage_insula(), through or CIRCUITS[-1].key)
+    if through is None:
+        next(g for g in spec.groups if g.key == "CB.granule").per_tile += 12
+    return spec
