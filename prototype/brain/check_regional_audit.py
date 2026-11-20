@@ -180,6 +180,30 @@ def check_wiring(b):
     return neighbors
 
 
+def check_pooled_currents(b):
+    """Verify each signed terminal and each leg of a multi-source projection."""
+    probe = copy.copy(b)
+    probe.spec = copy.copy(b.spec)
+    probe.r = np.zeros_like(b.r)
+    for path in b.spec.pooled:
+        probe.spec.pooled = [path]
+        sources = members(path.src)
+        for source in sources:
+            for pulse in (0., 1.):
+                signals = {}
+                if source is None:
+                    signals[path.signal] = pulse
+                else:
+                    probe.r[b.index[source]] = pulse
+                for target in members(path.dst):
+                    channels = probe._channels(signals, isinstance(b.g[target], ExcitatoryGroup))
+                    current = channels[target][path.channel]
+                    np.testing.assert_allclose(current, pulse * path.weight / len(sources),
+                                               atol=1e-5, err_msg=f"{source} -> {target} ({path.id})")
+            if source is not None:
+                probe.r[b.index[source]] = 0.
+
+
 def response(b, stimulated, silence=()):
     trial = copy.deepcopy(b)
     trial.ablated.update(silence)
@@ -208,6 +232,7 @@ def audit(b):
     assert b.device == "cpu" and not b.ablated
     assert b.spec == S.full_brain(), "use a reference-scale default full brain"
     neighbors = check_wiring(b)
+    check_pooled_currents(b)
     groups = defaultdict(list)
     for key in b.g:
         groups[territory(key)].append(key)
