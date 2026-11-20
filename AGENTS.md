@@ -366,3 +366,7 @@ The reduced deep-nucleus readout in association.py admits sampled pontine drive.
 ### Expanded reference verification
 
 [Note 66](notes/66-expanded-reference-verification.md) reports the reference inventory, terminal lesions, emitted responses, footprint and post-development regional checks. The per-population CSV contains the individual measurements for all three seeds.
+
+### Full-brain store page
+
+[Note 67](notes/67-full-brain-store-page.md) links the current public-facing description and records the source of the page assets.
