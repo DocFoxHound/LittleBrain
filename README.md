@@ -50,9 +50,9 @@ way we do, so it can relate to people on a more genuine level.
 4. ✅ First wiring test (note 19): a small piece of cortex (two areas plus a thalamus) with local + long-range rules and inhibition; **run the wave simulation here** (waves on/off, direction as mode, wave-ordered prefetch)
 5. ✅ Organize the chosen structure into brain regions (note 21; percentages per region, `prototype/brain/regions.py`)
 6. ✅ Refine how each type learns; retool how specific neurons cluster and learn (note 22)
-7. Piece them together into a federated system on the tiered prototype architecture (note 15)
+7. The default federated game brain now connects the catalog across 120 populations. [Reconstruction measurements](notes/48-full-brain-reconstruction.md)
    - ⚠️ Brain-level memory scores were a timing artifact (note 26). **2026-11-17:** honest tests added, and cortex area A made reliable (note 28); no memory yet.
-8. Then: sleep and dreams
+8. Scheduled sleep replays recent sensory activity, consolidates synapses and replaces a small fraction of eligible partners. Longer-term effects of replay and richer dreaming remain open experiments.
 
 ### New end goal (2026-11-17)
 A tool that plugs this brain into small simulated games, to see how characters learn under different inputs and

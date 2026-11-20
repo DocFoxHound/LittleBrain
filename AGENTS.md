@@ -5,6 +5,8 @@ the work, and Claude will **validate it afterwards** against this file. Read all
 
 ---
 
+The original handoff below records the public baseline. The default runtime now includes the full catalog. For current setup, measurements and outstanding scientific questions, start with the full-game-brain entry in the handoff log and [the reconstruction report](notes/48-full-brain-reconstruction.md). Section 9 records the experiments that motivated this work.
+
 ## 1. What this project is
 
 LittleBrain is a small brain built from **simulated human neuron types** (89 cell types, each modeled on a real human
