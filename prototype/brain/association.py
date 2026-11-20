@@ -36,7 +36,7 @@ def target(brain, key, ordinary):
         if hasattr(brain, "parallel_fiber_ltd"):
             # A slow mossy-fiber current falls after sensory offset. Different
             # granule thresholds produce overlapping intervals without a game clock.
-            group.post_cue = xp.maximum(getattr(group, "post_cue", drive) * .993, drive)
+            group.post_cue = xp.where(drive > .35, 1., getattr(group, "post_cue", drive) * .993)
             centers = (xp.arange(8, dtype=np.float32) + .5) / 8
             phases = xp.exp(-0.5 * ((group.post_cue - centers) / .09) ** 2)
             cells[:, min(1, cells.shape[1] - 1)] = xp.repeat(phases, 8)
@@ -48,7 +48,9 @@ def target(brain, key, ordinary):
         mossy = brain.g["CB.granule"].rate.reshape(64, -1)[:, 0]
         purkinje = brain._pool("CB.Purkinje")
         if hasattr(brain, "parallel_fiber_ltd"):
-            cells[:, 0] = 1.0 - purkinje
+            # Rows carry the interval representation, columns carry the motor
+            # correction. Both pass through DCN and VA to the action circuit.
+            cells[:, 0] = .5 * (1.0 - purkinje) + .5 * xp.repeat(timing_activity(brain), 8)
         else:
             cells[:, 0] = mossy / (1.0 + purkinje)
     elif key == "VA.relay":
@@ -66,7 +68,12 @@ def context(brain):
     temporal = brain.g["VA.relay"].rate.reshape(4, 16, -1)[:, :, 0].mean(axis=1)
     balance = brain.g["HYP.AgRP"].rate.mean() - brain.g["HYP.POMC"].rate.mean()
     # A small signed projection lets learned food choices depend on appetite.
-    return xp.concatenate((0.65 * pfc, 3.0 * (temporal - temporal.mean()), xp.atleast_1d(5.0 * balance)))
+    fields = [0.65 * pfc, 3.0 * (temporal - temporal.mean()), xp.atleast_1d(5.0 * balance)]
+    if hasattr(brain, "parallel_fiber_ltd"):
+        phase = brain.g["VA.relay"].rate.reshape(8, 8, -1).mean(axis=(1, 2))
+        phase = phase - phase.mean()
+        fields.append(phase / xp.maximum(xp.linalg.norm(phase), .05))
+    return xp.concatenate(fields)
 
 
 def timing_activity(brain):

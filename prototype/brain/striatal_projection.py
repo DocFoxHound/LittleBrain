@@ -58,7 +58,9 @@ def transmit(brain, chan):
     if hasattr(brain, "parallel_fiber_ltd"):
         # VA relays the disinhibited cerebellar correction to indirect-path MSNs.
         correction = brain.g["VA.relay"].rate.reshape(GRID, GRID, -1).mean(axis=(0, 2))
-        current -= 6.0 * correction
+        # Saturate the associative drive before adding the cerebellar input.
+        # A heavily practised movement must still be able to wait for its cue.
+        current = xpof(current).tanh(current) - 10.0 * correction
     current -= current.mean()
     for key, sign in (("STR.D1", 1), ("STR.D2", -1)):
         chan[key]["plateau"] = sign * current[brain.tile[key] % GRID]
