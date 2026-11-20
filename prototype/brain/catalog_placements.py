@@ -90,6 +90,9 @@ PLACEMENTS = {
     "nigra pars reticulata": [
         Circuit("SNr.DA", C.DA_NEURON, "STN.proj", "STR.D1", "exc", .2, human="displaced nigral dopamine neuron (D1 excitability approximation)"),
     ],
+    "nigra pars compacta": [
+        Circuit("SNc.GABA", C.VTA_GABA, "STN.proj", "SNc.DA", "drive", -.25, human="local nigral GABAergic neuron"),
+    ],
 }
 
 
