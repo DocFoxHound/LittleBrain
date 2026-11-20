@@ -185,31 +185,18 @@ class Brain:
 
     def save(self, path):
         """Save the whole brain (host copy, compressed). Load on either device with Brain.load."""
-        import pickle
-        import tempfile
-        import zlib
+        from checkpoint import save_brain
         device = self.device
-        self.to("cpu")
-        temporary = None
         try:
-            with tempfile.NamedTemporaryFile(dir=os.path.dirname(os.path.abspath(path)), delete=False) as f:
-                temporary = f.name
-                f.write(zlib.compress(pickle.dumps(self, protocol=5), 1))
-                f.flush()
-                os.fsync(f.fileno())
-            os.replace(temporary, path)
-            temporary = None
+            self.to("cpu")
+            save_brain(path, self)
         finally:
-            if temporary is not None:
-                os.unlink(temporary)
             self.to(device)
 
     @staticmethod
     def load(path, device=None):
-        import pickle
-        import zlib
-        with open(path, "rb") as f:
-            b = pickle.loads(zlib.decompress(f.read()))
+        from checkpoint import load_brain
+        b = load_brain(path)
         if "CA1.NGF" in b.g:
             # Repair the original HC-6 pooled terminal in saved full brains.
             for path in b.spec.pooled:

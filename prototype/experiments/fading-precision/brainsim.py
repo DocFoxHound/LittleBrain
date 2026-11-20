@@ -19,15 +19,16 @@ Life story (days 1..16), per group of columns:
 Days follow the demo exactly: an active day is 40 trials (80 awake steps) then sleep; an idle
 day is a rest of 200 steps then sleep (the demo's "time passes" day).
 
-Outputs (in data/): pop_day8.pkl (groups A and B just as they go cold, for the population
-behavior test) and pop_day16.pkl (every group, with nights-unused per neuron, for compression).
+Outputs (in data/): pop_day8.lbdata (groups A and B just as they go cold, for the population
+behavior test) and pop_day16.lbdata (every group, with nights-unused per neuron, for compression).
 """
 
-import pickle
+from dataclasses import fields
 
 from common import DATA, RESULTS, np, save_json, time  # noqa: F401
 
-from neuron import WORKHORSE
+import data_archive
+from neuron import NeuronType, WORKHORSE
 from packed_neuron import PackedPopulation, _get, _targets
 
 COL = 1024            # neurons per column
@@ -134,30 +135,31 @@ def simulate(days=16, seed=0, verbose=True):
             means = "  ".join(f"{g}={np.mean(row[g]):.2f}" for g in pops)
             print(f"  day {day:2d}  response to main pattern: {means}   ({time.time() - t0:.0f}s)")
         if day == 8:
-            with open(DATA / "pop_day8.pkl", "wb") as f:
-                pickle.dump({"A": pops["A"], "B": pops["B"], "pats": pats,
-                             "unused": {g: unused[g].copy() for g in ("A", "B")}}, f)
-    with open(DATA / f"pop_day{days}.pkl", "wb") as f:
-        pickle.dump({"pops": pops, "pats": pats, "unused": unused}, f)
+            data_archive.save(DATA / "pop_day8.lbdata", {
+                "A": pops["A"], "B": pops["B"], "pats": pats,
+                "unused": {g: unused[g].copy() for g in ("A", "B")},
+            }, SNAPSHOT_SCHEMA, "day8")
+    data_archive.save(DATA / f"pop_day{days}.lbdata",
+                      {"pops": pops, "pats": pats, "unused": unused}, SNAPSHOT_SCHEMA, f"day{days}")
     save_json("brainsim_history.json", history)
     return pops, unused
 
 
-class _Unpickler(pickle.Unpickler):
-    """Snapshots written while this file ran as __main__ refer to __main__.LocalPopulation."""
-
-    def find_class(self, module, name):
-        return super().find_class("brainsim" if module == "__main__" else module, name)
+SNAPSHOT_SCHEMA = {
+    NeuronType: {f.name for f in fields(NeuronType)},
+    LocalPopulation: set("""
+        t n n_inputs rng first_id words gate_bits threshold plasticity post_hist age avg_rate
+        pre_hist elig_weights slot pending fast_scale cols region col_of region_base
+    """.split()),
+}
 
 
 def load_day16():
-    with open(DATA / "pop_day16.pkl", "rb") as f:
-        return _Unpickler(f).load()
+    return data_archive.load(DATA / "pop_day16.lbdata", SNAPSHOT_SCHEMA, "day16")
 
 
 def load_day8():
-    with open(DATA / "pop_day8.pkl", "rb") as f:
-        return _Unpickler(f).load()
+    return data_archive.load(DATA / "pop_day8.lbdata", SNAPSHOT_SCHEMA, "day8")
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ The cold store: freeze / thaw blocks of neurons, with optional precision fading.
 Run: python coldstore.py      (benchmarks on the simulated day-16 brain + population behavior test)
 """
 
-import pickle
+import copy
 import sys
 import tracemalloc
 from dataclasses import replace
@@ -177,7 +177,7 @@ def bench_speed():
     # for scale: the regular per-neuron step costs on the same machine (hot path, unchanged)
     p = pops["C"]
     x = group_input(d["pats"], p.cols, 0)
-    pc = pickle.loads(pickle.dumps(p))
+    pc = copy.deepcopy(p)
     tfwd, _ = median_time(lambda: pc.forward(x))
     tmod, _ = median_time(lambda: pc.modulate(1.0, 0.8, 0.8))
     tsl, _ = median_time(lambda: pc.sleep())
@@ -236,7 +236,7 @@ def pop_story(policy_name, mode="lazy", relearn_trials=12, seed=7):
         p, s = pops[g], state[g]
         if s["frozen"] is None:
             return p
-        q = pickle.loads(pickle.dumps(p))
+        q = copy.deepcopy(p)
         q.words, _ = [np.concatenate(z) for z in zip(*[thaw_block(b, t, s["op"], 0, rng)
                                                         for b in s["frozen"]])]
         return q

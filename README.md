@@ -129,6 +129,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 58. [Reference-scale regional placements](notes/65-regional-placements.md)
 59. [Expanded reference brain verification](notes/66-expanded-reference-verification.md)
 60. [Full-brain store page](notes/67-full-brain-store-page.md)
+61. [Data-only brain checkpoints](notes/68-data-only-checkpoints.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

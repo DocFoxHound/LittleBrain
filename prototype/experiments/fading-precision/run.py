@@ -56,7 +56,7 @@ if __name__ == "__main__":
         for a in args:
             step(a)
     else:
-        if not (DATA / "pop_day16.pkl").exists():
+        if not (DATA / "pop_day16.lbdata").exists():
             step("sim")
         for s in ("lossless", "behavior", "fringe", "coldstore"):   # coldstore uses fringe's codebooks
             step(s)

@@ -343,7 +343,7 @@ class App:
             from federation import Brain
             from run_signal_game import DEFAULT_BRAIN, SPECS, S, prepare
             name = os.environ.get("BRAIN", DEFAULT_BRAIN)
-            cache = HERE / ".cache" / f"{name}_scale{scale:g}_seed{self.seed}.brain"
+            cache = HERE / ".cache" / f"{name}_scale{scale:g}_seed{self.seed}.data-v1.brain"
             if name not in ("bg", "da", "amy"):
                 # Development depends on both the wiring and the cellular dynamics.
                 digest = hashlib.sha256(repr(getattr(S, SPECS[name])()).encode())
@@ -354,7 +354,7 @@ class App:
                 cache = cache.with_suffix(f".reconstructed-{digest}.brain")
             t0 = time.time()
             if self.save_root or getattr(sys, "frozen", False):
-                # A distributed viewer develops its brain locally without loading pickle files.
+                # A distributed viewer develops its brain locally from the current wiring.
                 b = prepare(self.seed, scale=scale)
             elif cache.exists():
                 b = Brain.load(cache)

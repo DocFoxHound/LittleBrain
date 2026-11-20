@@ -370,3 +370,7 @@ The reduced deep-nucleus readout in association.py admits sampled pontine drive.
 ### Full-brain store page
 
 [Note 67](notes/67-full-brain-store-page.md) links the current public-facing description and records the source of the page assets.
+
+### Data-only checkpoints
+
+[Note 68](notes/68-data-only-checkpoints.md) documents the save format, legacy cache behavior and end-to-end tests. Keep new persisted fields in the explicit checkpoint schema.
