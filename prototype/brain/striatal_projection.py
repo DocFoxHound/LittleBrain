@@ -10,12 +10,38 @@ from association import context
 from federation import GRID
 
 
-def activity(brain):
+def visual_activity(brain):
     rates = brain._pool("TH.core")
     xp = xpof(rates)
     centered = rates - rates.mean()
-    visual = centered / xp.maximum(xp.linalg.norm(centered), 0.1)
-    return xp.concatenate((visual, context(brain)))
+    return centered / xp.maximum(xp.linalg.norm(centered), 0.1)
+
+
+def activity(brain):
+    return xpof(brain.r).concatenate((visual_activity(brain), context(brain)))
+
+
+def amygdala_input(brain, chan):
+    trace = visual_activity(brain)
+    if not hasattr(brain, "amygdala_afferents"):
+        brain.amygdala_afferents = xpof(trace).zeros((2, trace.size), dtype=np.float32)
+    response = xpof(trace).clip(brain.amygdala_afferents @ trace, 0, 1)
+    chan["BLA.pos"]["conditioned"] = response[0]
+    chan["BLA.neg"]["conditioned"] = response[1]
+
+
+def pair_outcome(brain, trace, outcome):
+    # Separate appetitive and aversive US afferents teach the active cue.
+    # Omission extinguishes an association more slowly than acquisition.
+    cue = trace[:GRID * GRID]
+    weights = brain.amygdala_afferents
+    for row, key, us in ((0, "BLA.pos", max(0., outcome)), (1, "BLA.neg", max(0., -outcome))):
+        if "BLA" in brain.ablated or key in brain.ablated:
+            continue
+        expectation = weights[row] @ cue
+        weights[row] += (.18 if us else .035) * (us - expectation) * cue
+        xpof(cue).clip(weights[row], -2., 2., out=weights[row])
+
 
 
 def transmit(brain, chan):

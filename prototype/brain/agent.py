@@ -83,6 +83,12 @@ class BrainAgent:
                 rates = self.b.g
                 value = (float(to_host(rates["STR.SO"].rate).mean())
                          + 4 * float(to_host(rates["BLA.pos"].rate - rates["BLA.neg"].rate).mean()))
+                if "TH.core" in rates:
+                    # Sample the BLA projection ensembles before their unconditioned
+                    # input arrives. Striosomes supply a smaller positive expectation.
+                    appetitive = rates["BLA.pos"].rate.reshape(64, -1)[:, 0].mean()
+                    aversive = rates["BLA.neg"].rate.reshape(64, -1)[:, 0].mean()
+                    value = float(to_host(appetitive - aversive + .15 * rates["STR.SO"].rate.mean()))
                 self.cue_value = float(np.clip(value, -1, 1))
                 signals["value_change"] = self.cue_value
             self.b.step(self._inputs(x), learn=self.learn, ach=self.ach, signals=signals)
@@ -116,14 +122,20 @@ class BrainAgent:
             self.expected += 0.05 * (reward - self.expected)
         rpe = float(np.clip(reward - expected, -1, 1)) * self.dopamine_gain
         if self.own_dopamine:
+            feedback = self.last_info.get("feedback", True)
             rpe = 0.0
             for s in range(self.act):
-                self.b.step(self._inputs(x, action, us=reward if s == 2 else 0.0), learn=self.learn, ach=self.ach,
-                            arousal=0.3, signals={**self.body_signals, "timing_error": self.last_info.get("timing_error", 0.0) if s == 2 else 0.0, "outcome_due": s == 2, "value_change": -self.cue_value if self.timed and s == 2 else 0.0})
-                if s == 2:
+                due = feedback and s == 2
+                signals = dict(self.body_signals, outcome_due=due,
+                               timing_error=self.last_info.get("timing_error", 0.0) if due else 0.0,
+                               value_change=-self.cue_value if self.timed and due else 0.0)
+                self.b.step(self._inputs(x, action, us=reward if due else 0.0),
+                            learn=self.learn, ach=self.ach, arousal=0.3, signals=signals)
+                if due:
                     rpe = self.b.last_dopamine
                     if self.learn and "TH.core" in self.b.g:
-                        from striatal_projection import reinforce
+                        from striatal_projection import pair_outcome, reinforce
+                        pair_outcome(self.b, self.sensory_trace, reward)
                         reinforce(self.b, self.sensory_trace, self._mot(action), rpe)
                     if self.learn and self.timed:
                         self.b.record_waking_outcome(rpe)

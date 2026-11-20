@@ -13,7 +13,7 @@ Send an observation, apply the returned action in the game, then send its outcom
 {"type":"outcome","turn":1,"reward":0.5}
 ```
 
-The camera accepts two-dimensional gray values from zero to one, gray8 from zero to 255, or RGB triplets in rgb8 format. The latter two use the same 0–255 range. Body fields are optional and use values from zero to one. Signed reward is in the range −1 to +1. For ingestion, pass `food_contact` and the food component `food_reward` separately from injury or other feedback. A timing task can supply a normalized `timing_error`. Each accepted outcome returns `applied`. Invalid input yields an error reply, and the host can correct and retry the pending turn.
+The camera accepts two-dimensional gray values from zero to one, gray8 from zero to 255, or RGB triplets in rgb8 format. The latter two use the same 0–255 range. Body fields are optional and use values from zero to one. Signed reward is in the range −1 to +1. For ingestion, pass `food_contact` and the food component `food_reward` separately from injury or other feedback. The optional body fields are `hunger`, `thirst` and `social_contact`. Intermediate frames with no outcome can set `feedback` to false and send zero reward. A timing task can supply a normalized `timing_error`. Each accepted outcome returns `applied`. Invalid input yields an error reply, and the host can correct and retry the pending turn.
 
 EOF after a complete turn closes the process. Use `--save-brain PATH` and `--load-brain PATH` for neural checkpoints. Only load trusted local files, as checkpoints use Python pickle. A checkpoint contains the neural state. The host retains its own game state, turn counters and controls.
 

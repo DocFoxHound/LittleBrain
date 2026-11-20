@@ -50,7 +50,7 @@ class DelayedCueGame(Game):
             return Observation(self.blank), float(correct), True, {"choice": True, "correct": correct}
         self.phase += 1
         image = self.go if self.phase == self.delay + 1 else self.blank
-        return Observation(image), 0.0, False, {"choice": False}
+        return Observation(image), 0.0, False, {"choice": False, "feedback": False}
 
 
 class TimingGame(Game):
@@ -72,4 +72,4 @@ class TimingGame(Game):
         done = action == 1 or self.elapsed >= 2 * self.interval
         error = min(1.0, abs(self.elapsed - self.interval) / self.interval) if done else 0.0
         self.elapsed += 1
-        return Observation(self.blank), float(done and error == 0), done, {"timing_error": error, "ended": done}
+        return Observation(self.blank), float(done and error == 0), done, {"timing_error": error, "ended": done, "feedback": done}

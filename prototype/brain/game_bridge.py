@@ -70,10 +70,13 @@ class Session:
             if type(turn) is not int or turn != agent.turn + 1:
                 raise ValueError("stale or missing turn")
             info = {k: number(msg[k]) for k in ("food_reward", "timing_error") if k in msg}
-            if "food_contact" in msg:
-                if type(msg["food_contact"]) != bool:
-                    raise ValueError("food_contact must be boolean")
-                info["food_contact"] = msg["food_contact"]
+            for flag in ("food_contact", "feedback"):
+                if flag in msg:
+                    if type(msg[flag]) is not bool:
+                        raise ValueError(f"{flag} must be boolean")
+                    info[flag] = msg[flag]
+            if info.get("feedback") is False and msg["reward"] != 0:
+                raise ValueError("a turn without feedback needs zero reward")
             agent.finish_turn(number(msg["reward"], -1, 1), info, self.sleep_every)
             return {"type": "applied", "turn": turn}
         raise ValueError("unknown request")

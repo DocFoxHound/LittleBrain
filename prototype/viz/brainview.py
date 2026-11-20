@@ -347,7 +347,12 @@ class App:
             name = os.environ.get("BRAIN", DEFAULT_BRAIN)
             cache = HERE / ".cache" / f"{name}_scale{scale:g}_seed{self.seed}.brain"
             if name not in ("bg", "da", "amy"):
-                digest = hashlib.sha256(repr(getattr(S, SPECS[name])()).encode()).hexdigest()[:12]
+                # Development depends on both the wiring and the cellular dynamics.
+                digest = hashlib.sha256(repr(getattr(S, SPECS[name])()).encode())
+                if not getattr(sys, "frozen", False):
+                    for module in ("federation", "cells", "association", "striatal_projection", "run_signal_game"):
+                        digest.update((HERE.parent / "brain" / (module + ".py")).read_bytes())
+                digest = digest.hexdigest()[:12]
                 cache = cache.with_suffix(f".reconstructed-{digest}.brain")
             t0 = time.time()
             if self.save_root or getattr(sys, "frozen", False):
@@ -436,7 +441,7 @@ class App:
                     self.agent.learn = not self.agent.learn
                 elif e.key == pg.K_s and self.brain:
                     self.agent.sleep_requested = True
-                    self.status = "slept: the day's learning was consolidated"
+                    self.status = "sleep queued for the end of a learning turn"
                 elif e.key == pg.K_t:
                     self.labels = not self.labels
                 elif e.key == pg.K_p:
@@ -750,8 +755,9 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--scale", type=float, default=1.0, help="brain size factor (0.25 .. 4)")
     ap.add_argument("--seed", type=int, default=0)
-    ap.add_argument("--game", default="signal", help="which game to plug in (games.REGISTRY)")
     from run_signal_game import DEFAULT_BRAIN, SPECS
+    import games
+    ap.add_argument("--game", choices=games.REGISTRY, default="forage", help="which game to plug in")
     ap.add_argument("--brain", default=os.environ.get("BRAIN", DEFAULT_BRAIN), choices=SPECS)
     ap.add_argument("--shots", default="", help="headless: comma-separated turns to screenshot")
     ap.add_argument("--out", default="shots")
@@ -759,7 +765,6 @@ def main():
     a = ap.parse_args()
     shots = [int(t) for t in a.shots.split(",") if t]
     os.environ["BRAIN"] = a.brain
-    import games
     make = lambda: games.REGISTRY[a.game](seed=a.seed)
     app = App(make, a.scale, a.seed, headless=bool(shots), shots=shots, out=a.out)
     if a.hover:

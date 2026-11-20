@@ -321,7 +321,8 @@ class Brain:
                 sig["arousal"] = arousal
             chan = self._channels(sig, excitatory=(phase == 2))
             if phase == 2 and "TH.core" in self.g:
-                from striatal_projection import transmit
+                from striatal_projection import amygdala_input, transmit
+                amygdala_input(self, chan)
                 transmit(self, chan)
             for key, grp in self.g.items():
                 if isinstance(grp, ExcitatoryGroup) != (phase == 2):
@@ -346,6 +347,9 @@ class Brain:
         """Phasic dopamine: the dopamine cells' firing relative to their own slow (tonic) level. A burst is
         better than expected, a dip worse. Small wobbles are ignored."""
         g = self.g[self.dopamine_group]
+        if self.dopamine_group in self.ablated or self.dopamine_group.partition(".")[0] in self.ablated:
+            self.last_dopamine = 0.0
+            return 0.0
         rate = float(np.mean(to_host(g.rate)))
         if getattr(self.spec, "timed_dopamine", False):
             # A pause has the baseline-to-zero range. A burst has the remaining headroom.
@@ -411,6 +415,9 @@ class Brain:
         if "VA.relay" in self.g and "TH.core" in self.g and key in ("TH.core", "PFC.IT", "MD.relay", "PONS.relay", "CB.granule", "DCN.proj", "VA.relay"):
             import association
             target = association.target(self, key, target)
+        if "conditioned" in ch:
+            # A valence projection ensemble in each BLA tile receives the learned cue.
+            target.reshape(T, -1)[:, 0] = ch["conditioned"]
         if "plateau" in ch:
             # Coincident thalamostriatal input can recruit an MSN up-state. The
             # contribution saturates and precedes the cell's own membrane kinetics.
@@ -510,11 +517,14 @@ class Brain:
             # Snapshot the experiences before stepping; replay must not write new waking outcomes.
             indices = self.rng.choice(len(self._log), min(8, len(self._log)), replace=False)
             quiet = {key: self.r[self.index[key]] * 0 for key in self.spec.inputs}
+            replay_ach = 0.2
+            if "LH.MCH" in self.g:
+                replay_ach *= 1.0 - 0.5 * float(to_host(self.g["LH.MCH"].rate.mean()))
             for i in indices:
                 _, activity = self._log[i]
                 inputs = dict(quiet, retina=activity[self.index["retina"]].astype(np.float32))
                 for _ in range(3):
-                    self.step(inputs, learn=True, ach=0.2)
+                    self.step(inputs, learn=True, ach=replay_ach)
         self.sleep()
 
     def sleep(self):
