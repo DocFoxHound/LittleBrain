@@ -27,7 +27,8 @@ from games import SignalGame  # noqa: E402
 from run_wiring_test import blobs  # noqa: E402
 
 
-SPECS = {"bg": "stage_bg", "da": "stage_da", "amy": "stage_amy", "td": "stage_timed_dopamine"}
+SPECS = {"bg": "stage_bg", "da": "stage_da", "amy": "stage_amy", "td": "stage_timed_dopamine",
+         "hyp": "stage_hypothalamus"}
 
 
 def prepare(seed, brain=None, scale=1.0):

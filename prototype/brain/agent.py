@@ -29,6 +29,7 @@ class BrainAgent:
         self.rng = np.random.default_rng(seed)
         self.timed = getattr(brain.spec, "timed_dopamine", False)
         self.cue_value = 0.0
+        self.body_signals = {}
         self.expected = 0.0
         self.critic, self.critic_lr, self.w_value, self.features = critic, critic_lr, None, None
         self.value_groups = ("A.L23", "A.L5IT", "A.L5PT")
@@ -76,7 +77,7 @@ class BrainAgent:
     def choose(self, image):
         x, gpi, feats = self._retina(image), [], []
         for s in range(self.look):
-            signals = {}
+            signals = dict(self.body_signals)
             if self.timed and s == self.look - 1:
                 rates = self.b.g
                 value = (float(to_host(rates["STR.SO"].rate).mean())
@@ -114,7 +115,7 @@ class BrainAgent:
             rpe = 0.0
             for s in range(self.act):
                 self.b.step(self._inputs(x, action, us=reward if s == 2 else 0.0), learn=self.learn, ach=self.ach,
-                            arousal=0.3, signals={"value_change": -self.cue_value if self.timed and s == 2 else 0.0})
+                            arousal=0.3, signals={**self.body_signals, "value_change": -self.cue_value if self.timed and s == 2 else 0.0})
                 if s == 2:
                     rpe = self.b.last_dopamine
                     if self.learn and self.timed:
@@ -134,6 +135,10 @@ class BrainAgent:
         if self.pending is not None:
             raise ValueError("the previous action still needs its outcome")
         self.turn = self.turns_played
+        self.body_signals = {}
+        if "hunger" in obs.body:
+            hunger = float(obs.body["hunger"])
+            self.body_signals.update(hunger=hunger, satiety=1.0 - hunger)
         action, retina = self.choose(obs.image)
         self.pending = action, retina
         return action
@@ -143,6 +148,11 @@ class BrainAgent:
             raise ValueError("observe before reporting an outcome")
         action, retina = self.pending
         self.last_info = dict(info or {})
+        food = self.last_info.get("food_reward", 0.0)
+        if self.last_info.get("food_contact") and "HYP.AgRP" in self.b.g:
+            # Pre-meal drive modulates only the food component of the outcome.
+            balance = float(to_host(self.b.g["HYP.AgRP"].rate - self.b.g["HYP.POMC"].rate).mean())
+            reward = np.clip(reward - food + food * balance, -1.0, 1.0)
         self.last_rpe = self.outcome(retina, action, reward)
         self.turns_played += 1
         if self.sleep_requested or (sleep_every and self.turns_played % sleep_every == 0):

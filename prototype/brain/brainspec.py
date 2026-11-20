@@ -280,3 +280,15 @@ def stage_timed_dopamine():
     spec.pooled += [Pooled("timed value -> VTA", None, "VTA.DA", 1.0, signal="value_change"),
                     Pooled("reward -> VTA", "US", "VTA.DA", 1.0, sigma=None)]
     return spec
+
+
+def stage_hypothalamus():
+    spec = stage_timed_dopamine()
+    spec.groups += [Group("HYP.AgRP", C.AGRP, 1, "HYP"), Group("HYP.POMC", C.POMC, 1, "HYP"),
+                    Group("LH.orexin", C.OREXIN, 1, "LH"), Group("LH.MCH", C.MCH, 1, "LH")]
+    spec.pooled += [Pooled("hunger -> AgRP", None, "HYP.AgRP", 2., signal="hunger"),
+                    Pooled("satiety -> POMC", None, "HYP.POMC", 2., signal="satiety"),
+                    Pooled("AgRP disinhibits LH", "HYP.AgRP", "LH.orexin", 1.),
+                    Pooled("POMC suppresses LH", "HYP.POMC", "LH.orexin", -1.),
+                    Pooled("fed state -> MCH", "HYP.POMC", "LH.MCH", 1.)]
+    return spec
