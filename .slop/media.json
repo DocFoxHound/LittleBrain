@@ -1,6 +1,7 @@
 {
-  "thumbnail": "viewer.png",
+  "thumbnail": "title.png",
   "gallery": [
-    {"image": "viewer.png", "caption": "Neural activity and choices during the danger game"}
+    {"image": "screenshots/signal.png", "caption": "Turn 35 of the signal game. Compare the picture with the four button choices and the reward history."},
+    {"image": "screenshots/danger.png", "caption": "On turn 8 the brain chooses to hide. The white outline marks its choice."}
   ]
 }

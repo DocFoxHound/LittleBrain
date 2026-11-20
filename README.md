@@ -93,7 +93,8 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 34. [Dopamine cells and the amygdala](notes/32-dopamine-and-amygdala.md): the brain makes its own prediction-error dopamine; the amygdala learns danger, but avoidance needs a relief signal
 35. [LittleBrain license](notes/33-mit-license.md)
 36. [Linux desktop release](notes/34-desktop-release.md) covers the packaged viewer and its launch check.
-37. [Reading list](reading-list.md)
+37. [Store description and screenshots](notes/35-store-media.md)
+38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
 - **Self-generated training before birth:** retinal waves, learning in the womb. Sleep and dreaming are now started in note 09; this part is still parked.

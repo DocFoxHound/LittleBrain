@@ -263,3 +263,7 @@ Claude will re-run your commands, compare numbers, run the tests, read the diffs
 ### Linux desktop release
 
 The release workflow, build command and viewer save behavior are documented in [note 34](notes/34-desktop-release.md). Run `bash packaging/build-linux.sh` to build and exercise the installed program. This release uses the signal and danger viewer from the public repository.
+
+### Store media for v0.1.0
+
+[Note 35](notes/35-store-media.md) contains the copy and media links. The packaged viewer produced the gallery using `--game signal --shots 35` and `--game danger --shots 8`.
