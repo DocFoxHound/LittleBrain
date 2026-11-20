@@ -338,3 +338,7 @@ Note 58 reports a paired prefrontal retention assay from the actual delayed game
 ### Restore the maintained frontal population
 
 The frontal holding ensemble in association.py now receives both local recurrent and MD activity, with weights drawn from the existing basal fractions in brainspec.py. Note 59 reports the before/after functional assays on all three seeds, the 300-turn matched delayed results, the frozen lesions and smoke comparisons on the other four games. All three check_full_runtime.py runs passed on the normally developed reference checkpoints.
+
+### Dentate mossy-fiber transmission
+
+The conductance floor in cells.py and federation.py applies to new and saved HC-7 contacts. [Note 60](notes/60-mossy-conductance.md) gives the direct and recall controls, reproduction commands and three-seed results.

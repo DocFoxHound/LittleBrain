@@ -71,6 +71,10 @@ def isolated_responses(b):
     for source, target, driver in (("GPi", "VA.relay", "DCN.proj"), ("SNr.out", "MD.relay", "PFC.IT")):
         delta = projection(b, source, target, {driver: .5})
         assert delta < -1e-6, (source, target, delta)
+    bank = b.g["CA3.pyr"].basal
+    mossy = np.isin(bank.src, b.index["DG.gc"])
+    assert mossy.any() and (bank.weights()[mossy] >= 0).all()
+    assert projection(b, "DG.gc", "CA3.pyr", soma=True) > 1e-6
     assert projection(b, "A.L5PT", "PONS.relay") > 1e-6
     acquiring = copy.copy(b)
     acquiring.hold_context = False

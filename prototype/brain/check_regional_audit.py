@@ -136,12 +136,16 @@ def glutamate_signs(b):
     trial = copy.deepcopy(b)
     mossy = trial.g["CA3.pyr"].basal
     slots = np.isin(mossy.src, trial.index["DG.gc"])
+    intact_weights = mossy.weights()
+    mossy.conductance_floor = None
+    signed_soma = projection(trial, "DG.gc", "CA3.pyr", soma=True)
     weights = mossy.weights()
     reversed_slots = slots & (weights < 0.)
     mossy.gain[reversed_slots] = 0.
     return dict(negative_contacts=negative, contacts=contacts, affected_routes=affected, routes=routes,
-                mossy_contacts=int(slots.sum()), mossy_negative=int(reversed_slots.sum()),
-                mossy_mean_weight=float(weights[slots].mean()),
+                mossy_contacts=int(slots.sum()), mossy_negative=int((intact_weights[slots] < 0).sum()),
+                mossy_mean_weight=float(intact_weights[slots].mean()),
+                signed_mossy_negative=int(reversed_slots.sum()), soma_signed=signed_soma,
                 soma_intact=projection(b, "DG.gc", "CA3.pyr", soma=True),
                 soma_negative_muted=projection(trial, "DG.gc", "CA3.pyr", soma=True))
 

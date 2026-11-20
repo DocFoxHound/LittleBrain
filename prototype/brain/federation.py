@@ -163,6 +163,7 @@ class Brain:
         self.da_base, self.last_dopamine = None, 0.0
         self._stats = {}
         self._wire()
+        self._mossy_conductance()
         self.device = "cpu"
         if backend.DEVICE == "gpu":
             self.to("gpu")
@@ -209,9 +210,19 @@ class Brain:
         import zlib
         with open(path, "rb") as f:
             b = pickle.loads(zlib.decompress(f.read()))
+        b._mossy_conductance()
         return b.to(device or backend.DEVICE)
 
     # ---------- wiring ----------
+
+    def _mossy_conductance(self):
+        # Mossy-fiber depression can silence transmission. It cannot turn
+        # a dentate granule cell into an inhibitory input to a CA3 pyramid.
+        # Nightly turnover samples a new partner within the same pathway.
+        if "CA3.pyr" in self.g and "DG.gc" in self.index:
+            bank = self.g["CA3.pyr"].basal
+            granule = np.isin(bank.src, self.index["DG.gc"])
+            bank.conductance_floor = np.where(granule, 0., -np.inf).astype(np.float32)
 
     def _partner_caps(self, sample=64):
         """Per destination compartment: CONTACTS x the effective number of distinct partners within reach,

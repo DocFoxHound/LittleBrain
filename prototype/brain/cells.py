@@ -45,7 +45,15 @@ class SynapseBank:
         self.learn_mask = None                         # optional (N,B,S): which synapses may learn (lesion tests)
         self.branch_open = None                        # optional (N,B): closed branches don't learn (context gating)
 
+    conductance_floor = None
+
     def weights(self):
+        weights = self._signed_weights()
+        if self.conductance_floor is not None:
+            weights = np.maximum(weights, self.conductance_floor)
+        return weights
+
+    def _signed_weights(self):
         return np.clip(self.fast, -self.t.w_max, self.t.w_max) + self.cascade[0]
 
     def drive(self, r):
@@ -189,7 +197,7 @@ class LeanBank(SynapseBank):
             p, self.pending = self.pending, 0
             self._linear(_flow_matrix(self.t, p).astype(np.float64))
 
-    def weights(self):
+    def _signed_weights(self):
         F = _flow_matrix(self.t, self.pending)[0]
         c0 = float(F @ self.M[:, 0]) * self.def0 + np.tensordot(like(self.d, F), self.d.astype(np.float32), axes=1) * self.qstep
         return np.clip(self.fast, -self.t.w_max, self.t.w_max) + c0
