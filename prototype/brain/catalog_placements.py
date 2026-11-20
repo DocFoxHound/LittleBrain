@@ -93,6 +93,9 @@ PLACEMENTS = {
     "nigra pars compacta": [
         Circuit("SNc.GABA", C.VTA_GABA, "STN.proj", "SNc.DA", "drive", -.25, human="local nigral GABAergic neuron"),
     ],
+    "deep cerebellar nuclei": [
+        Circuit("DCN.local", C.GOLGI, "PONS.relay", "DCN.NO", "drive", -.25, human="deep nuclear GABA/glycine interneuron (catalog Golgi-type approximation)"),
+    ],
 }
 
 

@@ -25,3 +25,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | central amygdala | CeL.Glu | 18,048 | 7.6964 / 7.2284 / 6.9078 | 0.094631 / 0.09463 / 0.094632 |
 | nigra pars reticulata | SNr.DA | 18,112 | 0.7 / 0.7 / 0.7 | 0.19286 / 0.19285 / 0.19287 |
 | nigra pars compacta | SNc.GABA | 18,176 | 0.41018 / 0.41018 / 0.41018 | 0.175 / 0.175 / 0.175 |
+| deep cerebellar nuclei | DCN.local | 18,240 | 0.34182 / 0.34182 / 0.34182 | 0.0043169 / 0.0043121 / 0.0043185 |
