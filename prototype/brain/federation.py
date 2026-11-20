@@ -320,6 +320,9 @@ class Brain:
                 arousal = float(np.clip(arousal + self._own_arousal(), 0.0, 1.0))   # amygdala alarm -> LC
                 sig["arousal"] = arousal
             chan = self._channels(sig, excitatory=(phase == 2))
+            if phase == 2 and "TH.core" in self.g:
+                from striatal_projection import transmit
+                transmit(self, chan)
             for key, grp in self.g.items():
                 if isinstance(grp, ExcitatoryGroup) != (phase == 2):
                     continue
@@ -405,6 +408,15 @@ class Brain:
                              ais_in=ch.get("ais", 0.0), volume_in=ch.get("volume", 0.0),
                              external=ch.get("exc", 0.0), apical_mode=1.0 - 0.5 * (ach - 0.5),
                              allow_burst=ach < 0.3, cf=ch.get("cf", 0.0))
+        if key == "TH.core":
+            # Tonic relay has a sustained, retinotopic driver as well as transient bursts.
+            driver = self._pool("retina")[self.tile[key]]
+            target = 0.85 * driver + 0.15 * target
+        if "plateau" in ch:
+            # Coincident thalamostriatal input can recruit an MSN up-state. The
+            # contribution saturates and precedes the cell's own membrane kinetics.
+            plateau = xpof(target).tanh(ch["plateau"])
+            target = target * (1 - np.abs(plateau)) + np.maximum(plateau, 0.0)
         if self.kwta[key]:
             # Rank by the membrane drive, not the output: saturated outputs tie at 1.0, and a cut on the output
             # then lets every saturated cell through (CA3 ran at 27% active under a "5%" rule, notes/26)
@@ -492,6 +504,19 @@ class Brain:
     def _cap_scale(self, s):
         s = np.minimum(s, self.max_scale) if self.max_scale else s
         return s.astype(np.float32)
+
+    def replay_and_sleep(self):
+        """Brief low-ACh reactivation of recent sensory episodes before consolidation."""
+        if self._log:
+            # Snapshot the experiences before stepping; replay must not write new waking outcomes.
+            indices = self.rng.choice(len(self._log), min(8, len(self._log)), replace=False)
+            quiet = {key: self.r[self.index[key]] * 0 for key in self.spec.inputs}
+            for i in indices:
+                _, activity = self._log[i]
+                inputs = dict(quiet, retina=activity[self.index["retina"]].astype(np.float32))
+                for _ in range(3):
+                    self.step(inputs, learn=True, ach=0.2)
+        self.sleep()
 
     def sleep(self):
         for key, grp in self.g.items():

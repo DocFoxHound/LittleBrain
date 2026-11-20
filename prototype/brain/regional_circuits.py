@@ -95,6 +95,9 @@ def extend(spec, through):
             spec.pooled.append(Pooled(afferent, circuit.source, circuit.key, circuit.input_weight))
         efferent = f"{circuit.key} -> {circuit.target}"
         spec.pooled.append(Pooled(efferent, circuit.key, circuit.target, circuit.weight, channel=circuit.terminal))
+        if circuit.key in ("PVN.oxytocin", "PVN.vasopressin"):
+            signal = "social_contact" if circuit.key == "PVN.oxytocin" else "thirst"
+            spec.pooled.append(Pooled(f"{signal} -> {circuit.key}", None, circuit.key, 2., signal=signal))
         if circuit.key == "STN.proj":
             spec.pooled.append(Pooled("GPe -> STN", "GPe", circuit.key, 0.5, channel="inh"))
         elif circuit.key == "VA.relay":

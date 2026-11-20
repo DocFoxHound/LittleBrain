@@ -36,7 +36,7 @@ def number(value, low=0, high=1):
 
 
 class Session:
-    def __init__(self, brain, actions, seed, learn=True, sleep_every=0, controls=None):
+    def __init__(self, brain, actions, seed, learn=True, sleep_every=None, controls=None):
         if not 1 <= len(actions) <= 8 or len(set(actions)) != len(actions) or not all(actions):
             raise ValueError("supply one to eight distinct nonempty actions")
         self.actions = list(actions)

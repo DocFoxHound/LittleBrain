@@ -90,6 +90,9 @@ class BrainAgent:
             if s >= self.look - self.read:
                 gpi.append(self._per_channel("GPi"))
                 feats.append(np.concatenate([to_host(self.b.g[k].rate) for k in self.value_groups]))
+        if "TH.core" in self.b.g:
+            from striatal_projection import activity
+            self.sensory_trace = activity(self.b)
         self.features = np.mean(feats, 0)
         release = -np.mean(gpi, 0)
         p = np.exp((release - release.max()) / self.temperature)
@@ -119,6 +122,9 @@ class BrainAgent:
                             arousal=0.3, signals={**self.body_signals, "timing_error": self.last_info.get("timing_error", 0.0) if s == 2 else 0.0, "outcome_due": s == 2, "value_change": -self.cue_value if self.timed and s == 2 else 0.0})
                 if s == 2:
                     rpe = self.b.last_dopamine
+                    if self.learn and "TH.core" in self.b.g:
+                        from striatal_projection import reinforce
+                        reinforce(self.b, self.sensory_trace, self._mot(action), rpe)
                     if self.learn and self.timed:
                         self.b.record_waking_outcome(rpe)
                 self._tick("act", action=action, reward=reward, dopamine=self.b.last_dopamine, step=s)
@@ -136,7 +142,7 @@ class BrainAgent:
         if self.pending is not None:
             raise ValueError("the previous action still needs its outcome")
         self.turn = self.turns_played
-        self.body_signals = {}
+        self.body_signals = {k: float(obs.body[k]) for k in ("thirst", "social_contact") if k in obs.body}
         if "hunger" in obs.body:
             hunger = float(obs.body["hunger"])
             self.body_signals.update(hunger=hunger, satiety=1.0 - hunger)
@@ -144,7 +150,7 @@ class BrainAgent:
         self.pending = action, retina
         return action
 
-    def finish_turn(self, reward, info=None, sleep_every=0):
+    def finish_turn(self, reward, info=None, sleep_every=None):
         if self.pending is None:
             raise ValueError("observe before reporting an outcome")
         action, retina = self.pending
@@ -156,13 +162,15 @@ class BrainAgent:
             reward = np.clip(reward - food + food * balance, -1.0, 1.0)
         self.last_rpe = self.outcome(retina, action, reward)
         self.turns_played += 1
-        if self.sleep_requested or (sleep_every and self.turns_played % sleep_every == 0):
-            self.b.sleep()
+        if sleep_every is None:
+            sleep_every = 64 if "MS.theta" in self.b.g else 0
+        if self.learn and (self.sleep_requested or (sleep_every and self.turns_played % sleep_every == 0)):
+            self.b.replay_and_sleep()
             self.sleep_requested = False
         self.pending = None
         return self.last_rpe
 
-    def play(self, game, turns, sleep_every=0, log=None):
+    def play(self, game, turns, sleep_every=None, log=None):
         """Continue the current episode across calls, including single-turn viewer updates."""
         if game is not self.game:
             self.game, self.next_observation = game, game.reset()
