@@ -294,13 +294,17 @@ def stage_hypothalamus():
     return spec
 
 
+PFC_RECURRENT_BASAL = 0.84
+PFC_FROM_MD_BASAL = 0.08
+
+
 def stage_prefrontal():
     spec = stage_hypothalamus()
     spec.groups += [Group("PFC.IT", _cortex(C.L5_IT), 3, "PFC"), Group("PFC.PV", C.PV, 1, "PFC"),
                     Group("MD.relay", C.MD, 1, "MD")]
     spec.synaptic += [Synaptic("association cortex -> PFC", "B.L23", "PFC.IT", "basal", 0.08),
-                      Synaptic("PFC recurrent", "PFC.IT", "PFC.IT", "basal", 0.84, kind="local"),
-                      Synaptic("MD -> PFC", "MD.relay", "PFC.IT", "basal", 0.08),
+                      Synaptic("PFC recurrent", "PFC.IT", "PFC.IT", "basal", PFC_RECURRENT_BASAL, kind="local"),
+                      Synaptic("MD -> PFC", "MD.relay", "PFC.IT", "basal", PFC_FROM_MD_BASAL),
                       Synaptic("MD -> PFC tuft", "MD.relay", "PFC.IT", "apical", 0.16),
                       Synaptic("PFC recurrent tuft", "PFC.IT", "PFC.IT", "apical", 0.84, kind="local"),
                       Synaptic("PFC -> MD", "PFC.IT", "MD.relay", "basal", 1.0)]

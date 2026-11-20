@@ -334,3 +334,7 @@ Note 57 compares the 94 numbered anatomical routes in notes/regions/connections.
 ### Working-memory signal diagnosis
 
 Note 58 reports a paired prefrontal retention assay from the actual delayed game. The normal CLI can run it using --probe-held-cue. A matched motor copy during passive viewing separates loss of the visual trace from action selection. Both blank turns and the choice period are measured for all three seeds.
+
+### Restore the maintained frontal population
+
+The frontal holding ensemble in association.py now receives both local recurrent and MD activity, with weights drawn from the existing basal fractions in brainspec.py. Note 59 reports the before/after functional assays on all three seeds, the 300-turn matched delayed results, the frozen lesions and smoke comparisons on the other four games. All three check_full_runtime.py runs passed on the normally developed reference checkpoints.

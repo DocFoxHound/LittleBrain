@@ -85,6 +85,25 @@ def isolated_responses(b):
     print("Seven previously masked projections passed the isolated receiver tests.")
 
 
+def frontal_maintenance(b):
+    from association import target
+    trial = copy.deepcopy(b)
+    trial.hold_context = True
+    trial.clear_context_steps = 0
+    pfc = trial.g["PFC.IT"]
+    responses = []
+    for local, thalamic in ((0., 0.), (0., 1.), (1., 0.)):
+        pfc.rate[:] = local
+        trial.g["MD.relay"].rate[:] = thalamic
+        response = target(trial, "PFC.IT", np.zeros_like(pfc.rate), {}).reshape(64, -1)
+        responses.append(response[:, 0].mean())
+    quiet, relay, recurrent = responses
+    assert recurrent > relay > quiet, responses
+    trial.clear_context_steps = 1
+    assert not target(trial, "PFC.IT", np.zeros_like(pfc.rate), {}).any()
+    print("The held frontal cue responds to both recurrent and MD input and clears on request.")
+
+
 def night(b, seed):
     banks = [bank for grp in b.excitatory().values() for bank in grp.banks()]
     before = [bank.src.copy() for bank in banks]
@@ -153,6 +172,7 @@ def main():
     anatomy(b)
     slow_terminals(b)
     isolated_responses(b)
+    frontal_maintenance(b)
     regional_responses(b)
     night(b, args.seed)
     bridge(b, args.seed)

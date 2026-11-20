@@ -7,6 +7,7 @@ These share the existing cells, map and lesion boundaries.
 import numpy as np
 
 from backend import xpof
+from brainspec import PFC_RECURRENT_BASAL, PFC_FROM_MD_BASAL
 
 
 def target(brain, key, ordinary, channels):
@@ -23,7 +24,11 @@ def target(brain, key, ordinary, channels):
         if getattr(brain, "clear_context_steps", 0):
             cells[:, 0] = 0.
         elif getattr(brain, "hold_context", False):
-            cells[:, 0] = .999 * relay
+            # With sensory input gated out, the local recurrent and thalamic
+            # afferents maintain the cue at their specified basal input shares.
+            local = group.rate.reshape(64, -1)[:, 0]
+            held = PFC_RECURRENT_BASAL * local + PFC_FROM_MD_BASAL * relay
+            cells[:, 0] = .999 * held / (PFC_RECURRENT_BASAL + PFC_FROM_MD_BASAL)
         else:
             cells[:, 0] = xp.clip(0.985 * relay + 0.11 * sensory, 0, 1)
     elif key == "MD.relay":

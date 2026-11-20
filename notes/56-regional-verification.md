@@ -77,7 +77,9 @@ Use the commands in note 50 to develop or load each seed. Run `python prototype/
 
 Each game ran for 300 turns on each of the three freshly developed CPU brains, with a matched control from the same checkpoint. The last block covers the final 100 turns. The [recorded learning curves](regional-verification-games.jsonl) contain every 50-turn report and frozen probe. Reproduce each case with `python prototype/brain/check_full_games.py --seed N --load-brain PATH --game GAME --condition CONDITION --turns 300`.
 
-### Delayed cue
+### Delayed cue before the frontal maintenance repair
+
+The subsequent [frontal repair and current delayed-cue scores](59-local-frontal-maintenance.md) use the same checkpoints and matched controls. The other games exercise ordinary viewing.
 
 The cue disappears for two blank turns before a two-way choice. Chance accuracy is 50%. The control has PFC and MD silenced throughout training. The separate frozen two-cue probe gives the probability of choosing correctly from identical learned states.
 
