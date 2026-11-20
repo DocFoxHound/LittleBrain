@@ -140,7 +140,10 @@ class BrainAgent:
                 if due:
                     rpe = self.b.last_dopamine
                     if self.learn and "TH.core" in self.b.g:
-                        from striatal_projection import pair_outcome, reinforce
+                        from striatal_projection import food_outcome, pair_outcome, reinforce
+                        if "food_contact" in self.last_info:
+                            amount = self.last_info.get("food_reward", 1.) if self.last_info["food_contact"] else 0.
+                            food_outcome(self.b, self.sensory_trace, self._mot(action), amount)
                         if "timing_error" in self.last_info:
                             from association import climbing_fiber_credit
                             climbing_fiber_credit(self.b, self.timing_trace, self._mot(action))

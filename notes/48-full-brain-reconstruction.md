@@ -70,3 +70,5 @@ In Signal, the same four pictures have a different randomly assigned button mapp
 | 2 | 97% | 15% | 0% | 100% |
 
 The Signal chance rate is 25%. Random selection in Danger has a 75% hurt rate and a 25% food collection rate. The reference gates are at least 60% Signal accuracy and at most 40% hurt on every seed.
+
+Foraging also required a matched intervention. Before outcome-specific revaluation, seed 0 ate on 37.5% of naturally hungry trials and 17.3% of sated trials in the last 100. Its trained copy then gave the same food image an eating probability of zero under both sustained hunger and sustained satiety. Natural visits alone had confounded appetite with the trajectory through the game. The new food-contact afferents learn which visual and motor inputs predict food. Current AgRP/POMC activity changes the incentive value of that learned outcome even before another meal. This is a reduced version of sensory-specific outcome revaluation (Balleine and Dickinson, 1998).

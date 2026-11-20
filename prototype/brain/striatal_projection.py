@@ -6,7 +6,7 @@ Eligibility is local to the recently active sensory afferents of chosen cells.
 """
 import numpy as np
 from backend import xpof
-from association import context
+from association import context, motor_stripes
 from federation import GRID
 
 
@@ -55,6 +55,15 @@ def transmit(brain, chan):
         if old is not None:
             brain.sensory_striatal[:, :old.shape[1]] = old
     current = brain.sensory_striatal @ features
+    if hasattr(brain, "food_afferents"):
+        # Revalue a learned sensory outcome from current hypothalamic firing.
+        # Stripes learn food identity from contact, regardless of their names.
+        xp = xpof(current)
+        agrp = brain.g["HYP.AgRP"].rate.mean()
+        pomc = brain.g["HYP.POMC"].rate.mean()
+        drive = (agrp - pomc) / xp.maximum(agrp + pomc, .05)
+        food = xp.clip(brain.food_afferents @ features[:GRID * GRID], 0, 1)
+        current = xp.tanh(current) + 5.0 * drive * food
     if hasattr(brain, "parallel_fiber_ltd"):
         # VA relays the disinhibited cerebellar correction to indirect-path MSNs.
         correction = brain.g["VA.relay"].rate.reshape(GRID, GRID, -1).mean(axis=(0, 2))
@@ -72,8 +81,19 @@ def reinforce(brain, eligibility, motor, dopamine):
     xp = xpof(brain.r)
     # Pre (cue) x post (efference copy) x phasic dopamine. Every represented
     # motor stripe stays addressable when an external game changes action count.
-    stripes = brain.tile["MOT"] % GRID
-    selected = xp.bincount(stripes, weights=xp.asarray(motor), minlength=GRID) / xp.bincount(stripes, minlength=GRID)
+    selected = motor_stripes(brain, motor)
     weights = brain.sensory_striatal
     weights += 0.45 * dopamine * selected[:, None] * eligibility
     xp.clip(weights, -4.0, 4.0, out=weights)
+
+
+def food_outcome(brain, trace, motor, amount):
+    """Pair a sensory outcome with the chosen channel and preceding visual cue."""
+    xp = xpof(brain.r)
+    if not hasattr(brain, "food_afferents"):
+        brain.food_afferents = xp.zeros((GRID, GRID * GRID), dtype=np.float32)
+    cue = trace[:GRID * GRID]
+    selected = motor_stripes(brain, motor)
+    weights = brain.food_afferents
+    weights += .25 * (selected * (amount - weights @ cue))[:, None] * cue
+    xp.clip(weights, -2., 2., out=weights)

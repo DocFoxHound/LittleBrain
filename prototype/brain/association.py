@@ -82,6 +82,13 @@ def timing_activity(brain):
     return phases / xpof(phases).maximum(phases.sum(), 1e-6)
 
 
+def motor_stripes(brain, motor):
+    """Mean efference copy in each map column, including larger per-tile populations."""
+    xp = xpof(brain.r)
+    stripes = brain.tile["MOT"] % 8
+    return xp.bincount(stripes, weights=xp.asarray(motor), minlength=8) / xp.bincount(stripes, minlength=8)
+
+
 def climbing_fiber_credit(brain, phase, motor):
     """Climbing-fiber input depresses active parallel fibers in the motor channel."""
     xp = xpof(brain.r)
@@ -93,8 +100,7 @@ def climbing_fiber_credit(brain, phase, motor):
     olive = brain.g["IO.olive"].rate.reshape(8, 8, -1).mean(axis=(0, 2))
     early, late = olive[:4].mean(), olive[4:].mean()
     cf = xp.maximum(early, late)
-    stripes = brain.tile["MOT"] % 8
-    selected = xp.bincount(stripes, weights=xp.asarray(motor), minlength=8) / xp.bincount(stripes)
+    selected = motor_stripes(brain, motor)
     weights = brain.parallel_fiber_ltd
     change = cf - weights @ phase
     weights += .6 * (selected * change)[:, None] * phase
