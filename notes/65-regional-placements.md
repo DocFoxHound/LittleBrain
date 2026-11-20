@@ -30,3 +30,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | dorsal raphe | DR.GABA, DR.Glu, DR.DA | 18,496 | 0.41018 / 0.41018 / 0.41018 | 0.0031396 / 0.0031396 / 0.0031396 |
 | median raphe | MR.GABA, MR.Glu | 18,624 | 0.41018 / 0.41018 / 0.41018 | 0.00875 / 0.00875 / 0.00875 |
 | nucleus basalis | NB.GABA | 18,688 | 0.41018 / 0.41018 / 0.41018 | 0.062799 / 0.055706 / 0.065748 |
+| medial septum | MS.ACh, MS.Glu | 18,816 | 0.6 / 0.6 / 0.6 | 0.042793 / 0.042598 / 0.042291 |

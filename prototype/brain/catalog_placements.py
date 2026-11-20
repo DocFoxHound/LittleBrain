@@ -111,6 +111,10 @@ PLACEMENTS = {
     "nucleus basalis": [
         Circuit("NB.GABA", C.VTA_GABA, "PFC.IT", "A.PV", "drive", -.25, human="basal forebrain GABAergic corticopetal neuron"),
     ],
+    "medial septum": [
+        Circuit("MS.ACh", C.PPN_ACH, "LH.orexin", "CA1.IS", "drive", .2, human="medial septal cholinergic projection to hippocampal interneurons"),
+        Circuit("MS.Glu", C.VTA_GLU, "CA1.pyr", "CA1.PV", "drive", .25, human="septohippocampal glutamatergic neuron (lateral septal return relay lumped)"),
+    ],
 }
 
 
