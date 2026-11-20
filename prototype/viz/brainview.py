@@ -291,6 +291,9 @@ class App:
         self.small = pygame.font.SysFont("dejavusans,liberationsans,arial", 12)
         self.big = pygame.font.SysFont("dejavusans,liberationsans,arial", 22, bold=True)
         self.headless, self.shots, self.out, self.max_turns = headless, sorted(shots), Path(out), turns
+        self.save_root = os.environ.get("SLOP_SAVE_DIR")
+        if self.save_root:
+            self.out = Path(self.save_root) / "shots"
         self.scale, self.seed, self.make_game, self.given = scale, seed, make_game, brain
         self.paused, self.speed, self.labels, self.paths = False, 3, True, True
         self.status = ""
@@ -319,7 +322,10 @@ class App:
             from run_signal_game import prepare
             cache = HERE / ".cache" / f"{os.environ.get('BRAIN', 'bg')}_scale{scale:g}_seed{self.seed}.brain"
             t0 = time.time()
-            if cache.exists():
+            if self.save_root or getattr(sys, "frozen", False):
+                # A distributed viewer develops its brain locally without loading pickle files.
+                b = prepare(self.seed, scale=scale)
+            elif cache.exists():
                 b = Brain.load(cache)
             else:
                 b = prepare(self.seed, scale=scale)

@@ -1,0 +1,23 @@
+name: Publish LittleBrain
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  slop:
+    uses: DocFoxHound/slop-build/.github/workflows/build.yml@v1
+    with:
+      app: littlebrain
+      slop-url: https://slaporslop.games
+      project-type: custom
+      platforms: linux
+      linux-packages: deb
+      build-command: bash packaging/build-linux.sh
+      output-dir: dist
+      exec: littlebrain

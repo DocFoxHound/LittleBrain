@@ -259,3 +259,7 @@ Claude will re-run your commands, compare numbers, run the tests, read the diffs
 
 ## Handoff log
 *(append below)*
+
+### Linux desktop release
+
+The release workflow, build command and viewer save behavior are documented in [note 34](notes/34-desktop-release.md). Run `bash packaging/build-linux.sh` to build and exercise the installed program. This release uses the signal and danger viewer from the public repository.
