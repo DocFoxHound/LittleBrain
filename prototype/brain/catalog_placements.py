@@ -78,6 +78,12 @@ PLACEMENTS = {
         Circuit("SUB.OLM", C.OLM, "SUB.pyr", "SUB.pyr", "sst", .3),
         Circuit("SUB.NGF", C.HC_NGF, "EC.L3", "SUB.pyr", "volume", .3),
     ],
+    "basolateral amygdala": [
+        Circuit("BLA.CCK", C.CCK_BASKET, "BLA.pos", "BLA.pos", "pv", .3),
+        Circuit("BLA.SST", C.SST, "BLA.neg", "BLA.neg", "dend", .3),
+        Circuit("BLA.IS", C.IS_CELL, "BLA.pos", "BLA.SST", "drive", -.3),
+        Circuit("BLA.NGF", C.LAMP5_NGF, "B.L23", "BLA.neg", "volume", .3),
+    ],
 }
 
 
