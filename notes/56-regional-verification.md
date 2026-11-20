@@ -86,3 +86,13 @@ The cue disappears for two blank turns before a two-way choice. Chance accuracy 
 | 0 | 80.0% / 84.0% | 100.0% / 100.0% | 100.0% / 0.0% |
 | 1 | 88.0% / 68.0% | 0.0% / 100.0% | 100.0% / 1.4% |
 | 2 | 92.0% / 100.0% | 100.0% / 100.0% | 100.0% / 1.6% |
+
+### Cerebellar timing
+
+Normalized error is zero for perfect timing and one for a miss by at least three turns. Uniform random action selection averages 0.745 error per completed episode. The control silences cerebellar cortex, deep nuclei and inferior olive.
+
+| Seed | First 50, intact / lesion | Final 100, intact / lesion | Completed episodes in final window, intact / lesion |
+|---:|---:|---:|---:|
+| 0 | 0.282 / 0.767 | 0.300 / 0.796 | 20 / 36 |
+| 1 | 0.309 / 0.796 | 0.367 / 0.759 | 20 / 29 |
+| 2 | 0.545 / 0.742 | 0.351 / 0.833 | 19 / 24 |
