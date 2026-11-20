@@ -15,3 +15,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | cingulate and insular cortex | INS.L4, ACC.L23, ACC.L5PT, INS.NP, ACC.L6CT, INS.L6IT, INS.L6b, ACC.CCK, INS.chandelier, ACC.SST, INS.SSTnonMartinotti, ACC.VIP, INS.NGF, ACC.rosehip | 16,448 | 0.020509 / 0.020509 / 0.020509 | 0.0002474 / 0.0002491 / 0.0002465 |
 | first-order thalamus | TH.matrix | 16,512 | 3.4675 / 3.3282 / 3.2285 | 0.096335 / 0.093634 / 0.094114 |
 | higher-order thalamus | PUL.core, PUL.interneuron | 16,640 | 0.41018 / 0.41018 / 0.41018 | 0.34987 / 0.34992 / 0.34982 |
+| claustrum | CLA.PV, CLA.SST, CLA.VIP | 16,832 | 0.035343 / 0.035349 / 0.035355 | 0.0027748 / 0.0027748 / 0.0027748 |

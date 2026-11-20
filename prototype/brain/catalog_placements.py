@@ -49,6 +49,11 @@ PLACEMENTS = {
         Circuit("PUL.core", C.TC_CORE, "B.L5PT", "B.L4", "exc", .35),
         Circuit("PUL.interneuron", C.TH_INTERNEURON, "B.L5PT", "PUL.matrix", "inh", .3),
     ],
+    "claustrum": [
+        Circuit("CLA.PV", C.PV, "CLA.pyr", "CLA.pyr", "pv", .3),
+        Circuit("CLA.SST", C.SST, "CLA.pyr", "CLA.pyr", "dend", .3),
+        Circuit("CLA.VIP", C.VIP, "PFC.IT", "CLA.SST", "drive", -.3),
+    ],
 }
 
 
