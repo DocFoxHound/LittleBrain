@@ -98,3 +98,13 @@ Normalized error is zero for perfect timing and one for a miss by at least three
 | 0 | 0.282 / 0.767 | 0.300 / 0.796 | 20 / 36 |
 | 1 | 0.309 / 0.796 | 0.367 / 0.759 | 20 / 29 |
 | 2 | 0.545 / 0.742 | 0.351 / 0.833 | 19 / 24 |
+
+### Signal discrimination
+
+Four different visual cues require different actions. Chance accuracy is 25%. The control disables reinforcement and scheduled sleep.
+
+| Seed | Final accuracy, intact / learning off |
+|---:|---:|
+| 0 | 100.0% / 22.0% |
+| 1 | 94.0% / 22.0% |
+| 2 | 98.0% / 13.0% |
