@@ -1,5 +1,6 @@
 """Integration checks on a developed full brain. Pass --load-brain for a trusted checkpoint."""
 import argparse
+import copy
 from pathlib import Path
 import sys
 import tempfile
@@ -30,6 +31,23 @@ def anatomy(b):
     print(f"{b.n_neurons} neurons, {b.storage()['synapses']} sampled synapses, "
           f"{len(b.g)} mapped populations, {len(catalog)} catalog types")
     assert b.n_neurons == 14656
+
+
+def regional_responses(b):
+    paths = [("CA3.pyr", "CA2.pyr"), ("EC.L3", "CA2.pyr"), ("CA2.pyr", "CA1.pyr"),
+             ("CA1.pyr", "SUB.pyr"), ("INS.IT", "ACC.IT"), ("ACC.IT", "STR.D1"),
+             ("PUL.matrix", "A.L23"), ("CLA.pyr", "A.PV"), ("CB.Purkinje", "DCN.proj")]
+    quiet = {key: np.zeros(len(b.pos[key]), np.float32) for key in b.spec.inputs}
+    for source, target in paths:
+        response = []
+        for pulse in (0., 1.):
+            trial = copy.deepcopy(b)
+            for _ in range(4):
+                trial.step({**quiet, source: np.full(len(b.pos[source]), pulse, np.float32)})
+            response.append(trial.g[target].rate.copy())
+        assert np.max(np.abs(response[1] - response[0])) > 1e-6, (source, target)
+    print(f"{len(paths)} paired regional activity probes passed.")
+
 
 
 def night(b, seed):
@@ -77,6 +95,7 @@ def main():
     args = parser.parse_args()
     b = Brain.load(args.load_brain) if args.load_brain else prepare(args.seed)
     anatomy(b)
+    regional_responses(b)
     night(b, args.seed)
     bridge(b, args.seed)
 

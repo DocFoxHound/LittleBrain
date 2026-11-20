@@ -35,8 +35,9 @@ DEFAULT_BRAIN = "full"
 
 
 def prepare(seed, brain=None, scale=1.0):
-    """brain: which brain description (env BRAIN): bg = basal ganglia loop with a computed dopamine stand-in,
-    da = + dopamine cells and striosomes (notes/32), amy = + amygdala."""
+    """Calibrate and develop the default full brain, or a named comparison stage."""
+    if not np.isfinite(scale) or scale <= 0:
+        raise ValueError("scale must be finite and positive")
     brain = brain or os.environ.get("BRAIN", DEFAULT_BRAIN)
     spec = getattr(S, SPECS[brain])()
     if scale != 1.0:   # bigger or smaller brain: more or fewer cells of every type per map tile
