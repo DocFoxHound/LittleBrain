@@ -71,6 +71,9 @@ PLACEMENTS = {
         Circuit("CA3.NGF", C.HC_NGF, "EC.stellate", "CA3.pyr", "volume", .3),
         Circuit("CA3.IS", C.IS_CELL, "CA3.pyr", "CA3.OLM", "drive", -.3),
     ],
+    "CA1": [
+        Circuit("CA1.CCK", C.CCK_BASKET, "CA3.pyr", "CA1.pyr", "pv", .3),
+    ],
 }
 
 

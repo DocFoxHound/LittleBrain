@@ -19,3 +19,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 | entorhinal cortex | EC.SST, EC.VIP, EC.NGF | 17,024 | 0.020509 / 0.020509 / 0.020509 | 0.0010568 / 0.0014989 / 0.0007085 |
 | dentate gyrus | DG.chandelier | 17,088 | 0.25 / 0.25 / 0.25 | 3.6e-06 / 3.6e-06 / 3.4e-06 |
 | CA3 | CA3.axoaxonic, CA3.bistratified, CA3.OLM, CA3.CCK, CA3.ivy, CA3.NGF, CA3.IS | 17,536 | 0.020509 / 0.020509 / 0.020509 | 1.03e-05 / 1.66e-05 / 1.39e-05 |
+| CA1 | CA1.CCK | 17,600 | 0.27345 / 0.27345 / 0.27345 | 0.31691 / 0.31532 / 0.31649 |
