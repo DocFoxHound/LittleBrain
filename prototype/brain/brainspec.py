@@ -315,7 +315,7 @@ def stage_cerebellum():
     spec.groups += [Group("PONS.relay", C.PONTINE, 1, "PONS"),
                     Group("CB.granule", _cap(C.CB_GRANULE, 1.0), 8, "CB"),
                     Group("CB.Purkinje", C.PURKINJE, 1, "CB"), Group("CB.Golgi", C.GOLGI, 1, "CB"),
-                    Group("IO.olive", C.OLIVE, 1, "IO"), Group("DCN.proj", C.DCN_PROJ, 1, "DCN")]
+                    Group("IO.olive", C.OLIVE, 1, "IO"), Group("DCN.proj", _cap(C.DCN_PROJ, 1.0), 1, "DCN")]
     spec.synaptic += [Synaptic("corticopontine", "A.L5PT", "PONS.relay", "basal", 1.0),
                       Synaptic("mossy fibers", "PONS.relay", "CB.granule", "basal", 1.0),
                       Synaptic("parallel fibers", "CB.granule", "CB.Purkinje", "basal", 1.0),
@@ -326,4 +326,16 @@ def stage_cerebellum():
                     Pooled("climbing fiber", "IO.olive", "CB.Purkinje", 1., channel="cf", sigma=0),
                     Pooled("Purkinje -> DCN", "CB.Purkinje", "DCN.proj", 1., channel="inh"),
                     Pooled("cerebellothalamic", "DCN.proj", "MD.relay", 0.3, channel="exc")]
+    return spec
+
+
+def stage_game_hippocampus():
+    """Reuse the verified stage2 loop, including its replacement tuft afferents."""
+    spec = stage_cerebellum()
+    memory = stage2()
+    core = stage1()
+    existing = {g.key for g in core.groups}
+    spec.groups += [g for g in memory.groups if g.key not in existing]
+    spec.synaptic = [p for p in spec.synaptic if p not in core.synaptic] + memory.synaptic
+    spec.pooled += [p for p in memory.pooled if p not in core.pooled]
     return spec
