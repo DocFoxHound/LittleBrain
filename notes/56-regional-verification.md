@@ -118,3 +118,13 @@ A uniform random policy gets hurt on 75% of danger trials and collects food on 2
 | 0 | 0.0% / 34.5% | 97.8% / 71.1% |
 | 1 | 3.6% / 43.6% | 84.4% / 91.1% |
 | 2 | 3.9% / 62.7% | 98.0% / 69.4% |
+
+### Foraging
+
+The control silences the arcuate hypothalamic populations. The frozen probe offers the same food image under sustained hunger or satiety. A uniform policy chooses food with 50% probability.
+
+| Seed | Eating probability, hungry / sated | Eating probability after lesion, hungry / sated |
+|---:|---:|---:|
+| 0 | 100.0% / 0.0% | 45.4% / 45.4% |
+| 1 | 100.0% / 0.0% | 50.9% / 50.9% |
+| 2 | 100.0% / 0.0% | 68.9% / 68.9% |
