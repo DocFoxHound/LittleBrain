@@ -418,7 +418,10 @@ class Brain:
         if self.homeostasis and not skip:
             self._homeostasis(key, grp, self.homeostasis * getattr(self, "homeo_speed", {}).get(key, 1.0))
         if learn:
-            grp.modulate(dopamine, ach, arousal)
+            if grp.c.family == "purkinje" and "cf" in ch:
+                grp.climbing_fiber(ch["cf"])
+            else:
+                grp.modulate(dopamine, ach, arousal)
         grp.tick(n)
         return grp.rate
 

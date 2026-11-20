@@ -308,3 +308,22 @@ def stage_prefrontal():
                     Pooled("PFC PV -> IT", "PFC.PV", "PFC.IT", 1.5, channel="pv"),
                     Pooled("PFC -> striatum", "PFC.IT", ["STR.D1", "STR.D2"], 0.3, channel="exc")]
     return spec
+
+
+def stage_cerebellum():
+    spec = stage_prefrontal()
+    spec.groups += [Group("PONS.relay", C.PONTINE, 1, "PONS"),
+                    Group("CB.granule", _cap(C.CB_GRANULE, 1.0), 8, "CB"),
+                    Group("CB.Purkinje", C.PURKINJE, 1, "CB"), Group("CB.Golgi", C.GOLGI, 1, "CB"),
+                    Group("IO.olive", C.OLIVE, 1, "IO"), Group("DCN.proj", C.DCN_PROJ, 1, "DCN")]
+    spec.synaptic += [Synaptic("corticopontine", "A.L5PT", "PONS.relay", "basal", 1.0),
+                      Synaptic("mossy fibers", "PONS.relay", "CB.granule", "basal", 1.0),
+                      Synaptic("parallel fibers", "CB.granule", "CB.Purkinje", "basal", 1.0),
+                      Synaptic("mossy collaterals", "PONS.relay", "DCN.proj", "basal", 1.0)]
+    spec.pooled += [Pooled("granule -> Golgi", "CB.granule", "CB.Golgi", 3.),
+                    Pooled("Golgi feedback", "CB.Golgi", "CB.granule", 1., channel="inh"),
+                    Pooled("error -> olive", None, "IO.olive", 1., signal="timing_error"),
+                    Pooled("climbing fiber", "IO.olive", "CB.Purkinje", 1., channel="cf", sigma=0),
+                    Pooled("Purkinje -> DCN", "CB.Purkinje", "DCN.proj", 1., channel="inh"),
+                    Pooled("cerebellothalamic", "DCN.proj", "MD.relay", 0.3, channel="exc")]
+    return spec
