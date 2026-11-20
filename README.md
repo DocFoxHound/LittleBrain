@@ -19,7 +19,7 @@ python -m venv .venv
 
 The viewer opens the foraging game with 14,656 neurons across 120 populations. The first run calibrates the brain and develops it for two simulated days. To change tasks, pass `--game signal`, `danger`, `delayed`, or `timing`. The command-line runners and external game bridge use the same full brain by default. Development, learning and scheduled sleep run on CPU with the dependencies above.
 
-[Recovery provenance and test results](notes/48-full-brain-reconstruction.md) · [Scaling rules](docs/scaling.md) · [Connect an external game](notes/45-game-bridge.md)
+[Regional verification](notes/56-regional-verification.md) · [Recovery provenance and earlier game results](notes/48-full-brain-reconstruction.md) · [Scaling rules](docs/scaling.md) · [Connect an external game](notes/45-game-bridge.md)
 
 ## Working thesis
 
@@ -117,6 +117,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 46. [Admit cerebellar input to the mediodorsal relay](notes/53-cerebellar-input-md.md)
 47. [Keep Purkinje teaching and inhibitory inputs active during timing](notes/54-purkinje-timing-inputs.md)
 48. [Dentate input to CA3 after development](notes/55-hippocampal-transmission.md)
+49. [Verification after the regional wiring repairs](notes/56-regional-verification.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

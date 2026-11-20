@@ -322,3 +322,7 @@ See [note 54](notes/54-purkinje-timing-inputs.md) for the isolated change, match
 ### Sign of learned mossy-fiber input
 
 Note 55 records the post-development dentate-to-CA3 polarity failure, its matched negative-contact intervention and the network-wide scope of signed glutamatergic weights. The regional audit reproduces all three comparisons with its standard command. It leaves the examined checkpoint intact.
+
+### Post-repair verification
+
+Note 56 records the default CPU brain after all seven terminal repairs, including the measured signed pulse for each of the 45 territories on seeds 0, 1 and 2. Rebuilt each checkpoint using check_full_games.py --prepare-only, then reran check_regional_audit.py and check_full_runtime.py with --load-brain and the same seed. All integrated checks passed. The remaining hippocampal sign reversal is quantified in note 55.
