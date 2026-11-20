@@ -67,13 +67,16 @@ The reference brain has 14,656 neurons in 120 populations. We tested all 45 func
 | 1 | 41/45 | 115/120 | 45/45 |
 | 2 | 41/45 | 115/120 | 44/45 |
 
-The three populations without an evoked response on this schedule were the sensory chandelier cells, CA1 axo-axonic cells and association-cortical VIP cells. All three could be recruited by direct stimulation. The VIP population received the same acetylcholine level in the two original conditions. Raphe and SNc pulses also reached their targets when the recipient PV/FSI cells received additional excitatory input. The dentate pulse increased the mean CA3 membrane drive on every seed, even where competition reduced the mean output rate.
+Three populations stayed below the evoked-response threshold on all three seeds. They were the sensory chandelier cells, CA1 axo-axonic cells and association-cortical VIP cells. The claustral projection cells also stayed below threshold on seeds 0 and 1, PFC L6 IT on seeds 1 and 2, and PFC NP on seed 2. Direct stimulation recruited all six populations on every seed. The VIP population received the same acetylcholine level in the two original conditions. Raphe and SNc pulses also reached their targets when the recipient PV/FSI cells received additional excitatory input. The dentate pulse increased the mean CA3 membrane drive on every seed, even where competition reduced the mean output rate.
 
 | Follow-up pulse or condition | Change, seeds 0 / 1 / 2 |
 |---|---:|
 | DR → amygdala PV, with BLA principal co-drive | 0.1 / 0.1 / 0.1 |
 | SNc → striatal FSI, with cortical co-drive | 0.15 / 0.15 / 0.15 |
 | Dentate → CA3, membrane drive before sparse competition | 0.6854 / 0.1399 / 0.5533 |
+| PFC IT → claustral projection cells | 0.2175 / 0.2107 / 0.2376 |
+| PFC IT → PFC L6 IT | 0.2129 / 0.2045 / 0.2460 |
+| PFC IT → PFC NP | 0.1803 / 0.2003 / 0.2387 |
 | Sensory L2/3 → chandelier cells | 0.25 / 0.25 / 0.25 |
 | CA1 pyramids → axo-axonic cells | 0.25 / 0.25 / 0.25 |
 | Acetylcholine → association-cortical VIP cells | 0.3418 / 0.3418 / 0.3418 |
