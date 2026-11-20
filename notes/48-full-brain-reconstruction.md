@@ -48,3 +48,5 @@ All 36 original neuron and plasticity checks passed. All 55 cumulative terminal 
 | 2 | 1,547,200 | 37,236 |
 
 The external Python client completed an observation/outcome round trip on each seed. It rejected a stale turn, applied the corrected outcome and reloaded a checkpoint with changed striatal weights. Seed 0 used 157 MiB peak process memory when loading the developed CPU brain and playing one turn headlessly. The measurement includes Python, NumPy and transient allocations. GPU memory was not measured.
+
+The paired activity probes in the integrated brain reached CA2 from both CA3 and entorhinal layer III, then reached CA1 from CA2 and subiculum from CA1. They also exercised insula to cingulate, cingulate to striatum, pulvinar to cortical layer II/III, claustrum to cortical PV cells and Purkinje to deep cerebellar nuclei. Each probe changed measured target firing on all three seeds. At quarter scale, the allocation floors retained 8,256 neurons and seed 0 had 417,280 sampled synapses. The scaled brain exercised all eight motor slots and continued into the timing game.

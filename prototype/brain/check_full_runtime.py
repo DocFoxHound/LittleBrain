@@ -8,6 +8,7 @@ import numpy as np
 
 from run_signal_game import Brain, BrainAgent, prepare
 from games import SignalGame
+from game_controls import Controls
 import celltypes as C
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -88,6 +89,27 @@ def bridge(b, seed):
         print("External observe/outcome, stale-turn retry and learned checkpoint round trip passed.")
 
 
+def game_controls():
+    keys = Controls({"controls": [{"name": "walk", "kind": "key"},
+                                  {"name": "turn", "kind": "axis", "values": [-1, 0, 1]}]})
+    assert keys.select(1) == [{"kind": "key", "name": "walk", "value": "hold"}]
+    assert keys.select(3) == [{"kind": "axis", "name": "turn", "value": -1}]
+    assert keys.reset() == [{"kind": "key", "name": "walk", "value": "release"},
+                            {"kind": "axis", "name": "turn", "value": 0}]
+    for value in (0, 65, 0xd7ff, 0xe000, 0x1f43a, 0x10ffff):
+        text = Controls({"controls": [{"name": "chat", "kind": "text"}]})
+        index = value if value < 0xd800 else value - 0x800
+        events = text.select(0)
+        while not events:
+            slot = next(i for i, item in enumerate(text.stack[-1])
+                        if item["scalar_range"][0] <= index < item["scalar_range"][1])
+            events = text.select(slot)
+        assert events == [{"kind": "text", "name": "chat", "value": chr(value)}]
+        assert text.panel()["depth"] == 0
+    print("Held inputs, axis reset and Unicode scalar entry passed.")
+
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--load-brain")
@@ -98,6 +120,7 @@ def main():
     regional_responses(b)
     night(b, args.seed)
     bridge(b, args.seed)
+    game_controls()
 
 
 if __name__ == "__main__":

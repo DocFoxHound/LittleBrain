@@ -374,8 +374,8 @@ class App:
         self.brain = b
         self.game = self.make_game()
         self.game_name = type(self.game).__name__
-        n_channels = len(set(np.asarray(__import__("brainspec").action_channel(b.tile["GPi"], self.game.n_actions)).tolist()))
         self.agent = BrainAgent(b, self.game.n_actions, seed=self.seed)
+        n_channels = len(np.unique(self.agent.chan["GPi"]))
         assert n_channels == self.game.n_actions, "the brain's map has fewer stripes than the game has actions"
         self.agent.on_step = self.on_step
         self.layout = Layout(b, (40, -36, 920, 920))
