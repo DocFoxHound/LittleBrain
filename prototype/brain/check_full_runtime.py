@@ -32,9 +32,12 @@ def anatomy(b):
     assert set(b.g) <= outgoing | {"VTA.DA", "LH.MCH"}
     print(f"{b.n_neurons} neurons, {b.storage()['synapses']} sampled synapses, "
           f"{len(b.g)} mapped populations, {len(catalog)} catalog types")
-    from brainspec import full_brain
-    reference = full_brain()
-    assert b.n_neurons == 64 * sum(g.per_tile for g in reference.groups if g.key not in reference.inputs)
+    from check_regional_audit import composition
+    plan = composition(b)
+    missing = {name: sub["missing_types"] for name, sub in plan.items() if sub["missing_types"]}
+    assert not missing, missing
+    assert len(plan) == 36 and sum(len(sub["planned_percent"]) for sub in plan.values()) == 167
+    assert (b.n_neurons, len(b.g)) == (18944, 187)
 
 
 def regional_responses(b):

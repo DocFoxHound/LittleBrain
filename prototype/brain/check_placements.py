@@ -9,15 +9,14 @@ from check_regional_audit import composition, projection, territory, TERRITORIES
 from cells import ExcitatoryGroup
 
 
-def paired(brain, source, target, sign, channel):
+def paired(brain, source, target, sign, soma):
     # Use membrane drive for dendritic currents and emitted activity for an
     # axon veto. A driven receiver can reveal inhibition below firing threshold.
-    soma = isinstance(brain.g[target], ExcitatoryGroup) and channel != "ais"
-    for bias in (0., .8, 2.):
+    for bias in (0., .8, 2., -.8, -2., 5., -5.):
         delta = projection(brain, source, target, soma=soma, drive_bias=bias)
         if sign * delta > 1e-7:
             return round(delta, 7), bias
-    raise AssertionError((source, target, sign, channel, delta))
+    raise AssertionError((source, target, sign, soma, delta))
 
 
 def check(brain, name):
@@ -28,16 +27,23 @@ def check(brain, name):
         assert not inventory[sub.name]["missing_types"], sub.name
         assert brain.g[c.key].c.name == c.cell.name
         inputs = [c.source] + ([c.apical] if c.apical else [])
-        afferents = [paired(brain, src, c.key, np.sign(c.input_weight), "drive") for src in inputs]
+        has_soma = isinstance(brain.g[c.key], ExcitatoryGroup)
+        afferents = [paired(brain, src, c.key, np.sign(c.input_weight), has_soma) for src in inputs]
+        emitted = paired(brain, c.source, c.key, np.sign(c.input_weight), False) if has_soma else afferents[0]
         sign = -1 if c.terminal in ("pv", "sst", "dend", "volume", "ais", "inh") else np.sign(c.weight)
-        out, bias = paired(brain, c.key, c.target, sign, c.terminal)
+        soma = isinstance(brain.g[c.target], ExcitatoryGroup) and c.terminal != "ais"
+        out, bias = paired(brain, c.key, c.target, sign, soma)
+        downstream = paired(brain, c.key, c.target, sign, False) if soma else (out, bias)
         lesion = copy.copy(brain)
         lesion.ablated = brain.ablated | {f"{c.key} -> {c.target}"}
         # A fixed presynaptic pulse must disappear when just its terminal is cut.
-        soma = isinstance(brain.g[c.target], ExcitatoryGroup) and c.terminal != "ais"
         muted = projection(lesion, c.key, c.target, soma=soma, drive_bias=bias)
         assert abs(muted) < 1e-7, (c.key, c.target, muted)
-        rows[c.key] = dict(inputs=afferents, output=out, bias=bias, muted=muted)
+        if soma:
+            muted_output = projection(lesion, c.key, c.target, drive_bias=downstream[1])
+            assert abs(muted_output) < 1e-7, (c.key, c.target, muted_output)
+        rows[c.key] = dict(inputs=afferents, emitted=emitted, output=out, bias=bias,
+                           downstream=downstream, muted=muted)
     return rows
 
 

@@ -127,6 +127,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 56. [Regional placement budgets at reference scale](notes/63-placement-budget.md)
 57. [Thalamic excitation of striosomes](notes/64-thalamic-striosome-input.md)
 58. [Reference-scale regional placements](notes/65-regional-placements.md)
+59. [Expanded reference brain verification](notes/66-expanded-reference-verification.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
