@@ -352,3 +352,19 @@ def stage_ca2():
     spec.pooled += [Pooled("CA2 basket recruitment", "CA2.pyr", "CA2.PV", 5.),
                     Pooled("CA2 basket inhibition", "CA2.PV", "CA2.pyr", 1., channel="pv")]
     return spec
+
+
+def stage_insula():
+    spec = stage_ca2()
+    for area, source in (("INS", "B.L23"), ("ACC", "INS.IT")):
+        key = area + ".IT"
+        spec.groups += [Group(key, _cortex(C.L5_IT), 2, area), Group(area + ".PV", C.PV, 1, area)]
+        spec.synaptic += [Synaptic(area + " afferent", source, key, "basal", 0.15),
+                          Synaptic(area + " recurrent", key, key, "basal", 0.85, kind="local"),
+                          Synaptic(area + " local tuft", key, key, "apical", 1.0, kind="local")]
+        spec.pooled += [Pooled(area + " local basket input", key, area + ".PV", 4.),
+                        Pooled(area + " local inhibition", area + ".PV", key, 1., channel="pv")]
+    spec.pooled += [Pooled("body state -> anterior insula", "HYP.AgRP", "INS.IT", 0.8, channel="exc"),
+                    Pooled("insula -> amygdala", "INS.IT", "BLA.neg", 0.3, channel="exc"),
+                    Pooled("cingulate -> striatum", "ACC.IT", "STR.D1", 0.3, channel="exc")]
+    return spec
