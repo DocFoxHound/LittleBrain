@@ -3,6 +3,8 @@ import argparse
 from contextlib import redirect_stdout
 import json
 import math
+from pathlib import Path
+from game_controls import Controls
 import sys
 
 import numpy as np
@@ -34,12 +36,13 @@ def number(value, low=0, high=1):
 
 
 class Session:
-    def __init__(self, brain, actions, seed, learn=True, sleep_every=0):
+    def __init__(self, brain, actions, seed, learn=True, sleep_every=0, controls=None):
         if not 1 <= len(actions) <= 8 or len(set(actions)) != len(actions) or not all(actions):
             raise ValueError("supply one to eight distinct nonempty actions")
         self.actions = list(actions)
         self.agent = BrainAgent(brain, len(actions), seed=seed, learn=learn)
         self.sleep_every = sleep_every
+        self.controls = controls
 
     def request(self, msg):
         if not isinstance(msg, dict):
@@ -50,8 +53,18 @@ class Session:
             if not isinstance(raw_body, dict) or set(raw_body) - {"hunger", "thirst", "social_contact"}:
                 raise ValueError("invalid body field")
             body = {k: number(v) for k, v in raw_body.items()}
-            index = agent.begin_turn(Observation(image_array(msg), body))
-            return {"type": "action", "turn": agent.turn + 1, "index": index, "action": self.actions[index]}
+            image = image_array(msg)
+            if self.controls:
+                image = self.controls.camera(image)
+            index = agent.begin_turn(Observation(image, body))
+            reply = {"type": "action", "turn": agent.turn + 1, "index": index, "action": self.actions[index]}
+            if self.controls:
+                reply.update(events=self.controls.select(index), panel=self.controls.panel())
+            return reply
+        if msg.get("type") == "reset_controls" and self.controls:
+            if agent.pending is not None:
+                raise ValueError("finish the pending turn before resetting")
+            return dict(type="reset", events=self.controls.reset(), panel=self.controls.panel())
         if msg.get("type") == "outcome":
             turn = msg.get("turn")
             if type(turn) is not int or turn != agent.turn + 1:
@@ -72,7 +85,9 @@ def send(message):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--actions", nargs="+", required=True)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--actions", nargs="+")
+    mode.add_argument("--controls", type=Path)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--no-learn", action="store_true")
     parser.add_argument("--load-brain")
@@ -80,7 +95,9 @@ def main():
     args = parser.parse_args()
     with redirect_stdout(sys.stderr):
         brain = Brain.load(args.load_brain) if args.load_brain else prepare(args.seed)
-        session = Session(brain, args.actions, args.seed, not args.no_learn)
+        controls = Controls(json.loads(args.controls.read_text())) if args.controls else None
+        actions = args.actions or [f"slot{i}" for i in range(7)] + ["back"]
+        session = Session(brain, actions, args.seed, not args.no_learn, controls=controls)
     send({"type": "ready", "version": 1, "actions": session.actions, "neurons": brain.n_neurons})
     for line in sys.stdin:
         try:

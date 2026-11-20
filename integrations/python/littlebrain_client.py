@@ -35,6 +35,14 @@ class GameClient:
         self.turn = reply["turn"]
         return reply["action"]
 
+    def observe_controls(self, image, **fields):
+        reply = self.request(type="observe", image=image, **fields)
+        self.turn = reply["turn"]
+        return reply
+
+    def reset_controls(self):
+        return self.request(type="reset_controls")["events"]
+
     def outcome(self, reward, **fields):
         self.request(type="outcome", turn=self.turn, reward=reward, **fields)
         self.turn = None
