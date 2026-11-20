@@ -26,6 +26,22 @@ PLACEMENTS = {
         Circuit("PFC.NGF", C.LAMP5_NGF, "MD.relay", "PFC.L23", "volume", .3),
         Circuit("PFC.rosehip", C.ROSEHIP, "PFC.L23", "PFC.L5PT", "sst", .3),
     ],
+    "cingulate and insular cortex": [
+        Circuit("INS.L4", C.L4_STELLATE, "TH.TC", "INS.IT", "exc", .35),
+        Circuit("ACC.L23", C.L23_IT, "INS.IT", "ACC.IT", "exc", .3, apical="PFC.IT"),
+        Circuit("ACC.L5PT", C.L5_PT, "ACC.L23", "STN.proj", "exc", .25, apical="MD.relay"),
+        Circuit("INS.NP", C.NP, "INS.IT", "INS.PV", "drive", .3, apical="B.L5IT"),
+        Circuit("ACC.L6CT", C.L6_CT, "ACC.IT", "MD.relay", "exc", .2),
+        Circuit("INS.L6IT", C.L6_IT, "INS.IT", "CLA.pyr", "exc", .2),
+        Circuit("INS.L6b", C.L6B, "INS.IT", "INS.L6IT", "exc", .2),
+        Circuit("ACC.CCK", C.CCK_BASKET, "ACC.L23", "ACC.IT", "pv", .3),
+        Circuit("INS.chandelier", C.CHANDELIER, "INS.IT", "INS.IT", "ais", .3),
+        Circuit("ACC.SST", C.SST, "ACC.IT", "ACC.L23", "sst", .3),
+        Circuit("INS.SSTnonMartinotti", C.SST_NONMARTINOTTI, "INS.L4", "INS.PV", "drive", -.3),
+        Circuit("ACC.VIP", C.VIP, "PFC.IT", "ACC.SST", "drive", -.3),
+        Circuit("INS.NGF", C.LAMP5_NGF, "B.L23", "INS.IT", "volume", .3),
+        Circuit("ACC.rosehip", C.ROSEHIP, "ACC.L23", "ACC.L5PT", "sst", .3),
+    ],
 }
 
 

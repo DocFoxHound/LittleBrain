@@ -12,3 +12,4 @@ The numeric columns give the smallest absolute afferent and efferent effects amo
 |---|---|---:|---:|---:|
 | sensory cortex | A.NP, B.L6IT | 14,784 | 0.38523 / 0.39891 / 0.37576 | 0.15 / 0.15 / 0.15 |
 | prefrontal cortex | PFC.L4, PFC.L23, PFC.L5PT, PFC.L6CT, PFC.L6b, PFC.CCK, PFC.chandelier, PFC.SST, PFC.SSTnonMartinotti, PFC.VIP, PFC.NGF, PFC.rosehip | 15,552 | 0.020509 / 0.020509 / 0.020509 | 0.003655 / 0.0011367 / 1.55e-05 |
+| cingulate and insular cortex | INS.L4, ACC.L23, ACC.L5PT, INS.NP, ACC.L6CT, INS.L6IT, INS.L6b, ACC.CCK, INS.chandelier, ACC.SST, INS.SSTnonMartinotti, ACC.VIP, INS.NGF, ACC.rosehip | 16,448 | 0.020509 / 0.020509 / 0.020509 | 0.0002474 / 0.0002491 / 0.0002465 |
