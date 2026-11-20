@@ -18,6 +18,8 @@ class Circuit:
     weight: float
     input_weight: float = 1.0
     copies: int = 1
+    apical: str | None = None
+    human: str | None = None
 
 
 CIRCUITS = [
@@ -79,6 +81,26 @@ CIRCUITS = [
 ]
 
 
+def add_circuit(spec, circuit, region):
+    cell = circuit.cell
+    sampled = cell.family in {"pyramidal", "stellate", "relay", "granule", "msn", "rebound", "learning_inh"}
+    if circuit.human:
+        cell = replace(cell, human=circuit.human)
+    if sampled:
+        cell = replace(cell, n_apical=cell.n_apical if circuit.apical else 0, long_range_max=1.0)
+    spec.groups.append(Group(circuit.key, cell, circuit.copies, region))
+    afferent = f"{circuit.source} -> {circuit.key}"
+    if sampled:
+        spec.synaptic.append(Synaptic(afferent, circuit.source, circuit.key, "basal", 1., circuit.input_weight))
+        if circuit.apical:
+            spec.synaptic.append(Synaptic(f"{circuit.apical} -> {circuit.key} tuft", circuit.apical,
+                                          circuit.key, "apical", 1.))
+    else:
+        spec.pooled.append(Pooled(afferent, circuit.source, circuit.key, circuit.input_weight))
+    efferent = f"{circuit.key} -> {circuit.target}"
+    spec.pooled.append(Pooled(efferent, circuit.key, circuit.target, circuit.weight, channel=circuit.terminal))
+
+
 def extend(spec, through):
     keys = [c.key for c in CIRCUITS]
     if through not in keys:
@@ -90,20 +112,7 @@ def extend(spec, through):
     if keys.index("EC.island") <= last < keys.index("CA1.NGF"):
         circuits.append(CIRCUITS[keys.index("CA1.NGF")])
     for circuit in circuits:
-        region = circuit.key.partition(".")[0]
-        cell = circuit.cell
-        sampled = cell.family in {"pyramidal", "stellate", "relay", "granule", "msn", "rebound", "learning_inh"}
-        if sampled:
-            # This reduced circuit represents only the named afferent.
-            cell = replace(cell, n_apical=0, long_range_max=1.0)
-        spec.groups.append(Group(circuit.key, cell, circuit.copies, region))
-        afferent = f"{circuit.source} -> {circuit.key}"
-        if sampled:
-            spec.synaptic.append(Synaptic(afferent, circuit.source, circuit.key, "basal", 1., circuit.input_weight))
-        else:
-            spec.pooled.append(Pooled(afferent, circuit.source, circuit.key, circuit.input_weight))
-        efferent = f"{circuit.key} -> {circuit.target}"
-        spec.pooled.append(Pooled(efferent, circuit.key, circuit.target, circuit.weight, channel=circuit.terminal))
+        add_circuit(spec, circuit, circuit.key.partition(".")[0])
         if circuit.key in ("PVN.oxytocin", "PVN.vasopressin"):
             signal = "social_contact" if circuit.key == "PVN.oxytocin" else "thirst"
             spec.pooled.append(Pooled(f"{signal} -> {circuit.key}", None, circuit.key, 2., signal=signal))

@@ -358,3 +358,7 @@ The reduced deep-nucleus readout in association.py admits sampled pontine drive.
 ### Striosome thalamic input
 
 [Note 64](notes/64-thalamic-striosome-input.md) records the failed zero-floor control, within-class plasticity in cells.py and the three-seed pulse and signal comparisons.
+
+### Expanded regional reference brain
+
+[Note 65](notes/65-regional-placements.md) tracks each region's tested additions to catalog_placements.py, three-seed measurements, circuit assumptions and the command for reproducing its paired input, output and terminal-lesion checks.

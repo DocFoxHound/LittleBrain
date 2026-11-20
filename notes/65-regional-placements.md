@@ -1,0 +1,13 @@
+# Regional placements in the expanded reference brain
+
+The expansion preserves the 120 existing population counts and adds one 64-cell map per missing catalog entry. The comparison uses the 36 regional composition tables, including their shared cortical and thalamic entries. New composite entries are distributed between constituent maps. Within-region percentages at this resolution reflect the one-map minimum. Named historical stages and saved topologies remain available.
+
+Each row in catalog_placements.py identifies an afferent, the new population, its target and the terminal. Tuft afferents are specified separately for new pyramidal types with apical dendrites. Existing types provide their cellular dynamics. Minority populations represented with a type from another region carry a local human description. The choices of individual recipient, gain, and single-source representation are approximations. The dorsal raphe dopamine projection uses the extended amygdala as its receiver (Matthews et al. 2016). [Cell composition and regional sources](regions/composition-report.txt) · [Connection research and references](regions/connections.md)
+
+For each addition, three new brains took 12 visual-stimulation and settling steps. A unit source pulse was paired with a quiet source in a copy of the same state. The readout was receiver membrane drive for dendritic input or emitted activity for axonal vetoes and non-pyramidal receivers. A bias current could bring a receiver above threshold. The regional script reports that bias and each individual effect. Cutting only the new output terminal gave zero in every pair. Run `python prototype/brain/check_placements.py --region REGION --seed N` for seeds 0, 1 and 2. Omit the region for the complete panel. Pass a developed reference checkpoint with `--load-brain PATH` for post-development measurements.
+
+The numeric columns give the smallest absolute afferent and efferent effects among the populations added at each stage, in seed order. Each individual change had its predicted sign.
+
+| Catalog cohort | New populations | Reference neurons | Minimum afferent effect, 0 / 1 / 2 | Minimum efferent effect, 0 / 1 / 2 |
+|---|---|---:|---:|---:|
+| sensory cortex | A.NP, B.L6IT | 14,784 | 0.38523 / 0.39891 / 0.37576 | 0.15 / 0.15 / 0.15 |

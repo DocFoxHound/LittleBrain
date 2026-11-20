@@ -32,7 +32,9 @@ def anatomy(b):
     assert set(b.g) <= outgoing | {"VTA.DA", "LH.MCH"}
     print(f"{b.n_neurons} neurons, {b.storage()['synapses']} sampled synapses, "
           f"{len(b.g)} mapped populations, {len(catalog)} catalog types")
-    assert b.n_neurons == 14656
+    from brainspec import full_brain
+    reference = full_brain()
+    assert b.n_neurons == 64 * sum(g.per_tile for g in reference.groups if g.key not in reference.inputs)
 
 
 def regional_responses(b):
@@ -141,7 +143,7 @@ def bridge(b, seed):
         command = [sys.executable, str(ROOT / "prototype/brain/game_bridge.py"), "--load-brain", str(initial),
                    "--save-brain", str(saved), "--seed", str(seed), "--actions", "left", "right"]
         with GameClient(command) as client:
-            assert client.ready["neurons"] == 14656
+            assert client.ready["neurons"] == b.n_neurons
             action = client.observe([[10, 240], [128, 0]], format="gray8", body={"thirst": .8})
             assert action in ("left", "right")
             try:

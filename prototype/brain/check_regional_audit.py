@@ -62,7 +62,7 @@ PROJECTIONS = {
 }
 
 
-def projection(b, source, target, background=None, soma=False, interneuron=None):
+def projection(b, source, target, background=None, soma=False, interneuron=None, drive_bias=0.):
     from striatal_projection import amygdala_input, transmit
 
     rates = []
@@ -74,7 +74,8 @@ def projection(b, source, target, background=None, soma=False, interneuron=None)
             fixed[source] = pulse
         for key, value in fixed.items():
             trial.r[trial.index[key]] = value
-            trial.g[key].rate[:] = value
+            if key in trial.g:
+                trial.g[key].rate[:] = value
         if target == "phasic dopamine":
             rates.append(trial._own_dopamine())
             continue
@@ -88,6 +89,9 @@ def projection(b, source, target, background=None, soma=False, interneuron=None)
         if exc:
             amygdala_input(trial, channels)
             transmit(trial, channels)
+        if drive_bias:
+            name = "exc" if exc else "drive"
+            channels[target][name] = channels[target].get(name, 0.) + drive_bias
         emitted = trial._update(target, group, channels[target], 2 if exc else 1, False, ach, 0., 0.)
         rates.append((group.soma if soma else emitted).copy())
     return float(np.mean(rates[1] - rates[0]))

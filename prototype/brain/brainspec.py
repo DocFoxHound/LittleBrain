@@ -384,4 +384,6 @@ def full_brain(through=None):
     spec = extend(stage_insula(), through or CIRCUITS[-1].key)
     if through is None:
         next(g for g in spec.groups if g.key == "CB.granule").per_tile += 12
+        from catalog_placements import add_placements
+        add_placements(spec)
     return spec

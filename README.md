@@ -1,6 +1,6 @@
 # LittleBrain
 
-![The default 14,656-neuron LittleBrain playing the foraging game](docs/screenshots/full-brain-forage.png)
+![The earlier 14,656-neuron LittleBrain playing the foraging game](docs/screenshots/full-brain-forage.png)
 
 > **AI agents and new contributors: start with [AGENTS.md](AGENTS.md)**: setup, how the brain works, ground rules, baselines to reproduce, and the next tasks.
 
@@ -17,7 +17,7 @@ python -m venv .venv
 .venv/bin/python prototype/viz/brainview.py
 ```
 
-The viewer opens the foraging game with 14,656 neurons across 120 populations. The first run calibrates the brain and develops it for two simulated days. To change tasks, pass `--game signal`, `danger`, `delayed`, or `timing`. The command-line runners and external game bridge use the same full brain by default. Development, learning and scheduled sleep run on CPU with the dependencies above.
+The viewer opens the foraging game with 14,784 neurons across 122 populations. The first run calibrates the brain and develops it for two simulated days. To change tasks, pass `--game signal`, `danger`, `delayed`, or `timing`. The command-line runners and external game bridge use the same full brain by default. Development, learning and scheduled sleep run on CPU with the dependencies above.
 
 [Regional verification](notes/56-regional-verification.md) · [Recovery provenance and earlier game results](notes/48-full-brain-reconstruction.md) · [Scaling rules](docs/scaling.md) · [Connect an external game](notes/45-game-bridge.md)
 
@@ -50,7 +50,7 @@ way we do, so it can relate to people on a more genuine level.
 4. ✅ First wiring test (note 19): a small piece of cortex (two areas plus a thalamus) with local + long-range rules and inhibition; **run the wave simulation here** (waves on/off, direction as mode, wave-ordered prefetch)
 5. ✅ Organize the chosen structure into brain regions (note 21; percentages per region, `prototype/brain/regions.py`)
 6. ✅ Refine how each type learns; retool how specific neurons cluster and learn (note 22)
-7. The default federated game brain now connects the catalog across 120 populations. [Reconstruction measurements](notes/48-full-brain-reconstruction.md)
+7. The reconstructed reference game brain connected 120 populations before the regional expansion. [Reconstruction measurements](notes/48-full-brain-reconstruction.md)
    - ⚠️ Brain-level memory scores were a timing artifact (note 26). **2026-11-17:** honest tests added, and cortex area A made reliable (note 28); no memory yet.
 8. Scheduled sleep replays recent sensory activity, consolidates synapses and replaces a small fraction of eligible partners. Longer-term effects of replay and richer dreaming remain open experiments.
 
@@ -126,6 +126,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 55. [Pontine collaterals reach deep cerebellar output](notes/62-pontine-collateral.md)
 56. [Regional placement budgets at reference scale](notes/63-placement-budget.md)
 57. [Thalamic excitation of striosomes](notes/64-thalamic-striosome-input.md)
+58. [Reference-scale regional placements](notes/65-regional-placements.md)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
