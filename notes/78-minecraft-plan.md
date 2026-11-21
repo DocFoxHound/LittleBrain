@@ -15,6 +15,8 @@ Realistic first goals, on a small local world with the bot doing the fine motor 
    and understand a few words from the player (track L).
 6. **Cooperate sensibly**: help a known partner when it costs little, prefer partners who reciprocate, stop helping
    one who never does (track C).
+7. **Avoid what comes back to hurt**: stays away from actions whose consequences arrive later and badly, for itself or
+   its group, e.g. leaves villagers alone (Minecraft's iron golems and gossip retaliate) (track N).
 Not in v1: building, mining deep, combat strategy, conversation beyond a few words.
 
 ## Where we are (start of this plan)
@@ -182,10 +184,44 @@ partners who reciprocate, and stops helping one who never does.**
 
 ---
 
+## Track N: consequences, learning what leads to harm
+*Added 2026-11-22 at the owner's request: planning and long-step rewards must work in the other direction too. Events
+that accumulate toward something bad should become aversive in advance, e.g. killing a neighbour, then watching the
+neighbours burn your house down.*
+
+**Why it needs its own track.** Dopamine cells can't fire below zero, so their dips for bad outcomes are shallow
+(note 32): the reward system alone learns "this leads to good things" much better than "this leads to disaster".
+Brains have an opponent system for harm: the **lateral habenula** signals "worse than expected" and silences dopamine
+cells through the **RMTg** (Matsumoto & Hikosaka 2007); **serotonin** (dorsal raphe) is thought to carry an aversive or
+patience signal opposite dopamine (Daw, Kakade & Dayan 2002); the **amygdala** learns threats; the **insula** anticipates
+loss; **orbitofrontal cortex** weighs future consequences and regret; **anterior cingulate** weighs costs. LHb, RMTg,
+PAG and the dorsal raphe already exist as relays in the full brain (regional_circuits.py).
+
+| step | what | real counterpart | test (3 seeds; controls) |
+|---|---|---|---|
+| N1 harm across steps | an aversive TD signal alongside phase 1's reward TD: punishment k steps later propagates back to the choice that caused it, through LHb/RMTg and serotonin, at full strength (not limited by dopamine's floor) | LHb negative prediction errors; serotonin opponent | **slow poison**: an action pays a little now and costs a lot 3-10 steps later; learned avoidance vs LHb/raphe silenced |
+| N2 accumulating risk | small harms add up toward a threshold (a reputation that drains, a resource that collapses, a crowd that gets angrier); the state includes "how close to the edge", and value drops before the edge is reached | insula anticipation of loss; OFC state value | **erosion**: repeated small gains drain a hidden meter that ends in a big loss; stops before the edge |
+| N3 others react | the world model (phase 3) includes how others respond to what it does: harming one member makes the group retaliate later; helping makes them friendlier | model-based social prediction (mPFC/TPJ) | **retaliation**: harming a neighbour gives an immediate gain, then the neighbours retaliate; learned avoidance in advance; and it transfers to a new neighbourhood after being told/shown once |
+| N4 guilt and remorse | own harm to others is aversive in itself through the vicarious signals of track C2 (stronger for familiar others) and remembered (hippocampus, CA2) | ACC/insula in guilt (Chang et al. 2011); regret in OFC (Coricelli et al. 2005) | prefers a slightly costlier action that harms no one; social drives off → stops caring unless punished |
+| N5 learning it in sleep | replay links an action to consequences that came much later (hours of game time) | sleep replay (phase 6) | a consequence 50+ steps later is linked after a night, not without |
+
+**Minecraft has this built in.** Hitting a villager angers the village's iron golem and raises the villagers'
+prices through Minecraft's gossip system: a ready-made delayed, social consequence. Also: hunger draining while
+wandering, fall damage at cliff edges, night falling while far from shelter.
+
+**Balance.** Avoidance must not turn into paralysis: an anxious brain that never acts is a failure too. Every test also
+reports how often it still takes worthwhile risks.
+
+**Where it fits.** N1 with phase 1; N2 and N3 after phase 3; N4 after C2; N5 with phase 6. Template v1 goal:
+**avoids actions whose consequences come back to hurt it or its group later** (e.g. leaves villagers alone).
+
+---
+
 ## Order and dependencies
 0 → 1 → (2, 5 in parallel) → 3 → 4 → 6 → 7 → 8 → 9. Phase 7 (the connection) can start in parallel with 3-6 using
 the blank brain, so the plumbing is ready when the brain is. Track L runs alongside: L1 with phase 1; L2 after 1;
 L3 after 5; L4 after 3; L5 after 4. Track C: C1 after 2 and 5; C2 after 1; C3, C4 after 3; C5 after C4; C6 after L4.
+Track N: N1 with 1; N2, N3 after 3; N4 after C2; N5 with 6.
 
 ## Risks
 - **Sample efficiency**: biological learning rules are slow; Minecraft may need many thousands of episodes. Mitigation:
