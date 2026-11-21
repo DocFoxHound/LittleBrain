@@ -13,6 +13,7 @@ Stage 2 (this file's first version, note 72):
   - V1 (area A) input layers on finer maps: L4 on 16x16 (all three LGN streams), L2/3 on 16x16.
 """
 
+import os
 from dataclasses import replace
 
 import numpy as np
@@ -22,6 +23,7 @@ from federation import Group, Pooled, Synaptic
 from retina import DS, KONIO, MAGNO, PARVO
 
 FINE = 32     # retina detail channels
+RELAYS = ("TH.TC", "TH.OFF", "TH.M", "TH.K")   # parvo ON, parvo OFF, magno, konio
 MID = 16      # LGN, magno/konio channels, V1 input layers
 
 
@@ -37,24 +39,36 @@ def add_retina_and_lgn(spec):
     resized = {"TH.TC": (MID, 1), "A.L4": (MID, 2), "A.L23": (MID, 3)}
     spec.groups = [replace(g, grid=resized[g.key][0], per_tile=resized[g.key][1]) if g.key in resized else g
                    for g in spec.groups]
-    spec.groups += [Group("TH.M", C.TC_RELAY, 1, "TH", grid=MID), Group("TH.K", C.TC_RELAY, 2, "TH")]
+    # Critical period: V1's input layer learns faster than the rest of cortex during development (env, note 73)
+    lrf = float(os.environ.get("VISION_L4_LRF", "20"))
+    if lrf != 1:
+        spec.groups = [replace(g, ctype=replace(g.ctype, rules=replace(g.ctype.rules, lr=g.ctype.rules.lr * lrf)))
+                       if g.key == "A.L4" else g for g in spec.groups]
+    # ON and OFF signals stay in separate relay cells (as in the LGN); TH.TC keeps its name for older pathways
+    spec.groups += [Group("TH.OFF", C.TC_RELAY, 1, "TH", grid=MID),
+                    Group("TH.M", C.TC_RELAY, 1, "TH", grid=MID), Group("TH.K", C.TC_RELAY, 2, "TH")]
     syn = []
     for p in spec.synaptic:
         if p.id == "CT-2 retina->relay (driver)":
-            p = replace(p, id="CT-2 midget cells->parvo relay (driver)", src=list(PARVO))
+            p = replace(p, id="CT-2 ON midget cells->parvo ON relay (driver)", src=["RET.on", "RET.rg_on"])
         elif p.id.startswith("CT-1") and p.dst in ("A.L4", "A.L6"):
-            p = replace(p, src=["TH.TC", "TH.M", "TH.K"])
+            p = replace(p, src=list(RELAYS))
+            # More, weaker thalamic synapses per layer-4 cell, same total drive (env VISION_TC_FRAC, note 73):
+            # real L4 cells get ~30 LGN inputs (Alonso et al. 2001), not ~6
+            frac = float(os.environ.get("VISION_TC_FRAC", "0")) if p.dst == "A.L4" else 0
+            if frac:
+                p = replace(p, frac=frac, gain=p.gain * p.frac / frac)
         syn.append(p)
-    for relay, drivers in (("TH.M", list(MAGNO + DS)), ("TH.K", list(KONIO))):
+    for relay, drivers in (("TH.OFF", ["RET.off", "RET.rg_off"]), ("TH.M", list(MAGNO + DS)), ("TH.K", list(KONIO))):
         syn += [Synaptic(f"CT-2 retina->{relay} (driver)", drivers, relay, "basal", 0.3, 3.0, 0.05),
                 Synaptic(f"CT-3 L6 CT->{relay} (modulator)", "A.L6", relay, "basal", 0.7, 0.15, 0.08)]
     spec.synaptic = syn
     pooled = []
     for p in spec.pooled:
         if p.id == "TRN<-relay collaterals":
-            p = replace(p, src=["TH.TC", "TH.M", "TH.K"])
+            p = replace(p, src=list(RELAYS))
         elif p.id in ("CT-5 TRN->relay", "TH.interneuron -> TH.TC"):
-            p = replace(p, dst=_members(p.dst) + ["TH.M", "TH.K"])
+            p = replace(p, dst=_members(p.dst) + ["TH.OFF", "TH.M", "TH.K"])
         pooled.append(p)
     spec.pooled = pooled
     return spec
@@ -125,3 +139,37 @@ def visual_experience(brain, rng):
     eye = Retina(brain)
     quiet = {k: np.zeros(len(brain.pos[k]), np.float32) for k in brain.spec.inputs}
     return lambda: Movie(eye, rng, quiet)
+
+
+# ---------------------------------------------------------------- retinal waves (prenatal development, note 73)
+
+class Wave:
+    """One spontaneous retinal wave: a band of ganglion-cell activity sweeping across the retina in a random
+    direction (Meister et al. 1991; Wong 1999). In stage III waves ON cells fire before OFF cells
+    (Kerschensteiner & Wong 2008), so ON and OFF bands are offset. Applied to the retinal channels directly:
+    waves are activity of the retina itself, not light."""
+
+    def __init__(self, brain, rng, quiet, width=0.07, lag=0.08):
+        self.b, self.quiet, self.width, self.lag = brain, quiet, width, lag
+        a = rng.uniform(0, 2 * np.pi)
+        self.dir = np.array([np.cos(a), np.sin(a)])
+        self.start = rng.uniform(-0.3, 0.0)
+
+    def frame(self, s, hold):
+        out = dict(self.quiet)
+        if s >= hold:
+            return out
+        front = self.start + (s + 1) * (1.5 / hold)
+        for k in ("RET.on", "RET.off", "RET.rg_on", "RET.rg_off", "RET.by", "RET.ton", "RET.toff"):
+            if k not in self.b.pos:
+                continue
+            d = (self.b.pos[k] - 0.5) @ self.dir + 0.5
+            f = front - (self.lag if k.endswith("off") else 0.0)
+            act = np.exp(-((d - f) / self.width) ** 2).astype(np.float32)
+            out[k] = act * (0.3 if k.startswith("RET.rg") or k == "RET.by" else 1.0)
+        return out
+
+
+def retinal_waves(brain, rng):
+    quiet = {k: np.zeros(len(brain.pos[k]), np.float32) for k in brain.spec.inputs}
+    return lambda: Wave(brain, rng, quiet)

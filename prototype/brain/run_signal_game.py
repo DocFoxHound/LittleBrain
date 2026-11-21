@@ -50,7 +50,12 @@ def prepare(seed, brain=None, scale=1.0):
         from vision import visual_experience
         see = visual_experience(b, rng)
         b.calibrate(see)
-        b.develop(see, days=2)
+        waves = int(os.environ.get("VISION_WAVES", "2"))   # days of prenatal retinal waves (note 73)
+        if waves:
+            from vision import retinal_waves
+            b.develop(retinal_waves(b, rng), days=waves)
+        if int(os.environ.get("VISION_EXPERIENCE", "1")):
+            b.develop(see, days=2)
         for t in range(40):   # wake up (notes/28)
             movie = see()
             for s in range(9):

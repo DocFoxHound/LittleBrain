@@ -134,6 +134,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 63. [A 100,000-neuron brain with human proportions](notes/70-human-proportion-100k.md): `BRAIN=human100k`; mostly granule cells and cortex; learns as well as the reference
 64. [Finer maps for some structures](notes/71-fine-maps.md): 16×16 / 32×32 maps alongside the 8×8 brain; reference bit-identical
 65. [A real retina, LGN streams and the vision brain](notes/72-retina.md): ON/OFF, colour, transient and direction-selective cells, fovea; `BRAIN=vision`
+66. [V1 edge detectors from retinal waves](notes/73-v1-edges-from-waves.md): waves + a critical period roughly double edge-tuned V1 input cells (3 seeds); about half of real V1
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
