@@ -10,11 +10,86 @@ from association import context, motor_stripes
 from federation import GRID
 
 
-def visual_activity(brain):
-    rates = brain._pool("TH.core")
+# In a brain with a retina (vision.py) the learned sensory input to the striatum and amygdala comes from visual
+# cortex cells, the way corticostriatal and cortex-to-amygdala projections do, instead of the 64-tile thalamic
+# summary (note 74). The highest available areas are used. VISION_ROUTE=thalamus keeps the old route for comparison.
+# L2/3 only for now: V1 L5 still barely tracks the picture (note 74)
+CORTICAL_SOURCES = (("IT.L23",), ("V4.L23",), ("A.L23",))
+
+
+def route(brain):
+    """thalamus (the 64-tile thalamic summary), cortex (visual cortex L2/3), or both (thalamostriatal and
+    corticostriatal input together, as in the real striatum; the vision default)."""
+    import os
+    return os.environ.get("VISION_ROUTE", "both") if "RET.on" in brain.pos else "thalamus"
+
+
+def visual_sources(brain):
+    if route(brain) == "thalamus":
+        return None
+    import os
+    if os.environ.get("VISION_SOURCE"):   # experiments: e.g. VISION_SOURCE=A.L4
+        return tuple(os.environ["VISION_SOURCE"].split(","))
+    for keys in CORTICAL_SOURCES:
+        if all(k in brain.g for k in keys):
+            return keys
+    return None
+
+
+def cue_size(brain):
+    keys = visual_sources(brain)
+    if keys is None:
+        return GRID * GRID
+    import os
+    n = (sum(brain.grid.get(k, GRID) ** 2 for k in keys) if os.environ.get("VISION_POOL", "1") == "1"
+         else sum(brain.g[k].n for k in keys))
+    return n + (GRID * GRID if route(brain) == "both" else 0)
+
+
+def _normalised(rates):
     xp = xpof(rates)
     centered = rates - rates.mean()
     return centered / xp.maximum(xp.linalg.norm(centered), 0.1)
+
+
+def visual_activity(brain):
+    keys = visual_sources(brain)
+    thalamic = _normalised(brain._pool("TH.core"))
+    if keys is None:
+        return thalamic
+    # Corticostriatal convergence: each striatal cell sums thousands of cortical inputs, so neighbouring cells'
+    # noise averages out. Reduced here to the mean rate per tile of each source's own map (VISION_POOL=0: cells).
+    import os
+    if os.environ.get("VISION_POOL", "1") == "1":
+        rates = xpof(brain.r).concatenate([brain._pool_fine(k) for k in keys])
+    else:
+        rates = xpof(brain.r).concatenate([brain.g[k].rate for k in keys])
+    # Corticostriatal synapses depress under sustained input, passing deviations from what is usually seen more than
+    # the steady background shared by every picture (e.g. "a disc in the middle" in every colour). Reduced here to
+    # subtracting a slow running average of the input (time constant ~500 steps).
+    xp = xpof(rates)
+    raw = xp.concatenate([brain._pool("TH.core"), rates])
+    mean = getattr(brain, "cue_mean", None)
+    if mean is None or mean.shape != raw.shape:
+        mean = raw.copy()
+    brain.cue_mean = mean + 0.002 * (raw - mean)
+    dev = raw - brain.cue_mean
+    # Scale by a slow running size rather than to unit length each step: how strongly cells fire carries information
+    # (red and yellow drive the same red-green cells, red more strongly), which per-step normalisation erased
+    n = GRID * GRID
+    size = getattr(brain, "cue_scale", None)
+    # One joint scale for the thalamic and cortical parts: a part that barely changes (brightness in a colour game)
+    # stays small instead of being blown up to the size of the informative part
+    if route(brain) == "both":
+        now = xp.linalg.norm(dev) * xp.ones(2, dtype=dev.dtype)
+    else:
+        now = xp.stack([xp.linalg.norm(dev[:n]), xp.linalg.norm(dev[n:])])
+    size = now + 0.0 if size is None or size.shape != now.shape else size + 0.002 * (now - size)
+    brain.cue_scale = size
+    thalamic, cortical = dev[:n] / xp.maximum(size[0], 0.05), dev[n:] / xp.maximum(size[1], 0.05)
+    if route(brain) == "both":
+        return xp.concatenate([thalamic, cortical])
+    return cortical
 
 
 def activity(brain):
@@ -23,7 +98,8 @@ def activity(brain):
 
 def amygdala_input(brain, chan):
     trace = visual_activity(brain)
-    if not hasattr(brain, "amygdala_afferents"):
+    if not hasattr(brain, "amygdala_afferents") or brain.amygdala_afferents.shape[1] != trace.size:
+        # new, or the sensory source changed (thalamic summary -> visual cortex): start the associations fresh
         brain.amygdala_afferents = xpof(trace).zeros((2, trace.size), dtype=np.float32)
     response = xpof(trace).clip(brain.amygdala_afferents @ trace, 0, 1)
     chan["BLA.pos"]["conditioned"] = response[0]
@@ -33,7 +109,7 @@ def amygdala_input(brain, chan):
 def pair_outcome(brain, trace, outcome):
     # Separate appetitive and aversive US afferents teach the active cue.
     # Omission extinguishes an association more slowly than acquisition.
-    cue = trace[:GRID * GRID]
+    cue = trace[:cue_size(brain)]
     weights = brain.amygdala_afferents
     for row, key, us in ((0, "BLA.pos", max(0., outcome)), (1, "BLA.neg", max(0., -outcome))):
         if "BLA" in brain.ablated or key in brain.ablated:
@@ -48,11 +124,25 @@ def transmit(brain, chan):
     if "sensory -> striatum" in brain.ablated or "TH.core" in brain.ablated:
         return
     features = activity(brain)
+    online = getattr(brain, "cue_online", None)
+    if visual_sources(brain) is not None and online is not None and online.shape == features.shape:
+        features = online   # during the read window: the integrated, centred input (agent.choose, note 74)
+    elif visual_sources(brain) is not None:
+        # Striatal cells integrate their input over time (membrane and synaptic time constants); a single step of
+        # cortical activity is too noisy to choose on (vision brains, note 74)
+        held = getattr(brain, "cue_integrated", None)
+        held = features if held is None or held.shape != features.shape else held + 0.25 * (features - held)
+        brain.cue_integrated = held
+        features = held
+        # the same trial-level centering the learning uses (agent.choose): what differs from recent pictures
+        m = getattr(brain, "trace_mean", None)
+        if m is not None and m.shape == features.shape:
+            features = features - m
     if not hasattr(brain, "sensory_striatal") or brain.sensory_striatal.shape[1] != features.size:
         # Preserve the visual weights of an earlier visual-only checkpoint.
         old = getattr(brain, "sensory_striatal", None)
         brain.sensory_striatal = xpof(features).zeros((GRID, features.size), dtype=np.float32)
-        if old is not None:
+        if old is not None and visual_sources(brain) is None and old.shape[1] <= features.size:
             brain.sensory_striatal[:, :old.shape[1]] = old
     current = brain.sensory_striatal @ features
     if hasattr(brain, "food_afferents"):
@@ -62,7 +152,7 @@ def transmit(brain, chan):
         agrp = brain.g["HYP.AgRP"].rate.mean()
         pomc = brain.g["HYP.POMC"].rate.mean()
         drive = (agrp - pomc) / xp.maximum(agrp + pomc, .05)
-        food = xp.clip(brain.food_afferents @ features[:GRID * GRID], 0, 1)
+        food = xp.clip(brain.food_afferents @ features[:cue_size(brain)], 0, 1)
         current = xp.tanh(current) + 5.0 * drive * food
     if hasattr(brain, "parallel_fiber_ltd"):
         # VA relays the disinhibited cerebellar correction to indirect-path MSNs.
@@ -90,9 +180,9 @@ def reinforce(brain, eligibility, motor, dopamine):
 def food_outcome(brain, trace, motor, amount):
     """Pair a sensory outcome with the chosen channel and preceding visual cue."""
     xp = xpof(brain.r)
-    if not hasattr(brain, "food_afferents"):
-        brain.food_afferents = xp.zeros((GRID, GRID * GRID), dtype=np.float32)
-    cue = trace[:GRID * GRID]
+    if not hasattr(brain, "food_afferents") or brain.food_afferents.shape[1] != cue_size(brain):
+        brain.food_afferents = xp.zeros((GRID, cue_size(brain)), dtype=np.float32)
+    cue = trace[:cue_size(brain)]
     selected = motor_stripes(brain, motor)
     weights = brain.food_afferents
     weights += .25 * (selected * (amount - weights @ cue))[:, None] * cue

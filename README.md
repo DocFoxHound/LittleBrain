@@ -135,6 +135,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 64. [Finer maps for some structures](notes/71-fine-maps.md): 16×16 / 32×32 maps alongside the 8×8 brain; reference bit-identical
 65. [A real retina, LGN streams and the vision brain](notes/72-retina.md): ON/OFF, colour, transient and direction-selective cells, fovea; `BRAIN=vision`
 66. [V1 edge detectors from retinal waves](notes/73-v1-edges-from-waves.md): waves + a critical period roughly double edge-tuned V1 input cells (3 seeds); about half of real V1
+67. [Colour and motion games, and routing learning through vision](notes/74-colour-motion-and-the-learning-route.md): learning reads visual cortex; closing the critical period stopped play from scrambling vision; colour learned via colour relays (3 seeds), not yet via V1 L2/3
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

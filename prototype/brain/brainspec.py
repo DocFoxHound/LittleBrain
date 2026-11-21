@@ -29,6 +29,10 @@ L4_L23_GAIN = float(os.environ.get("L4_L23_GAIN", "1"))
 # Learning-rate factor for cortical excitatory cells (notes/28: one day of learning was ~25x a synapse's base
 # strength; 0.05 keeps L2/3 active after sleep). 1 = as before.
 CORTEX_LRF = float(os.environ.get("CORTEX_LRF", "1"))
+# Strength of L2/3 -> L2/3 recurrent basal synapses (note 74). 1 = as before.
+L23_REC_GAIN = float(os.environ.get("L23_REC_GAIN", "1"))
+# Strength of L2/3 -> L5 feedforward basal synapses (note 74). 1 = as before.
+L23_L5_GAIN = float(os.environ.get("L23_L5_GAIN", "1"))
 
 
 def _cortex(ct):
@@ -43,6 +47,10 @@ def _with_local(dst_area, group, comp, long_paths):
     paths = list(long_paths)
     for src, f in local:
         gain = L4_L23_GAIN if (src, group) == ("L4", "L23") else 1.0
+        if (src, group, comp) == ("L23", "L23", "basal"):
+            gain = L23_REC_GAIN
+        if (src, group, comp) in (("L23", "L5IT", "basal"), ("L23", "L5PT", "basal")):
+            gain = L23_L5_GAIN
         paths.append(Synaptic("local", f"{dst_area}.{src}", f"{dst_area}.{group}", comp,
                               (1 - long_total) * f / tot, gain, spread=SPREAD[dst_area], kind="local"))
     return paths

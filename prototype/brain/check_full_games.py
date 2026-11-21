@@ -8,7 +8,8 @@ from run_signal_game import Brain, BrainAgent, prepare
 from games import REGISTRY
 
 LESIONS = {"signal": {"sensory -> striatum"}, "danger": {"BLA", "CeL", "CeM"},
-           "forage": {"HYP"}, "delayed": {"PFC", "MD"}, "timing": {"CB", "DCN", "IO"}}
+           "forage": {"HYP"}, "delayed": {"PFC", "MD"}, "timing": {"CB", "DCN", "IO"},
+           "colour": {"sensory -> striatum"}, "motion": {"sensory -> striatum"}}
 
 
 def mean(events):
@@ -17,7 +18,7 @@ def mean(events):
 
 
 def metrics(game, block):
-    if game == "signal":
+    if game in ("signal", "colour", "motion"):
         return dict(accuracy=mean(e["correct"] for e in block))
     if game == "danger":
         groups = {"food_reward": (False, True), "food_miss": (False, False),

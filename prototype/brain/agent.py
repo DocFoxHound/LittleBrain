@@ -94,6 +94,7 @@ class BrainAgent:
 
     def choose(self, image):
         x, gpi, feats = self._retina(image), [], []
+        sensed = []   # vision brains: the striatum's sensory input integrated over the read window (note 74)
         for s in range(self.look):
             signals = dict(self.body_signals)
             if self.timed and s == self.look - 1:
@@ -113,9 +114,28 @@ class BrainAgent:
             if s >= self.look - self.read:
                 gpi.append(self._per_channel("GPi"))
                 feats.append(np.concatenate([to_host(self.b.g[k].rate) for k in self.value_groups]))
+                if self.eye is not None and "TH.core" in self.b.g:
+                    from striatal_projection import activity
+                    sensed.append(activity(self.b))
+                    # the striatum's drive for this choice is the same integrated, centred input learning uses
+                    m = getattr(self.b, "trace_mean", None)
+                    avg = sum(sensed) / len(sensed)
+                    self.b.cue_online = avg - m if m is not None and m.shape == avg.shape else None
         if "TH.core" in self.b.g:
             from striatal_projection import activity
-            self.sensory_trace = activity(self.b)
+            # Eligibility traces integrate presynaptic activity over about a second; a single step of cortical
+            # activity is too noisy (vision brains only, so older results stay reproducible)
+            self.sensory_trace = sum(sensed) / len(sensed) if sensed else activity(self.b)
+            self.b.cue_online = None
+            if sensed:
+                # What is different about this picture from the pictures usually seen: subtract a running average of
+                # recent turns' inputs (habituation at the trial timescale). Without it, "a picture is on" (shared by
+                # every picture) dominated learning and colour was never learned (note 74).
+                m = getattr(self.b, "trace_mean", None)
+                tr = self.sensory_trace
+                m = tr * 0 if m is None or m.shape != tr.shape else m
+                self.sensory_trace = tr - m
+                self.b.trace_mean = m + 0.05 * (tr - m)
             self.timing_trace = None
             if hasattr(self.b, "parallel_fiber_ltd"):
                 from association import timing_activity
@@ -187,7 +207,8 @@ class BrainAgent:
         if "hunger" in obs.body:
             hunger = float(obs.body["hunger"])
             self.body_signals.update(hunger=hunger, satiety=1.0 - hunger)
-        action, retina = self.choose(obs.image)
+        frames = getattr(obs, "frames", None)
+        action, retina = self.choose(frames if (frames and self.eye is not None) else obs.image)
         self.pending = action, retina
         return action
 

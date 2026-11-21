@@ -383,3 +383,10 @@ The reduced deep-nucleus readout in association.py admits sampled pontine drive.
 ### 100,000-neuron human-proportion brain
 
 [Note 70](notes/70-human-proportion-100k.md): `BRAIN=human100k` (`human_scale.py`, `brainspec.full_brain_human`). Runtime check passed on seeds 0–2; signal game 0.78 / 0.95 / 0.88 learning vs 0.23 / 0.27 / 0.33 off (64 turns). The runtime anatomy check now accepts grown full brains (same 187 populations, none smaller). Still to run at 100k: regional audit, placements, and the other four games with controls.
+
+### Vision brain (notes 71-74), in progress
+
+`BRAIN=vision`: finer maps (`Group.grid`), a retina (`retina.py`), LGN streams, V1 tuning from retinal waves, colour
+and motion games, learning routed through visual cortex (`VISION_ROUTE`), and a closed critical period after
+development. Tests: `test_fine_maps.py` 6/6, `test_retina.py` 7/7; reference brain bit-identical. Colour is learned via the
+colour relays (0.64 / 0.64 / 0.53) but not yet via V1 L2/3; motion waits for MT. Next steps are in note 74.

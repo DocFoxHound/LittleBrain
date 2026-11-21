@@ -23,7 +23,9 @@ from federation import Group, Pooled, Synaptic
 from retina import DS, KONIO, MAGNO, PARVO
 
 FINE = 32     # retina detail channels
-RELAYS = ("TH.TC", "TH.OFF", "TH.M", "TH.K")   # parvo ON, parvo OFF, magno, konio
+# parvo ON, parvo OFF, magno (transient), konio, and four direction-specific relays (note 74)
+DIR_RELAYS = ("TH.D0", "TH.D1", "TH.D2", "TH.D3")
+RELAYS = ("TH.TC", "TH.OFF", "TH.M", "TH.K") + DIR_RELAYS
 MID = 16      # LGN, magno/konio channels, V1 input layers
 
 
@@ -39,14 +41,18 @@ def add_retina_and_lgn(spec):
     resized = {"TH.TC": (MID, 1), "A.L4": (MID, 2), "A.L23": (MID, 3)}
     spec.groups = [replace(g, grid=resized[g.key][0], per_tile=resized[g.key][1]) if g.key in resized else g
                    for g in spec.groups]
-    # Critical period: V1's input layer learns faster than the rest of cortex during development (env, note 73)
+    # Critical period: V1's input layer (and optionally L2/3) learns faster than the rest of cortex during
+    # development (notes 73-74); end_critical_period undoes it afterwards
     lrf = float(os.environ.get("VISION_L4_LRF", "20"))
     if lrf != 1:
         spec.groups = [replace(g, ctype=replace(g.ctype, rules=replace(g.ctype.rules, lr=g.ctype.rules.lr * lrf)))
-                       if g.key == "A.L4" else g for g in spec.groups]
+                       if g.key in critical_period_groups() else g for g in spec.groups]
     # ON and OFF signals stay in separate relay cells (as in the LGN); TH.TC keeps its name for older pathways
     spec.groups += [Group("TH.OFF", C.TC_RELAY, 1, "TH", grid=MID),
                     Group("TH.M", C.TC_RELAY, 1, "TH", grid=MID), Group("TH.K", C.TC_RELAY, 2, "TH")]
+    # Direction-selective ganglion cells keep their direction: each relay hears one direction (like the LGN shell
+    # that receives them in mice, Cruz-Martin et al. 2014); a relay mixing all four would cancel direction
+    spec.groups += [Group(k, C.TC_RELAY, 1, "TH", grid=MID) for k in DIR_RELAYS]
     syn = []
     for p in spec.synaptic:
         if p.id == "CT-2 retina->relay (driver)":
@@ -59,19 +65,48 @@ def add_retina_and_lgn(spec):
             if frac:
                 p = replace(p, frac=frac, gain=p.gain * p.frac / frac)
         syn.append(p)
-    for relay, drivers in (("TH.OFF", ["RET.off", "RET.rg_off"]), ("TH.M", list(MAGNO + DS)), ("TH.K", list(KONIO))):
+    drivers_of = [("TH.OFF", ["RET.off", "RET.rg_off"]), ("TH.M", list(MAGNO)), ("TH.K", list(KONIO))]
+    drivers_of += [(r, [d]) for r, d in zip(DIR_RELAYS, DS)]
+    for relay, drivers in drivers_of:
         syn += [Synaptic(f"CT-2 retina->{relay} (driver)", drivers, relay, "basal", 0.3, 3.0, 0.05),
                 Synaptic(f"CT-3 L6 CT->{relay} (modulator)", "A.L6", relay, "basal", 0.7, 0.15, 0.08)]
-    spec.synaptic = syn
+    spec.synaptic = [_visual_cortex_gains(p) for p in syn]
     pooled = []
     for p in spec.pooled:
         if p.id == "TRN<-relay collaterals":
             p = replace(p, src=list(RELAYS))
         elif p.id in ("CT-5 TRN->relay", "TH.interneuron -> TH.TC"):
-            p = replace(p, dst=_members(p.dst) + ["TH.OFF", "TH.M", "TH.K"])
+            p = replace(p, dst=_members(p.dst) + [r for r in RELAYS if r != "TH.TC"])
         pooled.append(p)
     spec.pooled = pooled
     return spec
+
+
+VISUAL_AREAS = ("A",)   # grows as higher visual areas are added (note 75)
+SLOW_HOMEOSTASIS = 0.1  # visual cortex layers balance their firing 10x more slowly (note 74)
+
+
+def visual_homeostasis(brain):
+    """Always-on homeostasis adapted visual cortex away from whatever it was looking at (a 20-step picture): with it
+    off, V1 L2/3 identified colour pictures 75% of the time instead of 50%. Slow it for visual cortex (saved in the
+    checkpoint, like HOMEO_SLOW)."""
+    for g in brain.spec.groups:
+        if g.key.split(".")[0] in VISUAL_AREAS and g.key in brain.g:
+            brain.homeo_speed[g.key] = SLOW_HOMEOSTASIS
+
+
+def _visual_cortex_gains(p):
+    """Visual cortex listens to its input (note 74): L2/3 is driven by L4 (VISION_FF, default 10x) more than by its
+    own recurrent chatter (VISION_REC, default 0.3x). Without this, V1 L2/3 identified game pictures 44% of the time
+    and L5 0%; with it L2/3 reached ~81% (seed 0)."""
+    if p.kind != "local" or not isinstance(p.src, str) or p.src.split(".")[0] not in VISUAL_AREAS:
+        return p
+    s, d = p.src.split(".")[1], p.dst.split(".")[1]
+    if (s, d) == ("L4", "L23"):
+        return replace(p, gain=float(os.environ.get("VISION_FF", "10")))
+    if (s, d, p.comp) == ("L23", "L23", "basal"):
+        return replace(p, gain=float(os.environ.get("VISION_REC", "0.3")))
+    return p
 
 
 def vision_brain():
@@ -173,3 +208,21 @@ class Wave:
 def retinal_waves(brain, rng):
     quiet = {k: np.zeros(len(brain.pos[k]), np.float32) for k in brain.spec.inputs}
     return lambda: Wave(brain, rng, quiet)
+
+
+def critical_period_groups():
+    return tuple(os.environ.get("VISION_CP_GROUPS", "A.L4").split(","))
+
+
+def end_critical_period(brain):
+    """After development (note 74): retinogeniculate relay synapses stop learning (they are mature and stable in
+    adults), and V1 layer 4 returns from its critical-period learning rate to the adult cortical rate. Without this,
+    waking play kept reshaping the visual input and colour responses drifted until the striatum could not learn them."""
+    from dataclasses import replace as _r
+    lrf = float(os.environ.get("VISION_L4_LRF", "20"))
+    for key, g in brain.g.items():
+        if key in RELAYS:
+            g.c = _r(g.c, learns=False)
+        elif key in critical_period_groups() and lrf != 1:
+            g.c = _r(g.c, rules=_r(g.c.rules, lr=g.c.rules.lr / lrf))
+    brain.critical_period_closed = True

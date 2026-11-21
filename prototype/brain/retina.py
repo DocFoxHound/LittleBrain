@@ -29,6 +29,7 @@ RF_SCALE = 0.6         # centre sigma relative to the local spacing of cells
 PARASOL_SCALE = 2.0    # parasol cells have ~2x larger fields than midget cells
 GAIN = 4.0             # contrast -> rate
 MIN_SIGMA_PX = 0.6     # smallest centre field, in pixels of the incoming picture
+DS_GAIN = 160.0        # direction-selective cells (was 16: too weak for textures such as random dots, note 74)
 
 PARVO = ("RET.on", "RET.off", "RET.rg_on", "RET.rg_off")
 KONIO = ("RET.by",)
@@ -160,7 +161,7 @@ class Retina:
                 # Reichardt correlator: motion along the preferred direction moves the earlier signal from the
                 # displaced point to here; the mirror term cancels flicker and the opposite direction
                 corr = now[k] * prev[k + "@"] - now[k + "@"] * prev[k]
-                out[k] = np.tanh(GAIN * 4 * np.maximum(corr, 0) / mean_light ** 2).astype(np.float32)
+                out[k] = np.tanh(DS_GAIN * np.maximum(corr, 0) / mean_light ** 2).astype(np.float32)
         self.prev = now
         if "retina" in self.geo:   # the old light-level input: plain samples, as before
             xy, _ = pos["retina"]
@@ -173,12 +174,20 @@ class Sight:
     step's channels, so transient and motion cells see the picture appear, change and vanish."""
 
     def __init__(self, retina, image):
-        self.retina, self.image = retina, np.asarray(image, np.float32)
+        """image: one picture, or a list of pictures (a movie, one per brain step, looping)."""
+        self.retina = retina
+        if isinstance(image, (list, tuple)):
+            self.frames = [np.asarray(f, np.float32) for f in image]
+        else:
+            self.frames = [np.asarray(image, np.float32)]
+        self.image, self.t = self.frames[0], 0
 
     def channels(self):
-        return self.retina(self.image)
+        img = self.frames[self.t % len(self.frames)]
+        self.t += 1
+        return self.retina(img)
 
     def __mul__(self, k):            # 0 * sight = darkness (the agent's rest phase)
-        return Sight(self.retina, self.image * k)
+        return Sight(self.retina, self.frames[0] * k)
 
     __rmul__ = __mul__

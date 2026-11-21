@@ -4,7 +4,8 @@ from .signal_game import SignalGame  # noqa: F401
 from .danger_game import DangerGame  # noqa: F401
 
 # Games the tools can load by name (viewer --game, experiment runners). Add yours here.
-REGISTRY = {"signal": SignalGame, "danger": DangerGame}
+from .vision_games import ColourGame, MotionGame  # noqa: F401,E402
+REGISTRY = {"colour": ColourGame, "motion": MotionGame, "signal": SignalGame, "danger": DangerGame}
 
 from .regional_games import DelayedCueGame, ForageGame, TimingGame
 

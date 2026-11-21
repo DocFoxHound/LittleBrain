@@ -20,6 +20,8 @@ import numpy as np
 class Observation:
     image: np.ndarray
     body: dict = field(default_factory=dict)
+    frames: list = None   # optional movie for this turn (motion): one picture per brain step, looping; `image` is
+                          # its first frame, for brains and viewers that take a still picture
 
 
 class Game:

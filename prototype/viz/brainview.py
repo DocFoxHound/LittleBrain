@@ -389,7 +389,10 @@ class App:
     def on_step(self, phase, info):
         self.phase, self.info = phase, info
         if "image" in info:
-            self.seen = info["image"]
+            img = info["image"]
+            if isinstance(img, (list, tuple)):   # a movie: show the frame the brain is looking at now
+                img = img[info.get("step", 0) % len(img)]
+            self.seen = img
         self.dopa.append(info.get("dopamine", self.brain.last_dopamine))
         self.dopa = self.dopa[-400:]
         self.frame += 1
@@ -629,7 +632,9 @@ class App:
         # what the brain sees (any game's observation image)
         img = self.seen if (self.seen is not None and self.phase != "rest") else None
         if img is not None:
-            surf = pg.surfarray.make_surface(np.repeat((np.clip(img.T, 0, 1)[:, :, None] * 235 + 12).astype(np.uint8), 3, 2))
+            img = np.asarray(img, np.float32)
+            rgb = img if img.ndim == 3 else np.repeat(img[:, :, None], 3, 2)
+            surf = pg.surfarray.make_surface((np.clip(rgb.transpose(1, 0, 2), 0, 1) * 235 + 12).astype(np.uint8))
             s.blit(pg.transform.scale(surf, (176, 176)), (X, 100))
         else:
             pg.draw.rect(s, (12, 13, 18), (X, 100, 176, 176))
