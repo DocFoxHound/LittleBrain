@@ -36,6 +36,11 @@ class BrainAgent:
         self.chan = {k: action_channel(to_host(brain.tile[k]), n_actions) for k in ("MOT", "GPi", "STR.D1", "STR.D2")}
         P = brain.pos["retina"]
         self._px = P
+        # A brain with a retina (vision.py) gets a real eye; older brains sample the picture as before
+        self.eye = None
+        if "RET.on" in brain.pos:
+            from retina import Retina
+            self.eye = Retina(brain)
         self.last_info = {}
         self.last = {}
         # Dopamine from the brain's own dopamine cells if it has them (reward goes in through the US input);
@@ -54,13 +59,25 @@ class BrainAgent:
             self.on_step(phase, info)
 
     def _retina(self, image):
+        if self.eye is not None:
+            from retina import Sight
+            return Sight(self.eye, image)
+        image = np.asarray(image)
+        if image.ndim == 3:   # colour picture, older brain: brightness only
+            image = image @ np.array([0.299, 0.587, 0.114], np.float32)
         h, w = image.shape
         ix = np.minimum((self._px[:, 0] * w).astype(int), w - 1)
         iy = np.minimum((self._px[:, 1] * h).astype(int), h - 1)
         return image[iy, ix].astype(np.float32)
 
     def _inputs(self, x, action=None, us=0.0):
-        d = {"retina": x, "MOT": self._mot(action)}
+        if self.eye is not None:
+            quiet = getattr(self, "_quiet", None)
+            if quiet is None:
+                quiet = self._quiet = {k: np.zeros(len(self.b.pos[k]), np.float32) for k in self.b.spec.inputs}
+            d = {**quiet, **x.channels(), "MOT": self._mot(action)}
+        else:
+            d = {"retina": x, "MOT": self._mot(action)}
         if self.own_dopamine:
             d["US"] = np.full(len(self.b.pos["US"]), us, np.float32)
         return d

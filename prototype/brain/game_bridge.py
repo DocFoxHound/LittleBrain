@@ -18,7 +18,7 @@ def image_array(message):
     if raw.dtype.kind not in "iuf" or not raw.size or not np.isfinite(raw).all():
         raise ValueError("expected a finite numeric image")
     if fmt == "rgb8" and raw.ndim == 3 and raw.shape[2] == 3:
-        pixels = raw @ np.array([0.299, 0.587, 0.114])
+        pixels = raw   # colour is kept; brains without a retina use its brightness (agent._retina)
     elif fmt in {"gray", "gray8"} and raw.ndim == 2:
         pixels = raw
     else:

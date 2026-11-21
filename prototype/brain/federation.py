@@ -678,7 +678,9 @@ class Brain:
         for t in range(steps):
             if t % (hold + blank) == 0:
                 x = make_input()
-            self.step({k: (v if t % (hold + blank) < hold else 0 * v) for k, v in x.items()})
+            s = t % (hold + blank)
+            # a "movie" stimulus supplies each step's input itself (vision.py); a plain one is held, then blanked
+            self.step(x.frame(s, hold) if hasattr(x, "frame") else {k: (v if s < hold else 0 * v) for k, v in x.items()})
             if t < 45:
                 for k, g in E.items():
                     warm[k].append(g.soma.copy())
@@ -705,8 +707,8 @@ class Brain:
             for _ in range(presentations):
                 x = make_input()
                 for s in range(hold + blank):
-                    self.step({k: (v if s < hold else 0 * v) for k, v in x.items()}, learn=True, ach=0.6,
-                              dopamine=0.5 if s == 2 else 0.0, arousal=0.3)
+                    inputs = x.frame(s, hold) if hasattr(x, "frame") else {k: (v if s < hold else 0 * v) for k, v in x.items()}
+                    self.step(inputs, learn=True, ach=0.6, dopamine=0.5 if s == 2 else 0.0, arousal=0.3)
                     t += 1
             self.sleep()
 

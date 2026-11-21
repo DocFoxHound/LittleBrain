@@ -30,7 +30,8 @@ from run_wiring_test import blobs  # noqa: E402
 SPECS = {"bg": "stage_bg", "da": "stage_da", "amy": "stage_amy", "td": "stage_timed_dopamine",
          "hyp": "stage_hypothalamus", "pfc": "stage_prefrontal", "cerebellum": "stage_cerebellum",
          "hippocampus": "stage_game_hippocampus", "ca2": "stage_ca2", "insula": "stage_insula",
-         "full": "full_brain", "human100k": "full_brain_human"}
+         "full": "full_brain", "human100k": "full_brain_human",
+         "vision": "full_brain_vision"}
 DEFAULT_BRAIN = "full"
 
 
@@ -45,6 +46,16 @@ def prepare(seed, brain=None, scale=1.0):
         spec.groups = [replace(g, per_tile=max(1, int(round(g.per_tile * scale)))) for g in spec.groups]
     b = Brain(spec, seed=seed)
     rng = np.random.default_rng(1000 + seed)
+    if "RET.on" in b.pos:   # a brain with a retina grows up seeing moving, coloured shapes (vision.py)
+        from vision import visual_experience
+        see = visual_experience(b, rng)
+        b.calibrate(see)
+        b.develop(see, days=2)
+        for t in range(40):   # wake up (notes/28)
+            movie = see()
+            for s in range(9):
+                b.step(movie.frame(s, 6), ach=0.5)
+        return b
     quiet = {k: np.zeros(len(b.pos[k]), np.float32) for k in b.spec.inputs if k != "retina"}
     b.calibrate(lambda: {"retina": (rng.random(len(b.pos["retina"])) < 0.2).astype(np.float32), **quiet})
     b.develop(lambda: {"retina": blobs(b.pos["retina"], rng), **quiet}, days=2)

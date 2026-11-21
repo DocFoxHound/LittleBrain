@@ -132,6 +132,8 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 61. [Data-only brain checkpoints](notes/68-data-only-checkpoints.md)
 62. [Build-time research kernels](notes/69-build-time-research-kernels.md)
 63. [A 100,000-neuron brain with human proportions](notes/70-human-proportion-100k.md): `BRAIN=human100k`; mostly granule cells and cortex; learns as well as the reference
+64. [Finer maps for some structures](notes/71-fine-maps.md): 16×16 / 32×32 maps alongside the 8×8 brain; reference bit-identical
+65. [A real retina, LGN streams and the vision brain](notes/72-retina.md): ON/OFF, colour, transient and direction-selective cells, fovea; `BRAIN=vision`
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

@@ -395,3 +395,9 @@ def full_brain_human(n_neurons=None):
     from human_scale import human_sized
     n = int(os.environ.get("BRAIN_NEURONS", "100000")) if n_neurons is None else n_neurons
     return human_sized(full_brain(), n)[0]
+
+
+def full_brain_vision():
+    """The full brain with a real retina, LGN streams and finer visual maps (vision.py, notes 71+)."""
+    from vision import vision_brain
+    return vision_brain()
