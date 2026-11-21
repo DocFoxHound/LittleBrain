@@ -3,6 +3,7 @@ import argparse
 from contextlib import redirect_stdout
 import json
 import math
+import os
 from pathlib import Path
 from game_controls import Controls
 import sys
@@ -99,7 +100,9 @@ def main():
     parser.add_argument("--save-brain")
     args = parser.parse_args()
     with redirect_stdout(sys.stderr):
-        brain = Brain.load(args.load_brain) if args.load_brain else prepare(args.seed)
+        # an explicitly chosen brain kind (env BRAIN) must match a loaded save (design stamp, note 79)
+        brain = (Brain.load(args.load_brain, kind=os.environ.get("BRAIN")) if args.load_brain
+                 else prepare(args.seed))
         controls = Controls(json.loads(args.controls.read_text())) if args.controls else None
         actions = args.actions or [f"slot{i}" for i in range(7)] + ["back"]
         session = Session(brain, actions, args.seed, not args.no_learn, controls=controls)

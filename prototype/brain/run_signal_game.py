@@ -36,6 +36,14 @@ DEFAULT_BRAIN = "full"
 
 
 def prepare(seed, brain=None, scale=1.0):
+    """Calibrate and develop a brain, stamped with its design (design.py, note 79)."""
+    import design
+    kind = brain or os.environ.get("BRAIN", DEFAULT_BRAIN)
+    b = _prepare(seed, kind, scale)
+    return design.stamp(b, kind if scale == 1.0 else f"{kind}@scale{scale:g}")
+
+
+def _prepare(seed, brain=None, scale=1.0):
     """Calibrate and develop the default full brain, or a named comparison stage."""
     if not np.isfinite(scale) or scale <= 0:
         raise ValueError("scale must be finite and positive")

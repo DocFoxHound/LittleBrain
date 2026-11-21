@@ -373,8 +373,8 @@ class App:
             if self.save_root or getattr(sys, "frozen", False):
                 # A distributed viewer develops its brain locally from the current wiring.
                 b = prepare(self.seed, scale=scale)
-            elif cache.exists():
-                b = Brain.load(cache)
+            elif cache.exists() and (b := self._cached(cache, name)) is not None:
+                pass
             else:
                 b = prepare(self.seed, scale=scale)
                 cache.parent.mkdir(exist_ok=True)
@@ -385,6 +385,18 @@ class App:
             work()          # no window to keep responsive: build right here
         else:
             threading.Thread(target=work, daemon=True).start()
+
+    @staticmethod
+    def _cached(cache, name):
+        """A cached brain is reused only if its design stamp matches what the current code builds (note 79);
+        otherwise None, and it is grown again, so a changed design never shows an outdated brain."""
+        import design
+        from federation import Brain
+        try:
+            b = Brain.load(cache, kind=name, quiet=True)
+            return None if design.check(b, name) else b
+        except Exception:
+            return None
 
     def adopt(self, b):
         from agent import BrainAgent

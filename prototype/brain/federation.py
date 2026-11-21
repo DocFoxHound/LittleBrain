@@ -208,9 +208,16 @@ class Brain:
             self.to(device)
 
     @staticmethod
-    def load(path, device=None):
+    def load(path, device=None, kind=None, quiet=False):
+        """kind: the brain kind expected (refused if different). The design stamp is checked before any repair of
+        older designs below (design.py, note 79): a different runtime version or a damaged file is refused."""
         from checkpoint import load_brain
+        import design
         b = load_brain(path)
+        for w in design.check(b, kind):
+            if not quiet:
+                import sys
+                print(f"warning: {path}: {w}", file=sys.stderr)
         if "CA1.NGF" in b.g:
             # Repair the original HC-6 pooled terminal in saved full brains.
             for path in b.spec.pooled:
@@ -221,6 +228,9 @@ class Brain:
                         b.ablated.add("EC.island -> CA1.NGF")
                     path.id, path.dst, path.channel = "EC.island -> CA1.NGF", "CA1.NGF", "drive"
         b._configure_afferent_plasticity()
+        if getattr(b, "design", None):
+            import design
+            b.design = dict(b.design, spec_hash=design.spec_hash(b.spec))   # after repairs of older designs
         return b.to(device or backend.DEVICE)
 
     # ---------- wiring ----------

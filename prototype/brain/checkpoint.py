@@ -12,7 +12,7 @@ from neuron import NeuronType
 SCHEMA = {cls: {f.name for f in fields(cls)} for cls in (NeuronType, CellType, Group, Pooled, Spec, Synaptic)}
 SCHEMA[Spec].add("timed_dopamine")
 SCHEMA[Brain] = set("""
-_feeds _in_ref _log _posx _quiet _ravg _stats _vbar ablated adapt_rate amygdala_afferents ftile grid cue_mean cue_scale cue_integrated trace_mean cue_online critical_period_closed scale_caps trace_scale
+_feeds _in_ref _log _posx _quiet _ravg _stats _vbar ablated adapt_rate amygdala_afferents ftile grid cue_mean cue_scale cue_integrated trace_mean cue_online critical_period_closed scale_caps trace_scale design
 cem_base clear_context_steps clock da_base device dopamine_group dormant every food_afferents g
 hold_context homeo_rule homeo_skip homeo_speed homeostasis index kernels kwta last_arousal
 last_dopamine lod_frac lod_patience lod_skipped lod_total long_fraction max_scale n_neurons
