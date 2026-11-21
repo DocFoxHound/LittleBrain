@@ -52,6 +52,10 @@ class BrainAgent:
         self.td_gamma = float(os.environ.get("TD_GAMMA", getattr(brain, "td_gamma", 0.0) or 0.0))
         self.td_prev, self.v_now, self.cue_dopamine, self.episode_over = None, 0.0, 0.0, False
         self.da_rest = None   # dopamine's resting level: a slow average of its reading over all steps
+        # TD(lambda): earlier turns of an episode keep fading eligibility (gamma*lambda per turn), so a chain's first
+        # steps get credit sooner (note 80)
+        self.td_lambda = float(os.environ.get("TD_LAMBDA", "0.6"))
+        self.td_hist = []     # [sensory trace, motor copy, value code, eligibility] of earlier turns, newest first
         self.last_info = {}
         self.last = {}
         # Dopamine from the brain's own dopamine cells if it has them (reward goes in through the US input);
@@ -236,10 +240,10 @@ class BrainAgent:
                 # gamma x the value of where the last action led completes the previous turn's temporal-difference
                 # error (its outcome part was applied at its outcome): credit the previous action and situation
                 from striatal_projection import critic_learn, reinforce
-                prev_trace, prev_mot, prev_value_trace = self.td_prev
                 delta = self._teach(self.td_gamma * self.v_now)
-                reinforce(self.b, prev_trace, prev_mot, delta)
-                critic_learn(self.b, prev_value_trace, delta)
+                for tr_, mot_, vt_, e_ in self.td_hist:       # the previous turn (eligibility 1) and fading earlier ones
+                    reinforce(self.b, tr_, mot_, delta * e_)
+                    critic_learn(self.b, vt_, delta * e_)
             self.cue_dopamine = cue_da
             self.timing_trace = None
             if hasattr(self.b, "parallel_fiber_ltd"):
@@ -335,6 +339,10 @@ class BrainAgent:
                 reinforce(self.b, self.sensory_trace, self._mot(action), rpe)
                 critic_learn(self.b, self.value_trace if getattr(self, "value_trace", None) is not None
                              else self.sensory_trace, rpe)
+                for tr_, mot_, vt_, e_ in self.td_hist:       # earlier turns of the episode, fading
+                    w = e_ * self.td_gamma * self.td_lambda
+                    reinforce(self.b, tr_, mot_, rpe * w)
+                    critic_learn(self.b, vt_, rpe * w)
                 if self.timed:
                     self.b.record_waking_outcome(rpe)
         return rpe
@@ -372,6 +380,13 @@ class BrainAgent:
         trace = getattr(self, "sensory_trace", None)
         vt = getattr(self, "value_trace", None)
         self.td_prev = None if (done or trace is None) else (trace, self._mot(action), vt if vt is not None else trace)
+        if self.td_gamma > 0:
+            if done or trace is None:
+                self.td_hist = []
+            else:
+                decay = self.td_gamma * self.td_lambda
+                self.td_hist = [[a, m, v, e * decay] for a, m, v, e in self.td_hist if e * decay > 0.05]
+                self.td_hist.insert(0, [trace, self._mot(action), vt if vt is not None else trace, 1.0])
         self.episode_over = False
         if getattr(self.b, "hold_context", False) and not waiting:
             self.b.hold_context = False

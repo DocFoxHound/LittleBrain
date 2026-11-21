@@ -49,6 +49,16 @@
 - TD stays **opt-in**: in one-turn games that don't mark episode ends (signal, colour) bootstrapping between unrelated
   trials only adds noise. Games should mark `done` before TD becomes a default.
 
+## TD(λ) (eligibility that fades over earlier turns, λ = 0.6, now the TD default; `TD_LAMBDA`)
+| | seed 0 | seed 1 | seed 2 |
+|---|---|---|---|
+| poison eat rate: TD | 0.12 | 0.21 | 0.33 |
+| poison eat rate: **TD(λ)** | **0.15** | **0.06** | **0.12** |
+| key-door per-step: TD | 0.41 | 0.37 | 0.37 |
+| key-door per-step: TD(λ) | 0.35 | 0.26 | 0.49 |
+Harm avoidance is sharper on every seed; the chain is no better overall, so its limit lies elsewhere (the actor's
+input for similar pictures, exploration): the world model of phase 3 is the next tool for it.
+
 ## Next
 - Stronger chain learning: eligibility across more than one step (TD(λ)), more turns, and the world model of phase 3.
 - Games mark episodes; then TD on by default for the game brain.
