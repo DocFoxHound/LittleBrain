@@ -263,6 +263,9 @@ def retinal_waves(brain, rng):
     return lambda: Wave(brain, rng, quiet)
 
 
+ADULT_VISUAL_LRF = float(os.environ.get("VISION_ADULT_LRF", "0"))   # 0 = stable after development
+
+
 def critical_period_groups():
     return tuple(os.environ.get("VISION_CP_GROUPS", "A.L4").split(","))
 
@@ -276,6 +279,9 @@ def end_critical_period(brain):
     for key, g in brain.g.items():
         if key in RELAYS:
             g.c = _r(g.c, learns=False)
+        elif ADULT_VISUAL_LRF != 1 and key.split(".")[0] in VISUAL_AREAS[1:] and hasattr(g.c, "rules") and g.c.learns:
+            # higher visual areas learn slowly in adulthood (note 77): fast learning during play made their code drift
+            g.c = _r(g.c, rules=_r(g.c.rules, lr=g.c.rules.lr * ADULT_VISUAL_LRF)) if ADULT_VISUAL_LRF else _r(g.c, learns=False)
         elif key in critical_period_groups() and lrf != 1:
             g.c = _r(g.c, rules=_r(g.c.rules, lr=g.c.rules.lr / lrf))
     brain.critical_period_closed = True

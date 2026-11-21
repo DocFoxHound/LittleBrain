@@ -138,6 +138,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 67. [Colour and motion games, and routing learning through vision](notes/74-colour-motion-and-the-learning-route.md): learning reads visual cortex; closing the critical period stopped play from scrambling vision; colour learned via colour relays (3 seeds), not yet via V1 L2/3
 68. [Like-to-like wiring, MT and the ventral stream](notes/75-visual-hierarchy.md): V2, V4, IT, MT; colour learned through visual cortex on 3 seeds; motion via MT; shape not yet
 69. [Eye movements](notes/76-eye-movements.md): superior colliculus and saccades that land on the target
+70. [A readout the striatum can use](notes/77-striatal-readout.md): rescaled input and stable adult visual cortex; motion learned on 3 seeds, signal and colour up
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

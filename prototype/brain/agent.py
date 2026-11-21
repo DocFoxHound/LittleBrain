@@ -136,7 +136,8 @@ class BrainAgent:
                     # the striatum's drive for this choice is the same integrated, centred input learning uses
                     m = getattr(self.b, "trace_mean", None)
                     avg = sum(sensed) / len(sensed)
-                    self.b.cue_online = avg - m if m is not None and m.shape == avg.shape else None
+                    size = getattr(self.b, "trace_scale", None) or 1.0
+                    self.b.cue_online = (avg - m) / size if m is not None and m.shape == avg.shape else None
         if "TH.core" in self.b.g:
             from striatal_projection import activity
             # Eligibility traces integrate presynaptic activity over about a second; a single step of cortical
@@ -150,7 +151,14 @@ class BrainAgent:
                 m = getattr(self.b, "trace_mean", None)
                 tr = self.sensory_trace
                 m = tr * 0 if m is None or m.shape != tr.shape else m
-                self.sensory_trace = tr - m
+                # ...rescaled to a steady typical size (a slow running average of its size): after centring the
+                # input was ~0.1 in size, so its learned drive was too weak to steer the choice (note 77)
+                dev = tr - m
+                size = getattr(self.b, "trace_scale", None)
+                n = float(np.linalg.norm(to_host(dev)))
+                size = n if not size else size + 0.05 * (n - size)
+                self.b.trace_scale = max(size, 1e-3)
+                self.sensory_trace = dev / self.b.trace_scale
                 self.b.trace_mean = m + 0.05 * (tr - m)
             self.timing_trace = None
             if hasattr(self.b, "parallel_fiber_ltd"):
