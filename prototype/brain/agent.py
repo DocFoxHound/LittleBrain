@@ -46,6 +46,12 @@ class BrainAgent:
         import os
         self.saccades = self.eye is not None and "SC.deep" in brain.g and os.environ.get("VISION_SACCADES", "1") == "1"
         self.saccade_at, self.gaze_log = 6, []
+        # Credit across steps (plan phase 1, note 80): with TD_GAMMA > 0 the value of each situation is learned by
+        # temporal-difference errors, and the dopamine at the next turn's cue (gamma x its value) also credits the
+        # previous action. Opt-in; 0 keeps the one-turn behaviour.
+        self.td_gamma = float(os.environ.get("TD_GAMMA", getattr(brain, "td_gamma", 0.0) or 0.0))
+        self.td_prev, self.v_now, self.cue_dopamine, self.episode_over = None, 0.0, 0.0, False
+        self.da_rest = None   # dopamine's resting level: a slow average of its reading over all steps
         self.last_info = {}
         self.last = {}
         # Dopamine from the brain's own dopamine cells if it has them (reward goes in through the US input);
@@ -87,6 +93,47 @@ class BrainAgent:
             d["US"] = np.full(len(self.b.pos["US"]), us, np.float32)
         return d
 
+    def _teach(self, delta):
+        """The temporal-difference error as a teaching signal (note 80). The critic computes it and it drives the
+        dopamine cells (bursts directly, pauses through the lateral habenula); a negative error teaches only if the
+        habenula -> RMTg pathway is intact, so silencing it removes learning about harm (track N1)."""
+        delta = float(np.clip(delta, -1.5, 1.5))
+        if delta < 0 and ({"LHb", "LHb.proj", "RMTg", "RMTg.GABA"} & set(self.b.ablated)):
+            return 0.0
+        return delta
+
+    def _rest_update(self):
+        d = float(self.b.last_dopamine)
+        self.da_rest = d if self.da_rest is None else self.da_rest + 0.01 * (d - self.da_rest)
+
+    def _raw(self, avg, update=False):
+        """The striatum's sensory input for the value critic: minus a very slow average (~200 turns, so the part every
+        picture shares is removed but a frequent situation keeps its value), at a steady size (note 80)."""
+        m = getattr(self.b, "value_mean", None)
+        if m is None or m.shape != avg.shape:
+            m = avg * 0
+        dev = avg - m
+        n = float(np.linalg.norm(to_host(dev)))
+        size = getattr(self.b, "raw_scale", None)
+        if update:
+            self.b.value_mean = m + 0.005 * (avg - m)
+            size = n if not size else size + 0.05 * (n - size)
+            self.b.raw_scale = max(size, 1e-3)
+        x = dev / (getattr(self.b, "raw_scale", None) or max(n, 1e-3))
+        # sparse code: only the most active features (top 5%), all-or-none, so different situations barely overlap
+        # and learning one situation's value doesn't disturb another's (pattern separation, as in the dentate gyrus)
+        xs = to_host(x)
+        k = max(1, int(0.05 * xs.size))
+        code = np.zeros_like(xs)
+        code[np.argpartition(-xs, k)[:k]] = 1.0 / np.sqrt(k)
+        return code
+
+    def _centred(self, avg):
+        """The striatum's sensory input as learning sees it: minus recent turns, at a steady size (notes 74, 77)."""
+        m = getattr(self.b, "trace_mean", None)
+        size = getattr(self.b, "trace_scale", None) or 1.0
+        return (avg - m) / size if m is not None and m.shape == avg.shape else avg
+
     def _mot(self, action=None):
         m = np.zeros(len(self.chan["MOT"]), np.float32)
         if action is not None:
@@ -103,9 +150,29 @@ class BrainAgent:
             self.eye.look_at((0.5, 0.5))   # fixate the centre
         x, gpi, feats = self._retina(image), [], []
         sensed = []   # vision brains: the striatum's sensory input integrated over the read window (note 74)
+        td = self.td_gamma > 0 and self.timed and "TH.core" in self.b.g
+        cue_at = self.look - 4   # the value signal arrives a few steps before the choice; dopamine is read after it
+        cue_da, pre_da = 0.0, 0.0
         for s in range(self.look):
             signals = dict(self.body_signals)
-            if self.timed and s == self.look - 1:
+            if td and s == cue_at:
+                from striatal_projection import activity, critic_value
+                feat = self._raw(sum(sensed) / len(sensed), update=True) if sensed else activity(self.b)
+                self.value_trace = feat     # the critic learns on exactly the code it predicted from
+                self.v_now = critic_value(self.b, feat)
+                cv = self.td_gamma * self.v_now
+                self.cue_value = self.v_now
+                if "LHb.proj" in self.b.g and any(p.id == "aversive value -> LHb" for p in self.b.spec.pooled):
+                    # better than nothing excites dopamine cells; worse inhibits them through the habenula (N1)
+                    signals["value_change"], signals["value_loss"] = max(cv, 0.0), max(-cv, 0.0)
+                else:
+                    signals["value_change"] = cv
+                if self.learn and self.td_prev is not None:
+                    prev_mot = self.td_prev[1]
+                    tiles = to_host(self.b.tile["MOT"])
+                    signals["credit_motor"] = (np.bincount(tiles, weights=prev_mot, minlength=64)
+                                               / np.maximum(np.bincount(tiles, minlength=64), 1)).astype(np.float32)
+            elif self.timed and not td and s == self.look - 1:
                 rates = self.b.g
                 value = (float(to_host(rates["STR.SO"].rate).mean())
                          + 4 * float(to_host(rates["BLA.pos"].rate - rates["BLA.neg"].rate).mean()))
@@ -118,6 +185,9 @@ class BrainAgent:
                 self.cue_value = float(np.clip(value, -1, 1))
                 signals["value_change"] = self.cue_value
             self.b.step(self._inputs(x), learn=self.learn, ach=self.ach, signals=signals)
+            if td and s >= cue_at:
+                cue_da += self.b.last_dopamine - self.da_rest   # against dopamine's resting level
+            self._rest_update()
             if self.saccades and s >= 1 and not moved and s <= self.saccade_at:
                 from vision import saccade_target
                 target = saccade_target(self.b, self.eye)
@@ -160,6 +230,17 @@ class BrainAgent:
                 self.b.trace_scale = max(size, 1e-3)
                 self.sensory_trace = dev / self.b.trace_scale
                 self.b.trace_mean = m + 0.05 * (tr - m)
+                if not td:
+                    self.value_trace = None
+            if td and self.learn and self.td_prev is not None:
+                # gamma x the value of where the last action led completes the previous turn's temporal-difference
+                # error (its outcome part was applied at its outcome): credit the previous action and situation
+                from striatal_projection import critic_learn, reinforce
+                prev_trace, prev_mot, prev_value_trace = self.td_prev
+                delta = self._teach(self.td_gamma * self.v_now)
+                reinforce(self.b, prev_trace, prev_mot, delta)
+                critic_learn(self.b, prev_value_trace, delta)
+            self.cue_dopamine = cue_da
             self.timing_trace = None
             if hasattr(self.b, "parallel_fiber_ltd"):
                 from association import timing_activity
@@ -189,16 +270,32 @@ class BrainAgent:
         if self.own_dopamine:
             feedback = self.last_info.get("feedback", True)
             rpe = 0.0
+            # credit across steps: the outcome's dopamine is read relative to just before it, over a window that
+            # covers the habenula's delayed dip (act steps 2-3 and the first two rest steps), then learned once
+            tdw = feedback and self.td_gamma > 0 and self.timed and "TH.core" in self.b.g
+            pre_da, out_da = 0.0, 0.0
             for s in range(self.act):
                 due = feedback and s == 2
                 signals = dict(self.body_signals, outcome_due=due,
                                timing_error=self.last_info.get("timing_error", 0.0) if due else 0.0,
-                               value_change=-self.cue_value if self.timed and due else 0.0)
+                               value_change=(-self.cue_value if self.timed and due else 0.0))
+                if due and self.td_gamma > 0 and self.timed and "TH.core" in self.b.g:
+                    # the outcome is measured against the situation's full value (not gamma-discounted)
+                    v = self.v_now
+                    if "LHb.proj" in self.b.g and any(p.id == "aversive value -> LHb" for p in self.b.spec.pooled):
+                        signals["value_change"], signals["value_loss"] = max(-v, 0.0), max(v, 0.0)
+                    else:
+                        signals["value_change"] = -v
                 if due and "timing_offset" in self.last_info:
                     signals["timing_offset"] = self.last_info["timing_offset"]
                 self.b.step(self._inputs(x, action, us=reward if due else 0.0),
                             learn=self.learn, ach=self.ach, arousal=0.3, signals=signals)
-                if due:
+                if tdw and s >= 2:
+                    out_da += self.b.last_dopamine - self.da_rest
+                self._rest_update()
+                if due and tdw:
+                    pass   # with credit across steps, outcome learning waits for the habenula's delayed dip (below)
+                elif due:
                     rpe = self.b.last_dopamine
                     if self.learn and "TH.core" in self.b.g:
                         from striatal_projection import food_outcome, pair_outcome, reinforce
@@ -220,7 +317,26 @@ class BrainAgent:
                 self._tick("act", action=action, reward=reward, dopamine=rpe if s == 2 else 0.0, step=s)
         for s in range(self.rest):
             self.b.step(self._inputs(0 * x), ach=self.ach)
+            if self.own_dopamine and tdw and s < 2:
+                out_da += self.b.last_dopamine - self.da_rest
+            self._rest_update()
             self._tick("rest", step=s)
+        if self.own_dopamine and tdw:
+            rpe = self._teach(float(reward) - self.v_now)   # reward minus this situation's value
+            if self.learn:
+                from striatal_projection import critic_learn, food_outcome, pair_outcome, reinforce
+                if "food_contact" in self.last_info:
+                    amount = self.last_info.get("food_reward", 1.) if self.last_info["food_contact"] else 0.
+                    food_outcome(self.b, self.sensory_trace, self._mot(action), amount)
+                if "timing_error" in self.last_info:
+                    from association import climbing_fiber_credit
+                    climbing_fiber_credit(self.b, self.timing_trace, self._mot(action))
+                pair_outcome(self.b, self.sensory_trace, reward)
+                reinforce(self.b, self.sensory_trace, self._mot(action), rpe)
+                critic_learn(self.b, self.value_trace if getattr(self, "value_trace", None) is not None
+                             else self.sensory_trace, rpe)
+                if self.timed:
+                    self.b.record_waking_outcome(rpe)
         return rpe
 
     def begin_turn(self, obs):
@@ -251,6 +367,12 @@ class BrainAgent:
             # An unapplied motor command leaves the observed context in working memory.
             self.b.hold_context = True
         self.last_rpe = self.outcome(retina, action, reward)
+        # remember this turn for the next cue's temporal-difference credit, unless the episode ended here
+        done = self.episode_over or bool(self.last_info.get("done", False))
+        trace = getattr(self, "sensory_trace", None)
+        vt = getattr(self, "value_trace", None)
+        self.td_prev = None if (done or trace is None) else (trace, self._mot(action), vt if vt is not None else trace)
+        self.episode_over = False
         if getattr(self.b, "hold_context", False) and not waiting:
             self.b.hold_context = False
             self.b.clear_context_steps = 5
@@ -271,6 +393,7 @@ class BrainAgent:
         for _ in range(turns):
             action = self.begin_turn(self.next_observation)
             obs, reward, done, info = game.step(action)
+            self.episode_over = bool(done)
             self.finish_turn(reward, info, sleep_every)
             rewards.append(reward)
             if log is not None:

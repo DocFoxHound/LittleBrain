@@ -379,6 +379,10 @@ class Brain:
                 if timed and key in ("STR.D1", "STR.D2"):
                     if outcome_due:
                         credit = self._pool("MOT")[self.tile[key]]
+                    elif sig.get("credit_motor") is not None:
+                        # credit across steps (note 80): the dopamine at this cue belongs to the previous action's
+                        # channel, whose synapses still carry eligibility from that choice
+                        credit = like(self.r, sig["credit_motor"])[self.tile[key]]
                     else:
                         credit = 0.0
                 new[key] = self._update(key, grp, chan[key], phase, learn, ach, dopamine, arousal, credit)

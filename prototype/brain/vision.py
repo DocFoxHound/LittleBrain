@@ -164,6 +164,15 @@ def vision_brain():
     if os.environ.get("VISION_SC", "1") == "1":
         add_colliculus(spec)
     spec.synaptic = [_visual_cortex_gains(p) for p in spec.synaptic]
+    if any(g.key == "LHb.proj" for g in spec.groups):
+        # Worse-than-expected value drives the lateral habenula, which silences dopamine cells through the RMTg
+        # (Matsumoto & Hikosaka 2007): harm predicted across steps (plan track N1, note 80)
+        spec.pooled.extend([Pooled("aversive value -> LHb", None, "LHb.proj", float(os.environ.get("LHB_GAIN", "4.0")),
+                                  channel="exc", signal="value_loss"),
+                           # stronger habenula -> RMTg relay: real habenula activation pauses dopamine cells almost
+                           # completely; the reconstructed relay saturated at about a third of a pause (note 80)
+                           Pooled("LHb -> RMTg (pause)", "LHb.proj", "RMTg.GABA", float(os.environ.get("LHB_RMTG", "3.0")),
+                                  sigma=None)])
     return spec
 
 

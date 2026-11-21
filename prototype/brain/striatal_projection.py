@@ -186,3 +186,23 @@ def food_outcome(brain, trace, motor, amount):
     weights = brain.food_afferents
     weights += .25 * (selected * (amount - weights @ cue))[:, None] * cue
     xp.clip(weights, -2., 2., out=weights)
+
+
+# ---------------------------------------------------------------- value across steps (plan phase 1, note 80)
+
+def critic_value(brain, trace):
+    """Ventral-striatum value of the current situation (a reduced readout of the striatum's sensory input), learned by
+    temporal-difference errors so that it predicts reward and what the situation leads to."""
+    w = getattr(brain, "value_afferents", None)
+    if w is None or w.shape != trace.shape:
+        return 0.0
+    return float(np.clip(float(w @ trace), -1.5, 1.5))
+
+
+def critic_learn(brain, trace, delta, lr=0.3):
+    xp = xpof(trace)
+    w = getattr(brain, "value_afferents", None)
+    if w is None or w.shape != trace.shape:
+        w = brain.value_afferents = xp.zeros_like(trace)
+    w += lr * float(delta) * trace
+    xp.clip(w, -4.0, 4.0, out=w)

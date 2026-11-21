@@ -10,7 +10,8 @@ from games import REGISTRY
 LESIONS = {"signal": {"sensory -> striatum"}, "danger": {"BLA", "CeL", "CeM"},
            "forage": {"HYP"}, "delayed": {"PFC", "MD"}, "timing": {"CB", "DCN", "IO"},
            "colour": {"sensory -> striatum"}, "motion": {"sensory -> striatum"},
-           "shape": {"sensory -> striatum"}, "peripheral": {"sensory -> striatum"}}
+           "shape": {"sensory -> striatum"}, "peripheral": {"sensory -> striatum"},
+           "keydoor": {"sensory -> striatum"}, "poison": {"LHb", "RMTg"}}
 
 
 def mean(events):
@@ -19,6 +20,13 @@ def mean(events):
 
 
 def metrics(game, block):
+    if game == "keydoor":
+        return dict(accuracy=mean(e["correct"] for e in block),
+                    first_step=mean(e["correct"] for e in block if e["state"] == 0),
+                    completed=sum(bool(e.get("completed")) for e in block))
+    if game == "poison":
+        return dict(eat_rate=mean(e["ate"] for e in block if e["state"] == "berry"),
+                    decisions=sum(e["state"] == "berry" for e in block))
     if game in ("signal", "colour", "motion", "shape", "peripheral"):
         return dict(accuracy=mean(e["correct"] for e in block))
     if game == "danger":

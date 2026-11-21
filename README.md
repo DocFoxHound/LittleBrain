@@ -141,6 +141,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 70. [A readout the striatum can use](notes/77-striatal-readout.md): rescaled input and stable adult visual cortex; motion learned on 3 seeds, signal and colour up
 71. **[Plan: a brain that can learn to play Minecraft, and shipping it](notes/78-minecraft-plan.md)**: phases 0-9 (credit across steps, spatial maps, world model and look-ahead, goals, object vision, sleep, Minecraft connection, training, templates)
 72. [Phase 0: groundwork](notes/79-phase0-groundwork.md): design stamps on saves, vision100k, compiled inner loops (vision brain 1.98 → 0.86 s per decision)
+73. [Credit and harm across steps](notes/80-credit-across-steps.md): TD critic driving dopamine (bursts) and the habenula (pauses); avoids a slow poison on 3 seeds; key-door partly
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
