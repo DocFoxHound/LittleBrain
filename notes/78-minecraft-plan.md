@@ -11,7 +11,9 @@ Realistic first goals, on a small local world with the bot doing the fine motor 
 2. **Gather and craft**: wood → planks → crafting table → wooden pickaxe (a 4-7 step chain with the reward at the end).
 3. **Survive the first night**: notice mobs, keep distance or get into shelter, recover.
 4. **Find its way back** to a remembered place (base, food spot).
-Not in v1: building, mining deep, combat strategy, language/chat.
+5. **Say a few things** in chat when they matter ("food" when hungry, "help" in danger, names of things it knows),
+   and understand a few words from the player (track L).
+Not in v1: building, mining deep, combat strategy, conversation beyond a few words.
 
 ## Where we are (start of this plan)
 Learns from immediate outcomes (habits) through the striatum; dopamine made by neurons, with cue responses and relief
@@ -116,9 +118,40 @@ recognition regardless of position, and the Minecraft connection itself.
 
 ---
 
+## Track L: communication (sound and text), grown like a child's, not an LLM
+*Added 2026-11-22 at the owner's request. Language grows out of hearing, babbling and interaction (README: "from cries
+into sounds into words"), learned with the same biological rules as everything else. No language model.*
+
+**Senses and voice.** Sound and text share one route in: text is turned into the same sound-like patterns a word
+would make, so a word read in chat and a word heard are the same word to the brain (reading glyphs with the eye can
+come later). Out: a small **vocal motor** system whose units are syllable-like sounds; the host turns them into audio
+or text.
+
+| step | what | real counterpart | test (3 seeds, controls) |
+|---|---|---|---|
+| L1 hearing | an ear like the retina: a filter bank (cochlea) → auditory thalamus (MGB) → auditory cortex (A1, belt) on a tonotopic map | cochlea, MGBv, A1 | tell syllables apart; recurring sound patterns become familiar from mere exposure (statistical learning, Saffran et al. 1996) |
+| L2 babbling and imitation | the vocal units babble; the brain hears its own voice (efference copy) and a basal ganglia loop learns from the mismatch with sounds it has heard | larynx motor cortex, songbird-style vocal learning with dopamine error (Gadagkar et al. 2016) | imitation accuracy rises; silenced auditory feedback → no improvement |
+| L3 words mean things | a caregiver names what the character is looking at; heard word + seen object link in temporal association cortex and hippocampus | cross-situational word learning (Smith & Yu 2008); joint attention | picks the named object among several; learns words from ambiguous scenes |
+| L4 using words | saying a word changes the world: "food" when hungry makes the caregiver bring food; "help" in danger | requests, social reward | asks appropriately (hungry → food word) above chance and above a no-language control |
+| L5 combining and turn-taking | two-word messages (sequence via prefrontal goals and basal ganglia chunks, phase 4); taking turns | Broca's area, PFC | understands and produces simple two-word combinations; waits its turn |
+| L6 two brains talking | two LittleBrains invent a shared code in a signalling game (Lewis signalling; emergent communication) | | shared code above chance; a fresh brain can learn it |
+
+**The caregiver.** A scripted caregiver in the games (names things, answers requests, praises), plus the **player**
+through the app: type or speak to the character, read or hear its replies.
+
+**In Minecraft.** Chat is the channel: player messages arrive as heard words; the character's vocal output is sent as
+chat. v1 template goal: a handful of words used appropriately ("food", "help", names of things it knows).
+
+**Where it fits.** L1 can start right away, in parallel with phase 1. L2 needs phase 1 (credit across steps). L3 needs
+phase 5 (objects). L4 needs phase 3 (goals and drives). L5 needs phase 4. L6 any time after L4. Template training
+(phase 8) includes L1-L4 so the Minecraft template can say a few things.
+
+---
+
 ## Order and dependencies
 0 → 1 → (2, 5 in parallel) → 3 → 4 → 6 → 7 → 8 → 9. Phase 7 (the connection) can start in parallel with 3-6 using
-the blank brain, so the plumbing is ready when the brain is.
+the blank brain, so the plumbing is ready when the brain is. Track L runs alongside: L1 with phase 1; L2 after 1;
+L3 after 5; L4 after 3; L5 after 4.
 
 ## Risks
 - **Sample efficiency**: biological learning rules are slow; Minecraft may need many thousands of episodes. Mitigation:
