@@ -396,3 +396,8 @@ colour relays (0.64 / 0.64 / 0.53) but not yet via V1 L2/3; motion waits for MT.
 V2, V4, IT and MT with like-to-like wiring and a visual-cortex sharpness cap; superior colliculus and saccades
 (`VISION_SACCADES`). 3 seeds: colour learned through cortex (0.39 / 0.46 / 0.41 vs ~0.24 off); motion only when MT is
 read alone; shape not learned (needs temporal-trace learning). Saccades land on salient targets (0.315 → 0.086).
+
+### Current plan
+
+[Note 78](notes/78-minecraft-plan.md) is the working plan: phases 0-9 toward a Minecraft-trained template and shipping
+blank / Minecraft templates in the app. Work the phases in order; each has a test game and "done when" criteria.
