@@ -31,7 +31,7 @@ SPECS = {"bg": "stage_bg", "da": "stage_da", "amy": "stage_amy", "td": "stage_ti
          "hyp": "stage_hypothalamus", "pfc": "stage_prefrontal", "cerebellum": "stage_cerebellum",
          "hippocampus": "stage_game_hippocampus", "ca2": "stage_ca2", "insula": "stage_insula",
          "full": "full_brain", "human100k": "full_brain_human",
-         "vision": "full_brain_vision"}
+         "vision": "full_brain_vision", "vision100k": "full_brain_vision_human"}
 DEFAULT_BRAIN = "full"
 
 

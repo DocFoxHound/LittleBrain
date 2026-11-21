@@ -136,6 +136,21 @@ class SynapseBank:
         self.tag[:] = 0.0
 
 
+_DUMMY3 = np.zeros((1, 1, 1), np.float32)
+_DUMMY2 = np.zeros((1, 1), np.float32)
+_DUMMYB = np.zeros((1, 1, 1), bool)
+
+
+def _fast_ok(bank, r):
+    """Use the compiled drive for host (numpy) arrays of the expected types, without wave gating."""
+    import fastkernels
+    return (fastkernels.ENABLED and bank.wave_gate is None and isinstance(r, np.ndarray) and r.dtype == np.float32
+            and isinstance(bank.fast, np.ndarray) and bank.fast.dtype == np.float32 and bank.def0.dtype == np.float32
+            and bank.gain.dtype == np.float32 and bank.d.dtype == np.int8
+            and (bank.transmit is None or np.ndim(bank.transmit) == 0 or bank.transmit.dtype == np.float32)
+            and (bank.conductance_floor is None or bank.conductance_floor.dtype == np.float32))
+
+
 class LeanBank(SynapseBank):
     """The same synapses, stored lean (notes/24, prototype/lean_neuron.py):
       - long-term: cascade = M @ seed default + d * step. d is a small integer per level at the cell type's
@@ -218,8 +233,54 @@ class LeanBank(SynapseBank):
         return np.clip(self.fast, -self.t.w_max, self.t.w_max) + c0
 
     def drive(self, r):
+        if _fast_ok(self, r):
+            return self._fast_drive(r)
         d, xs = super().drive(r)
         return d * self.norm, xs
+
+    def trace(self, xs, post):
+        import fastkernels
+        if (fastkernels.ENABLED and isinstance(xs, np.ndarray) and xs.dtype == np.float32 and self.elig.dtype == np.float32
+                and self.pre.dtype == np.float32 and isinstance(post, np.ndarray) and post.dtype == np.float32
+                and xs.shape == self.elig.shape):
+            fastkernels.trace(self.elig, self.pre, xs, post, float(self.t.elig_decay), float(self.t.post_offset))
+            return
+        super().trace(xs, post)
+
+    def modulate(self, plasticity, dopamine, ach, arousal, plateau=None):
+        import fastkernels
+        if not (fastkernels.ENABLED and self.learn_mask is None and self.branch_tags and isinstance(self.fast, np.ndarray)
+                and self.fast.dtype == np.float32 and self.elig.dtype == np.float32
+                and isinstance(plasticity, np.ndarray) and plasticity.dtype == np.float32
+                and (self.branch_open is None or self.branch_open.dtype == np.float32)):
+            return super().modulate(plasticity, dopamine, ach, arousal, plateau)
+        factor = self.t.lr * ach * dopamine * (arousal if self.t.arousal_gated else 1.0)
+        bo, th = self.branch_open, self.thalamic_afferents
+        fastkernels.modulate_lean(self.fast, self.elig, plasticity, float(factor), float(self.t.cooperativity or 0.0),
+                                  bo is not None, bo if bo is not None else _DUMMY2, bool(self.heterosynaptic),
+                                  th is not None, th if th is not None else _DUMMYB, float(self.t.fast_range),
+                                  float(arousal * abs(dopamine)), self.tag)
+        if abs(dopamine) * ach > self.t.oneshot_level and plateau is not None:
+            self.oneshot(0.3 * np.sign(dopamine) * self.pre * (plasticity * plateau)[:, None, None])
+
+    def _fast_drive(self, r):
+        """The same drive in one compiled pass (fastkernels.py, note 79)."""
+        from fastkernels import lean_drive
+        F = _flow_matrix(self.t, self.pending)[0]
+        a0 = float(F @ self.M[:, 0])
+        n, nb, ns = self.src.shape
+        out = np.empty((n, nb), np.float32)
+        xs = np.empty((n, nb, ns), np.float32)
+        tr = self.transmit
+        has_t = tr is not None
+        if has_t and np.ndim(tr) == 0:
+            tr = np.full(self.src.shape, tr, np.float32)
+        fl = self.conductance_floor
+        has_f = fl is not None
+        lean_drive(r, self.src, self.fast, self.def0, self.d, self.gain,
+                   tr if has_t else _DUMMY3, has_t, fl if has_f else _DUMMY3, has_f,
+                   a0, np.asarray(F, np.float64), float(self.qstep), float(self.t.w_max), float(self.norm), out, xs)
+        return out, xs
 
     def mark(self, x):
         self.tag = np.clip(self.tag + (x.max(axis=2) if self.branch_tags else x), 0.0, 1.0)

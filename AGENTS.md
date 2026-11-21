@@ -401,3 +401,9 @@ read alone; shape not learned (needs temporal-trace learning). Saccades land on 
 
 [Note 78](notes/78-minecraft-plan.md) is the working plan: phases 0-9 toward a Minecraft-trained template and shipping
 blank / Minecraft templates in the app. Work the phases in order; each has a test game and "done when" criteria.
+
+### Phase 0 (note 79)
+
+Saves carry a design stamp (`design.py`; `Brain.load(path, kind=...)` refuses mismatches; bump `RUNTIME_VERSION` when
+simulation semantics change). Inner loops are compiled (`fastkernels.py`, numba); `LITTLEBRAIN_FAST=0` runs the exact
+numpy code, which stays bit-identical to earlier results. Tests: `test_design.py`, `test_fast_kernels.py`.

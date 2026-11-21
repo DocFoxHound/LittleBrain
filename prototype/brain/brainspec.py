@@ -409,3 +409,11 @@ def full_brain_vision():
     """The full brain with a real retina, LGN streams and finer visual maps (vision.py, notes 71+)."""
     from vision import vision_brain
     return vision_brain()
+
+
+def full_brain_vision_human(n_neurons=None):
+    """The vision brain grown to about n_neurons (env BRAIN_NEURONS, default 100,000) with human proportions
+    (note 79). The visual areas share the sensory-cortex budget."""
+    from human_scale import human_sized
+    n = int(os.environ.get("BRAIN_NEURONS", "100000")) if n_neurons is None else n_neurons
+    return human_sized(full_brain_vision(), n)[0]

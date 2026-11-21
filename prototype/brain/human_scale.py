@@ -67,11 +67,14 @@ def _catalog_of(spec):
     """For each non-input group with a catalog entry: (subregion name, its type's catalog percent, number of maps
     in this brain sharing that subregion and type)."""
     from check_regional_audit import TERRITORIES, territory
+    import regions as R
+    # The vision brain's extra visual areas share the sensory-cortex budget with V1 and B (note 79)
+    extra = {"V2": R.SENSORY_CORTEX, "V4": R.SENSORY_CORTEX, "IT": R.SENSORY_CORTEX, "MT": R.SENSORY_CORTEX}
     entry = {}
     for g in spec.groups:
         if g.key in spec.inputs or g.ctype is None:
             continue
-        sub = TERRITORIES.get(territory(g.key))
+        sub = TERRITORIES.get(territory(g.key)) or extra.get(territory(g.key))
         pct = sum(p for c, p, _, _ in sub.cells if c.name == g.ctype.name) if sub is not None else 0
         if pct > 0:
             entry[g.key] = (sub.name, pct, g.ctype.name)
