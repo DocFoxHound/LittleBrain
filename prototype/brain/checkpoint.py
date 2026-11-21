@@ -12,7 +12,7 @@ from neuron import NeuronType
 SCHEMA = {cls: {f.name for f in fields(cls)} for cls in (NeuronType, CellType, Group, Pooled, Spec, Synaptic)}
 SCHEMA[Spec].add("timed_dopamine")
 SCHEMA[Brain] = set("""
-_feeds _in_ref _log _posx _quiet _ravg _stats _vbar ablated adapt_rate amygdala_afferents
+_feeds _in_ref _log _posx _quiet _ravg _stats _vbar ablated adapt_rate amygdala_afferents ftile grid
 cem_base clear_context_steps clock da_base device dopamine_group dormant every food_afferents g
 hold_context homeo_rule homeo_skip homeo_speed homeostasis index kernels kwta last_arousal
 last_dopamine lod_frac lod_patience lod_skipped lod_total long_fraction max_scale n_neurons
@@ -77,11 +77,13 @@ def _validate(brain):
     offset = 0
     for spec in groups:
         key = spec.key
-        size = spec.per_tile * T
+        gs = getattr(spec, "grid", 8)
+        size = spec.per_tile * gs * gs
         index = brain.index[key]
         if (type(spec) is not Group or size <= 0 or not _indices(index, (size,), brain.n_total)
                 or not np.array_equal(index, np.arange(offset, offset + size))
-                or not _indices(brain.tile[key], (size,), T) or brain.pos[key].shape != (size, 2)):
+                or not _indices(brain.tile[key], (size,), T) or brain.pos[key].shape != (size, 2)
+                or (gs != 8 and not _indices(getattr(brain, "ftile", {}).get(key), (size,), gs * gs))):
             raise ValueError("Invalid population map")
         offset += size
         if key in inputs:

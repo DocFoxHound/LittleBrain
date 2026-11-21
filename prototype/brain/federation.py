@@ -42,6 +42,9 @@ class Group:
     kwta: float = 0.0 # if set: only this top fraction may fire (stands in for very strong, fast
                       # feedback inhibition that a rate model can't resolve, e.g. dentate gyrus ~2%)
     every: int = 1    # clock: update every N steps (slow regions: hypothalamus, hormones, mood)
+    grid: int = 8     # this structure's own map resolution (tiles per side; a multiple of GRID). Finer maps
+                      # (16, 32) keep more spatial detail, e.g. the retina and early visual areas (note 71).
+                      # per_tile is per tile of this grid. Every group also keeps its coarse 8x8 tile.
 
 
 @dataclass
@@ -112,10 +115,21 @@ class Brain:
         self.spec, self.rng = spec, np.random.default_rng(seed)
         rng = self.rng
         self.g, self.index, self.pos, self.tile = {}, {}, {}, {}
+        self.ftile, self.grid = {}, {}   # fine tiles and grid size, for groups on a finer map than 8x8
         off = 0
         for gr in spec.groups:
-            tiles = np.repeat(np.arange(T), gr.per_tile)
-            self.pos[gr.key] = (np.stack([tiles % GRID, tiles // GRID], 1) + rng.random((tiles.size, 2))) / GRID
+            gs = getattr(gr, "grid", GRID)
+            if gs == GRID:
+                tiles = np.repeat(np.arange(T), gr.per_tile)
+                self.pos[gr.key] = (np.stack([tiles % GRID, tiles // GRID], 1) + rng.random((tiles.size, 2))) / GRID
+            else:
+                if gs % GRID:
+                    raise ValueError(f"{gr.key}: grid {gs} must be a multiple of {GRID}")
+                fine = np.repeat(np.arange(gs * gs), gr.per_tile)
+                fx, fy = fine % gs, fine // gs
+                self.pos[gr.key] = (np.stack([fx, fy], 1) + rng.random((fine.size, 2))) / gs
+                tiles = (fx * GRID // gs) + (fy * GRID // gs) * GRID
+                self.ftile[gr.key], self.grid[gr.key] = fine, gs
             self.tile[gr.key] = tiles
             self.index[gr.key] = np.arange(off, off + tiles.size)
             off += tiles.size
@@ -405,11 +419,49 @@ class Brain:
                 field_ = xpof(self.r).full(T, sig.get(p.signal, 0.0), np.float32)
             else:
                 srcs = p.src if isinstance(p.src, list) else [p.src]
+                if getattr(self, "grid", None) and any(k in self.grid for k in srcs + dsts):
+                    self._fine_pooled(p, srcs, dsts, chan)   # a structure on a finer map is involved
+                    continue
                 field_ = self._K(p.sigma) @ xpof(self.r).stack([self._pool(s) for s in srcs]).mean(axis=0)
             for dst in dsts:
                 c = chan[dst].setdefault(p.channel, xpof(self.r).zeros(self.g[dst].n, np.float32))
                 c += p.weight * field_[self.tile[dst]]
         return chan
+
+    def _grid(self, key):
+        return self.grid.get(key, GRID)
+
+    def _pool_fine(self, key):
+        """Mean rate per tile of the group's own map."""
+        if key not in self.grid:
+            return self._pool(key)
+        rate, ft, n = self.r[self.index[key]], self.ftile[key], self.grid[key] ** 2
+        return (np.bincount(ft, weights=rate, minlength=n) / np.maximum(np.bincount(ft, minlength=n), 1)
+                ).astype(np.float32)
+
+    def _Kx(self, gs, gd, sigma):
+        """Kernel from a gs x gs map to a gd x gd map. sigma is in 8x8-map tiles (the same physical width on every
+        map); 0 = the same place (about one fine tile); None = the whole structure."""
+        name = f"x{gs}-{gd}-{sigma}"
+        if name not in self.kernels:
+            cs = (np.stack([np.arange(gs * gs) % gs, np.arange(gs * gs) // gs], 1) + 0.5) / gs
+            cd = (np.stack([np.arange(gd * gd) % gd, np.arange(gd * gd) // gd], 1) + 0.5) / gd
+            if sigma is None:
+                K = np.ones((gd * gd, gs * gs))
+            else:
+                s = sigma / GRID if sigma else 0.35 / max(gs, gd)
+                d2 = ((cd[:, None, :] - cs[None, :, :]) ** 2).sum(-1)
+                K = np.exp(-d2 / (2 * s * s))
+            self.kernels[name] = like(self.r, (K / K.sum(1, keepdims=True)).astype(np.float32))
+        return self.kernels[name]
+
+    def _fine_pooled(self, p, srcs, dsts, chan):
+        xp = xpof(self.r)
+        for dst in dsts:
+            gd = self._grid(dst)
+            field_ = xp.stack([self._Kx(self._grid(s), gd, p.sigma) @ self._pool_fine(s) for s in srcs]).mean(axis=0)
+            c = chan[dst].setdefault(p.channel, xp.zeros(self.g[dst].n, np.float32))
+            c += p.weight * field_[self.ftile[dst] if dst in self.grid else self.tile[dst]]
 
     def _update(self, key, grp, ch, phase, learn, ach, dopamine, arousal, credit=None):
         if key.split(".")[0] in self.ablated or key in self.ablated:

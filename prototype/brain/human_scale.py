@@ -16,7 +16,9 @@ neocortex (~19%); every other subregion's human share is below its existing mini
 
 from collections import defaultdict
 
-GRID_CELLS = 64   # one 8x8 map
+def cells_per_tile(g):
+    """Cells per unit of per_tile: one map of the group's own grid (8x8 = 64 unless finer, note 71)."""
+    return getattr(g, "grid", 8) ** 2
 
 # Subregions with no human total in regions.py: value used here and its basis.
 # Only the cortex values matter at ~100k neurons; the rest stay far below the one-map minimum.
@@ -88,7 +90,7 @@ def _per_tile(spec, cat, totals, human_scale):
             continue
         sub, pct, k = cat[g.key]
         target = human_scale * totals[sub] * pct / 100 / k
-        out[g.key] = max(g.per_tile, int(round(target / GRID_CELLS)))
+        out[g.key] = max(g.per_tile, int(round(target / cells_per_tile(g))))
     return out
 
 
@@ -99,10 +101,11 @@ def human_sized(spec, n_neurons=100_000):
     spec = copy.deepcopy(spec)
     totals, assumed = human_totals()
     cat = _catalog_of(spec)
+    cell = {g.key: cells_per_tile(g) for g in spec.groups}
 
     def size(scale):
         pt = _per_tile(spec, cat, totals, scale)
-        return sum(v for k, v in pt.items() if k not in spec.inputs) * GRID_CELLS, pt
+        return sum(v * cell[k] for k, v in pt.items() if k not in spec.inputs), pt
 
     lo, hi = 0.0, 1e-3
     while size(hi)[0] < n_neurons:
@@ -114,7 +117,7 @@ def human_sized(spec, n_neurons=100_000):
     before = {g.key: g.per_tile for g in spec.groups}
     for g in spec.groups:
         g.per_tile = pt[g.key]
-    grown = {k: (before[k] * GRID_CELLS, pt[k] * GRID_CELLS) for k in pt if pt[k] != before[k]}
+    grown = {k: (before[k] * cell[k], pt[k] * cell[k]) for k in pt if pt[k] != before[k]}
     report = {"neurons": total, "human_scale": hi, "grown": grown, "assumed": assumed}
     return spec, report
 

@@ -165,7 +165,7 @@ def sized(spec, n_neurons):
     fly ~140,000; 1,000,000."""
     import copy
     spec = copy.deepcopy(spec)
-    now = sum(g.per_tile for g in spec.groups if g.key not in spec.inputs) * GRID * GRID
+    now = sum(g.per_tile * getattr(g, "grid", GRID) ** 2 for g in spec.groups if g.key not in spec.inputs)
     f = n_neurons / now
     for g in spec.groups:
         g.per_tile = max(1, int(round(g.per_tile * f)))
