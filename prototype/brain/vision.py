@@ -70,7 +70,7 @@ def add_retina_and_lgn(spec):
     for relay, drivers in drivers_of:
         syn += [Synaptic(f"CT-2 retina->{relay} (driver)", drivers, relay, "basal", 0.3, 3.0, 0.05),
                 Synaptic(f"CT-3 L6 CT->{relay} (modulator)", "A.L6", relay, "basal", 0.7, 0.15, 0.08)]
-    spec.synaptic = [_visual_cortex_gains(p) for p in syn]
+    spec.synaptic = syn
     pooled = []
     for p in spec.pooled:
         if p.id == "TRN<-relay collaterals":
@@ -82,7 +82,7 @@ def add_retina_and_lgn(spec):
     return spec
 
 
-VISUAL_AREAS = ("A",)   # grows as higher visual areas are added (note 75)
+VISUAL_AREAS = ("A", "MT", "V2", "V4", "IT")   # visual cortical areas (those present in a brain are used)
 SLOW_HOMEOSTASIS = 0.1  # visual cortex layers balance their firing 10x more slowly (note 74)
 
 
@@ -90,9 +90,14 @@ def visual_homeostasis(brain):
     """Always-on homeostasis adapted visual cortex away from whatever it was looking at (a 20-step picture): with it
     off, V1 L2/3 identified colour pictures 75% of the time instead of 50%. Slow it for visual cortex (saved in the
     checkpoint, like HOMEO_SLOW)."""
+    cap = float(os.environ.get("VISION_SCALE_CAP", "8"))
     for g in brain.spec.groups:
         if g.key.split(".")[0] in VISUAL_AREAS and g.key in brain.g:
             brain.homeo_speed[g.key] = SLOW_HOMEOSTASIS
+            if cap:
+                # Calibration made visual cortex cells near on/off switches (sharpness ~19), so small input
+                # fluctuations flipped them and amplified noise (note 75)
+                brain.scale_caps = dict(getattr(brain, "scale_caps", {}), **{g.key: cap})
 
 
 def _visual_cortex_gains(p):
@@ -109,9 +114,57 @@ def _visual_cortex_gains(p):
     return p
 
 
+def add_area(spec, area, ff, spread=0.25, l4_frac=0.1, l23_frac=0.15, grid=8, scale=1.0):
+    """A new visual cortical area built like V1 and B (brainspec.stage1): all layers, local wiring, PV/SST/VIP
+    inhibition. ff: the groups sending feedforward input to its L4 (strong) and L2/3 (weaker), like FF A->B."""
+    import brainspec as S
+    S.SPREAD[area] = spread
+    for g, (ct, k) in S.AREA_CELLS.items():
+        spec.groups.append(Group(f"{area}.{g}", S._cortex(ct) if g in S.EXC else ct,
+                                 max(1, int(round(k * scale))), area, grid=grid))
+    long_ = {"L4": {"basal": [Synaptic(f"FF {'+'.join(ff)}->{area} L4", list(ff), f"{area}.L4", "basal", l4_frac, 8.0, 0.25)]},
+             "L23": {"basal": [Synaptic(f"FF {'+'.join(ff)}->{area} L2/3", list(ff), f"{area}.L23", "basal", l23_frac, 3.0, 0.25)]}}
+    for g in S.EXC:
+        for comp in S.LOCAL[g]:
+            spec.synaptic += S._with_local(area, g, comp, long_.get(g, {}).get(comp, []))
+    spec.pooled += S._area_inhibition(area)
+    FEEDFORWARD[area] = tuple(ff)
+    return spec
+
+
+FEEDFORWARD = {}   # area -> groups sending it feedforward input (for like-to-like wiring of its L4)
+
+
+def add_mt(spec):
+    """MT (V5): motion. L4 hears the direction-selective relays (in primates MT also gets direct thalamic motion input,
+    besides V1; Sincich et al. 2004) and V1 L2/3. Direction columns develop through like-to-like wiring across the
+    four direction relays (LIKE_PAIRS)."""
+    return add_area(spec, "MT", ff=list(DIR_RELAYS) + ["A.L23"], spread=0.25)
+
+
+def add_ventral(spec):
+    """The ventral 'what' stream (Felleman & Van Essen 1991; Ungerleider & Mishkin 1982):
+      V2  from V1 L2/3, plus direct koniocellular LGN input (Bullier & Kennedy 1983)
+      V4  colour and form, from V2 and directly from V1 (Gattass et al. 1990)
+      IT  objects regardless of position, from V4 and V2
+    Each area's L4 develops like-to-like wiring from its feedforward senders (LIKE_PAIRS)."""
+    add_area(spec, "V2", ff=["A.L23", "TH.K"], spread=0.25)
+    add_area(spec, "V4", ff=["V2.L23", "A.L23"], spread=0.3)
+    add_area(spec, "IT", ff=["V4.L23", "V2.L23"], spread=0.5)   # large receptive fields
+    return spec
+
+
 def vision_brain():
     from brainspec import full_brain
-    return add_retina_and_lgn(full_brain())
+    spec = add_retina_and_lgn(full_brain())
+    if os.environ.get("VISION_MT", "1") == "1":
+        add_mt(spec)
+    if os.environ.get("VISION_VENTRAL", "1") == "1":
+        add_ventral(spec)
+    if os.environ.get("VISION_SC", "1") == "1":
+        add_colliculus(spec)
+    spec.synaptic = [_visual_cortex_gains(p) for p in spec.synaptic]
+    return spec
 
 
 # ---------------------------------------------------------------- visual experience for development
@@ -226,3 +279,132 @@ def end_critical_period(brain):
         elif key in critical_period_groups() and lrf != 1:
             g.c = _r(g.c, rules=_r(g.c.rules, lr=g.c.rules.lr / lrf))
     brain.critical_period_closed = True
+
+
+# ---------------------------------------------------------------- like-to-like wiring after eye opening (note 75)
+
+def record(brain, see, movies=150, hold=6):
+    """Each cell's mean rate during each of `movies` short movies (no learning). Returns (movies, all cells)."""
+    rows = []
+    for _ in range(movies):
+        m = see()
+        acc = 0
+        for s in range(hold + 3):
+            brain.step(m.frame(s, hold), ach=0.5)
+            if 2 <= s < hold:
+                acc = acc + np.asarray(brain.r, np.float32)
+        rows.append(acc / (hold - 2))
+    return np.array(rows)
+
+
+def like_to_like(brain, see, pairs=(("A.L4", "A.L23"),), rounds=3, reach=0.2, contacts=3, movies=150):
+    """Correlation-based structural plasticity (Ko et al. 2011, 2013: like-to-like L4 -> L2/3 connectivity emerges after
+    eye opening). Each receiving cell keeps, among the sending cells within `reach`, the ones whose activity best tracks
+    its own, `contacts` synapses each, replacing its other synapses from that sender group. Repeated: a cell leaning
+    slightly towards one feature keeps more inputs of that feature and leans further. Reduced to a bulk step between
+    bouts of visual experience, like night-time rewiring. Returns the mean correlation of kept partners per round."""
+    history = []
+    for _ in range(rounds):
+        R = record(brain, see, movies)
+        means = []
+        for src, dst in pairs:
+            srcs = (src,) if isinstance(src, str) else tuple(src)
+            si, di = np.concatenate([brain.index[s] for s in srcs]), brain.index[dst]
+            # what each cell prefers: its response per movie, minus its layer's response to that movie (so the shared
+            # "something is on the screen" does not count as similarity), correlated across movies
+            Z = {}
+            for name, idx in (("s", si), ("d", di)):
+                X = R[:, idx] - R[:, idx].mean(1, keepdims=True)
+                Z[name] = (X - X.mean(0)) / (X.std(0) + 1e-6)
+            C = (Z["d"].T @ Z["s"]) / len(R)                               # (receivers, senders)
+            bank = brain.g[dst].basal
+            member = np.zeros(brain.n_total, bool)
+            member[si] = True
+            flat = bank.src.reshape(bank.src.shape[0], -1)
+            P, Q = brain.pos[dst], np.concatenate([brain.pos[s] for s in srcs])
+            cells, br, sl, new, kept = [], [], [], [], []
+            for i in range(len(di)):
+                slots = np.flatnonzero(member[flat[i]])
+                if not slots.size:
+                    continue
+                near = np.flatnonzero(np.linalg.norm(Q - P[i], axis=1) < reach)
+                if not near.size:
+                    continue
+                k = max(1, int(np.ceil(slots.size / contacts)))
+                best = near[np.argsort(-C[i, near])[:k]]
+                choice = np.resize(best, slots.size)                       # `contacts` synapses per kept partner
+                b_, s_ = np.unravel_index(slots, bank.src.shape[1:])
+                cells += [i] * slots.size
+                br += list(b_)
+                sl += list(s_)
+                new += list(si[choice])
+                kept.append(C[i, best].mean())
+            where = (np.array(cells), np.array(br), np.array(sl))
+            if hasattr(bank, "rewire"):
+                changed = bank.src[where] != np.array(new)
+                w = tuple(x[changed] for x in where)
+                bank.rewire(w, np.array(new)[changed], np.zeros(int(changed.sum()), np.uint8))
+            else:
+                bank.src[where] = np.array(new)
+            means.append(float(np.mean(kept)))
+        history.append(means)
+    return history
+
+
+def LIKE_PAIRS(brain):
+    """Feedforward pairs that get like-to-like wiring: L4 -> L2/3 in every visual area present, and each area's L4 from
+    its feedforward senders (MT: across the four direction relays)."""
+    pairs = []
+    for a in ("MT", "V2", "V4", "IT"):   # feedforward order: senders are wired before their receivers
+        if f"{a}.L4" in brain.g:
+            ff = FEEDFORWARD.get(a) or {"MT": DIR_RELAYS}.get(a)
+            if ff:
+                pairs.append((tuple(ff), f"{a}.L4"))
+    pairs += [(f"{a}.L4", f"{a}.L23") for a in VISUAL_AREAS if f"{a}.L4" in brain.g and f"{a}.L23" in brain.g]
+    return tuple(pairs)
+
+
+# ---------------------------------------------------------------- eye movements (note 76)
+
+SC_VISUAL = replace(C.L4_STELLATE, name="SC visual", layer="SC superficial", long_range_max=1.0, adapt=0.3,
+                    human="superior colliculus superficial-layer visual neuron (direct retinal input; salience)")
+SC_MOTOR = replace(C.L4_STELLATE, name="SC saccade", layer="SC intermediate", long_range_max=1.0, adapt=0.2,
+                   human="superior colliculus intermediate-layer build-up / burst neuron (saccade motor map; "
+                         "Munoz & Wurtz 1995)")
+
+
+def add_colliculus(spec):
+    """Superior colliculus: a retinotopic salience map (superficial layer, direct retinotectal input from transient
+    and contrast cells, plus V1 layer 5 corticotectal input) and a saccade motor map (intermediate layer) where one
+    target wins (fast competition, kWTA). The basal ganglia output (SNr) holds it back, the classic saccade gate
+    (Hikosaka et al. 2000). The superficial layer also reaches the pulvinar, which relays to visual cortex."""
+    spec.groups += [Group("SC.sup", SC_VISUAL, 1, "SC", grid=MID),
+                    Group("SC.deep", SC_MOTOR, 1, "SC", grid=MID, kwta=0.02)]
+    spec.synaptic += [
+        Synaptic("retinotectal (transient + contrast cells)", ["RET.ton", "RET.toff", "RET.on", "RET.off"],
+                 "SC.sup", "basal", 0.8, 3.0, 0.06),
+        Synaptic("corticotectal V1 L5 -> SC", "A.L5PT", "SC.sup", "basal", 0.2, 2.0, 0.08),
+        Synaptic("SC superficial -> intermediate", "SC.sup", "SC.deep", "basal", 0.8, 3.0, 0.08),
+        Synaptic("frontal L5 -> SC (top-down)", "PFC.L5PT" if any(g.key == "PFC.L5PT" for g in spec.groups)
+                 else "A.L5PT", "SC.deep", "basal", 0.2, 1.0, 0.5)]
+    spec.pooled += [Pooled("SNr -| SC (saccade gate)", "SNr.out", "SC.deep", 0.8, channel="inh", sigma=None)]
+    if any(g.key == "PUL.core" for g in spec.groups):
+        spec.pooled += [Pooled("SC superficial -> pulvinar", "SC.sup", "PUL.core", 0.3, channel="exc", sigma=1.0)]
+    return spec
+
+
+def saccade_target(brain, retina, min_rate=0.15, contrast=3.0):
+    """Where the colliculus' motor map points, if it is bursting: its most active cells (top 2%) must fire at least
+    `contrast` times the map's mean and above `min_rate` (a saccade is triggered by the burst, not at a fixed time).
+    Returns the rate-weighted centre of those cells, converted from map position to a visual-field position through
+    the fovea warp, or None."""
+    r = np.asarray(brain.g["SC.deep"].rate, np.float64)
+    top = np.argsort(-r)[: max(1, int(0.02 * r.size))]
+    if r[top].mean() < max(min_rate, contrast * r.mean()):
+        return None
+    p = (brain.pos["SC.deep"][top] * r[top, None]).sum(0) / r[top].sum()
+    c = 2 * p - 1
+    rad = min(np.linalg.norm(c), 1.0)
+    from retina import GAMMA
+    offset = c * rad ** (GAMMA - 1)
+    return retina.gaze + offset * retina.extent / 2

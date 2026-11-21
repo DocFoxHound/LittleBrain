@@ -9,7 +9,8 @@ from games import REGISTRY
 
 LESIONS = {"signal": {"sensory -> striatum"}, "danger": {"BLA", "CeL", "CeM"},
            "forage": {"HYP"}, "delayed": {"PFC", "MD"}, "timing": {"CB", "DCN", "IO"},
-           "colour": {"sensory -> striatum"}, "motion": {"sensory -> striatum"}}
+           "colour": {"sensory -> striatum"}, "motion": {"sensory -> striatum"},
+           "shape": {"sensory -> striatum"}, "peripheral": {"sensory -> striatum"}}
 
 
 def mean(events):
@@ -18,7 +19,7 @@ def mean(events):
 
 
 def metrics(game, block):
-    if game in ("signal", "colour", "motion"):
+    if game in ("signal", "colour", "motion", "shape", "peripheral"):
         return dict(accuracy=mean(e["correct"] for e in block))
     if game == "danger":
         groups = {"food_reward": (False, True), "food_miss": (False, False),

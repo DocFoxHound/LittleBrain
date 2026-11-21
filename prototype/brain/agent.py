@@ -41,6 +41,11 @@ class BrainAgent:
         if "RET.on" in brain.pos:
             from retina import Retina
             self.eye = Retina(brain)
+        # Eye movements (note 76): with a superior colliculus, the eye fixates the centre at the start of each look,
+        # and at `saccade_at` steps jumps to where the colliculus points (VISION_SACCADES=0: eye held still)
+        import os
+        self.saccades = self.eye is not None and "SC.deep" in brain.g and os.environ.get("VISION_SACCADES", "1") == "1"
+        self.saccade_at, self.gaze_log = 6, []
         self.last_info = {}
         self.last = {}
         # Dopamine from the brain's own dopamine cells if it has them (reward goes in through the US input);
@@ -93,6 +98,9 @@ class BrainAgent:
         return np.array([r[self.chan[key] == a].mean() for a in range(self.n)])
 
     def choose(self, image):
+        moved = False
+        if self.eye is not None:
+            self.eye.look_at((0.5, 0.5))   # fixate the centre
         x, gpi, feats = self._retina(image), [], []
         sensed = []   # vision brains: the striatum's sensory input integrated over the read window (note 74)
         for s in range(self.look):
@@ -110,7 +118,15 @@ class BrainAgent:
                 self.cue_value = float(np.clip(value, -1, 1))
                 signals["value_change"] = self.cue_value
             self.b.step(self._inputs(x), learn=self.learn, ach=self.ach, signals=signals)
-            self._tick("look", image=image, step=s)
+            if self.saccades and s >= 1 and not moved and s <= self.saccade_at:
+                from vision import saccade_target
+                target = saccade_target(self.b, self.eye)
+                if target is not None:   # the colliculus bursts: look there (once per look)
+                    self.eye.look_at(target)
+                    moved = True
+                if moved or s == self.saccade_at:
+                    self.gaze_log.append(tuple(self.eye.gaze))
+            self._tick("look", image=image, step=s, gaze=tuple(self.eye.gaze) if self.eye is not None else None)
             if s >= self.look - self.read:
                 gpi.append(self._per_channel("GPi"))
                 feats.append(np.concatenate([to_host(self.b.g[k].rate) for k in self.value_groups]))

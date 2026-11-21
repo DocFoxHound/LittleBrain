@@ -58,6 +58,10 @@ def prepare(seed, brain=None, scale=1.0):
             b.develop(retinal_waves(b, rng), days=waves)
         if int(os.environ.get("VISION_EXPERIENCE", "1")):
             b.develop(see, days=2)
+        rounds = int(os.environ.get("VISION_LIKE_TO_LIKE", "3"))
+        if rounds:   # after eye opening: like-to-like wiring between visual layers (note 75)
+            from vision import like_to_like, LIKE_PAIRS
+            like_to_like(b, see, pairs=LIKE_PAIRS(b), rounds=rounds)
         from vision import end_critical_period
         end_critical_period(b)   # adult: relays stable, V1 back to the adult learning rate (note 74)
         for t in range(40):   # wake up (notes/28)

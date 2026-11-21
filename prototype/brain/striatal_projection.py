@@ -13,8 +13,7 @@ from federation import GRID
 # In a brain with a retina (vision.py) the learned sensory input to the striatum and amygdala comes from visual
 # cortex cells, the way corticostriatal and cortex-to-amygdala projections do, instead of the 64-tile thalamic
 # summary (note 74). The highest available areas are used. VISION_ROUTE=thalamus keeps the old route for comparison.
-# L2/3 only for now: V1 L5 still barely tracks the picture (note 74)
-CORTICAL_SOURCES = (("IT.L23",), ("V4.L23",), ("A.L23",))
+# L2/3 of the visual areas (V1 L5 still barely tracks the picture, note 74)
 
 
 def route(brain):
@@ -30,10 +29,10 @@ def visual_sources(brain):
     import os
     if os.environ.get("VISION_SOURCE"):   # experiments: e.g. VISION_SOURCE=A.L4
         return tuple(os.environ["VISION_SOURCE"].split(","))
-    for keys in CORTICAL_SOURCES:
-        if all(k in brain.g for k in keys):
-            return keys
-    return None
+    # The higher visual areas feed the striatum (in primates mostly IT, V4 and MT, not V1). V1 only if nothing higher
+    # exists. Reading V1's motion-free cells alongside MT halved motion learning (note 75).
+    higher = tuple(f"{a}.L23" for a in ("IT", "V4", "MT", "V2") if f"{a}.L23" in brain.g)
+    return higher or (("A.L23",) if "A.L23" in brain.g else None)
 
 
 def cue_size(brain):

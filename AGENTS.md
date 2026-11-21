@@ -390,3 +390,9 @@ The reduced deep-nucleus readout in association.py admits sampled pontine drive.
 and motion games, learning routed through visual cortex (`VISION_ROUTE`), and a closed critical period after
 development. Tests: `test_fine_maps.py` 6/6, `test_retina.py` 7/7; reference brain bit-identical. Colour is learned via the
 colour relays (0.64 / 0.64 / 0.53) but not yet via V1 L2/3; motion waits for MT. Next steps are in note 74.
+
+### Vision brain, hierarchy and eye movements (notes 75-76)
+
+V2, V4, IT and MT with like-to-like wiring and a visual-cortex sharpness cap; superior colliculus and saccades
+(`VISION_SACCADES`). 3 seeds: colour learned through cortex (0.39 / 0.46 / 0.41 vs ~0.24 off); motion only when MT is
+read alone; shape not learned (needs temporal-trace learning). Saccades land on salient targets (0.315 → 0.086).

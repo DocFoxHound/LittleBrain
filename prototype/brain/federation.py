@@ -569,7 +569,7 @@ class Brain:
         var = 0.98 * var + 0.02 * (g.soma - mean) ** 2
         self._stats[key] = (mean, var)
         std = np.sqrt(var) + 1e-3
-        g.scale = self._cap_scale(slope / g.c.slope / std)
+        g.scale = self._cap_scale(slope / g.c.slope / std, key)
         if self.homeo_rule == "log":
             avg = self._ravg.get(key)
             avg = like(g.rate, np.full(g.n, g.c.target_rate, np.float32)) if avg is None else avg
@@ -586,8 +586,9 @@ class Brain:
             return xpof(g.rate).zeros_like(g.rate)
         return np.clip(np.log((avg + 0.2 * t) / (1.2 * t)), -3.0, 3.0).astype(np.float32)
 
-    def _cap_scale(self, s):
-        s = np.minimum(s, self.max_scale) if self.max_scale else s
+    def _cap_scale(self, s, key=None):
+        cap = getattr(self, "scale_caps", {}).get(key) or self.max_scale   # per-group cap (vision, note 75) or global
+        s = np.minimum(s, cap) if cap else s
         return s.astype(np.float32)
 
     def replay_and_sleep(self):
@@ -694,7 +695,7 @@ class Brain:
                 mean[k] = 0.98 * mean[k] + 0.02 * g.soma
                 var[k] = 0.98 * var[k] + 0.02 * (g.soma - mean[k]) ** 2
                 std = np.sqrt(var[k]) + 1e-3
-                g.scale = self._cap_scale(slope / g.c.slope / std)
+                g.scale = self._cap_scale(slope / g.c.slope / std, k)
                 g.threshold += (eta * (std + 0.05) * ((g.soma > g.threshold) - g.c.target_rate)).astype(np.float32)
         self._stats = {k: (mean[k], var[k]) for k in E}
         self.homeostasis = live

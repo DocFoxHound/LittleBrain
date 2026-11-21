@@ -62,7 +62,7 @@ TH_SHAPE = (0.565, 0.475, 0.065, 0.042)
 TERRITORY = {
     "PFC": ("cortex", [[(0.08, 0.10), (0.43, 0.10), (0.405, 0.39), (0.34, 0.40),
                          (0.27, 0.50), (0.12, 0.56), (0.08, 0.48)]], "prefrontal cortex"),
-    "A": ("cortex", [[(0.785, 0.08), (1.0, 0.08), (1.0, 0.75), (0.745, 0.64), (0.762, 0.40)]],
+    "A": ("cortex", [[(0.835, 0.08), (1.0, 0.08), (1.0, 0.75), (0.80, 0.63), (0.815, 0.40)]],
           "visual cortex (V1, occipital lobe)"),
     "B": ("cortex", [[(0.515, 0.05), (0.80, 0.05), (0.775, 0.36), (0.70, 0.40), (0.60, 0.415), (0.505, 0.375),
                       (0.488, 0.24)]], "parietal association cortex"),
@@ -235,6 +235,21 @@ def describe(b, key):
     return ct.name, ct.human
 
 
+# Vision brain areas (notes 75-76): V2 is the band just in front of V1; MT at the occipito-temporal junction; V4 on
+# the underside of the occipital lobe; IT along the bottom of the temporal lobe; the superior colliculus on the roof
+# of the midbrain. Only drawn when the brain has them.
+A_WITHOUT_V2 = [[(0.785, 0.08), (1.0, 0.08), (1.0, 0.75), (0.745, 0.64), (0.762, 0.40)]]
+TERRITORY.update({
+    "V2": ("cortex", [[(0.785, 0.08), (0.835, 0.08), (0.815, 0.40), (0.80, 0.63), (0.745, 0.64), (0.762, 0.40)]],
+           "V2"),
+    "MT": ("cortex", [[(0.665, 0.425), (0.745, 0.40), (0.75, 0.52), (0.69, 0.555)]], "MT (motion)"),
+    "V4": ("cortex", [[(0.60, 0.57), (0.745, 0.555), (0.75, 0.66), (0.62, 0.67)]], "V4 (colour, form)"),
+    "IT": ("cortex", [[(0.30, 0.66), (0.595, 0.585), (0.615, 0.69), (0.50, 0.75), (0.33, 0.74)]],
+           "inferotemporal cortex (objects)"),
+    "SC": ("deep", [ell(0.637, 0.598, 0.022, 0.013)], "colliculus (eye movements)"),
+})
+
+
 def territory_of(key):
     if key == "CeM" or key.startswith("CeL."):
         return "CeA"
@@ -256,6 +271,8 @@ class Layout:
                 continue
             if tk not in self.terr:
                 kind, polys, _ = TERRITORY[tk]
+                if tk == "A" and "V2.L4" not in b.g:   # without V2, V1 keeps the whole occipital lobe
+                    polys = A_WITHOUT_V2
                 n = 3 * sum(x.n and len(x.starts) for x in self.groups if territory_of(x.key) == tk) + 400
                 self.terr[tk] = Territory(polys, clip=self.anat.outline if kind == "cortex" else None, n=n)
         # place dots: random order across groups so no group gets the leftovers; jitter within its map tile
@@ -557,7 +574,8 @@ class App:
             for tk, label, point in (("CB", "cerebellum", (.73, .75)), ("LC", "brainstem", (.58, .88))):
                 if tk in L.terr:
                     s.blit(self.small.render(label, True, DIM), S(point))
-            spots = {"PFC": (0.12, 0.28), "A": (0.79, 0.07), "B": (0.56, 0.085), "MOT": (0.27, 0.075), "TH": (0.60, 0.41), "TH.TRN": (0.62, 0.53),
+            spots = {"PFC": (0.12, 0.28), "A": (0.84, 0.06), "V2": (0.70, 0.07), "MT": (0.67, 0.385),
+                     "V4": (0.60, 0.70), "IT": (0.27, 0.76), "SC": (0.665, 0.545), "B": (0.56, 0.085), "MOT": (0.27, 0.075), "TH": (0.60, 0.41), "TH.TRN": (0.62, 0.53),
                      "STR": (0.19, 0.40), "GPe": (0.30, 0.53), "GPi": (0.53, 0.555), "retina": (0.005, 0.57),
                      "EC": (0.36, 0.69), "VTA": (0.62, 0.655), "BLA": (0.215, 0.60), "CeA": (0.44, 0.582), "DG": (0.47, 0.67), "CA3": (0.52, 0.66), "CA1": (0.56, 0.645), "SUB": (0.60, 0.635)}
             for tk in L.terr:
@@ -639,7 +657,11 @@ class App:
         else:
             pg.draw.rect(s, (12, 13, 18), (X, 100, 176, 176))
         pg.draw.rect(s, (90, 96, 120), (X, 100, 176, 176), 1)
-        s.blit(self.small.render("what it sees", True, DIM), (X, 280))
+        eye = getattr(a, "eye", None)
+        if eye is not None:   # where the fovea points (eye movements, note 76)
+            gx, gy = eye.gaze
+            pg.draw.circle(s, ACCENT, (X + float(gx) * 176, 100 + float(gy) * 176), 9, 2)
+        s.blit(self.small.render("what it sees" + (" · ◯ gaze" if eye is not None else ""), True, DIM), (X, 280))
         body = "  ".join(f"{k} {v:.2f}" for k, v in a.body_signals.items() if k != "satiety")
         if body:
             s.blit(self.small.render(body, True, INK), (X, 296))
