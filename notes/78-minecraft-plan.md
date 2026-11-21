@@ -13,6 +13,8 @@ Realistic first goals, on a small local world with the bot doing the fine motor 
 4. **Find its way back** to a remembered place (base, food spot).
 5. **Say a few things** in chat when they matter ("food" when hungry, "help" in danger, names of things it knows),
    and understand a few words from the player (track L).
+6. **Cooperate sensibly**: help a known partner when it costs little, prefer partners who reciprocate, stop helping
+   one who never does (track C).
 Not in v1: building, mining deep, combat strategy, conversation beyond a few words.
 
 ## Where we are (start of this plan)
@@ -148,10 +150,42 @@ phase 5 (objects). L4 needs phase 3 (goals and drives). L5 needs phase 4. L6 any
 
 ---
 
+## Track C: cooperation, learned on top of built-in social drives
+*Added 2026-11-22 at the owner's request: brains should come to value cooperative actions that benefit the group and
+the self. Mammals have built-in social drives (company is rewarding, another's distress is unpleasant) and learn from
+experience **who** and **when** to cooperate with. So: a few innate drives, learned value, and no hard-coded "always
+cooperate": self-interest stays, and cooperating with someone who never reciprocates should stop.*
+
+Already in the brain: oxytocin neurons (PVN) driven by a `social_contact` body signal; CA2 (social memory);
+insula and anterior cingulate cortex.
+
+| step | what | real counterpart | test (3 seeds; controls) |
+|---|---|---|---|
+| C1 others are rewarding | recognise other characters (vision: phase 5; individuals: CA2); being near a familiar, friendly other is mildly rewarding (oxytocin → dopamine cells) and its absence a mild need, like hunger | oxytocin-VTA interaction in social reward (Hung et al. 2017); CA2 social memory (Hitti & Siegelbaum 2014) | seeks a familiar partner more than a stranger; CA2 silenced → no preference |
+| C2 others' outcomes matter | seeing another's reward or distress partly activates one's own (anterior cingulate, insula); weighted by familiarity; helping that ends another's distress is rewarding | vicarious reward and pain (ACC gyrus, Chang et al. 2015; Lamm et al. 2011); rats free trapped cagemates (Ben-Ami Bartal et al. 2011) | frees a trapped partner without any food reward, more for familiar partners; ACC/insula silenced → stops |
+| C3 shared rewards | joint tasks where reward needs both (pull a rope together; a stag hunt); the TD value of phases 1-3 learns that together pays | cooperative pulling in chimpanzees and elephants (Hirata & Fuwa 2007; Plotnik et al. 2011) | coordinates and waits for the partner; learns which tasks need two |
+| C4 reciprocity and trust | remembers what each individual did (CA2, orbitofrontal value per partner); a betrayal is a negative prediction error (insula); trust builds and breaks | trust games (King-Casas et al. 2005); unfairness and insula (Sanfey et al. 2003) | iterated prisoner's dilemma: cooperates with reciprocators, stops cooperating with persistent defectors; forgives occasional mistakes |
+| C5 the group | several brains in one world: shared resources, a common pool that collapses if over-used, division of labour | common-pool resource games (Ostrom) | groups keep the pool alive longer than selfish baselines; members still look after themselves |
+| C6 coordinating by talking | uses track L words to coordinate ("help", "here", "wait") | | coordinated joint tasks succeed more with communication than without |
+
+**Measures.** Cooperation rate over time; payoff to self **and** to the group (both should rise); resistance to
+exploitation (no blind cooperation with defectors); partner preference. Compared against a brain with the social drives
+off (oxytocin input and vicarious signals silenced), which should cooperate only when it directly pays.
+
+**Infrastructure.** Several brains in the same world: LittleBrainWorld supports multiple characters (note 47); in
+Minecraft, several bots on one server, plus the player. Smaller brains for group runs (compute grows with the number
+of brains).
+
+**Where it fits.** C1 after phase 5 (recognising others) and phase 2 (where they are); C2 after phase 1; C3 and C4
+after phase 3; C5 after C4; C6 after L4. Template v1 goal: **helps a known partner when it costs little, prefers
+partners who reciprocate, and stops helping one who never does.**
+
+---
+
 ## Order and dependencies
 0 → 1 → (2, 5 in parallel) → 3 → 4 → 6 → 7 → 8 → 9. Phase 7 (the connection) can start in parallel with 3-6 using
 the blank brain, so the plumbing is ready when the brain is. Track L runs alongside: L1 with phase 1; L2 after 1;
-L3 after 5; L4 after 3; L5 after 4.
+L3 after 5; L4 after 3; L5 after 4. Track C: C1 after 2 and 5; C2 after 1; C3, C4 after 3; C5 after C4; C6 after L4.
 
 ## Risks
 - **Sample efficiency**: biological learning rules are slow; Minecraft may need many thousands of episodes. Mitigation:
