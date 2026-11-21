@@ -41,6 +41,11 @@ class BrainAgent:
         if "RET.on" in brain.pos:
             from retina import Retina
             self.eye = Retina(brain)
+        # Hearing (note 81): sound or text in an observation reaches the ear one frame per brain step
+        self.ear, self.hearing = None, None
+        if "EAR.sus" in brain.pos:
+            from cochlea import Ear
+            self.ear = Ear(brain)
         # Eye movements (note 76): with a superior colliculus, the eye fixates the centre at the start of each look,
         # and at `saccade_at` steps jumps to where the colliculus points (VISION_SACCADES=0: eye held still)
         import os
@@ -86,6 +91,13 @@ class BrainAgent:
         return image[iy, ix].astype(np.float32)
 
     def _inputs(self, x, action=None, us=0.0):
+        d = self._inputs_seen(x, action, us)
+        if self.ear is not None:
+            import cochlea
+            d.update(self.hearing.channels() if self.hearing is not None else self.ear(np.zeros(cochlea.BANDS, np.float32)))
+        return d
+
+    def _inputs_seen(self, x, action=None, us=0.0):
         if self.eye is not None:
             quiet = getattr(self, "_quiet", None)
             if quiet is None:
@@ -356,6 +368,14 @@ class BrainAgent:
             hunger = float(obs.body["hunger"])
             self.body_signals.update(hunger=hunger, satiety=1.0 - hunger)
         frames = getattr(obs, "frames", None)
+        self.hearing = None
+        if self.ear is not None:
+            import cochlea
+            sound = getattr(obs, "sound", None)
+            if sound is None and getattr(obs, "text", None):
+                sound = cochlea.text_sound(obs.text)
+            if sound is not None:
+                self.hearing = cochlea.Hearing(self.ear, sound)
         action, retina = self.choose(frames if (frames and self.eye is not None) else obs.image)
         self.pending = action, retina
         return action

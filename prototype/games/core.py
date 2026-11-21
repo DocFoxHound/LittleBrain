@@ -22,6 +22,9 @@ class Observation:
     body: dict = field(default_factory=dict)
     frames: list = None   # optional movie for this turn (motion): one picture per brain step, looping; `image` is
                           # its first frame, for brains and viewers that take a still picture
+    sound: object = None  # optional sound for this turn: a cochleagram (bands x frames, cochlea.py), one frame per
+                          # brain step (note 81)
+    text: str = None      # optional text heard/read this turn; reaches the brain as sound (cochlea.text_sound)
 
 
 class Game:

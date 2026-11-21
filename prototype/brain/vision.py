@@ -82,7 +82,9 @@ def add_retina_and_lgn(spec):
     return spec
 
 
-VISUAL_AREAS = ("A", "MT", "V2", "V4", "IT")   # visual cortical areas (those present in a brain are used)
+# sensory cortical areas that get the visual-cortex treatment (gains, slow homeostasis, sharpness cap, like-to-like,
+# stable adulthood); "AUD" is auditory cortex (note 81). Those present in a brain are used.
+VISUAL_AREAS = ("A", "MT", "V2", "V4", "IT", "AUD")
 SLOW_HOMEOSTASIS = 0.1  # visual cortex layers balance their firing 10x more slowly (note 74)
 
 
@@ -114,7 +116,7 @@ def _visual_cortex_gains(p):
     return p
 
 
-def add_area(spec, area, ff, spread=0.25, l4_frac=0.1, l23_frac=0.15, grid=8, scale=1.0):
+def add_area(spec, area, ff, spread=0.25, l4_frac=0.1, l23_frac=0.15, grid=8, scale=1.0, ff_spread=0.25):
     """A new visual cortical area built like V1 and B (brainspec.stage1): all layers, local wiring, PV/SST/VIP
     inhibition. ff: the groups sending feedforward input to its L4 (strong) and L2/3 (weaker), like FF A->B."""
     import brainspec as S
@@ -122,8 +124,10 @@ def add_area(spec, area, ff, spread=0.25, l4_frac=0.1, l23_frac=0.15, grid=8, sc
     for g, (ct, k) in S.AREA_CELLS.items():
         spec.groups.append(Group(f"{area}.{g}", S._cortex(ct) if g in S.EXC else ct,
                                  max(1, int(round(k * scale))), area, grid=grid))
-    long_ = {"L4": {"basal": [Synaptic(f"FF {'+'.join(ff)}->{area} L4", list(ff), f"{area}.L4", "basal", l4_frac, 8.0, 0.25)]},
-             "L23": {"basal": [Synaptic(f"FF {'+'.join(ff)}->{area} L2/3", list(ff), f"{area}.L23", "basal", l23_frac, 3.0, 0.25)]}}
+    long_ = {"L4": {"basal": [Synaptic(f"FF {'+'.join(ff)}->{area} L4", list(ff), f"{area}.L4", "basal", l4_frac, 8.0,
+                                       ff_spread)]},
+             "L23": {"basal": [Synaptic(f"FF {'+'.join(ff)}->{area} L2/3", list(ff), f"{area}.L23", "basal", l23_frac, 3.0,
+                                        ff_spread)]}}
     for g in S.EXC:
         for comp in S.LOCAL[g]:
             spec.synaptic += S._with_local(area, g, comp, long_.get(g, {}).get(comp, []))
@@ -163,6 +167,9 @@ def vision_brain():
         add_ventral(spec)
     if os.environ.get("VISION_SC", "1") == "1":
         add_colliculus(spec)
+    if os.environ.get("HEARING", "1") == "1":
+        from hearing import add_hearing
+        add_hearing(spec)
     spec.synaptic = [_visual_cortex_gains(p) for p in spec.synaptic]
     if any(g.key == "LHb.proj" for g in spec.groups):
         # Worse-than-expected value drives the lateral habenula, which silences dopamine cells through the RMTg
@@ -216,10 +223,17 @@ def random_shapes(rng, n=None):
 class Movie:
     """One presentation for development: shapes drifting for `hold` steps, then a plain grey screen."""
 
-    def __init__(self, eye, rng, quiet):
-        self.eye, self.quiet = eye, quiet
+    def __init__(self, eye, rng, quiet, ear=None):
+        self.eye, self.quiet, self.ear = eye, quiet, ear
         self.shapes = random_shapes(rng)
         self.background = np.full(3, rng.uniform(0.3, 0.7), np.float32)
+        self.sound = None
+        if ear is not None:   # babble-like sound heard alongside the sights (note 81)
+            import cochlea
+            letters = "bdgkmnprstvz", "aeiou"
+            n = int(rng.integers(1, 4))
+            word = "".join(rng.choice(list(letters[0])) + rng.choice(list(letters[1])) for _ in range(n))
+            self.sound = cochlea.text_sound(word)
 
     def frame(self, s, hold):
         if s < hold:
@@ -227,15 +241,24 @@ class Movie:
             img = render(moved, self.background)
         else:
             img = np.full((SIZE, SIZE, 3), self.background, np.float32)
-        return {**self.quiet, **self.eye(img)}
+        out = {**self.quiet, **self.eye(img)}
+        if self.ear is not None:
+            import cochlea
+            frame = self.sound[:, s] if s < self.sound.shape[1] else np.zeros(cochlea.BANDS, np.float32)
+            out.update(self.ear(frame))
+        return out
 
 
 def visual_experience(brain, rng):
     """make_input for Brain.calibrate / develop on a brain with a retina."""
     from retina import Retina
     eye = Retina(brain)
+    ear = None
+    if "EAR.sus" in brain.pos:
+        from cochlea import Ear
+        ear = Ear(brain)
     quiet = {k: np.zeros(len(brain.pos[k]), np.float32) for k in brain.spec.inputs}
-    return lambda: Movie(eye, rng, quiet)
+    return lambda: Movie(eye, rng, quiet, ear)
 
 
 # ---------------------------------------------------------------- retinal waves (prenatal development, note 73)
@@ -370,7 +393,7 @@ def LIKE_PAIRS(brain):
     """Feedforward pairs that get like-to-like wiring: L4 -> L2/3 in every visual area present, and each area's L4 from
     its feedforward senders (MT: across the four direction relays)."""
     pairs = []
-    for a in ("MT", "V2", "V4", "IT"):   # feedforward order: senders are wired before their receivers
+    for a in ("MT", "V2", "V4", "IT", "AUD"):   # feedforward order: senders are wired before their receivers
         if f"{a}.L4" in brain.g:
             ff = FEEDFORWARD.get(a) or {"MT": DIR_RELAYS}.get(a)
             if ff:
