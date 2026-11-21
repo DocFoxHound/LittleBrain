@@ -9,3 +9,6 @@
 [Regional allocation](../prototype/brain/regions.py) · [Suite constants and rounding](../prototype/brain/suites.py) · [Partner cap and input accounting](../prototype/brain/federation.py)
 
 The current reference budget is 18,944 neurons. The regional expansion adds one 64-cell map for each of 67 missing catalog placements and preserves the earlier population counts. The full audit reports actual and planned shares for each subregion. The game runner’s scale multiplier rounds the chosen map counts. Moving toward human proportions requires choosing new regional budgets using steps 1–3. [Expanded reference measurements](../notes/66-expanded-reference-verification.md)
+
+
+Steps 1–3 are implemented for the full brain in `prototype/brain/human_scale.py` (`BRAIN=human100k`, `BRAIN_NEURONS` for other totals). Assumed totals for subregions without a catalog count are listed there. Populations never shrink below the reference size. [100k measurements](../notes/70-human-proportion-100k.md)

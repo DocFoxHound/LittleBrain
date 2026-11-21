@@ -387,3 +387,11 @@ def full_brain(through=None):
         from catalog_placements import add_placements
         add_placements(spec)
     return spec
+
+
+def full_brain_human(n_neurons=None):
+    """The full brain grown to about n_neurons (env BRAIN_NEURONS, default 100,000) with human proportions
+    (human_scale.py, docs/scaling.md, note 70). Mostly cerebellar granule cells and cortex."""
+    from human_scale import human_sized
+    n = int(os.environ.get("BRAIN_NEURONS", "100000")) if n_neurons is None else n_neurons
+    return human_sized(full_brain(), n)[0]

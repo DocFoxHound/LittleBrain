@@ -133,7 +133,8 @@ prototype/
 | `HOMEO_SKIP=key,...` | groups without homeostasis | none |
 | `SO_WEIGHT`, `SO_MOT`, `SO_LR` | striosome → dopamine brake, action copy into striosomes, their learning rate | `4`, `1.0`, = MSN_LR |
 | `AMY_US`, `AMY_DA` | reward/pain drive into BLA; BLA → dopamine strength | `2.0`, `2.0` |
-| `BRAIN=bg/da/amy` | which brain `prepare()` builds | `bg` in run_signal_game, `amy` in run_danger_game and viewer |
+| `BRAIN=...` | which brain `prepare()` builds (`run_signal_game.SPECS`): `full` (18,944-neuron reference), `human100k` (~100k, human proportions, note 70), or an earlier stage | `full` |
+| `BRAIN_NEURONS` | total for `human100k` | `100000` |
 | `CRITIC=average/cortex` | computed dopamine stand-in (only for `bg`) | `average` |
 | `LOOK`, `READ` | look steps and steps counted (note 30) | `20`, `16` |
 | `SEED`, `TURNS`, `NO_CONTROL`, `LESION` | experiment controls | |
@@ -378,3 +379,7 @@ The reduced deep-nucleus readout in association.py admits sampled pontine drive.
 ### Native research kernels
 
 [Note 69](notes/69-build-time-research-kernels.md) covers the development-only kernel build step and comparisons with the earlier benchmarks.
+
+### 100,000-neuron human-proportion brain
+
+[Note 70](notes/70-human-proportion-100k.md): `BRAIN=human100k` (`human_scale.py`, `brainspec.full_brain_human`). Runtime check passed on seeds 0–2; signal game 0.78 / 0.95 / 0.88 learning vs 0.23 / 0.27 / 0.33 off (64 turns). The runtime anatomy check now accepts grown full brains (same 187 populations, none smaller). Still to run at 100k: regional audit, placements, and the other four games with controls.

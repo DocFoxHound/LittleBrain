@@ -6,7 +6,7 @@ import sys
 import tempfile
 import numpy as np
 
-from run_signal_game import Brain, BrainAgent, prepare
+from run_signal_game import Brain, BrainAgent, S, prepare
 from games import SignalGame
 from game_controls import Controls
 import celltypes as C
@@ -37,7 +37,14 @@ def anatomy(b):
     missing = {name: sub["missing_types"] for name, sub in plan.items() if sub["missing_types"]}
     assert not missing, missing
     assert len(plan) == 36 and sum(len(sub["planned_percent"]) for sub in plan.values()) == 167
-    assert (b.n_neurons, len(b.g)) == (18944, 187)
+    # The reference brain has exactly 18,944 neurons in 187 populations. A grown brain (e.g. human100k, note 70)
+    # must have the same 187 populations, none smaller than in the reference.
+    ref = {g.key: g.per_tile for g in S.full_brain().groups}
+    sizes = {g.key: g.per_tile for g in b.spec.groups}
+    assert sizes.keys() == ref.keys() and len(b.g) == 187
+    assert all(sizes[k] >= ref[k] for k in ref)
+    if sizes == ref:
+        assert b.n_neurons == 18944
 
 
 def regional_responses(b):

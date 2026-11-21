@@ -684,10 +684,12 @@ class App:
             for j, v in enumerate((0.1, 0.5, 1.0)):
                 pg.draw.circle(s, self.color(kind, np.array([v]))[0], (X + 10 + 14 * j, y + 32 + 22 * k), 5)
             s.blit(self.small.render(name, True, DIM), (X + 56, y + 25 + 22 * k))
-        per = np.median([g.per_dot for g in self.layout.groups])
+        pers = [g.per_dot for g in self.layout.groups]
+        lo, hi = min(pers), max(pers)
+        span = f"{lo:.0f}" if hi < 1.5 else f"{lo:.0f}–{hi:.0f}"
         s.blit(self.small.render("dim → bright = quiet → firing (each group scaled to its own usual range)", True, DIM), (X, y + 118))
-        s.blit(self.small.render(f"one dot ≈ {per:.0f} neuron{'s' if per >= 1.5 else ''} · bigger brains get more and larger "
-                                 "dots, up to a cap", True, DIM), (X, y + 138))
+        s.blit(self.small.render(f"one dot = {span} neurons (most groups {np.median(pers):.0f}; dots per group are capped)",
+                                 True, DIM), (X, y + 138))
         keys = "Space pause · ←/→ speed · L learn · S sleep · [ ] size · T labels · P paths · hover"
         s.blit(self.small.render(keys, True, (100, 104, 120)), (X, 860))
         if self.status:
