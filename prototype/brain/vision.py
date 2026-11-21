@@ -335,7 +335,7 @@ def record(brain, see, movies=150, hold=6):
     return np.array(rows)
 
 
-def like_to_like(brain, see, pairs=(("A.L4", "A.L23"),), rounds=3, reach=0.2, contacts=3, movies=150):
+def like_to_like(brain, see, pairs=(("A.L4", "A.L23"),), rounds=3, reach=0.2, contacts=3, movies=150, hold=6):
     """Correlation-based structural plasticity (Ko et al. 2011, 2013: like-to-like L4 -> L2/3 connectivity emerges after
     eye opening). Each receiving cell keeps, among the sending cells within `reach`, the ones whose activity best tracks
     its own, `contacts` synapses each, replacing its other synapses from that sender group. Repeated: a cell leaning
@@ -343,7 +343,7 @@ def like_to_like(brain, see, pairs=(("A.L4", "A.L23"),), rounds=3, reach=0.2, co
     bouts of visual experience, like night-time rewiring. Returns the mean correlation of kept partners per round."""
     history = []
     for _ in range(rounds):
-        R = record(brain, see, movies)
+        R = record(brain, see, movies, hold)
         means = []
         for src, dst in pairs:
             srcs = (src,) if isinstance(src, str) else tuple(src)
@@ -446,3 +446,58 @@ def saccade_target(brain, retina, min_rate=0.15, contrast=3.0):
     from retina import GAMMA
     offset = c * rad ** (GAMMA - 1)
     return retina.gaze + offset * retina.extent / 2
+
+
+# ---------------------------------------------------------------- objects anywhere: trace learning (note 82)
+
+SHAPE_KINDS = ("disc", "square", "bar")   # bars horizontal or vertical: as in the shape game
+
+
+class ObjectMovie:
+    """One shape sliding a long way across the field (12 frames), random colour, size and angle: the different
+    positions of one object arrive moments apart, as when an object moves or the eye sweeps over it."""
+
+    def __init__(self, eye, rng, quiet, kind=None):
+        self.eye, self.quiet = eye, quiet
+        k = kind or rng.choice(SHAPE_KINDS)
+        a = rng.uniform(0, 2 * np.pi)
+        start = 0.5 - 0.3 * np.array([np.cos(a), np.sin(a)])
+        self.v = 0.6 * np.array([np.cos(a), np.sin(a)]) / 12
+        # shape is what varies between object movies; colour and size are held fixed so the slow-changing signal
+        # the rewiring sees is the object's shape, not its brightness (note 82)
+        colour = np.full(3, 0.1, np.float32)
+        self.shape = {"kind": k, "x": start[0], "y": start[1], "r": 0.12, "angle": 0.0 if k != "bar" else
+                      float(rng.choice([0.0, np.pi / 2])), "colour": colour}
+        self.background = np.full(3, 0.5, np.float32)
+
+    def frame(self, s, hold):
+        if s < hold:
+            sh = dict(self.shape, x=self.shape["x"] + s * self.v[0], y=self.shape["y"] + s * self.v[1])
+            img = render([sh], self.background)
+        else:
+            img = np.full((SIZE, SIZE, 3), self.background, np.float32)
+        return {**self.quiet, **self.eye(img)}
+
+
+def object_experience(brain, rng):
+    from retina import Retina
+    eye = Retina(brain)
+    quiet = {k: np.zeros(len(brain.pos[k]), np.float32) for k in brain.spec.inputs}
+    return lambda: ObjectMovie(eye, rng, quiet)
+
+
+def object_pairs(brain):
+    """Trace learning targets: IT's input layer from V4/V2, then IT L4 -> L2/3 (and V4 from V2 / V1)."""
+    pairs = []
+    if "V4.L4" in brain.g:
+        pairs.append((FEEDFORWARD.get("V4", ("V2.L23", "A.L23")), "V4.L4"))
+    if "IT.L4" in brain.g:
+        pairs += [(FEEDFORWARD.get("IT", ("V4.L23", "V2.L23")), "IT.L4"), ("IT.L4", "IT.L23")]
+    return tuple(pairs)
+
+
+def trace_learning(brain, rng, rounds=3, movies=150):
+    """Like-to-like on whole-movie responses to object movies: senders that answer the same object at different
+    positions correlate with the same receivers, which then pool across positions (Foldiak 1991; Wallis & Rolls 1997)."""
+    return like_to_like(brain, object_experience(brain, rng), pairs=object_pairs(brain), rounds=rounds,
+                        reach=0.6, movies=movies, hold=12)

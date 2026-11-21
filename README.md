@@ -143,6 +143,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 72. [Phase 0: groundwork](notes/79-phase0-groundwork.md): design stamps on saves, vision100k, compiled inner loops (vision brain 1.98 → 0.86 s per decision)
 73. [Credit and harm across steps](notes/80-credit-across-steps.md): TD critic driving dopamine (bursts) and the habenula (pauses); avoids a slow poison on 3 seeds; key-door partly
 74. [Hearing](notes/81-hearing.md): ear (cochlea, text as sound), auditory thalamus and cortex; syllables told apart; statistical learning: a hint
+75. [Recognising objects anywhere: first attempt](notes/82-objects-anywhere-attempt.md): trace learning tried; not achieved yet
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
