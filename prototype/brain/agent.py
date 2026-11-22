@@ -14,9 +14,11 @@ expectation is read out of the cortical activity during the look phase (a linear
 rule), a stand-in for striosomes / ventral striatum, which learn what each situation is worth (notes/30).
 """
 
+import os
+
 import numpy as np
 
-from backend import to_host
+from backend import to_host, xpof
 from brainspec import action_channel
 
 
@@ -94,6 +96,15 @@ class BrainAgent:
         ix = np.minimum((self._px[:, 0] * w).astype(int), w - 1)
         iy = np.minimum((self._px[:, 1] * h).astype(int), h - 1)
         return image[iy, ix].astype(np.float32)
+
+    def _input_scale(self, like_):
+        """What the striatum's centred input is divided by: its running size (note 77), or each input's own running
+        spread (STRIATUM_NORM=feature, note 89)."""
+        var = getattr(self.b, "trace_var", None)
+        if os.environ.get("STRIATUM_NORM", "size") == "feature" and var is not None and var.shape == like_.shape:
+            xp = xpof(like_)
+            return xp.sqrt(var + 1e-6) * np.sqrt(float(var.size))
+        return getattr(self.b, "trace_scale", None) or 1.0
 
     def _inputs(self, x, action=None, us=0.0):
         d = self._inputs_seen(x, action, us)
@@ -229,7 +240,7 @@ class BrainAgent:
                     # the striatum's drive for this choice is the same integrated, centred input learning uses
                     m = getattr(self.b, "trace_mean", None)
                     avg = sum(sensed) / len(sensed)
-                    size = getattr(self.b, "trace_scale", None) or 1.0
+                    size = self._input_scale(avg)
                     self.b.cue_online = (avg - m) / size if m is not None and m.shape == avg.shape else None
         if "TH.core" in self.b.g:
             from striatal_projection import activity
@@ -251,7 +262,13 @@ class BrainAgent:
                 n = float(np.linalg.norm(to_host(dev)))
                 size = n if not size else size + 0.05 * (n - size)
                 self.b.trace_scale = max(size, 1e-3)
-                self.sensory_trace = dev / self.b.trace_scale
+                if os.environ.get("STRIATUM_NORM", "size") == "feature":
+                    # each input by its own running spread (note 89): an informative but quiet input counts as much as
+                    # a loud one, as input-specific gain control would make it; the whole vector keeps size ~1
+                    var = getattr(self.b, "trace_var", None)
+                    var = dev * dev if var is None or var.shape != dev.shape else var + 0.02 * (dev * dev - var)
+                    self.b.trace_var = var
+                self.sensory_trace = dev / self._input_scale(dev)
                 self.b.trace_mean = m + 0.05 * (tr - m)
                 if not td:
                     self.value_trace = None

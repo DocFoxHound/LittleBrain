@@ -406,6 +406,9 @@ def LIKE_PAIRS(brain):
     for a in ("MT", "V2", "V4", "IT", "AUD"):   # feedforward order: senders are wired before their receivers
         if f"{a}.L4" in brain.g:
             ff = FEEDFORWARD.get(a) or {"MT": DIR_RELAYS}.get(a)
+            if ff and f"{a}.L4" in getattr(brain.spec, "feature_wiring", ()) and os.environ.get("VISION_COLUMNS") == "tiles":
+                # keep feature-specific wiring pure: correlation-based rewiring would re-mix the orientations (note 89)
+                ff = tuple(s_ for s_ in ff if not s_.startswith("A.E"))
             if ff:
                 pairs.append((tuple(ff), f"{a}.L4"))
     pairs += [(f"{a}.L4", f"{a}.L23") for a in VISUAL_AREAS if f"{a}.L4" in brain.g and f"{a}.L23" in brain.g]

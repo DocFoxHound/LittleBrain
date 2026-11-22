@@ -87,9 +87,16 @@ class EdgeCells:
         return out
 
 
-def orientation_columns(pos, rng, columns=2.0, waves=8):
+def orientation_columns(pos, rng, columns=2.0, waves=8, grid=None):
     """Which of the 4 orientations each cell's edge input comes from: a smooth pinwheel map (half the angle of a sum
-    of plane waves; Swindale 1996), about `columns` hypercolumns across the map, so neighbouring cells share one."""
+    of plane waves; Swindale 1996), about `columns` hypercolumns across the map, so neighbouring cells share one.
+    VISION_COLUMNS=tiles (note 89): one orientation per map tile, all four in every 2x2 block of tiles, so every part
+    of the field has every orientation nearby (real columns are small next to receptive fields) and each tile's mean,
+    which the striatum reads, is one orientation's energy around that place."""
+    import os
+    if grid and os.environ.get("VISION_COLUMNS", "pinwheel") == "tiles":
+        t = np.minimum((pos * grid).astype(int), grid - 1)
+        return (t[:, 0] % 2) + 2 * (t[:, 1] % 2)
     z = np.zeros(len(pos), complex)
     for j in range(waves):
         a = np.pi * j / waves
@@ -108,10 +115,13 @@ def feature_wiring(brain):
     every = np.arange(len(to_host(brain.r)))
     ids = [every[brain.index[k]] for k in EDGE_GROUPS]
     pos = [brain.pos[k] for k in EDGE_GROUPS]
+    prefs = {}
     for dst in getattr(brain.spec, "feature_wiring", ()):
         if dst not in brain.g:
             continue
-        pref = orientation_columns(brain.pos[dst], brain.rng)
+        if dst.startswith("IT"):
+            continue
+        pref = prefs[dst] = orientation_columns(brain.pos[dst], brain.rng, grid=brain.grid.get(dst, 8))
         for bank in brain.g[dst].banks():
             src = to_host(bank.src).copy()
             for j in range(len(EDGE_GROUPS)):
@@ -125,6 +135,26 @@ def feature_wiring(brain):
                         continue
                     nearest = np.argmin(((q[m][:, None, :] - pos[t][None]) ** 2).sum(2), axis=1)
                     src[cell[m], b_[m], s_[m]] = ids[t][nearest]
+            bank.src = like(bank.src, src, dtype=src.dtype)
+    # IT (opt-in, note 89): each IT cell's V4 L2/3 synapses come from V4 cells of one orientation column, over IT's
+    # large field, so IT sums one kind of edge over a big region
+    v4 = prefs.get("V4.L23")
+    for dst in [d for d in getattr(brain.spec, "feature_wiring", ()) if d.startswith("IT") and d in brain.g]:
+        if v4 is None or "V4.L23" not in brain.index:
+            break
+        v4_ids, v4_pos = every[brain.index["V4.L23"]], brain.pos["V4.L23"]
+        pref = orientation_columns(brain.pos[dst], brain.rng, grid=brain.grid.get(dst, 8))
+        for bank in brain.g[dst].banks():
+            src = to_host(bank.src).copy()
+            cell, b_, s_ = np.nonzero(np.isin(src, v4_ids))
+            q = v4_pos[np.searchsorted(v4_ids, src[cell, b_, s_])]
+            for t in range(len(EDGE_GROUPS)):
+                m = pref[cell] == t
+                cand = np.nonzero(v4 == t)[0]
+                if not m.any() or not len(cand):
+                    continue
+                nearest = cand[np.argmin(((q[m][:, None, :] - v4_pos[cand][None]) ** 2).sum(2), axis=1)]
+                src[cell[m], b_[m], s_[m]] = v4_ids[nearest]
             bank.src = like(bank.src, src, dtype=src.dtype)
 
 
@@ -148,8 +178,12 @@ def add_edges(spec):
             p = replace(p, src=src + list(EDGE_GROUPS))
         syn.append(p)
     spec.synaptic = syn
+    it_feature = v4_feature and os.environ.get("VISION_IT_FEATURE", "0") == "1"
+    if it_feature:   # IT hears only V4 (one orientation per cell), not V2
+        spec.synaptic = [replace(p, src=[s_ for s_ in (p.src if isinstance(p.src, list) else [p.src]) if s_ != "V2.L23"])
+                         if p.dst in ("IT.L4", "IT.L23") and p.id.startswith("FF ") else p for p in spec.synaptic]
     if v4_feature:
-        spec.feature_wiring = ("V4.L4", "V4.L23")
+        spec.feature_wiring = ("V4.L4", "V4.L23") + (("IT.L4", "IT.L23") if it_feature else ())
     from vision import FEEDFORWARD
     for area in ("V2", "V4"):
         if area in FEEDFORWARD:

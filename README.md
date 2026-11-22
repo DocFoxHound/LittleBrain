@@ -152,6 +152,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 79. [Where we are in the plan](notes/86-plan-status.md): status of every phase and track against note 78 (paused 2026-11-22)
 80. [V4 orientation pooling and readout scale](notes/87-v4-pooling-and-readout-scale.md): separate readout scales (motion up on 3 seeds, now default); V4 feature wiring opt-in; shape still at chance
 81. [Visual layer 4 listens to its input](notes/88-feedforward-layer4.md): colour 0.48-0.49 and motion 0.38-0.44 on 3 seeds (both up); shape still at chance
+82. [Recognising shapes anywhere: where the signal is lost](notes/89-shape-research.md): shape reaches the striatum (0.65) but spread over ~200 noisy features; the learner can't find it from a few hundred trials
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
