@@ -150,6 +150,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 77. [Place cells](notes/84-place-cells.md): dentate and CA3 place cells on every seed (31-43%); CA1 still inhibition-dominated
 78. [V1 edge cells](notes/85-edge-cells.md): fixed edge stage (shape decodable 0.68-0.72 from it); what still blocks shape learning
 79. [Where we are in the plan](notes/86-plan-status.md): status of every phase and track against note 78 (paused 2026-11-22)
+80. [V4 orientation pooling and readout scale](notes/87-v4-pooling-and-readout-scale.md): separate readout scales (motion up on 3 seeds, now default); V4 feature wiring opt-in; shape still at chance
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

@@ -12,7 +12,7 @@ alongside. The owner chose to finish phases 2 and 5 before starting phase 3.*
 | **N1** harm across steps | ✅ done | 80 | slow poison avoided on 3 seeds (eat 0.06-0.15 vs 0.27-0.67 without TD); silencing the habenula brings eating back on 2 of 3 seeds |
 | **L1** hearing | ◐ mostly | 81 | ear, MGB, A1; text heard as sound; syllables identified 0.87-1.00 (chance 0.17); statistical word learning only a hint (right direction on 3 seeds, small) |
 | **2** spatial maps | ✅ done (CA1 open) | 83, 84 | head-direction and grid cells; place cells in the dentate (37-43%) and CA3 (31-35%) on every seed; homing 0.74-0.83 vs 0.14-0.20 silenced; **CA1 has no place cells** (inhibition-dominated; deferred by the owner) |
-| **5** objects anywhere | ◐ in progress | 82, 85 | V1 edge cells built (fixed stage, owner's choice): shape decodable from them at 0.68-0.72; **shape game still at chance (0.27-0.32), bar is ≥ 0.6** |
+| **5** objects anywhere | ◐ in progress | 82, 85, 87 | V1 edge cells built (fixed stage, owner's choice): shape decodable from them at 0.68-0.72; **shape game still at chance (0.27-0.32), bar is ≥ 0.6** |
 | 3 world model and look-ahead | not started | | next after 5 |
 | 4 goals and routines | not started | | |
 | 6 learning in sleep | not started | | |
@@ -34,12 +34,19 @@ alongside. The owner chose to finish phases 2 and 5 before starting phase 3.*
 - Earlier tries that did not work (kept in the notes): trace learning alone (note 82), Hubel-Wiesel rewiring of V1
   L4 (note 85), feature-specific rewiring of an already-grown brain (note 85).
 
+## Update (note 87)
+Separate readout scales done (now default: motion up on 3 seeds). Feature-specific V4 wiring built, opt-in (no
+clear gain). Shape still at chance: V4's untrained local recurrence drowns its feedforward input (edges are 12% of
+V4 L4's drive). Next: make feedforward input dominate in V2/V4/IT.
+
 ## Open items carried forward
 - **CA1 place cells** (note 84): excitation ~0.015 vs PV inhibition ~1.05; needs CA1's excitation/inhibition rebuilt
   without breaking the memory tests.
 - **Phase 1's chain bar** (note 80): revisit after the world model (phase 3); also measure dopamine moving earlier in
   the chain and re-run the danger game as a regression.
 - **TD is opt-in** (`TD_GAMMA`): games must mark episode ends before TD becomes a default.
+- **Signal-game score** (note 87): 0.45-0.49 now vs note 77's 0.83; phase-0 code gives the same, so not a recent
+  regression; how note 77 measured it needs checking.
 - **Statistical word learning** (note 81): a stronger test (more exposure, trial statistics, a belt area).
 
 ## What the game brain is now

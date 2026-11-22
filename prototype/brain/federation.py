@@ -177,6 +177,9 @@ class Brain:
         self.da_base, self.last_dopamine = None, 0.0
         self._stats = {}
         self._wire()
+        if getattr(spec, "feature_wiring", None):   # feature-specific convergence, at build time only (note 87)
+            from edges import feature_wiring
+            feature_wiring(self)
         self._configure_afferent_plasticity()
         self.device = "cpu"
         if backend.DEVICE == "gpu":

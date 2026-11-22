@@ -88,7 +88,9 @@ def visual_activity(brain):
     size = getattr(brain, "cue_scale", None)
     # One joint scale for the thalamic and cortical parts: a part that barely changes (brightness in a colour game)
     # stays small instead of being blown up to the size of the informative part
-    if route(brain) == "both":
+    # separate scales for the thalamic and cortical parts by default: motion +0.07-0.10 on 3 seeds, colour and signal
+    # unchanged (note 87); VISION_SCALE=joint restores the shared scale of note 77
+    if route(brain) == "both" and os.environ.get("VISION_SCALE", "separate") == "joint":
         now = xp.linalg.norm(dev) * xp.ones(2, dtype=dev.dtype)
     else:
         now = xp.stack([xp.linalg.norm(dev[:n]), xp.linalg.norm(dev[n:])])

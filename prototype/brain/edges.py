@@ -87,21 +87,74 @@ class EdgeCells:
         return out
 
 
+def orientation_columns(pos, rng, columns=2.0, waves=8):
+    """Which of the 4 orientations each cell's edge input comes from: a smooth pinwheel map (half the angle of a sum
+    of plane waves; Swindale 1996), about `columns` hypercolumns across the map, so neighbouring cells share one."""
+    z = np.zeros(len(pos), complex)
+    for j in range(waves):
+        a = np.pi * j / waves
+        k = 2 * np.pi * columns * np.array([np.cos(a), np.sin(a)])
+        z += np.exp(1j * (pos @ k + rng.uniform(0, 2 * np.pi)))
+    return (((np.angle(z) + np.pi) / (2 * np.pi)) * len(ANGLES)).astype(int) % len(ANGLES)
+
+
+def feature_wiring(brain):
+    """Feature-specific convergence (note 87): in the groups listed in spec.feature_wiring, each cell's synapses from
+    the edge cells all come from one orientation, set by an orientation-column map; where on the map they come from
+    (the receptive field) is unchanged. A cell then sums one kind of edge over a large region, so it answers that edge
+    anywhere in its field (V4: Desimone & Schein 1987; feature-specific V1 -> V2/V4 projections: Sincich & Horton
+    2005). Run once, when a brain is built; the weights learn as usual."""
+    from backend import like, to_host
+    every = np.arange(len(to_host(brain.r)))
+    ids = [every[brain.index[k]] for k in EDGE_GROUPS]
+    pos = [brain.pos[k] for k in EDGE_GROUPS]
+    for dst in getattr(brain.spec, "feature_wiring", ()):
+        if dst not in brain.g:
+            continue
+        pref = orientation_columns(brain.pos[dst], brain.rng)
+        for bank in brain.g[dst].banks():
+            src = to_host(bank.src).copy()
+            for j in range(len(EDGE_GROUPS)):
+                cell, b_, s_ = np.nonzero(np.isin(src, ids[j]))
+                if not len(cell):
+                    continue
+                q = pos[j][np.searchsorted(ids[j], src[cell, b_, s_])]
+                for t in range(len(EDGE_GROUPS)):
+                    m = pref[cell] == t
+                    if t == j or not m.any():
+                        continue
+                    nearest = np.argmin(((q[m][:, None, :] - pos[t][None]) ** 2).sum(2), axis=1)
+                    src[cell[m], b_[m], s_[m]] = ids[t][nearest]
+            bank.src = like(bank.src, src, dtype=src.dtype)
+
+
 def add_edges(spec):
-    """Edge-cell input groups, feeding V2 and V4 (if the ventral stream exists) alongside V1 layer 2/3."""
+    """Edge-cell input groups. V2 hears them alongside V1 layer 2/3. V4 takes its V1 input from them instead of V1
+    layer 2/3 (which carries almost no shape, note 85), over a wider field, each cell from one orientation
+    (feature_wiring)."""
     from dataclasses import replace
     from federation import Group
     spec.groups += [Group(k, None, 1, "A", grid=16) for k in EDGE_GROUPS]
     spec.inputs = spec.inputs + list(EDGE_GROUPS)
+    import os
+    v4_feature = os.environ.get("VISION_V4_FEATURE", "0") == "1"   # opt-in: no clear 3-seed gain yet (note 87)
     syn = []
     for p in spec.synaptic:
         if p.dst in ("V2.L4", "V2.L23", "V4.L4", "V4.L23") and p.id.startswith("FF "):
-            src = (p.src if isinstance(p.src, list) else [p.src]) + list(EDGE_GROUPS)
-            p = replace(p, src=src)
+            src = (p.src if isinstance(p.src, list) else [p.src])
+            if v4_feature and p.dst.startswith("V4"):
+                src = [s_ for s_ in src if s_ != "A.L23"]
+                p = replace(p, spread=max(p.spread, 0.35))
+            p = replace(p, src=src + list(EDGE_GROUPS))
         syn.append(p)
     spec.synaptic = syn
+    if v4_feature:
+        spec.feature_wiring = ("V4.L4", "V4.L23")
     from vision import FEEDFORWARD
     for area in ("V2", "V4"):
         if area in FEEDFORWARD:
-            FEEDFORWARD[area] = tuple(FEEDFORWARD[area]) + EDGE_GROUPS
+            ff = tuple(FEEDFORWARD[area])
+            if v4_feature and area == "V4":
+                ff = tuple(s_ for s_ in ff if s_ != "A.L23")
+            FEEDFORWARD[area] = ff + EDGE_GROUPS
     return spec
