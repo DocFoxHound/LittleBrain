@@ -25,6 +25,8 @@ class Observation:
     sound: object = None  # optional sound for this turn: a cochleagram (bands x frames, cochlea.py), one frame per
                           # brain step (note 81)
     text: str = None      # optional text heard/read this turn; reaches the brain as sound (cochlea.text_sound)
+    motion: list = None   # optional self-motion since the last observation: [(turn in radians, distance), ...]
+                          # (vestibular sense and the motor copy; brain/spatial.py, note 83)
 
 
 class Game:

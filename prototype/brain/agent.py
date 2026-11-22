@@ -46,6 +46,11 @@ class BrainAgent:
         if "EAR.sus" in brain.pos:
             from cochlea import Ear
             self.ear = Ear(brain)
+        # Knowing where you are (note 83): self-motion reported by the game drives head-direction and grid cells
+        self.place = None
+        if "MEC.grid" in brain.pos or "ATN.hd" in brain.pos:
+            from spatial import SelfMotion
+            self.place = SelfMotion(brain)
         # Eye movements (note 76): with a superior colliculus, the eye fixates the centre at the start of each look,
         # and at `saccade_at` steps jumps to where the colliculus points (VISION_SACCADES=0: eye held still)
         import os
@@ -95,6 +100,8 @@ class BrainAgent:
         if self.ear is not None:
             import cochlea
             d.update(self.hearing.channels() if self.hearing is not None else self.ear(np.zeros(cochlea.BANDS, np.float32)))
+        if self.place is not None and not ({"MEC", "ATN"} & set(self.b.ablated)):
+            d.update(self.place.channels())
         return d
 
     def _inputs_seen(self, x, action=None, us=0.0):
@@ -368,6 +375,8 @@ class BrainAgent:
             hunger = float(obs.body["hunger"])
             self.body_signals.update(hunger=hunger, satiety=1.0 - hunger)
         frames = getattr(obs, "frames", None)
+        if self.place is not None:
+            self.place.move(getattr(obs, "motion", None), obs.body)
         self.hearing = None
         if self.ear is not None:
             import cochlea

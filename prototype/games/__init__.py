@@ -11,3 +11,5 @@ REGISTRY = {"keydoor": KeyDoorGame, "poison": SlowPoisonGame, "colour": ColourGa
 from .regional_games import DelayedCueGame, ForageGame, TimingGame
 
 REGISTRY.update(forage=ForageGame, delayed=DelayedCueGame, timing=TimingGame)
+from .spatial_games import HomingGame  # noqa: E402
+REGISTRY["homing"] = HomingGame

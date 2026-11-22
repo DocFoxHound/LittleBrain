@@ -32,7 +32,15 @@ def visual_sources(brain):
     # The higher visual areas feed the striatum (in primates mostly IT, V4 and MT, not V1). V1 only if nothing higher
     # exists. Reading V1's motion-free cells alongside MT halved motion learning (note 75).
     higher = tuple(f"{a}.L23" for a in ("IT", "V4", "MT", "V2") if f"{a}.L23" in brain.g)
-    return higher or (("A.L23",) if "A.L23" in brain.g else None)
+    higher = higher or (("A.L23",) if "A.L23" in brain.g else ())
+    # where you are can guide what to do: the entorhinal cortex projects to the ventral striatum (nucleus accumbens;
+    # Totterdell & Meredith 1997), as do CA1/subiculum. The reconstructed hippocampus does not yet hold a stable
+    # place code (its own dynamics dominate a steady input, note 83), so the grid cells are read; SPATIAL_READ=CA1
+    # reads CA1 instead
+    if "MEC.grid" in brain.pos:
+        import os
+        higher = higher + (("CA1.pyr",) if os.environ.get("SPATIAL_READ") == "CA1" else ("MEC.grid",))
+    return higher or None
 
 
 def cue_size(brain):

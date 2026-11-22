@@ -170,6 +170,9 @@ def vision_brain():
     if os.environ.get("HEARING", "1") == "1":
         from hearing import add_hearing
         add_hearing(spec)
+    if os.environ.get("SPATIAL", "1") == "1":
+        from spatial import add_spatial
+        add_spatial(spec)
     spec.synaptic = [_visual_cortex_gains(p) for p in spec.synaptic]
     if any(g.key == "LHb.proj" for g in spec.groups):
         # Worse-than-expected value drives the lateral habenula, which silences dopamine cells through the RMTg

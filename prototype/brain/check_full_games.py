@@ -11,7 +11,8 @@ LESIONS = {"signal": {"sensory -> striatum"}, "danger": {"BLA", "CeL", "CeM"},
            "forage": {"HYP"}, "delayed": {"PFC", "MD"}, "timing": {"CB", "DCN", "IO"},
            "colour": {"sensory -> striatum"}, "motion": {"sensory -> striatum"},
            "shape": {"sensory -> striatum"}, "peripheral": {"sensory -> striatum"},
-           "keydoor": {"sensory -> striatum"}, "poison": {"LHb", "RMTg"}}
+           "keydoor": {"sensory -> striatum"}, "poison": {"LHb", "RMTg"},
+           "homing": {"MEC", "ATN"}}   # grid and head-direction cells silent (note 83)
 
 
 def mean(events):
@@ -24,6 +25,9 @@ def metrics(game, block):
         return dict(accuracy=mean(e["correct"] for e in block),
                     first_step=mean(e["correct"] for e in block if e["state"] == 0),
                     completed=sum(bool(e.get("completed")) for e in block))
+    if game == "homing":
+        ends = [e for e in block if e.get("done")]
+        return dict(home=mean(e["home"] for e in ends), closer=mean(e["closer"] for e in block), episodes=len(ends))
     if game == "poison":
         return dict(eat_rate=mean(e["ate"] for e in block if e["state"] == "berry"),
                     decisions=sum(e["state"] == "berry" for e in block))
