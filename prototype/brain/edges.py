@@ -137,7 +137,7 @@ def add_edges(spec):
     spec.groups += [Group(k, None, 1, "A", grid=16) for k in EDGE_GROUPS]
     spec.inputs = spec.inputs + list(EDGE_GROUPS)
     import os
-    v4_feature = os.environ.get("VISION_V4_FEATURE", "0") == "1"   # opt-in: no clear 3-seed gain yet (note 87)
+    v4_feature = os.environ.get("VISION_V4_FEATURE", "1") == "1"   # default with VISION_L4_REC=0.3 (note 88)
     syn = []
     for p in spec.synaptic:
         if p.dst in ("V2.L4", "V2.L23", "V4.L4", "V4.L23") and p.id.startswith("FF "):

@@ -12,7 +12,7 @@ alongside. The owner chose to finish phases 2 and 5 before starting phase 3.*
 | **N1** harm across steps | ✅ done | 80 | slow poison avoided on 3 seeds (eat 0.06-0.15 vs 0.27-0.67 without TD); silencing the habenula brings eating back on 2 of 3 seeds |
 | **L1** hearing | ◐ mostly | 81 | ear, MGB, A1; text heard as sound; syllables identified 0.87-1.00 (chance 0.17); statistical word learning only a hint (right direction on 3 seeds, small) |
 | **2** spatial maps | ✅ done (CA1 open) | 83, 84 | head-direction and grid cells; place cells in the dentate (37-43%) and CA3 (31-35%) on every seed; homing 0.74-0.83 vs 0.14-0.20 silenced; **CA1 has no place cells** (inhibition-dominated; deferred by the owner) |
-| **5** objects anywhere | ◐ in progress | 82, 85, 87 | V1 edge cells built (fixed stage, owner's choice): shape decodable from them at 0.68-0.72; **shape game still at chance (0.27-0.32), bar is ≥ 0.6** |
+| **5** objects anywhere | ◐ in progress | 82, 85, 87, 88 | V1 edge cells built (fixed stage, owner's choice): shape decodable from them at 0.68-0.72; **shape game still at chance (0.27-0.32), bar is ≥ 0.6** |
 | 3 world model and look-ahead | not started | | next after 5 |
 | 4 goals and routines | not started | | |
 | 6 learning in sleep | not started | | |
@@ -38,6 +38,13 @@ alongside. The owner chose to finish phases 2 and 5 before starting phase 3.*
 Separate readout scales done (now default: motion up on 3 seeds). Feature-specific V4 wiring built, opt-in (no
 clear gain). Shape still at chance: V4's untrained local recurrence drowns its feedforward input (edges are 12% of
 V4 L4's drive). Next: make feedforward input dominate in V2/V4/IT.
+
+## Update (note 88)
+Visual layer 4 now listens mostly to its feedforward input (`VISION_L4_REC=0.3`), together with the V4 feature
+wiring (both default): colour 0.48-0.49 and motion 0.38-0.44 on 3 seeds (both up). Shape still at chance.
+Ruled out for shape so far: trace learning alone (82); Hubel-Wiesel V1 rewiring (85); reading the edge cells
+directly, position by position (0.33); feature-specific V4 alone (87); stronger edge synapses in a grown V4 (87);
+feedforward-dominated layer 4 (88). What did work: edge energy pooled by quadrant, read alone (0.57, note 85).
 
 ## Open items carried forward
 - **CA1 place cells** (note 84): excitation ~0.015 vs PV inhibition ~1.05; needs CA1's excitation/inhibition rebuilt

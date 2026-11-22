@@ -151,6 +151,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 78. [V1 edge cells](notes/85-edge-cells.md): fixed edge stage (shape decodable 0.68-0.72 from it); what still blocks shape learning
 79. [Where we are in the plan](notes/86-plan-status.md): status of every phase and track against note 78 (paused 2026-11-22)
 80. [V4 orientation pooling and readout scale](notes/87-v4-pooling-and-readout-scale.md): separate readout scales (motion up on 3 seeds, now default); V4 feature wiring opt-in; shape still at chance
+81. [Visual layer 4 listens to its input](notes/88-feedforward-layer4.md): colour 0.48-0.49 and motion 0.38-0.44 on 3 seeds (both up); shape still at chance
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

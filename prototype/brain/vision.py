@@ -113,6 +113,10 @@ def _visual_cortex_gains(p):
         return replace(p, gain=float(os.environ.get("VISION_FF", "10")))
     if (s, d, p.comp) == ("L23", "L23", "basal"):
         return replace(p, gain=float(os.environ.get("VISION_REC", "0.3")))
+    # Layer 4 too listens mostly to its feedforward input (note 88): its local inputs (L4, L6, L2/3) are
+    # scaled by VISION_L4_REC. In V4 these made up ~76% of L4's drive and scrambled the edge input (note 87)
+    if d == "L4" and s in ("L4", "L6", "L23") and p.dst.split(".")[0] != "A":
+        return replace(p, gain=p.gain * float(os.environ.get("VISION_L4_REC", "0.3")))
     return p
 
 
