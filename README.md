@@ -146,6 +146,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 75. [Recognising objects anywhere: first attempt](notes/82-objects-anywhere-attempt.md): trace learning tried; not achieved yet
 76. [Knowing where you are](notes/83-spatial-maps.md): head-direction and grid cells, homing game (home 0.73-0.82 vs 0.00-0.13 silenced); no place cells yet
 77. [Place cells](notes/84-place-cells.md): dentate and CA3 place cells on every seed (31-43%); CA1 still inhibition-dominated
+78. [V1 edge cells](notes/85-edge-cells.md): fixed edge stage (shape decodable 0.68-0.72 from it); what still blocks shape learning
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

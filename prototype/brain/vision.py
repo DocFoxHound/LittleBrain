@@ -165,6 +165,9 @@ def vision_brain():
         add_mt(spec)
     if os.environ.get("VISION_VENTRAL", "1") == "1":
         add_ventral(spec)
+        if os.environ.get("VISION_EDGES", "1") == "1":   # fixed V1 edge cells feeding V2/V4 (note 85)
+            from edges import add_edges
+            add_edges(spec)
     if os.environ.get("VISION_SC", "1") == "1":
         add_colliculus(spec)
     if os.environ.get("HEARING", "1") == "1":

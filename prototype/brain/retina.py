@@ -72,6 +72,8 @@ class Retina:
         self.gaze, self.extent = np.array(gaze, np.float64), float(extent)
         self.keys = [k for k in CHANNELS if k in brain.pos]
         self.prev = None
+        from edges import EdgeCells
+        self.edges = EdgeCells(brain)   # V1 edge cells, if the brain has them (note 85)
         self.geo = {}
         for k in self.keys + (["retina"] if "retina" in brain.pos else []):
             gs = getattr(brain, "grid", {}).get(k, 8)
@@ -166,6 +168,8 @@ class Retina:
         if "retina" in self.geo:   # the old light-level input: plain samples, as before
             xy, _ = pos["retina"]
             out["retina"] = self._sample(lum, xy).astype(np.float32)
+        if self.edges.ok:
+            out.update(self.edges(out))
         return out
 
 
