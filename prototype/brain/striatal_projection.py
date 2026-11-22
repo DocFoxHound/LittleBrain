@@ -35,11 +35,12 @@ def visual_sources(brain):
     higher = higher or (("A.L23",) if "A.L23" in brain.g else ())
     # where you are can guide what to do: the entorhinal cortex projects to the ventral striatum (nucleus accumbens;
     # Totterdell & Meredith 1997), as do CA1/subiculum. The reconstructed hippocampus does not yet hold a stable
-    # place code (its own dynamics dominate a steady input, note 83), so the grid cells are read; SPATIAL_READ=CA1
-    # reads CA1 instead
+    # place code in CA1 (note 84; CA3 and the dentate have one), so the grid cells are read; SPATIAL_READ=CA3/CA1
+    # reads those instead
     if "MEC.grid" in brain.pos:
         import os
-        higher = higher + (("CA1.pyr",) if os.environ.get("SPATIAL_READ") == "CA1" else ("MEC.grid",))
+        read = os.environ.get("SPATIAL_READ", "MEC")   # experiments: CA3 or CA1 (place cells, note 84)
+        higher = higher + ({"CA1": ("CA1.pyr",), "CA3": ("CA3.pyr",)}.get(read, ("MEC.grid",)))
     return higher or None
 
 

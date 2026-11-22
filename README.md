@@ -145,6 +145,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 74. [Hearing](notes/81-hearing.md): ear (cochlea, text as sound), auditory thalamus and cortex; syllables told apart; statistical learning: a hint
 75. [Recognising objects anywhere: first attempt](notes/82-objects-anywhere-attempt.md): trace learning tried; not achieved yet
 76. [Knowing where you are](notes/83-spatial-maps.md): head-direction and grid cells, homing game (home 0.73-0.82 vs 0.00-0.13 silenced); no place cells yet
+77. [Place cells](notes/84-place-cells.md): dentate and CA3 place cells on every seed (31-43%); CA1 still inhibition-dominated
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

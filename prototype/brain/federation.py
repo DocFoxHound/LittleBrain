@@ -245,6 +245,17 @@ class Brain:
                 bank.conductance_floor = np.where(slots, 0., -np.inf).astype(np.float32)
                 if target == "STR.SO":
                     bank.thalamic_afferents = slots
+        # Per-pathway learning speed (spec.plasticity: pathway id -> factor), e.g. the perforant path from grid cells
+        # learns slowly so place fields are not rewritten on every visit (note 84)
+        for p in self.spec.synaptic:
+            f = getattr(self.spec, "plasticity", {}).get(p.id)
+            bank = getattr(self.g.get(p.dst), p.comp, None) if p.dst in self.g else None
+            if f is None or bank is None:
+                continue
+            srcs = [s_ for s_ in (p.src if isinstance(p.src, list) else [p.src]) if s_ in self.index]
+            slots = np.isin(to_host(bank.src), np.concatenate([np.atleast_1d(to_host(self.index[s_])) for s_ in srcs]))
+            base = to_host(bank.learn_mask) if bank.learn_mask is not None else np.ones(slots.shape, np.float32)
+            bank.learn_mask = like(bank.fast, np.where(slots, f, base).astype(np.float32))
 
     def _partner_caps(self, sample=64):
         """Per destination compartment: CONTACTS x the effective number of distinct partners within reach,
@@ -541,7 +552,8 @@ class Brain:
         grp.own_threshold_rule = not (log_rule or skip)   # the log rule replaces the cell's own asymmetric drift
         grp.update(target, learn=learn)
         if self.homeostasis and not skip:
-            self._homeostasis(key, grp, self.homeostasis * getattr(self, "homeo_speed", {}).get(key, 1.0))
+            self._homeostasis(key, grp, self.homeostasis * getattr(self, "homeo_speed", {}).get(
+                key, getattr(self.spec, "homeo_speed", {}).get(key, 1.0)))
         if learn:
             if grp.c.family == "purkinje" and "cf" in ch:
                 grp.climbing_fiber(ch["cf"])

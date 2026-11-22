@@ -90,8 +90,16 @@ def add_spatial(spec):
     spec.inputs = spec.inputs + ["ATN.hd", "MEC.grid"]
     S = Synaptic
     spec.synaptic += [
-        S("grid cells -> DG (perforant path)", "MEC.grid", "DG.gc", "basal", 0.4, 2.0, 0.4),
-        S("grid cells -> CA3 (perforant path)", "MEC.grid", "CA3.pyr", "basal", 0.1, 1.0, 0.4),
+        S("grid cells -> DG (perforant path)", "MEC.grid", "DG.gc", "basal", 0.4, 10.0, 0.4),
+        S("grid cells -> CA3 (perforant path)", "MEC.grid", "CA3.pyr", "basal", 0.1, 5.0, 0.4),
         S("grid cells -> CA1 tuft", "MEC.grid", "CA1.pyr", "apical", 0.4, 1.0, 0.4),
         S("head direction -> EC (via postsubiculum)", "ATN.hd", "EC.stellate", "basal", 0.3, 1.0, 0.4)]
+    # Place cells (note 84). The grid input must be strong enough to steer the dentate and CA3 (gains above), and
+    # must not be rewritten on every visit: learning fast, the dentate's winners (which change from step to step)
+    # each learned every place and the fields smeared away (CA3 place-like cells 0% vs 22% at 1/20 the speed).
+    # Homeostasis in the sparse principal cells is slow, as real homeostatic plasticity is (hours, not seconds).
+    spec.plasticity = dict(getattr(spec, "plasticity", {}), **{p: 0.05 for p in (
+        "grid cells -> DG (perforant path)", "grid cells -> CA3 (perforant path)", "grid cells -> CA1 tuft")})
+    spec.homeo_speed = dict(getattr(spec, "homeo_speed", {}),
+                            **{k: 0.02 for k in ("DG.gc", "CA3.pyr", "CA1.pyr", "CA2.pyr")})
     return spec

@@ -2,7 +2,7 @@
 Place cells (plan phase 2, note 83). Prints JSON lines.
 
 A brain is walked at random through the homing room (games/spatial_games.py) with learning on, seeing the view and
-receiving self-motion. For every CA1 pyramidal cell: a rate map (mean rate per room cell) from the first and the
+receiving self-motion. For every principal cell of the dentate gyrus, CA3 and CA1: a rate map (mean rate per room cell) from the first and the
 second half of the walk. A cell counts as place-like if it is active, its map is concentrated (peak > 3 x its mean)
 and stable (split-half correlation > 0.5).
   intact        view + head direction + grid cells
@@ -29,6 +29,9 @@ from retina import Retina  # noqa: E402
 from spatial import SelfMotion  # noqa: E402
 
 
+GROUPS = ("DG.gc", "CA3.pyr", "CA1.pyr")
+
+
 def walk(b, steps, seed, self_motion=True, hold=6):
     g = HomingGame(seed=seed)
     g.reset()
@@ -46,14 +49,15 @@ def walk(b, steps, seed, self_motion=True, hold=6):
         ch = {**quiet, **eye(g._view())}
         if self_motion:
             ch.update(sm.channels())
-        acc = 0
+        acc = {k: 0 for k in GROUPS}
         for s in range(hold):
             b.step(ch, learn=True, ach=0.6, dopamine=0.0, arousal=0.3)
             if s >= hold - 3:
-                acc = acc + np.asarray(b.g["CA1.pyr"].rate)
+                for k in GROUPS:
+                    acc[k] = acc[k] + np.asarray(b.g[k].rate)
         pos.append(g.pos[1] * N + g.pos[0])
-        rates.append(acc / 3)
-    return np.array(pos), np.array(rates)
+        rates.append({k: v / 3 for k, v in acc.items()})
+    return np.array(pos), {k: np.array([r[k] for r in rates]) for k in GROUPS}
 
 
 def place_stats(pos, R, shuffle=False, seed=0):
@@ -91,10 +95,12 @@ def main():
     a = ap.parse_args()
     b = Brain.load(a.load_brain, quiet=True)
     pos, R = walk(copy.deepcopy(b), a.steps, a.seed)
-    print(json.dumps(dict(check="place cells", condition="intact", **place_stats(pos, R))))
-    print(json.dumps(dict(check="place cells", condition="shuffled", **place_stats(pos, R, shuffle=True))))
+    for k in GROUPS:
+        print(json.dumps(dict(check="place cells", group=k, condition="intact", **place_stats(pos, R[k]))))
+        print(json.dumps(dict(check="place cells", group=k, condition="shuffled", **place_stats(pos, R[k], shuffle=True))))
     pos, R = walk(copy.deepcopy(b), a.steps, a.seed, self_motion=False)
-    print(json.dumps(dict(check="place cells", condition="no self-motion", **place_stats(pos, R))))
+    for k in GROUPS:
+        print(json.dumps(dict(check="place cells", group=k, condition="no self-motion", **place_stats(pos, R[k]))))
 
 
 if __name__ == "__main__":
