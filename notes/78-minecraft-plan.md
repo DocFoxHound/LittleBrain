@@ -5,6 +5,8 @@ Minecraft), selectable in the app, with "save as new template" and "overwrite". 
 brain must be able to learn what Minecraft needs: above all, to **think ahead**. Phases are in build order; each ends
 with a test game, controls (learning off, region silenced), 3 seeds, a note, and a commit (AGENTS.md rules).*
 
+*Status: see [note 86](86-plan-status.md) (2026-11-22).*
+
 ## What "plays Minecraft" means for template v1
 Realistic first goals, on a small local world with the bot doing the fine motor control:
 1. **Eat when hungry**, not when full (food from animals or berries).

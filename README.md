@@ -54,6 +54,8 @@ way we do, so it can relate to people on a more genuine level.
    - ⚠️ Brain-level memory scores were a timing artifact (note 26). **2026-11-17:** honest tests added, and cortex area A made reliable (note 28); no memory yet.
 8. Scheduled sleep replays recent sensory activity, consolidates synapses and replaces a small fraction of eligible partners. Longer-term effects of replay and richer dreaming remain open experiments.
 
+**Status (2026-11-22):** working through the [Minecraft plan](notes/78-minecraft-plan.md); phases 0, 2 and N1 done, 1 and L1 partly, phase 5 (objects anywhere) in progress, paused. See [note 86](notes/86-plan-status.md).
+
 ### New end goal (2026-11-17)
 A tool that plugs this brain into small simulated games, to see how characters learn under different inputs and
 environments, plus a desktop visualizer of what the neurons are doing and tools to inspect and edit what was
@@ -147,6 +149,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 76. [Knowing where you are](notes/83-spatial-maps.md): head-direction and grid cells, homing game (home 0.73-0.82 vs 0.00-0.13 silenced); no place cells yet
 77. [Place cells](notes/84-place-cells.md): dentate and CA3 place cells on every seed (31-43%); CA1 still inhibition-dominated
 78. [V1 edge cells](notes/85-edge-cells.md): fixed edge stage (shape decodable 0.68-0.72 from it); what still blocks shape learning
+79. [Where we are in the plan](notes/86-plan-status.md): status of every phase and track against note 78 (paused 2026-11-22)
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
