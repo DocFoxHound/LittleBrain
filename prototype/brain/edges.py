@@ -195,8 +195,9 @@ def add_edges(spec):
         # fixed large-field pooling of each orientation (note 91), read by IT and by the striatum
         spec.groups += [Group(k, None, 1, "V4", grid=8) for k in POOLED_GROUPS]
         spec.inputs = spec.inputs + list(POOLED_GROUPS)
-        spec.synaptic = [replace(p, src=(p.src if isinstance(p.src, list) else [p.src]) + list(POOLED_GROUPS))
-                         if p.dst in ("IT.L4", "IT.L23") and p.id.startswith("FF ") else p for p in spec.synaptic]
+        if os.environ.get("VISION_POOLED_IT", "1") == "1":   # 0: the striatum alone reads them (note 94)
+            spec.synaptic = [replace(p, src=(p.src if isinstance(p.src, list) else [p.src]) + list(POOLED_GROUPS))
+                             if p.dst in ("IT.L4", "IT.L23") and p.id.startswith("FF ") else p for p in spec.synaptic]
     it_feature = v4_feature and os.environ.get("VISION_IT_FEATURE", "0") == "1"
     if it_feature:   # IT hears only V4 (one orientation per cell), not V2
         spec.synaptic = [replace(p, src=[s_ for s_ in (p.src if isinstance(p.src, list) else [p.src]) if s_ != "V2.L23"])

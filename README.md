@@ -157,6 +157,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 84. [Pooled edge cells](notes/91-pooled-edge-cells.md): shape learned above chance on every seed for the first time (0.42-0.58); costs colour and motion; opt-in
 85. [Keeping colour and motion while adding shape](notes/92-readout-attention.md): per-source scales and learned attention tried; the cost is irrelevant inputs, not yet solved
 86. [Separate striatal territories](notes/93-striatal-territories.md): shape 0.52-0.60 and motion 0.42-0.52 together on 3 seeds; colour still ~0.1 below
+87. [Shape without the colour/motion cost](notes/94-shape-without-the-cost.md): pooled cells read only by the striatum + territories: shape 0.51-0.66, colour/motion within noise of the same brains
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
