@@ -22,6 +22,14 @@ territories cost colour little.
 - Differences between independently grown brains (colour 0.44 here vs 0.48 in note 88) are as large as the
   remaining colour/motion changes; settling them needs more seeds.
 
+## Other vision games (same brains, old readout vs the new setup; TD on for key-door, poison and homing)
+| | old readout | new setup |
+|---|---|---|
+| signal (correct, 300 turns) | 0.57 / 0.58 / 0.61 | 0.43 / 0.55 / 0.56 |
+| key-door (per step, 600) | 0.33 / 0.30 / 0.37 | 0.43 / 0.36 / 0.35 |
+| slow poison (eat rate, lower is better; ~33 decisions) | 0.18 / 0.15 / 0.00 | 0.00 / 0.33 / 0.00 |
+| homing (got home, 1500) | 0.84 / 0.87 / 0.95 | 0.89 / 0.83 / 0.86 |
+Signal −0.07 on average (seed 0 −0.14); key-door +0.05; homing and poison within noise.
+
 ## Status
-All opt-in. Making it the vision default would change every vision game's readout, so the other games (signal,
-homing, key-door, poison) need a 3-seed check first.
+All opt-in, pending the owner's decision on making it the vision default.
