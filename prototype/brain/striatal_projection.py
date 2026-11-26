@@ -125,6 +125,35 @@ def visual_activity(brain):
         now = xp.linalg.norm(dev) * xp.ones(2, dtype=dev.dtype)
     else:
         now = xp.stack([xp.linalg.norm(dev[:n]), xp.linalg.norm(dev[n:])])
+    if os.environ.get("VISION_SCALE", "separate") == "source" and os.environ.get("VISION_POOL", "1") == "1":
+        # each source area on its own scale (note 92), the pooled edge cells counted as one: a big or loud source
+        # (256 pooled cells) no longer shrinks the others under one cortical scale; the cortical part keeps size ~1
+        bounds, start, seen = [], n, set()
+        for k in keys:
+            m = _readout_size(brain, k)
+            name = "V4.P" if k.startswith("V4.P") else k
+            if name in seen:
+                bounds[-1] = (bounds[-1][0], start + m)
+            else:
+                bounds.append((start, start + m))
+                seen.add(name)
+            start += m
+        now = xp.stack([xp.linalg.norm(dev[:n])] + [xp.linalg.norm(dev[a_:b_]) for a_, b_ in bounds])
+        size = now + 0.0 if size is None or size.shape != now.shape else size + 0.002 * (now - size)
+        brain.cue_scale = size
+        parts = [dev[a_:b_] / xp.maximum(size[i + 1], 0.05) / np.sqrt(len(bounds)) for i, (a_, b_) in enumerate(bounds)]
+        brain._segments = [(0, n)] + bounds
+        gain = getattr(brain, "source_gain", None)
+        if os.environ.get("VISION_ATTEND", "0") == "input" and gain is not None and len(gain) == len(bounds) + 1:
+            # learned attention on the input (note 92; worse: changing an input's size invalidates what was learned)
+            parts = [p_ * float(gain[i + 1]) for i, p_ in enumerate(parts)]
+            thalamic_gain = float(gain[0])
+        else:
+            thalamic_gain = 1.0
+        thalamic, cortical = dev[:n] / xp.maximum(size[0], 0.05) * thalamic_gain, xp.concatenate(parts)
+        if route(brain) == "both":
+            return xp.concatenate([thalamic, cortical])
+        return cortical
     size = now + 0.0 if size is None or size.shape != now.shape else size + 0.002 * (now - size)
     brain.cue_scale = size
     thalamic, cortical = dev[:n] / xp.maximum(size[0], 0.05), dev[n:] / xp.maximum(size[1], 0.05)
@@ -214,8 +243,26 @@ def reinforce(brain, eligibility, motor, dopamine):
     # motor stripe stays addressable when an external game changes action count.
     selected = motor_stripes(brain, motor)
     weights = brain.sensory_striatal
+    import os
+    segs = getattr(brain, "_segments", None)
+    gain = getattr(brain, "source_gain", None)
+    if os.environ.get("VISION_ATTEND", "0") == "1" and segs and gain is not None and len(gain) == len(segs):
+        # associability (Mackintosh 1975; note 92): how fast each source is learned about, not how loud it is
+        alpha = xpof(eligibility).ones_like(eligibility)
+        for (a_, b_), g_ in zip(segs, gain):
+            alpha[a_:b_] = float(g_)
+        eligibility = eligibility * alpha
     weights += 0.45 * dopamine * selected[:, None] * eligibility
     xp.clip(weights, -4.0, 4.0, out=weights)
+    if os.environ.get("VISION_ATTEND", "0") in ("1", "input") and segs:
+        # Mackintosh-style attention (Mackintosh 1975; note 92): a source whose inputs the striatum has learned
+        # strong, structured weights for gets more weight; one it ignores fades. Slow, mean gain 1, bounded
+        use = np.array([float(xp.linalg.norm(weights[:, a_:b_])) / np.sqrt(max(b_ - a_, 1)) for a_, b_ in segs])
+        target = np.clip(use / max(use.mean(), 1e-6), 0.2, 3.0)
+        gain = getattr(brain, "source_gain", None)
+        gain = np.ones(len(segs)) if gain is None or len(gain) != len(segs) else gain
+        gain = gain + 0.02 * (target - gain)
+        brain.source_gain = gain / gain.mean()
 
 
 def food_outcome(brain, trace, motor, amount):
