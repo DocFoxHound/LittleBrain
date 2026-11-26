@@ -5,7 +5,7 @@ A pooled projection is a reduced representation of thalamostriatal convergence
 Eligibility is local to the recently active sensory afferents of chosen cells.
 """
 import numpy as np
-from backend import xpof
+from backend import to_host, xpof
 from association import context, motor_stripes
 from federation import GRID
 
@@ -143,6 +143,11 @@ def visual_activity(brain):
         brain.cue_scale = size
         parts = [dev[a_:b_] / xp.maximum(size[i + 1], 0.05) / np.sqrt(len(bounds)) for i, (a_, b_) in enumerate(bounds)]
         brain._segments = [(0, n)] + bounds
+        brain._segment_names = []
+        for k in keys:
+            nm = "V4.P" if k.startswith("V4.P") else k
+            if nm not in brain._segment_names:
+                brain._segment_names.append(nm)
         gain = getattr(brain, "source_gain", None)
         if os.environ.get("VISION_ATTEND", "0") == "input" and gain is not None and len(gain) == len(bounds) + 1:
             # learned attention on the input (note 92; worse: changing an input's size invalidates what was learned)
@@ -214,7 +219,9 @@ def transmit(brain, chan):
         brain.sensory_striatal = xpof(features).zeros((GRID, features.size), dtype=np.float32)
         if old is not None and visual_sources(brain) is None and old.shape[1] <= features.size:
             brain.sensory_striatal[:, :old.shape[1]] = old
-    current = brain.sensory_striatal @ features
+    current = territory_drive(brain, features)
+    if current is None:
+        current = brain.sensory_striatal @ features
     if hasattr(brain, "food_afferents"):
         # Revalue a learned sensory outcome from current hypothalamic firing.
         # Stripes learn food identity from contact, regardless of their names.
@@ -235,10 +242,89 @@ def transmit(brain, chan):
         chan[key]["plateau"] = sign * current[brain.tile[key] % GRID]
 
 
+def _territories(brain, size):
+    """Input territories of the striatum (STRIATUM_TERRITORIES=1, note 93): the thalamic part, each visual source
+    (the pooled edge cells as one) and the rest (context). None if the option is off or the layout is unknown."""
+    import os
+    segs = getattr(brain, "_segments", None)
+    mode = os.environ.get("STRIATUM_TERRITORIES", "0")
+    if mode not in ("1", "streams") or not segs:
+        return None
+    end = segs[-1][1]
+    segs = list(segs) + ([(end, size)] if size > end else [])
+    idx = [np.arange(a_, b_) for a_, b_ in segs]
+    if mode == "1":
+        return idx
+    # streams: the pooled edge cells, the grid cells and MT (motion was learned best from MT alone, note 75) each get
+    # their own territory; everything the striatum read
+    # before (thalamus, the learned visual areas, context) stays together, as colour was learned best from all of
+    # them at once (note 77)
+    names = ["thalamus"] + list(getattr(brain, "_segment_names", [])) + ["context"]
+    alone = ("V4.P", "MEC.grid") + (("MT.L23",) if os.environ.get("STRIATUM_MT_ALONE", "1") == "1" else ())
+    own = [i for i, nm in enumerate(names[:len(idx)]) if nm in alone]
+    rest = [i for i in range(len(idx)) if i not in own]
+    return [np.concatenate([idx[i] for i in rest])] + [idx[i] for i in own]
+
+
+def territory_drive(brain, features):
+    """Each territory's own action values, combined weighted by how reliable each has been (inverse of its recent
+    squared prediction error; arbitration by uncertainty, Daw, Niv & Dayan 2005)."""
+    terr = _territories(brain, features.size)
+    if terr is None:
+        return None
+    xp = xpof(features)
+    W = getattr(brain, "territory_w", None)
+    if W is None or len(W) != len(terr) or any(w.shape[1] != len(ix) for w, ix in zip(W, terr)):
+        brain.territory_w = W = [xp.zeros((GRID, len(ix)), dtype=np.float32) for ix in terr]
+        brain.territory_err = np.ones(len(terr))
+        brain.territory_stats = np.zeros((len(terr), 5))   # running E[q], E[d], E[q^2], E[d^2], E[qd]
+    rel = territory_reliability(brain, len(terr))
+    return sum(float(rel[i]) * (W[i] @ features[ix]) for i, ix in enumerate(terr))
+
+
+def territory_reliability(brain, k):
+    """How much to trust each territory: the running correlation between its value for the chosen action and the
+    reward that followed (note 93). A territory whose input says nothing about the outcome gets ~0, however small its
+    error; mean 1. Before any history: all equal. (Against the dopamine itself the correlation fades once learning
+    works, as dopamine then signals only the surprise, and trust flipped at random.)"""
+    st = getattr(brain, "territory_stats", None)
+    if st is None or len(st) != k or not st[:, 1].any() or not st[:, 3].any():
+        return np.ones(k)
+    # how much more often the choice was rewarded when this territory's own favourite was chosen than when it wasn't
+    agree = st[:, 0] / np.maximum(st[:, 1], 1e-6)
+    disagree = st[:, 2] / np.maximum(st[:, 3], 1e-6)
+    rel = np.clip(agree - disagree, 0.02, None)
+    return rel / rel.mean()
+
+
 def reinforce(brain, eligibility, motor, dopamine):
     if "sensory -> striatum" in brain.ablated or "TH.core" in brain.ablated:
         return
     xp = xpof(brain.r)
+    terr = _territories(brain, eligibility.size)
+    W = getattr(brain, "territory_w", None)
+    if terr is not None and W is not None and len(W) == len(terr):
+        # each territory learns on its own, with the same rule as the single readout, from its own input only, so noise
+        # in one can't leak into another's weights; how well its value for the chosen action foretold the dopamine
+        # sets how much it is trusted
+        selected = motor_stripes(brain, motor)
+        sel = float(selected.sum()) or 1.0
+        st = getattr(brain, "territory_stats", None)
+        if st is None or len(st) != len(terr):
+            st = brain.territory_stats = np.zeros((len(terr), 5))
+        d = float(dopamine)
+        rw = float(getattr(brain, "last_reward", d))
+        for i, ix in enumerate(terr):
+            x = eligibility[ix]
+            q_all = to_host(W[i] @ x)
+            agreed = float(to_host(selected)[int(np.argmax(q_all))] > 0.5) if np.ptp(q_all) > 0 else 0.5
+            # running sums: rewarded-and-agreed, agreed, rewarded-and-disagreed, disagreed (rate 0.01: ~100 trials)
+            st[i] = 0.99 * st[i] + 0.01 * np.array([rw * agreed, agreed, rw * (1 - agreed), 1 - agreed, 0.0])
+            q = float(to_host(selected) @ q_all) / sel
+            brain.territory_err[i] += 0.05 * ((d - q) ** 2 - brain.territory_err[i])
+            W[i] += 0.45 * d * selected[:, None] * x
+            xp.clip(W[i], -4.0, 4.0, out=W[i])
+        return
     # Pre (cue) x post (efference copy) x phasic dopamine. Every represented
     # motor stripe stays addressable when an external game changes action count.
     selected = motor_stripes(brain, motor)

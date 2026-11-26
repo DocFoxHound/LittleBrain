@@ -294,6 +294,7 @@ class BrainAgent:
         return action, x
 
     def outcome(self, x, action, reward):
+        self.b.last_reward = float(reward)   # for the striatal territories' trust (note 93)
         if self.critic == "cortex":
             f = self.features
             if self.w_value is None:
