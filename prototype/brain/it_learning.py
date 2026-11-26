@@ -23,7 +23,13 @@ import numpy as np
 from backend import like, to_host
 
 
-def object_movies(brain, rng, n, frames=12, blank=4):
+def _rates(brain, src):
+    """Rates of the source groups (cells or input maps), concatenated."""
+    r = to_host(brain.r)
+    return np.concatenate([np.asarray(r[brain.index[k]]) for k in src]).copy()
+
+
+def object_movies(brain, rng, n, frames=12, blank=4, src=("V4.L23",)):
     """V4 L2/3's response to n object movies, frame by frame: (movies, frames, cells)."""
     from games.vision_games import ShapeGame
     from retina import Retina
@@ -44,21 +50,22 @@ def object_movies(brain, rng, n, frames=12, blank=4):
         for f in range(frames):
             x, y = np.clip(start + f * step, 0.15, 0.85)
             brain.step({**quiet, **eye(sg.picture(shape, x, y, r, level))}, learn=False, ach=0.6)
-            movie.append(np.asarray(to_host(brain.g["V4.L23"].rate)).copy())
+            movie.append(_rates(brain, src))
         out.append(movie)
     return np.array(out, np.float32)
 
 
 def competitive_it(brain, rng, movies=400, epochs=8, k=0.05, eta=0.1, sigma0=0.3, sigma1=0.06, trace=0.8,
                    src="V4.L23", dst="IT.L4"):
-    if src not in brain.g or dst not in brain.g:
+    src = (src,) if isinstance(src, str) else tuple(src)
+    if any(k not in brain.index for k in src) or dst not in brain.g:
         return None
-    M = object_movies(brain, rng, movies)               # (movies, frames, cells)
+    M = object_movies(brain, rng, movies, src=src)      # (movies, frames, cells)
     M = M - M.reshape(-1, M.shape[2]).mean(0)            # what differs between views, not "something is there"
     M /= np.linalg.norm(M, axis=2, keepdims=True) + 1e-9
     X = M.reshape(-1, M.shape[2])
     every = np.arange(len(to_host(brain.r)))
-    src_ids = every[brain.index[src]]
+    src_ids = np.concatenate([every[brain.index[k]] for k in src])
     n_dst = brain.g[dst].n
     pos = brain.pos[dst]
     G = rng.standard_normal((n_dst, X.shape[1])) * 0.1

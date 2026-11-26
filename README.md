@@ -154,6 +154,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 81. [Visual layer 4 listens to its input](notes/88-feedforward-layer4.md): colour 0.48-0.49 and motion 0.38-0.44 on 3 seeds (both up); shape still at chance
 82. [Recognising shapes anywhere: where the signal is lost](notes/89-shape-research.md): shape reaches the striatum (0.65) but spread over ~200 noisy features; the learner can't find it from a few hundred trials
 83. [Competitive learning in IT](notes/90-competitive-it.md): IT learns where objects are and how bright, not what they are
+84. [Pooled edge cells](notes/91-pooled-edge-cells.md): shape learned above chance on every seed for the first time (0.42-0.58); costs colour and motion; opt-in
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

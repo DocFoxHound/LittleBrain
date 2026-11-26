@@ -19,6 +19,9 @@ import numpy as np
 
 ANGLES = (0.0, np.pi / 4, np.pi / 2, 3 * np.pi / 4)
 EDGE_GROUPS = tuple(f"A.E{i}" for i in range(len(ANGLES)))
+POOLED_GROUPS = tuple(f"V4.P{i}" for i in range(len(ANGLES)))   # large-field pooled edge energy (note 91)
+POOL_SIGMA = 0.25    # pooling radius, in field units (map coordinates)
+POOL_GAIN = 6.0
 WAVELENGTH = 4.0     # in retina map pixels (32 across the field): ~1/8 of the field
 SIGMA = 1.5
 GAIN = 3.0
@@ -66,6 +69,13 @@ class EdgeCells:
         off = brain.pos["RET.off"]
         self.off_px = np.minimum((off * self.n).astype(int), self.n - 1)
         self.at = {k: np.minimum((brain.pos[k] * self.n).astype(int), self.n - 1) for k in self.keys}
+        # pooled cells: each sums one orientation's edge cells over a wide region around it (Gaussian weights)
+        self.pooled = {}
+        for i, k in enumerate(POOLED_GROUPS):
+            if k in brain.pos and EDGE_GROUPS[i] in brain.pos:
+                d2 = ((brain.pos[k][:, None, :] - brain.pos[EDGE_GROUPS[i]][None, :, :]) ** 2).sum(2)
+                w = np.exp(-d2 / (2 * POOL_SIGMA ** 2))
+                self.pooled[k] = (EDGE_GROUPS[i], (w / w.sum(1, keepdims=True)).astype(np.float32))
 
     def __call__(self, channels):
         if not self.ok or "RET.on" not in channels:
@@ -84,6 +94,9 @@ class EdgeCells:
             xy = self.at[k]
             v = energy[i][xy[:, 1], xy[:, 0]] / (SEMI + pool[xy[:, 1], xy[:, 0]])
             out[k] = np.tanh(GAIN * np.maximum(v - 1.0, 0.0)).astype(np.float32)
+        for k, (e, w) in self.pooled.items():
+            if e in out:
+                out[k] = np.tanh(POOL_GAIN * (w @ out[e])).astype(np.float32)
         return out
 
 
@@ -178,6 +191,12 @@ def add_edges(spec):
             p = replace(p, src=src + list(EDGE_GROUPS))
         syn.append(p)
     spec.synaptic = syn
+    if os.environ.get("VISION_POOLED", "0") == "1":
+        # fixed large-field pooling of each orientation (note 91), read by IT and by the striatum
+        spec.groups += [Group(k, None, 1, "V4", grid=8) for k in POOLED_GROUPS]
+        spec.inputs = spec.inputs + list(POOLED_GROUPS)
+        spec.synaptic = [replace(p, src=(p.src if isinstance(p.src, list) else [p.src]) + list(POOLED_GROUPS))
+                         if p.dst in ("IT.L4", "IT.L23") and p.id.startswith("FF ") else p for p in spec.synaptic]
     it_feature = v4_feature and os.environ.get("VISION_IT_FEATURE", "0") == "1"
     if it_feature:   # IT hears only V4 (one orientation per cell), not V2
         spec.synaptic = [replace(p, src=[s_ for s_ in (p.src if isinstance(p.src, list) else [p.src]) if s_ != "V2.L23"])

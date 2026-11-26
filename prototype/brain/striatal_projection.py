@@ -37,6 +37,9 @@ def visual_sources(brain):
     # Totterdell & Meredith 1997), as do CA1/subiculum. The reconstructed hippocampus does not yet hold a stable
     # place code in CA1 (note 84; CA3 and the dentate have one), so the grid cells are read; SPATIAL_READ=CA3/CA1
     # reads those instead
+    pooled = tuple(k for k in ("V4.P0", "V4.P1", "V4.P2", "V4.P3") if k in brain.pos)
+    if pooled:   # large-field pooled edge cells (note 91): V4 projects to the striatum (tail of the caudate)
+        higher = higher + pooled
     if "MEC.grid" in brain.pos:
         import os
         read = os.environ.get("SPATIAL_READ", "MEC")   # experiments: CA3 or CA1 (place cells, note 84)
@@ -49,9 +52,37 @@ def cue_size(brain):
     if keys is None:
         return GRID * GRID
     import os
-    n = (sum(brain.grid.get(k, GRID) ** 2 for k in keys) if os.environ.get("VISION_POOL", "1") == "1"
+    n = (sum(_readout_size(brain, k) for k in keys) if os.environ.get("VISION_POOL", "1") == "1"
          else sum(brain.g[k].n for k in keys))
     return n + (GRID * GRID if route(brain) == "both" else 0)
+
+
+POOLED_READ = None   # pooled edge cells: regions per side the striatum reads them in (note 91); None = own map
+
+
+def _pooled_q():
+    import os
+    q = os.environ.get("VISION_POOLED_READ", "2")
+    return int(q) if q and q != "map" else None
+
+
+def _readout_size(brain, k):
+    q = _pooled_q() if k.startswith("V4.P") else None
+    return q * q if q else brain.grid.get(k, GRID) ** 2
+
+
+def _readout_pool(brain, k):
+    """What the striatum reads of group k: its mean rate per tile of its own map, except the pooled edge cells, which
+    are read in q x q regions (VISION_POOLED_READ, default 2: quadrants). They are already pooled over a wide area;
+    reading them per tile added 256 strongly overlapping inputs that diluted colour and motion (note 91)."""
+    q = _pooled_q() if k.startswith("V4.P") else None
+    if not q:
+        return brain._pool_fine(k)
+    xp = xpof(brain.r)
+    r = brain.r[brain.index[k]]
+    cell = np.minimum((brain.pos[k] * q).astype(int), q - 1)
+    t = cell[:, 1] * q + cell[:, 0]
+    return (xp.bincount(xp.asarray(t), weights=r, minlength=q * q) / xp.asarray(np.maximum(np.bincount(t, minlength=q * q), 1))).astype(np.float32)
 
 
 def _normalised(rates):
@@ -69,7 +100,7 @@ def visual_activity(brain):
     # noise averages out. Reduced here to the mean rate per tile of each source's own map (VISION_POOL=0: cells).
     import os
     if os.environ.get("VISION_POOL", "1") == "1":
-        rates = xpof(brain.r).concatenate([brain._pool_fine(k) for k in keys])
+        rates = xpof(brain.r).concatenate([_readout_pool(brain, k) for k in keys])
     else:
         rates = xpof(brain.r).concatenate([brain.g[k].rate for k in keys])
     # Corticostriatal synapses depress under sustained input, passing deviations from what is usually seen more than
