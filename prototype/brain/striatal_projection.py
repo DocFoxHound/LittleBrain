@@ -260,9 +260,10 @@ def _territories(brain, size):
     # before (thalamus, the learned visual areas, context) stays together, as colour was learned best from all of
     # them at once (note 77)
     names = ["thalamus"] + list(getattr(brain, "_segment_names", [])) + ["context"]
-    alone = ("V4.P", "MEC.grid") + (("MT.L23",) if os.environ.get("STRIATUM_MT_ALONE", "1") == "1" else ())
+    mt = os.environ.get("STRIATUM_MT_ALONE", "1")   # 1: MT alone; 0: with the rest; both: in both (note 93)
+    alone = ("V4.P", "MEC.grid") + (("MT.L23",) if mt in ("1", "both") else ())
     own = [i for i, nm in enumerate(names[:len(idx)]) if nm in alone]
-    rest = [i for i in range(len(idx)) if i not in own]
+    rest = [i for i in range(len(idx)) if i not in own or (mt == "both" and names[i] == "MT.L23")]
     return [np.concatenate([idx[i] for i in rest])] + [idx[i] for i in own]
 
 

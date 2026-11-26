@@ -34,6 +34,17 @@ Opt-in: `STRIATUM_TERRITORIES` (needs `VISION_SCALE=source`).*
 - **Shape ~doubles over the default and motion is above the default on every seed**, together.
 - **Colour is still ~0.1 below the default.** Shape is at the bar on seed 2 only.
 
+## Where MT sits (`STRIATUM_MT_ALONE`, same brains)
+| | shape | colour | motion |
+|---|---|---|---|
+| MT alone (`1`, default) | 0.55 / 0.52 / 0.60 | 0.34 / 0.42 / 0.35 | 0.45 / 0.42 / 0.52 |
+| MT with the rest (`0`) | 0.65 / 0.53 / 0.63 | 0.35 / 0.36 / 0.50 | 0.42 / 0.27 / 0.42 |
+| MT in both (`both`) | 0.63 / 0.53 / 0.55 | 0.47 / 0.37 / 0.42 | 0.38 / 0.38 / 0.29 |
+Averages (shape / colour / motion): alone 0.56 / 0.37 / 0.46; with the rest 0.60 / 0.40 / 0.37; both 0.57 / 0.42 / 0.35;
+the default brain 0.30 / 0.48 / 0.41. Within the noise of each other: moving MT trades motion for a little colour.
+The colour territory alone picks right only 0.35-0.40 (the single readout: 0.48); its values have grown large
+(prediction error 13-21 vs ~0.7 for the others).
+
 ## Next
 Colour's territory: find why it learns less than the single readout did (the per-source scaling it now gets, or
 sharing trust with three other territories early on).
