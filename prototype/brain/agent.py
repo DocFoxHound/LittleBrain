@@ -57,7 +57,7 @@ class BrainAgent:
         # outcome before the choice and biases the basal ganglia
         self.wm, self.wm_prev, self.wm_phi, self.plan_bonus = None, None, None, None
         self.wm_moving = False   # the world model plans only in worlds where the character moves (note 97)
-        if os.environ.get("WORLD_MODEL", "0") == "1" and "MEC.grid" in brain.pos:
+        if os.environ.get("WORLD_MODEL", "1") == "1" and "MEC.grid" in brain.pos:   # default since note 99
             from world_model import WorldModel
             self.wm = WorldModel(100, n_actions, seed=seed, n_outcomes=int(os.environ.get("WM_OUTCOMES", "2")))
             self.wm_beta = float(os.environ.get("WM_BETA", "10"))   # strong enough to override the habit (note 96)

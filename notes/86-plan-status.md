@@ -13,7 +13,7 @@ alongside. The owner chose to finish phases 2 and 5 before starting phase 3.*
 | **L1** hearing | ◐ mostly | 81 | ear, MGB, A1; text heard as sound; syllables identified 0.87-1.00 (chance 0.17); statistical word learning only a hint (right direction on 3 seeds, small) |
 | **2** spatial maps | ✅ done (CA1 open) | 83, 84 | head-direction and grid cells; place cells in the dentate (37-43%) and CA3 (31-35%) on every seed; homing 0.74-0.83 vs 0.14-0.20 silenced; **CA1 has no place cells** (inhibition-dominated; deferred by the owner) |
 | **5** objects anywhere | ◐ nearly met | 82, 85, 87-95 | V1 edge cells built (fixed stage, owner's choice): shape decodable from them at 0.68-0.72; **shape game still at chance (0.27-0.32), bar is ≥ 0.6** |
-| **3** world model and look-ahead | ✅ met (latent learning not) | 96-98 | **detour** (3 seeds) and **revaluation** (3 valid seeds, 2-7 trials) met, silenced hippocampus and PFC never switch; **latent learning not met** (needs an exploration drive); opt-in `WORLD_MODEL=1` |
+| **3** world model and look-ahead | ✅ met | 96-99 | **detour** (3 seeds) and **revaluation** (3 valid seeds, 2-7 trials) met, silenced hippocampus and PFC never switch; latent learning partly (2 of 3 seeds, with curiosity); **the vision default** (`WORLD_MODEL=1`) |
 | 4 goals and routines | not started | | |
 | 6 learning in sleep | not started | | |
 | 7 Minecraft connection | not started | | needs owner decisions (Mojang EULA, account or browser view) |
@@ -81,6 +81,10 @@ default needs a 3-seed check of the other vision games.
 The shape setup is now the vision default (pooled cells read by the striatum, per-source scaling, striatal
 territories). Phase 5: shape 0.51-0.66 on 3 seeds (bar 0.6 on every seed: met on one), recorded as nearly met.
 Next: phase 3 (world model and look-ahead).
+
+## Update (note 99)
+Curiosity (count-based novelty in the look-ahead) added; revaluation now from the first test episode; latent
+learning on 2 of 3 seeds; the world model is the vision default. Phase 3 closed. Next: phase 4 (goals and routines).
 
 ## Open items carried forward
 - **CA1 place cells** (note 84): excitation ~0.015 vs PV inhibition ~1.05; needs CA1's excitation/inhibition rebuilt

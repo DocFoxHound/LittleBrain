@@ -54,7 +54,7 @@ way we do, so it can relate to people on a more genuine level.
    - ⚠️ Brain-level memory scores were a timing artifact (note 26). **2026-11-17:** honest tests added, and cortex area A made reliable (note 28); no memory yet.
 8. Scheduled sleep replays recent sensory activity, consolidates synapses and replaces a small fraction of eligible partners. Longer-term effects of replay and richer dreaming remain open experiments.
 
-**Status (2026-11-22):** working through the [Minecraft plan](notes/78-minecraft-plan.md); phases 0, 2 and N1 done; 1, L1 partly; 5 (objects anywhere) nearly met; next: phase 3. See [note 86](notes/86-plan-status.md).
+**Status (2026-11-22):** working through the [Minecraft plan](notes/78-minecraft-plan.md); phases 0, 2, 3 and N1 done; 1, L1 partly; 5 nearly met; next: phase 4. See [note 86](notes/86-plan-status.md).
 
 ### New end goal (2026-11-17)
 A tool that plugs this brain into small simulated games, to see how characters learn under different inputs and
@@ -162,6 +162,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 89. [A world model and look-ahead: the detour](notes/96-world-model-detour.md): detour solved within a few trials on 3 seeds; habit and hippocampus-silenced brains never find it
 90. [Revaluation](notes/97-revaluation.md): the planner switches to the still-wanted food within 1-2 trials; habit and hippocampus-silenced brains don't
 91. [Finishing phase 3](notes/98-phase3-complete.md): third seed, prefrontal lesion (never switches), latent learning not met, no cost in other games, homing perfect
+92. [Curiosity, and the world model becomes the default](notes/99-curiosity-and-default.md): revaluation from the first test episode; latent learning on 2 of 3 seeds; phase 3 closed
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

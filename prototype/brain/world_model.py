@@ -35,6 +35,11 @@ class WorldModel:
         self.V_out = np.zeros((n_outcomes, n_features), np.float32)
         self.want = np.ones(n_outcomes, np.float32)
         self.rewarded = False   # has anything worth having happened yet (food, or a reward beyond a step's cost)?
+        self.counts = []        # visits to each remembered place (curiosity, note 99)
+        import os
+        self.curiosity = float(os.environ.get("WM_CURIOSITY", "0.2"))
+        self.novel_sim = float(os.environ.get("WM_NOVEL_SIM", "0.8"))        # imagined places are blurry: match loosely
+        self.curiosity_fade = float(os.environ.get("WM_CURIOSITY_FADE", "0.1"))   # after the first reward
         self.T = np.stack([np.eye(n_features, dtype=np.float32) for _ in range(n_actions)])   # start: "nothing moves"
         self.R = np.zeros((n_actions, n_features), np.float32)
         self.E = np.zeros((n_actions, n_features), np.float32)
@@ -50,14 +55,33 @@ class WorldModel:
         """How good a place is now: plain value plus each outcome still ahead, weighted by how much it is wanted."""
         return float(self.v @ phi) + (float(self.want @ (self.V_out @ phi)) if self.n_out else 0.0)
 
-    def q(self, phi, depth=2):
-        """Value of each action from phi, looking `depth` steps ahead through the model."""
+    def _nearest(self, phi):
+        if not self.memory:
+            return -1, 0.0
+        M = np.array(self.memory)
+        sim = (M @ phi) / (np.linalg.norm(M, axis=1) * np.linalg.norm(phi) + 1e-9)
+        i = int(np.argmax(sim))
+        return i, float(sim[i])
+
+    def novelty(self, phi):
+        """How new a place is: 1 if never visited, fading as 1/sqrt(1 + visits) (count-based curiosity; the
+        hippocampus's novelty signal drives dopamine, Lisman & Grace 2005)."""
+        i, sim = self._nearest(phi)
+        return 1.0 if sim < self.novel_sim else 1.0 / np.sqrt(1.0 + self.counts[i])
+
+    def q(self, phi, depth=2, curious=True):
+        """Value of each action from phi, looking `depth` steps ahead through the model; when `curious`, each imagined
+        place also counts for how new it is (WM_CURIOSITY), which steers the look-ahead but is never learned as value."""
         out = np.zeros(self.k)
         for a in range(self.k):
             nxt = self.T[a] @ phi
             end = float(np.clip(self.E[a] @ phi, 0, 1))
-            later = (self.q(nxt, depth - 1).max() if depth > 1 else self.value(nxt))
+            later = (self.q(nxt, depth - 1, curious).max() if depth > 1 else self.value(nxt))
             now = float(self.R[a] @ phi) + (float(self.want @ (self.O[a] @ phi)) if self.n_out else 0.0)
+            if curious and self.curiosity:
+                # curiosity is strongest before anything rewarding is known; after that it fades to a tenth, so a
+                # new place no longer outbids known food a few steps away
+                now += self.curiosity * (self.curiosity_fade if self.rewarded else 1.0) * self.novelty(nxt)
             out[a] = now + self.gamma * (1 - end) * later
         return out
 
@@ -82,16 +106,16 @@ class WorldModel:
         self.v += self.lr * (target - self.v @ phi) * phi / n
         # a memory of places, not of moments: a place already remembered is not stored again, so the layout learned
         # while exploring is not pushed out by many visits to the same few places (note 96)
-        if self.memory:
-            M = np.array(self.memory)
-            sim = (M @ phi) / (np.linalg.norm(M, axis=1) * np.linalg.norm(phi) + 1e-9)
-            new = sim.max() < 0.97
-        else:
-            new = True
-        if new:
+        i, sim = self._nearest(phi)
+        if sim < 0.97:
             self.memory.append(phi.copy())
+            self.counts.append(1)
             if len(self.memory) > self.mem_size:
-                self.memory.pop(int(self.rng.integers(len(self.memory))))
+                j = int(self.rng.integers(len(self.memory)))
+                self.memory.pop(j)
+                self.counts.pop(j)
+        else:
+            self.counts[i] += 1
         self.dream(self.replay)
 
     def dream(self, steps):
@@ -100,7 +124,7 @@ class WorldModel:
             return
         for i in self.rng.integers(len(self.memory), size=steps):
             phi = self.memory[i]
-            qs = self.q(phi, depth=1)
+            qs = self.q(phi, depth=1, curious=False)
             a = int(np.argmax(qs))
             nxt = self.T[a] @ phi
             end = float(np.clip(self.E[a] @ phi, 0, 1))
