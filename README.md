@@ -54,7 +54,7 @@ way we do, so it can relate to people on a more genuine level.
    - ⚠️ Brain-level memory scores were a timing artifact (note 26). **2026-11-17:** honest tests added, and cortex area A made reliable (note 28); no memory yet.
 8. Scheduled sleep replays recent sensory activity, consolidates synapses and replaces a small fraction of eligible partners. Longer-term effects of replay and richer dreaming remain open experiments.
 
-**Status (2026-11-22):** working through the [Minecraft plan](notes/78-minecraft-plan.md); phases 0, 2 and N1 done, 1 and L1 partly, phase 5 (objects anywhere) in progress, paused. See [note 86](notes/86-plan-status.md).
+**Status (2026-11-22):** working through the [Minecraft plan](notes/78-minecraft-plan.md); phases 0, 2 and N1 done; 1, L1 partly; 5 (objects anywhere) nearly met; next: phase 3. See [note 86](notes/86-plan-status.md).
 
 ### New end goal (2026-11-17)
 A tool that plugs this brain into small simulated games, to see how characters learn under different inputs and
@@ -158,6 +158,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 85. [Keeping colour and motion while adding shape](notes/92-readout-attention.md): per-source scales and learned attention tried; the cost is irrelevant inputs, not yet solved
 86. [Separate striatal territories](notes/93-striatal-territories.md): shape 0.52-0.60 and motion 0.42-0.52 together on 3 seeds; colour still ~0.1 below
 87. [Shape without the colour/motion cost](notes/94-shape-without-the-cost.md): pooled cells read only by the striatum + territories: shape 0.51-0.66, colour/motion within noise of the same brains
+88. [Shape recognition becomes part of the vision brain](notes/95-shape-default.md): new defaults; phase 5 nearly met
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

@@ -37,7 +37,7 @@ neurons are doing and (later) tools to inspect and edit what was learned.
 5. **New behaviour is opt-in until proven.** Add new mechanisms behind an environment flag or a parameter with the
    old behaviour as default (see the flags table in §6). Make it the default only after a 3-seed result, and
    say so in the note. Existing results must stay reproducible.
-6. **Every change gets a note.** Add `notes/NN-short-name.md` (next number is **95**), add it to the numbered
+6. **Every change gets a note.** Add `notes/NN-short-name.md` (next number is **96**), add it to the numbered
    list in `README.md`, and update the roadmap lines there if a milestone moves. Notes follow the existing style:
    what was built, what went wrong on the way, a results table with seeds and controls, and "Next".
 7. **Keep it small.** The machine is an 8 GB RTX 4070 laptop GPU plus CPU. The game brains are ~5–6k neurons and
@@ -404,7 +404,7 @@ blank / Minecraft templates in the app. Work the phases in order; each has a tes
 **[Note 86](notes/86-plan-status.md) is the current status** (paused 2026-11-22): phases 0, 2 and N1 done; 1 and L1
 partly; phase 5 in progress with the owner's chosen next steps; open items (CA1 place cells, phase 1's chain bar).
 Notes 80-85: TD credit and habenula (80), hearing (81), trace learning attempt (82), spatial maps (83), place cells
-(84), V1 edge cells (85), V4 pooling and readout scale (87), feedforward-dominated visual layer 4 (88), where the shape signal is lost (89), competitive learning in IT (90), pooled edge cells (91), readout scales and attention (92), striatal territories (93), shape without the colour/motion cost (94).
+(84), V1 edge cells (85), V4 pooling and readout scale (87), feedforward-dominated visual layer 4 (88), where the shape signal is lost (89), competitive learning in IT (90), pooled edge cells (91), readout scales and attention (92), striatal territories (93), shape without the colour/motion cost (94), shape setup made the vision default (95).
 
 ### Phase 0 (note 79)
 

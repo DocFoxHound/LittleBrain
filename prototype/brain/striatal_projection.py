@@ -60,22 +60,27 @@ def cue_size(brain):
 POOLED_READ = None   # pooled edge cells: regions per side the striatum reads them in (note 91); None = own map
 
 
+def _is_pooled(k):
+    """V4.P0..V4.P3, the pooled edge cells (not V4.PV, V4's interneurons)."""
+    return k[:4] == "V4.P" and k[4:].isdigit()
+
+
 def _pooled_q():
     import os
-    q = os.environ.get("VISION_POOLED_READ", "2")
+    q = os.environ.get("VISION_POOLED_READ", "map")
     return int(q) if q and q != "map" else None
 
 
 def _readout_size(brain, k):
-    q = _pooled_q() if k.startswith("V4.P") else None
+    q = _pooled_q() if _is_pooled(k) else None
     return q * q if q else brain.grid.get(k, GRID) ** 2
 
 
 def _readout_pool(brain, k):
     """What the striatum reads of group k: its mean rate per tile of its own map, except the pooled edge cells, which
-    are read in q x q regions (VISION_POOLED_READ, default 2: quadrants). They are already pooled over a wide area;
+    can be read in q x q regions (VISION_POOLED_READ=2 or 4; default map: per tile). They are already pooled widely;
     reading them per tile added 256 strongly overlapping inputs that diluted colour and motion (note 91)."""
-    q = _pooled_q() if k.startswith("V4.P") else None
+    q = _pooled_q() if _is_pooled(k) else None
     if not q:
         return brain._pool_fine(k)
     xp = xpof(brain.r)
@@ -121,17 +126,17 @@ def visual_activity(brain):
     # stays small instead of being blown up to the size of the informative part
     # separate scales for the thalamic and cortical parts by default: motion +0.07-0.10 on 3 seeds, colour and signal
     # unchanged (note 87); VISION_SCALE=joint restores the shared scale of note 77
-    if route(brain) == "both" and os.environ.get("VISION_SCALE", "separate") == "joint":
+    if route(brain) == "both" and os.environ.get("VISION_SCALE", "source") == "joint":
         now = xp.linalg.norm(dev) * xp.ones(2, dtype=dev.dtype)
     else:
         now = xp.stack([xp.linalg.norm(dev[:n]), xp.linalg.norm(dev[n:])])
-    if os.environ.get("VISION_SCALE", "separate") == "source" and os.environ.get("VISION_POOL", "1") == "1":
+    if os.environ.get("VISION_SCALE", "source") == "source" and os.environ.get("VISION_POOL", "1") == "1":
         # each source area on its own scale (note 92), the pooled edge cells counted as one: a big or loud source
         # (256 pooled cells) no longer shrinks the others under one cortical scale; the cortical part keeps size ~1
         bounds, start, seen = [], n, set()
         for k in keys:
             m = _readout_size(brain, k)
-            name = "V4.P" if k.startswith("V4.P") else k
+            name = "V4.P" if _is_pooled(k) else k
             if name in seen:
                 bounds[-1] = (bounds[-1][0], start + m)
             else:
@@ -145,7 +150,7 @@ def visual_activity(brain):
         brain._segments = [(0, n)] + bounds
         brain._segment_names = []
         for k in keys:
-            nm = "V4.P" if k.startswith("V4.P") else k
+            nm = "V4.P" if _is_pooled(k) else k
             if nm not in brain._segment_names:
                 brain._segment_names.append(nm)
         gain = getattr(brain, "source_gain", None)
@@ -247,7 +252,7 @@ def _territories(brain, size):
     (the pooled edge cells as one) and the rest (context). None if the option is off or the layout is unknown."""
     import os
     segs = getattr(brain, "_segments", None)
-    mode = os.environ.get("STRIATUM_TERRITORIES", "0")
+    mode = os.environ.get("STRIATUM_TERRITORIES", "streams")
     if mode not in ("1", "streams") or not segs:
         return None
     end = segs[-1][1]

@@ -191,11 +191,11 @@ def add_edges(spec):
             p = replace(p, src=src + list(EDGE_GROUPS))
         syn.append(p)
     spec.synaptic = syn
-    if os.environ.get("VISION_POOLED", "0") == "1":
+    if os.environ.get("VISION_POOLED", "1") == "1":   # default since note 95
         # fixed large-field pooling of each orientation (note 91), read by IT and by the striatum
         spec.groups += [Group(k, None, 1, "V4", grid=8) for k in POOLED_GROUPS]
         spec.inputs = spec.inputs + list(POOLED_GROUPS)
-        if os.environ.get("VISION_POOLED_IT", "1") == "1":   # 0: the striatum alone reads them (note 94)
+        if os.environ.get("VISION_POOLED_IT", "0") == "1":   # default 0: the striatum alone reads them (note 94)
             spec.synaptic = [replace(p, src=(p.src if isinstance(p.src, list) else [p.src]) + list(POOLED_GROUPS))
                              if p.dst in ("IT.L4", "IT.L23") and p.id.startswith("FF ") else p for p in spec.synaptic]
     it_feature = v4_feature and os.environ.get("VISION_IT_FEATURE", "0") == "1"
