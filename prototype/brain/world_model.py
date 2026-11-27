@@ -34,6 +34,7 @@ class WorldModel:
         self.O = np.zeros((n_actions, n_outcomes, n_features), np.float32)
         self.V_out = np.zeros((n_outcomes, n_features), np.float32)
         self.want = np.ones(n_outcomes, np.float32)
+        self.rewarded = False   # has anything worth having happened yet (food, or a reward beyond a step's cost)?
         self.T = np.stack([np.eye(n_features, dtype=np.float32) for _ in range(n_actions)])   # start: "nothing moves"
         self.R = np.zeros((n_actions, n_features), np.float32)
         self.E = np.zeros((n_actions, n_features), np.float32)
@@ -65,6 +66,8 @@ class WorldModel:
         happened (one entry per outcome), whose wanted value is then taken out of `reward`."""
         n = self._norm(phi)
         done = nxt is None
+        if abs(reward) > 0.1 or (outcome is not None and any(outcome)):
+            self.rewarded = True
         if not done:
             self.T[a] += self.lr * np.outer(nxt - self.T[a] @ phi, phi) / n
         if self.n_out and outcome is not None:

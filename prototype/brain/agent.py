@@ -56,6 +56,7 @@ class BrainAgent:
         # A world model and look-ahead (WORLD_MODEL=1, note 96): learned on the place code, it imagines each action's
         # outcome before the choice and biases the basal ganglia
         self.wm, self.wm_prev, self.wm_phi, self.plan_bonus = None, None, None, None
+        self.wm_moving = False   # the world model plans only in worlds where the character moves (note 97)
         if os.environ.get("WORLD_MODEL", "0") == "1" and "MEC.grid" in brain.pos:
             from world_model import WorldModel
             self.wm = WorldModel(100, n_actions, seed=seed, n_outcomes=int(os.environ.get("WM_OUTCOMES", "2")))
@@ -403,11 +404,17 @@ class BrainAgent:
         frames = getattr(obs, "frames", None)
         if self.place is not None:
             self.place.move(getattr(obs, "motion", None), obs.body)
+            if getattr(obs, "motion", None):
+                self.wm_moving = True
         self.plan_bonus = None
-        if self.wm is not None:
+        if self.wm is not None and self.wm_moving:
+            # (in a game where the character never moves, the place never changes: the model would only learn which
+            # button pays on average, regardless of the picture, and push toward it)
             from world_model import HIPPOCAMPAL
             phi = self.place.place_code()
-            if "want" in obs.body and len(obs.body["want"]) == self.wm.n_out:
+            # valuing outcomes by what the body wants now is the orbitofrontal / ventromedial prefrontal part (note 97;
+            # the brain's PFC group stands in for it): silenced, the planner keeps the values it was trained with
+            if "want" in obs.body and len(obs.body["want"]) == self.wm.n_out and "PFC" not in self.b.ablated:
                 want = np.asarray(obs.body["want"], np.float32)
                 changed = not np.allclose(want, self.wm.want)
                 self.wm.want = want   # what the body wants now (note 97)
@@ -422,7 +429,11 @@ class BrainAgent:
             self.wm_prev, self.wm_phi = None, phi
             if not (HIPPOCAMPAL & set(self.b.ablated)):
                 q = self.wm.q(phi)
-                self.plan_bonus = self.wm_beta * (q - q.mean())
+                # The planner always steers. Tried (note 97): scaling it by how much its values differ (silenced it just
+                # when revaluation needed it) and only once something rewarding was found (WM_GATE=1: the brain then
+                # found the food less often in the first place)
+                gate = (not self.wm.rewarded) and os.environ.get("WM_GATE", "0") == "1"
+                self.plan_bonus = None if gate else self.wm_beta * (q - q.mean())
         self.hearing = None
         if self.ear is not None:
             import cochlea

@@ -161,6 +161,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 88. [Shape recognition becomes part of the vision brain](notes/95-shape-default.md): new defaults; phase 5 nearly met
 89. [A world model and look-ahead: the detour](notes/96-world-model-detour.md): detour solved within a few trials on 3 seeds; habit and hippocampus-silenced brains never find it
 90. [Revaluation](notes/97-revaluation.md): the planner switches to the still-wanted food within 1-2 trials; habit and hippocampus-silenced brains don't
+91. [Finishing phase 3](notes/98-phase3-complete.md): third seed, prefrontal lesion (never switches), latent learning not met, no cost in other games, homing perfect
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌
