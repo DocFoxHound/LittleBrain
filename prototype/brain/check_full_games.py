@@ -12,7 +12,8 @@ LESIONS = {"signal": {"sensory -> striatum"}, "danger": {"BLA", "CeL", "CeM"},
            "colour": {"sensory -> striatum"}, "motion": {"sensory -> striatum"},
            "shape": {"sensory -> striatum"}, "peripheral": {"sensory -> striatum"},
            "keydoor": {"sensory -> striatum"}, "poison": {"LHb", "RMTg"},
-           "homing": {"MEC", "ATN"}}   # grid and head-direction cells silent (note 83)
+           "homing": {"MEC", "ATN"},   # grid and head-direction cells silent (note 83)
+           "detour": {"EC", "DG", "CA3", "CA1", "SUB"}}   # hippocampal formation: no look-ahead (note 96)
 
 
 def mean(events):
@@ -25,6 +26,9 @@ def metrics(game, block):
         return dict(accuracy=mean(e["correct"] for e in block),
                     first_step=mean(e["correct"] for e in block if e["state"] == 0),
                     completed=sum(bool(e.get("completed")) for e in block))
+    if game == "detour":
+        ends = [e for e in block if e.get("done")]
+        return dict(fed=mean(e["fed"] for e in ends), steps=mean(e["steps"] for e in ends), episodes=len(ends))
     if game == "homing":
         ends = [e for e in block if e.get("done")]
         return dict(home=mean(e["home"] for e in ends), closer=mean(e["closer"] for e in block), episodes=len(ends))

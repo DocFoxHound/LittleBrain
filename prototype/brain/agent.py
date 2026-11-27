@@ -53,9 +53,15 @@ class BrainAgent:
         if "MEC.grid" in brain.pos or "ATN.hd" in brain.pos:
             from spatial import SelfMotion
             self.place = SelfMotion(brain)
+        # A world model and look-ahead (WORLD_MODEL=1, note 96): learned on the place code, it imagines each action's
+        # outcome before the choice and biases the basal ganglia
+        self.wm, self.wm_prev, self.wm_phi, self.plan_bonus = None, None, None, None
+        if os.environ.get("WORLD_MODEL", "0") == "1" and "MEC.grid" in brain.pos:
+            from world_model import WorldModel
+            self.wm = WorldModel(100, n_actions, seed=seed)
+            self.wm_beta = float(os.environ.get("WM_BETA", "10"))   # strong enough to override the habit (note 96)
         # Eye movements (note 76): with a superior colliculus, the eye fixates the centre at the start of each look,
         # and at `saccade_at` steps jumps to where the colliculus points (VISION_SACCADES=0: eye held still)
-        import os
         self.saccades = self.eye is not None and "SC.deep" in brain.g and os.environ.get("VISION_SACCADES", "1") == "1"
         self.saccade_at, self.gaze_log = 6, []
         # Credit across steps (plan phase 1, note 80): with TD_GAMMA > 0 the value of each situation is learned by
@@ -287,6 +293,8 @@ class BrainAgent:
                 self.timing_trace = timing_activity(self.b)
         self.features = np.mean(feats, 0)
         release = -np.mean(gpi, 0)
+        if self.plan_bonus is not None and len(self.plan_bonus) == len(release):
+            release = release + self.plan_bonus   # the imagined outcomes bias the choice (note 96)
         p = np.exp((release - release.max()) / self.temperature)
         p /= p.sum()
         action = int(self.rng.choice(self.n, p=p))
@@ -395,6 +403,17 @@ class BrainAgent:
         frames = getattr(obs, "frames", None)
         if self.place is not None:
             self.place.move(getattr(obs, "motion", None), obs.body)
+        self.plan_bonus = None
+        if self.wm is not None:
+            from world_model import HIPPOCAMPAL
+            phi = self.place.place_code()
+            if self.wm_prev is not None and self.learn:
+                p_, a_, r_ = self.wm_prev
+                self.wm.observe(p_, a_, r_, phi)
+            self.wm_prev, self.wm_phi = None, phi
+            if not (HIPPOCAMPAL & set(self.b.ablated)):
+                q = self.wm.q(phi)
+                self.plan_bonus = self.wm_beta * (q - q.mean())
         self.hearing = None
         if self.ear is not None:
             import cochlea
@@ -422,6 +441,11 @@ class BrainAgent:
             # An unapplied motor command leaves the observed context in working memory.
             self.b.hold_context = True
         self.last_rpe = self.outcome(retina, action, reward)
+        if self.wm is not None and self.wm_phi is not None and self.learn:
+            if self.episode_over or bool(self.last_info.get("done", False)):
+                self.wm.observe(self.wm_phi, action, float(reward), None)
+            else:
+                self.wm_prev = (self.wm_phi, action, float(reward))
         # remember this turn for the next cue's temporal-difference credit, unless the episode ended here
         done = self.episode_over or bool(self.last_info.get("done", False))
         trace = getattr(self, "sensory_trace", None)

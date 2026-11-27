@@ -69,6 +69,17 @@ class SelfMotion:
         if body.get("home_scent"):
             self.pos = np.zeros(2)
 
+    def place_code(self, width=0.7, span=5.0, side=10):
+        """Reduced place cells (note 96): localised firing fields tiling the room around the origin (side x side
+        centres over +-span, Gaussian, `width` cells wide), read from the same position estimate as the grid cells.
+        In the brain place cells form from grid input (Solstad et al. 2006); the hippocampus's own place cells
+        (note 84) are still too noisy to plan on. Local fields let a value map hold a peak where food is; the grid
+        cells' repeating fields spread every update over the whole room."""
+        c = np.linspace(-span, span, side)
+        cx, cy = np.meshgrid(c, c)
+        d2 = (cx.ravel() - self.pos[0]) ** 2 + (cy.ravel() - self.pos[1]) ** 2
+        return np.exp(-d2 / (2 * width ** 2)).astype(np.float32)
+
     def channels(self):
         out = {}
         if self.hd_pref is not None:
