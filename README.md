@@ -160,6 +160,7 @@ learned. Order: (1) make the brain learn, measured honestly; (2) game interface 
 87. [Shape without the colour/motion cost](notes/94-shape-without-the-cost.md): pooled cells read only by the striatum + territories: shape 0.51-0.66, colour/motion within noise of the same brains
 88. [Shape recognition becomes part of the vision brain](notes/95-shape-default.md): new defaults; phase 5 nearly met
 89. [A world model and look-ahead: the detour](notes/96-world-model-detour.md): detour solved within a few trials on 3 seeds; habit and hippocampus-silenced brains never find it
+90. [Revaluation](notes/97-revaluation.md): the planner switches to the still-wanted food within 1-2 trials; habit and hippocampus-silenced brains don't
 38. [Reading list](reading-list.md)
 
 ## Parked for later 📌

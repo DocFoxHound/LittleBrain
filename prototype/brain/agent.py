@@ -58,7 +58,7 @@ class BrainAgent:
         self.wm, self.wm_prev, self.wm_phi, self.plan_bonus = None, None, None, None
         if os.environ.get("WORLD_MODEL", "0") == "1" and "MEC.grid" in brain.pos:
             from world_model import WorldModel
-            self.wm = WorldModel(100, n_actions, seed=seed)
+            self.wm = WorldModel(100, n_actions, seed=seed, n_outcomes=int(os.environ.get("WM_OUTCOMES", "2")))
             self.wm_beta = float(os.environ.get("WM_BETA", "10"))   # strong enough to override the habit (note 96)
         # Eye movements (note 76): with a superior colliculus, the eye fixates the centre at the start of each look,
         # and at `saccade_at` steps jumps to where the colliculus points (VISION_SACCADES=0: eye held still)
@@ -407,9 +407,18 @@ class BrainAgent:
         if self.wm is not None:
             from world_model import HIPPOCAMPAL
             phi = self.place.place_code()
+            if "want" in obs.body and len(obs.body["want"]) == self.wm.n_out:
+                want = np.asarray(obs.body["want"], np.float32)
+                changed = not np.allclose(want, self.wm.want)
+                self.wm.want = want   # what the body wants now (note 97)
+                if changed and not (HIPPOCAMPAL & set(self.b.ablated)):
+                    # a change of what is wanted sets off a burst of replay through the model: the predicted future
+                    # outcomes are re-planned under the new wants (replay rises after reward and motivation change;
+                    # successor features otherwise predict only what the old habit led to, note 97)
+                    self.wm.dream(int(os.environ.get("WM_REPLAN", "400")))
             if self.wm_prev is not None and self.learn:
-                p_, a_, r_ = self.wm_prev
-                self.wm.observe(p_, a_, r_, phi)
+                p_, a_, r_, o_ = self.wm_prev
+                self.wm.observe(p_, a_, r_, phi, o_)
             self.wm_prev, self.wm_phi = None, phi
             if not (HIPPOCAMPAL & set(self.b.ablated)):
                 q = self.wm.q(phi)
@@ -442,10 +451,13 @@ class BrainAgent:
             self.b.hold_context = True
         self.last_rpe = self.outcome(retina, action, reward)
         if self.wm is not None and self.wm_phi is not None and self.learn:
-            if self.episode_over or bool(self.last_info.get("done", False)):
-                self.wm.observe(self.wm_phi, action, float(reward), None)
+            o_ = self.last_info.get("outcome")
+            if self.last_info.get("timeout"):
+                pass   # a time limit is not where episodes end: don't teach the model that it is (note 97)
+            elif self.episode_over or bool(self.last_info.get("done", False)):
+                self.wm.observe(self.wm_phi, action, float(reward), None, o_)
             else:
-                self.wm_prev = (self.wm_phi, action, float(reward))
+                self.wm_prev = (self.wm_phi, action, float(reward), o_)
         # remember this turn for the next cue's temporal-difference credit, unless the episode ended here
         done = self.episode_over or bool(self.last_info.get("done", False))
         trace = getattr(self, "sensory_trace", None)

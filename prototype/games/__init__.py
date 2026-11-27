@@ -13,5 +13,6 @@ from .regional_games import DelayedCueGame, ForageGame, TimingGame
 REGISTRY.update(forage=ForageGame, delayed=DelayedCueGame, timing=TimingGame)
 from .spatial_games import HomingGame  # noqa: E402
 REGISTRY["homing"] = HomingGame
-from .maze_games import DetourGame  # noqa: E402
+from .maze_games import DetourGame, RevaluationGame  # noqa: E402
 REGISTRY["detour"] = DetourGame
+REGISTRY["revaluation"] = RevaluationGame

@@ -13,7 +13,7 @@ alongside. The owner chose to finish phases 2 and 5 before starting phase 3.*
 | **L1** hearing | ◐ mostly | 81 | ear, MGB, A1; text heard as sound; syllables identified 0.87-1.00 (chance 0.17); statistical word learning only a hint (right direction on 3 seeds, small) |
 | **2** spatial maps | ✅ done (CA1 open) | 83, 84 | head-direction and grid cells; place cells in the dentate (37-43%) and CA3 (31-35%) on every seed; homing 0.74-0.83 vs 0.14-0.20 silenced; **CA1 has no place cells** (inhibition-dominated; deferred by the owner) |
 | **5** objects anywhere | ◐ nearly met | 82, 85, 87-95 | V1 edge cells built (fixed stage, owner's choice): shape decodable from them at 0.68-0.72; **shape game still at chance (0.27-0.32), bar is ≥ 0.6** |
-| **3** world model and look-ahead | ◐ in progress | 96 | **detour met** (1.0 on 3 seeds within a few trials; silenced hippocampus 0-0.2); revaluation next |
+| **3** world model and look-ahead | ◐ mostly met | 96, 97 | **detour met** (3 seeds); **revaluation met** on 2 valid seeds (within 1-2 trials; seed 2 to re-run); latent learning and OFC lesion not yet measured |
 | 4 goals and routines | not started | | |
 | 6 learning in sleep | not started | | |
 | 7 Minecraft connection | not started | | needs owner decisions (Mojang EULA, account or browser view) |
